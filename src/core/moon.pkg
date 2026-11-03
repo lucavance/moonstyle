@@ -1,0 +1,9 @@
+import {
+  "moonbitlang/core/debug",
+  "lampclaw/moonstyle/ir",
+  "lampclaw/moonstyle/values",
+  "moonbitlang/x/crypto",
+  "moonbitlang/x/encoding",
+}
+
+formatter(ignore: [ "application_order.generated.mbt" ])

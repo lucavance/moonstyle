@@ -1,0 +1,159 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle/core"
+
+import {
+  "lampclaw/moonstyle/ir",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn application_order_at_rule_priority100(String) -> Int32
+
+pub let application_order_digest : String
+
+pub fn application_order_emitted_property(String) -> String
+
+pub fn application_order_entries(String) -> Array[(String, Bool)]
+
+pub fn application_order_migration_safe(String) -> Bool
+
+pub fn application_order_priority100(String) -> Int32
+
+pub let application_order_priority_scale : Int32
+
+pub let application_order_profile : String
+
+pub fn application_order_properties() -> Array[String]
+
+pub let application_order_pseudo_element_priority100 : Int32
+
+pub fn application_order_pseudo_priority100(String) -> Int32
+
+pub let application_order_relational_fallback_priority100 : Int32
+
+pub fn application_order_relational_priority100(String) -> Int32
+
+pub fn canonical_css_value(String) -> String
+
+pub fn compile(@ir.StyleSet) -> CompiledStyleSet
+
+pub fn compile_position_tries(String, Array[@ir.PositionTryDefinition]) -> (Array[GlobalRule], Array[Diagnostic])
+
+pub fn compile_registry_globals(String, Array[@ir.VariableSet], Array[@ir.Theme]) -> (Array[GlobalRule], Array[Diagnostic])
+
+pub fn compile_view_transition_class(String, @ir.ViewTransitionClassDefinition) -> CompiledViewTransitionClass
+
+pub fn diagnostic_context(String, artifact_path? : String?, dependency_chain? : Array[String]) -> DiagnosticContext
+
+pub fn error_diagnostic(String, String, source? : @ir.SourceSpan?, context? : DiagnosticContext?) -> Diagnostic
+
+pub fn render_css(CompiledStyleSet) -> String
+
+pub fn render_rules(Array[AtomicRule]) -> String
+
+pub fn render_view_transition_css(String, Array[ViewTransitionBlock]) -> String
+
+pub fn selector_marker_class_name(String, String) -> String
+
+pub fn sort_and_dedupe(Array[AtomicRule]) -> Array[AtomicRule]
+
+pub fn sort_and_dedupe_globals(Array[GlobalRule]) -> Array[GlobalRule]
+
+pub fn theme_class_name(String, @ir.Theme) -> String
+
+pub fn valid_view_transition_blocks(Array[ViewTransitionBlock]) -> Bool
+
+pub fn view_transition_class_name(String, String) -> String
+
+pub fn warning_diagnostic(String, String, source? : @ir.SourceSpan?, context? : DiagnosticContext?) -> Diagnostic
+
+pub fn with_priority_specificity(String, Int32) -> String
+
+// Errors
+
+// Types and methods
+pub struct AtomicRule {
+  property : String
+  class_name : String
+  ltr : String
+  rtl : String?
+  priority100 : Int32
+} derive(Eq, @debug.Debug)
+pub fn AtomicRule::equal(Self, Self) -> Bool
+pub fn AtomicRule::not_equal(Self, Self) -> Bool
+pub fn AtomicRule::to_repr(Self) -> @debug.Repr
+
+pub struct CompiledNamespace {
+  name : String
+  entries : Array[(String, String?)]
+} derive(Eq, @debug.Debug)
+pub fn CompiledNamespace::equal(Self, Self) -> Bool
+pub fn CompiledNamespace::not_equal(Self, Self) -> Bool
+pub fn CompiledNamespace::to_repr(Self) -> @debug.Repr
+
+pub struct CompiledStyleSet {
+  namespaces : Array[CompiledNamespace]
+  rules : Array[AtomicRule]
+  globals : Array[GlobalRule]
+  diagnostics : Array[Diagnostic]
+} derive(Eq, @debug.Debug)
+pub fn CompiledStyleSet::equal(Self, Self) -> Bool
+pub fn CompiledStyleSet::not_equal(Self, Self) -> Bool
+pub fn CompiledStyleSet::to_repr(Self) -> @debug.Repr
+
+pub struct CompiledViewTransitionClass {
+  name : String
+  blocks : Array[ViewTransitionBlock]
+  globals : Array[GlobalRule]
+  diagnostics : Array[Diagnostic]
+}
+
+pub struct Diagnostic {
+  code : String
+  severity : DiagnosticSeverity
+  message : String
+  source : @ir.SourceSpan?
+  context : DiagnosticContext?
+} derive(Eq, @debug.Debug)
+pub fn Diagnostic::equal(Self, Self) -> Bool
+pub fn Diagnostic::not_equal(Self, Self) -> Bool
+pub fn Diagnostic::to_repr(Self) -> @debug.Repr
+
+pub struct DiagnosticContext {
+  module_name : String
+  artifact_path : String?
+  dependency_chain : Array[String]
+} derive(Eq, @debug.Debug)
+pub fn DiagnosticContext::equal(Self, Self) -> Bool
+pub fn DiagnosticContext::not_equal(Self, Self) -> Bool
+pub fn DiagnosticContext::to_repr(Self) -> @debug.Repr
+
+pub(all) enum DiagnosticSeverity {
+  Error
+  Warning
+} derive(Eq, @debug.Debug)
+pub fn DiagnosticSeverity::equal(Self, Self) -> Bool
+pub fn DiagnosticSeverity::not_equal(Self, Self) -> Bool
+pub fn DiagnosticSeverity::to_repr(Self) -> @debug.Repr
+
+pub struct GlobalRule {
+  kind : String
+  name : String
+  css : String
+  digest : String
+} derive(Eq, @debug.Debug)
+pub fn GlobalRule::equal(Self, Self) -> Bool
+pub fn GlobalRule::not_equal(Self, Self) -> Bool
+pub fn GlobalRule::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ViewTransitionBlock {
+  group : String
+  declarations : Array[(String, Array[String])]
+} derive(Eq, @debug.Debug)
+pub fn ViewTransitionBlock::equal(Self, Self) -> Bool
+pub fn ViewTransitionBlock::not_equal(Self, Self) -> Bool
+pub fn ViewTransitionBlock::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

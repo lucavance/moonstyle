@@ -13,6 +13,8 @@ Typed CSS values and expressions are available in `lampclaw/moonstyle/values`.
 
 The IR and reviewed property metadata describe typed declarations.
 
+The semantic core compiles deterministic atomic CSS and composition slots.
+
 Use the exact environment in `toolchain.json`. Run `moon update`, then
 `vp install --frozen-lockfile` and `vp run check-toolchain`.
 Run `vp run moon-test` for the library packages available in this revision.
