@@ -1,0 +1,1252 @@
+{
+  "schemaVersion": 17,
+  "enums": [
+    {
+      "name": "Display",
+      "values": {
+        "Block": "block",
+        "Flex": "flex",
+        "Grid": "grid",
+        "Inline": "inline",
+        "InlineBlock": "inline-block",
+        "InlineFlex": "inline-flex",
+        "None": "none"
+      }
+    },
+    {
+      "name": "Overflow",
+      "values": {
+        "Visible": "visible",
+        "Hidden": "hidden",
+        "Auto": "auto",
+        "Scroll": "scroll"
+      }
+    },
+    {
+      "name": "Cursor",
+      "values": {
+        "Default": "default",
+        "Pointer": "pointer",
+        "Text": "text",
+        "NotAllowed": "not-allowed",
+        "Wait": "wait"
+      }
+    },
+    {
+      "name": "BorderStyle",
+      "values": {
+        "Solid": "solid",
+        "Dashed": "dashed",
+        "Dotted": "dotted",
+        "Double": "double",
+        "BorderNone": "none"
+      }
+    },
+    {
+      "name": "PlaceItems",
+      "values": {
+        "Start": "start",
+        "Center": "center",
+        "End": "end",
+        "Stretch": "stretch"
+      }
+    }
+  ],
+  "properties": [
+    {
+      "cssName": "width",
+      "family": "layout",
+      "valueType": "length",
+      "conditions": true,
+      "dynamic": true
+    },
+    {
+      "cssName": "height",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "min-height",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "max-width",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "padding",
+      "family": "layout",
+      "valueType": "length",
+      "atomicProperties": [
+        "padding-top",
+        "padding-inline-end",
+        "padding-bottom",
+        "padding-inline-start"
+      ]
+    },
+    {
+      "cssName": "padding-block",
+      "family": "layout",
+      "valueType": "length",
+      "atomicProperties": ["padding-top", "padding-bottom"]
+    },
+    {
+      "cssName": "padding-inline",
+      "family": "layout",
+      "valueType": "length",
+      "atomicProperties": ["padding-inline-start", "padding-inline-end"]
+    },
+    {
+      "cssName": "padding-inline-start",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "padding-inline-end",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "margin-top",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "margin-bottom",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "display",
+      "family": "layout",
+      "valueType": "enum:Display"
+    },
+    {
+      "cssName": "place-items",
+      "family": "layout",
+      "valueType": "enum:PlaceItems",
+      "atomicProperties": ["align-items", "justify-items"]
+    },
+    {
+      "cssName": "overflow",
+      "family": "layout",
+      "valueType": "enum:Overflow",
+      "atomicProperties": ["overflow-x", "overflow-y"]
+    },
+    {
+      "cssName": "cursor",
+      "family": "interaction",
+      "valueType": "enum:Cursor"
+    },
+    {
+      "cssName": "color",
+      "family": "visual",
+      "valueType": "color",
+      "conditions": true,
+      "dynamic": true
+    },
+    {
+      "cssName": "background-color",
+      "family": "visual",
+      "valueType": "color",
+      "conditions": true,
+      "dynamic": true
+    },
+    {
+      "cssName": "border-color",
+      "family": "visual",
+      "valueType": "color",
+      "atomicProperties": [
+        "border-top-color",
+        "border-inline-end-color",
+        "border-bottom-color",
+        "border-inline-start-color"
+      ]
+    },
+    {
+      "cssName": "border-width",
+      "family": "visual",
+      "valueType": "length",
+      "atomicProperties": [
+        "border-top-width",
+        "border-inline-end-width",
+        "border-bottom-width",
+        "border-inline-start-width"
+      ]
+    },
+    {
+      "cssName": "border-radius",
+      "family": "visual",
+      "valueType": "length",
+      "atomicProperties": [
+        "border-start-start-radius",
+        "border-start-end-radius",
+        "border-end-end-radius",
+        "border-end-start-radius"
+      ]
+    },
+    {
+      "cssName": "border-style",
+      "family": "visual",
+      "valueType": "enum:BorderStyle",
+      "atomicProperties": [
+        "border-top-style",
+        "border-inline-end-style",
+        "border-bottom-style",
+        "border-inline-start-style"
+      ]
+    },
+    {
+      "cssName": "border-inline-start-color",
+      "family": "visual",
+      "valueType": "color"
+    },
+    {
+      "cssName": "border-inline-end-color",
+      "family": "visual",
+      "valueType": "color"
+    },
+    {
+      "cssName": "border-inline-start-width",
+      "family": "visual",
+      "valueType": "length"
+    },
+    {
+      "cssName": "border-inline-end-width",
+      "family": "visual",
+      "valueType": "length"
+    },
+    {
+      "cssName": "border-inline-start-style",
+      "family": "visual",
+      "valueType": "enum:BorderStyle"
+    },
+    {
+      "cssName": "border-inline-end-style",
+      "family": "visual",
+      "valueType": "enum:BorderStyle"
+    },
+    {
+      "cssName": "border-start-start-radius",
+      "family": "visual",
+      "valueType": "length"
+    },
+    {
+      "cssName": "border-start-end-radius",
+      "family": "visual",
+      "valueType": "length"
+    },
+    {
+      "cssName": "border-end-start-radius",
+      "family": "visual",
+      "valueType": "length"
+    },
+    {
+      "cssName": "border-end-end-radius",
+      "family": "visual",
+      "valueType": "length"
+    },
+    {
+      "cssName": "font-size",
+      "family": "typography",
+      "valueType": "length"
+    },
+    {
+      "cssName": "font-weight",
+      "family": "typography",
+      "valueType": "int"
+    },
+    {
+      "cssName": "line-height",
+      "family": "typography",
+      "valueType": "double"
+    },
+    {
+      "cssName": "opacity",
+      "family": "visual",
+      "valueType": "double"
+    },
+    {
+      "cssName": "appearance",
+      "family": "interaction",
+      "valueType": "string"
+    },
+    {
+      "cssName": "font-family",
+      "family": "typography",
+      "valueType": "string"
+    },
+    {
+      "cssName": "box-shadow",
+      "family": "visual",
+      "valueType": "box-shadow-list"
+    },
+    {
+      "cssName": "filter",
+      "family": "visual",
+      "valueType": "filter-list"
+    },
+    {
+      "cssName": "backdrop-filter",
+      "family": "visual",
+      "valueType": "filter-list"
+    },
+    {
+      "cssName": "text-shadow",
+      "family": "typography",
+      "valueType": "text-shadow-list"
+    },
+    {
+      "cssName": "grid-template-areas",
+      "family": "layout",
+      "valueType": "grid-template-areas"
+    },
+    {
+      "cssName": "container-name",
+      "family": "layout",
+      "valueType": "container-names"
+    },
+    {
+      "cssName": "mask-image",
+      "family": "visual",
+      "valueType": "mask-image-list"
+    },
+    {
+      "cssName": "mask-position",
+      "family": "visual",
+      "valueType": "position-list"
+    },
+    {
+      "cssName": "mask-repeat",
+      "family": "visual",
+      "valueType": "repeat-style-list"
+    },
+    {
+      "cssName": "mask-size",
+      "family": "visual",
+      "valueType": "background-size-list"
+    },
+    {
+      "cssName": "clip-path",
+      "family": "visual",
+      "valueType": "clip-path"
+    },
+    {
+      "cssName": "content",
+      "family": "typography",
+      "valueType": "content-value"
+    },
+    {
+      "cssName": "anchor-name",
+      "family": "layout",
+      "valueType": "anchor-names"
+    },
+    {
+      "cssName": "position-anchor",
+      "family": "layout",
+      "valueType": "position-anchor"
+    },
+    {
+      "cssName": "position-area",
+      "family": "layout",
+      "valueType": "position-area"
+    },
+    {
+      "cssName": "position-try",
+      "family": "layout",
+      "valueType": "position-try-value",
+      "fallbacks": false
+    },
+    {
+      "cssName": "position-try-fallbacks",
+      "family": "layout",
+      "valueType": "position-try-fallbacks"
+    },
+    {
+      "cssName": "position-try-order",
+      "family": "layout",
+      "valueType": "position-try-order"
+    },
+    {
+      "cssName": "view-transition-name",
+      "family": "motion",
+      "valueType": "view-transition-name"
+    },
+    {
+      "cssName": "view-transition-class",
+      "family": "motion",
+      "valueType": "view-transition-class"
+    },
+    {
+      "cssName": "transition",
+      "family": "motion",
+      "valueType": "string"
+    },
+    {
+      "cssName": "animation-name",
+      "family": "motion",
+      "valueType": "animation-name",
+      "conditions": true
+    },
+    {
+      "cssName": "animation-duration",
+      "family": "motion",
+      "valueType": "time"
+    },
+    {
+      "cssName": "min-width",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "max-height",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "padding-top",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "padding-right",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "padding-bottom",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "padding-left",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "margin",
+      "family": "layout",
+      "valueType": "length",
+      "atomicProperties": [
+        "margin-top",
+        "margin-inline-end",
+        "margin-bottom",
+        "margin-inline-start"
+      ]
+    },
+    {
+      "cssName": "margin-left",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "margin-right",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "margin-block",
+      "family": "layout",
+      "valueType": "length",
+      "atomicProperties": ["margin-top", "margin-bottom"]
+    },
+    {
+      "cssName": "margin-inline",
+      "family": "layout",
+      "valueType": "length",
+      "atomicProperties": ["margin-inline-start", "margin-inline-end"]
+    },
+    {
+      "cssName": "margin-inline-start",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "margin-inline-end",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "gap",
+      "family": "layout",
+      "valueType": "length",
+      "atomicProperties": ["row-gap", "column-gap"]
+    },
+    {
+      "cssName": "row-gap",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "column-gap",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "top",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "right",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "bottom",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "left",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "letter-spacing",
+      "family": "typography",
+      "valueType": "length"
+    },
+    {
+      "cssName": "word-spacing",
+      "family": "typography",
+      "valueType": "length"
+    },
+    {
+      "cssName": "text-indent",
+      "family": "typography",
+      "valueType": "length"
+    },
+    {
+      "cssName": "outline-color",
+      "family": "visual",
+      "valueType": "color"
+    },
+    {
+      "cssName": "outline-width",
+      "family": "visual",
+      "valueType": "length"
+    },
+    {
+      "cssName": "outline-style",
+      "family": "visual",
+      "valueType": "enum:BorderStyle"
+    },
+    {
+      "cssName": "flex-basis",
+      "family": "layout",
+      "valueType": "length"
+    },
+    {
+      "cssName": "z-index",
+      "family": "layout",
+      "valueType": "integer"
+    },
+    {
+      "cssName": "order",
+      "family": "layout",
+      "valueType": "integer"
+    },
+    {
+      "cssName": "flex-grow",
+      "family": "layout",
+      "valueType": "number"
+    },
+    {
+      "cssName": "rotate",
+      "family": "motion",
+      "valueType": "angle"
+    },
+    {
+      "cssName": "transition-delay",
+      "family": "motion",
+      "valueType": "time"
+    },
+    {
+      "cssName": "background-image",
+      "family": "visual",
+      "valueType": "url",
+      "conditions": true
+    }
+  ],
+  "propertyGroups": [
+    {
+      "typeName": "PositionMode",
+      "family": "layout",
+      "keywords": ["static", "relative", "absolute", "fixed", "sticky"],
+      "cssNames": ["position"]
+    },
+    {
+      "typeName": "BoxSizing",
+      "family": "layout",
+      "keywords": ["content-box", "border-box"],
+      "cssNames": ["box-sizing"]
+    },
+    {
+      "typeName": "Visibility",
+      "family": "layout",
+      "keywords": ["visible", "hidden", "collapse"],
+      "cssNames": ["visibility"]
+    },
+    {
+      "family": "layout",
+      "valueType": "enum:Overflow",
+      "cssNames": ["overflow-x", "overflow-y", "overflow-block", "overflow-inline"]
+    },
+    {
+      "typeName": "FlexDirection",
+      "family": "layout",
+      "keywords": ["row", "row-reverse", "column", "column-reverse"],
+      "cssNames": ["flex-direction"]
+    },
+    {
+      "typeName": "FlexWrap",
+      "family": "layout",
+      "keywords": ["nowrap", "wrap", "wrap-reverse"],
+      "cssNames": ["flex-wrap"]
+    },
+    {
+      "family": "layout",
+      "valueType": "number",
+      "cssNames": ["flex-shrink"]
+    },
+    {
+      "typeName": "Alignment",
+      "family": "layout",
+      "keywords": [
+        "normal",
+        "start",
+        "end",
+        "center",
+        "stretch",
+        "baseline",
+        "space-between",
+        "space-around",
+        "space-evenly"
+      ],
+      "cssNames": [
+        "align-content",
+        "align-items",
+        "align-self",
+        "justify-content",
+        "justify-items",
+        "justify-self",
+        "place-content",
+        "place-self"
+      ]
+    },
+    {
+      "family": "layout",
+      "valueType": "ratio",
+      "cssNames": ["aspect-ratio"]
+    },
+    {
+      "typeName": "ObjectFit",
+      "family": "layout",
+      "keywords": ["fill", "contain", "cover", "none", "scale-down"],
+      "cssNames": ["object-fit"]
+    },
+    {
+      "typeName": "FloatMode",
+      "family": "layout",
+      "keywords": ["none", "left", "right", "inline-start", "inline-end"],
+      "cssNames": ["float"]
+    },
+    {
+      "typeName": "ClearMode",
+      "family": "layout",
+      "keywords": ["none", "left", "right", "both", "inline-start", "inline-end"],
+      "cssNames": ["clear"]
+    },
+    {
+      "typeName": "ResizeMode",
+      "family": "layout",
+      "keywords": ["none", "both", "horizontal", "vertical", "block", "inline"],
+      "cssNames": ["resize"]
+    },
+    {
+      "family": "layout",
+      "valueType": "contain",
+      "cssNames": ["contain"]
+    },
+    {
+      "family": "layout",
+      "valueType": "length",
+      "cssNames": [
+        "inset",
+        "inset-block",
+        "inset-inline",
+        "inset-block-start",
+        "inset-block-end",
+        "inset-inline-start",
+        "inset-inline-end"
+      ]
+    },
+    {
+      "typeName": "GridAutoFlow",
+      "family": "layout",
+      "keywords": ["row", "column", "dense", "row-dense", "column-dense"],
+      "cssNames": ["grid-auto-flow"]
+    },
+    {
+      "family": "layout",
+      "valueType": "grid-track-list",
+      "cssNames": [
+        "grid-template-columns",
+        "grid-template-rows",
+        "grid-auto-columns",
+        "grid-auto-rows"
+      ]
+    },
+    {
+      "family": "layout",
+      "valueType": "grid-line",
+      "cssNames": [
+        "grid-column-start",
+        "grid-column-end",
+        "grid-row-start",
+        "grid-row-end",
+        "grid-column",
+        "grid-row",
+        "grid-area"
+      ]
+    },
+    {
+      "typeName": "TextAlign",
+      "family": "typography",
+      "keywords": ["start", "end", "left", "right", "center", "justify", "match-parent"],
+      "cssNames": ["text-align", "text-align-last"]
+    },
+    {
+      "typeName": "TextTransform",
+      "family": "typography",
+      "keywords": ["none", "capitalize", "uppercase", "lowercase", "full-width", "full-size-kana"],
+      "cssNames": ["text-transform"]
+    },
+    {
+      "typeName": "TextDecorationLine",
+      "family": "typography",
+      "keywords": ["none", "underline", "overline", "line-through"],
+      "cssNames": ["text-decoration-line"]
+    },
+    {
+      "typeName": "TextDecorationStyle",
+      "family": "typography",
+      "keywords": ["solid", "double", "dotted", "dashed", "wavy"],
+      "cssNames": ["text-decoration-style"]
+    },
+    {
+      "family": "typography",
+      "valueType": "color",
+      "cssNames": ["text-decoration-color"]
+    },
+    {
+      "family": "typography",
+      "valueType": "length",
+      "cssNames": ["text-decoration-thickness", "text-underline-offset", "tab-size"]
+    },
+    {
+      "typeName": "TextUnderlinePosition",
+      "family": "typography",
+      "keywords": ["auto", "under", "left", "right"],
+      "cssNames": ["text-underline-position"]
+    },
+    {
+      "typeName": "OverflowWrap",
+      "family": "typography",
+      "keywords": ["normal", "break-word", "anywhere"],
+      "cssNames": ["overflow-wrap"]
+    },
+    {
+      "typeName": "WordBreak",
+      "family": "typography",
+      "keywords": ["normal", "break-all", "keep-all", "break-word"],
+      "cssNames": ["word-break"]
+    },
+    {
+      "typeName": "Hyphens",
+      "family": "typography",
+      "keywords": ["none", "manual", "auto"],
+      "cssNames": ["hyphens"]
+    },
+    {
+      "typeName": "TextOverflow",
+      "family": "typography",
+      "keywords": ["clip", "ellipsis"],
+      "cssNames": ["text-overflow"]
+    },
+    {
+      "typeName": "WhiteSpaceCollapse",
+      "family": "typography",
+      "keywords": ["collapse", "preserve", "preserve-breaks", "preserve-spaces", "break-spaces"],
+      "cssNames": ["white-space-collapse"]
+    },
+    {
+      "typeName": "TextWrapMode",
+      "family": "typography",
+      "keywords": ["wrap", "nowrap"],
+      "cssNames": ["text-wrap-mode"]
+    },
+    {
+      "typeName": "TextWrapStyle",
+      "family": "typography",
+      "keywords": ["auto", "balance", "pretty", "stable"],
+      "cssNames": ["text-wrap-style"]
+    },
+    {
+      "typeName": "FontStyle",
+      "family": "typography",
+      "keywords": ["normal", "italic", "oblique"],
+      "cssNames": ["font-style"]
+    },
+    {
+      "typeName": "FontStretch",
+      "family": "typography",
+      "keywords": [
+        "normal",
+        "ultra-condensed",
+        "extra-condensed",
+        "condensed",
+        "semi-condensed",
+        "semi-expanded",
+        "expanded",
+        "extra-expanded",
+        "ultra-expanded"
+      ],
+      "cssNames": ["font-stretch"]
+    },
+    {
+      "typeName": "FontKerning",
+      "family": "typography",
+      "keywords": ["auto", "normal", "none"],
+      "cssNames": ["font-kerning"]
+    },
+    {
+      "typeName": "FontOpticalSizing",
+      "family": "typography",
+      "keywords": ["auto", "none"],
+      "cssNames": ["font-optical-sizing"]
+    },
+    {
+      "typeName": "FontVariantCaps",
+      "family": "typography",
+      "keywords": [
+        "normal",
+        "small-caps",
+        "all-small-caps",
+        "petite-caps",
+        "all-petite-caps",
+        "unicase",
+        "titling-caps"
+      ],
+      "cssNames": ["font-variant-caps"]
+    },
+    {
+      "family": "typography",
+      "valueType": "font-variant-numeric",
+      "cssNames": ["font-variant-numeric"]
+    },
+    {
+      "typeName": "ListStylePosition",
+      "family": "typography",
+      "keywords": ["inside", "outside"],
+      "cssNames": ["list-style-position"]
+    },
+    {
+      "typeName": "BackgroundAttachment",
+      "family": "visual",
+      "keywords": ["scroll", "fixed", "local"],
+      "cssNames": ["background-attachment"]
+    },
+    {
+      "typeName": "BackgroundBox",
+      "family": "visual",
+      "keywords": ["border-box", "padding-box", "content-box"],
+      "cssNames": ["background-clip", "background-origin"]
+    },
+    {
+      "family": "visual",
+      "valueType": "repeat-style",
+      "cssNames": ["background-repeat"]
+    },
+    {
+      "family": "visual",
+      "valueType": "position",
+      "cssNames": ["background-position-x", "background-position-y", "object-position"]
+    },
+    {
+      "family": "visual",
+      "valueType": "background-size",
+      "cssNames": ["background-size"]
+    },
+    {
+      "typeName": "BlendMode",
+      "family": "visual",
+      "keywords": [
+        "normal",
+        "multiply",
+        "screen",
+        "overlay",
+        "darken",
+        "lighten",
+        "color-dodge",
+        "color-burn",
+        "hard-light",
+        "soft-light",
+        "difference",
+        "exclusion",
+        "hue",
+        "saturation",
+        "color",
+        "luminosity"
+      ],
+      "cssNames": ["mix-blend-mode", "background-blend-mode"]
+    },
+    {
+      "typeName": "ImageRendering",
+      "family": "visual",
+      "keywords": ["auto", "smooth", "high-quality", "crisp-edges", "pixelated"],
+      "cssNames": ["image-rendering"]
+    },
+    {
+      "family": "motion",
+      "valueType": "transform-list",
+      "cssNames": ["transform"]
+    },
+    {
+      "family": "motion",
+      "valueType": "transform-origin",
+      "cssNames": ["transform-origin", "perspective-origin"]
+    },
+    {
+      "family": "motion",
+      "valueType": "length",
+      "cssNames": ["translate", "perspective"]
+    },
+    {
+      "family": "motion",
+      "valueType": "number",
+      "cssNames": ["scale", "animation-iteration-count"]
+    },
+    {
+      "typeName": "BackfaceVisibility",
+      "family": "motion",
+      "keywords": ["visible", "hidden"],
+      "cssNames": ["backface-visibility"]
+    },
+    {
+      "typeName": "TransformStyle",
+      "family": "motion",
+      "keywords": ["flat", "preserve-3d"],
+      "cssNames": ["transform-style"]
+    },
+    {
+      "family": "motion",
+      "valueType": "time",
+      "cssNames": ["animation-delay"]
+    },
+    {
+      "typeName": "AnimationDirection",
+      "family": "motion",
+      "keywords": ["normal", "reverse", "alternate", "alternate-reverse"],
+      "cssNames": ["animation-direction"]
+    },
+    {
+      "typeName": "AnimationFillMode",
+      "family": "motion",
+      "keywords": ["none", "forwards", "backwards", "both"],
+      "cssNames": ["animation-fill-mode"]
+    },
+    {
+      "typeName": "AnimationPlayState",
+      "family": "motion",
+      "keywords": ["running", "paused"],
+      "cssNames": ["animation-play-state"]
+    },
+    {
+      "family": "motion",
+      "valueType": "easing-function",
+      "cssNames": ["animation-timing-function", "transition-timing-function"]
+    },
+    {
+      "typeName": "TransitionProperty",
+      "family": "motion",
+      "keywords": ["none", "all", "opacity", "transform", "color", "background-color"],
+      "cssNames": ["transition-property"]
+    },
+    {
+      "typeName": "PointerEvents",
+      "family": "interaction",
+      "keywords": ["auto", "none"],
+      "cssNames": ["pointer-events"]
+    },
+    {
+      "typeName": "UserSelect",
+      "family": "interaction",
+      "keywords": ["auto", "text", "none", "contain", "all"],
+      "cssNames": ["user-select"]
+    },
+    {
+      "family": "interaction",
+      "valueType": "touch-action",
+      "cssNames": ["touch-action"]
+    },
+    {
+      "family": "interaction",
+      "valueType": "color",
+      "cssNames": ["accent-color", "caret-color"]
+    },
+    {
+      "typeName": "ScrollBehavior",
+      "family": "interaction",
+      "keywords": ["auto", "smooth"],
+      "cssNames": ["scroll-behavior"]
+    },
+    {
+      "typeName": "OverscrollBehavior",
+      "family": "interaction",
+      "keywords": ["auto", "contain", "none"],
+      "cssNames": ["overscroll-behavior-x", "overscroll-behavior-y"]
+    },
+    {
+      "typeName": "ContentVisibility",
+      "family": "interaction",
+      "keywords": ["visible", "auto", "hidden"],
+      "cssNames": ["content-visibility"]
+    }
+  ],
+  "scalarExpansion": {
+    "profile": "stable-scalar-v2",
+    "families": {
+      "layout": [
+        "baseline-source",
+        "block-size",
+        "border-collapse",
+        "border-spacing",
+        "break-after",
+        "break-before",
+        "break-inside",
+        "caption-side",
+        "column-count",
+        "column-fill",
+        "column-span",
+        "contain-intrinsic-block-size",
+        "contain-intrinsic-height",
+        "contain-intrinsic-inline-size",
+        "contain-intrinsic-size",
+        "contain-intrinsic-width",
+        "container-type",
+        "cx",
+        "cy",
+        "direction",
+        "empty-cells",
+        "field-sizing",
+        "inline-size",
+        "margin-block-end",
+        "margin-block-start",
+        "max-block-size",
+        "max-inline-size",
+        "min-block-size",
+        "min-inline-size",
+        "padding-block-end",
+        "padding-block-start",
+        "position-visibility",
+        "r",
+        "rx",
+        "ry",
+        "scroll-margin",
+        "scroll-margin-block",
+        "scroll-margin-block-end",
+        "scroll-margin-block-start",
+        "scroll-margin-bottom",
+        "scroll-margin-inline",
+        "scroll-margin-inline-end",
+        "scroll-margin-inline-start",
+        "scroll-margin-left",
+        "scroll-margin-right",
+        "scroll-margin-top",
+        "scroll-padding",
+        "scroll-padding-block",
+        "scroll-padding-block-end",
+        "scroll-padding-block-start",
+        "scroll-padding-bottom",
+        "scroll-padding-inline",
+        "scroll-padding-inline-end",
+        "scroll-padding-inline-start",
+        "scroll-padding-left",
+        "scroll-padding-right",
+        "scroll-padding-top",
+        "shape-margin",
+        "table-layout",
+        "unicode-bidi",
+        "writing-mode",
+        "x",
+        "y"
+      ],
+      "typography": [
+        "baseline-shift",
+        "font-size-adjust",
+        "font-synthesis",
+        "font-synthesis-small-caps",
+        "font-synthesis-style",
+        "font-synthesis-weight",
+        "font-variant-emoji",
+        "font-variant-position",
+        "font-width",
+        "hanging-punctuation",
+        "hyphenate-limit-chars",
+        "line-break",
+        "math-shift",
+        "math-style",
+        "orphans",
+        "ruby-align",
+        "ruby-position",
+        "speak",
+        "text-anchor",
+        "text-box-trim",
+        "text-combine-upright",
+        "text-decoration-inset",
+        "text-decoration-skip-ink",
+        "text-emphasis-color",
+        "text-justify",
+        "text-orientation",
+        "text-rendering",
+        "widows"
+      ],
+      "visual": [
+        "border-image-repeat",
+        "box-decoration-break",
+        "clip-rule",
+        "color-interpolation-filters",
+        "fill-opacity",
+        "fill-rule",
+        "flood-color",
+        "flood-opacity",
+        "forced-color-adjust",
+        "image-orientation",
+        "lighting-color",
+        "mask-type",
+        "outline-offset",
+        "paint-order",
+        "print-color-adjust",
+        "shape-rendering",
+        "stop-color",
+        "stop-opacity",
+        "stroke-linecap",
+        "stroke-linejoin",
+        "stroke-miterlimit",
+        "stroke-opacity",
+        "vector-effect"
+      ],
+      "interaction": [
+        "overflow-anchor",
+        "overscroll-behavior",
+        "overscroll-behavior-block",
+        "overscroll-behavior-inline",
+        "scroll-snap-align",
+        "scroll-snap-stop",
+        "scroll-snap-type",
+        "scrollbar-width"
+      ],
+      "motion": [
+        "offset-distance",
+        "offset-rotate",
+        "scroll-timeline-axis",
+        "transform-box",
+        "transition-duration",
+        "view-timeline-axis",
+        "view-timeline-inset"
+      ]
+    }
+  },
+  "borderCompositeExpansion": {
+    "profile": "stable-border-composite-v1",
+    "groups": [
+      {
+        "adapter": "border-side",
+        "valueType": "border-side",
+        "cssNames": [
+          "border",
+          "border-block",
+          "border-block-end",
+          "border-block-start",
+          "border-bottom",
+          "border-inline",
+          "border-inline-end",
+          "border-inline-start",
+          "border-left",
+          "border-right",
+          "border-top"
+        ]
+      },
+      {
+        "adapter": "border-colors",
+        "valueType": "border-colors",
+        "cssNames": ["border-block-color", "border-inline-color"]
+      },
+      {
+        "adapter": "border-styles",
+        "valueType": "border-styles",
+        "cssNames": ["border-block-style", "border-inline-style"]
+      },
+      {
+        "adapter": "border-widths",
+        "valueType": "border-widths",
+        "cssNames": ["border-block-width", "border-inline-width"]
+      },
+      {
+        "adapter": "color",
+        "valueType": "color",
+        "cssNames": [
+          "border-block-end-color",
+          "border-block-start-color",
+          "border-bottom-color",
+          "border-left-color",
+          "border-right-color",
+          "border-top-color"
+        ]
+      },
+      {
+        "adapter": "line-style",
+        "valueType": "line-style",
+        "cssNames": [
+          "border-block-end-style",
+          "border-block-start-style",
+          "border-bottom-style",
+          "border-left-style",
+          "border-right-style",
+          "border-top-style"
+        ]
+      },
+      {
+        "adapter": "line-width",
+        "valueType": "line-width",
+        "cssNames": [
+          "border-block-end-width",
+          "border-block-start-width",
+          "border-bottom-width",
+          "border-left-width",
+          "border-right-width",
+          "border-top-width"
+        ]
+      },
+      {
+        "adapter": "corner-radius",
+        "valueType": "corner-radius",
+        "cssNames": [
+          "border-bottom-left-radius",
+          "border-bottom-right-radius",
+          "border-top-left-radius",
+          "border-top-right-radius"
+        ]
+      },
+      {
+        "adapter": "outline",
+        "valueType": "outline",
+        "cssNames": ["outline"]
+      }
+    ]
+  }
+}

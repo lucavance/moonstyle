@@ -1,0 +1,8 @@
+import {
+  "moonbitlang/core/debug",
+  "lampclaw/moonstyle/values",
+}
+
+options(
+  "is-main": false,
+)

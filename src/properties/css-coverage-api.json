@@ -1,0 +1,49 @@
+{
+  "structuredTypes": {
+    "page-value": "PageValue",
+    "mask-box": "MaskBox",
+    "mask-clip": "MaskClip",
+    "mask-mode": "MaskMode",
+    "mask-composite": "MaskComposite",
+    "counter-changes": "CounterChanges",
+    "timeline-names": "TimelineNames",
+    "animation-timelines": "AnimationTimelines",
+    "timeline-range": "TimelineRange",
+    "timeline-scope": "TimelineScope",
+    "motion-path": "MotionPath",
+    "offset-position": "OffsetPosition",
+    "offset-anchor": "OffsetAnchor",
+    "offset-rotate": "OffsetRotate",
+    "animation-iterations": "AnimationIterations",
+    "color-scheme": "ColorScheme",
+    "scrollbar-color": "ScrollbarColor",
+    "svg-paint": "SvgPaint"
+  },
+  "overrides": {
+    "offset-rotate": "offset-rotate",
+    "animation-iteration-count": "animation-iterations"
+  },
+  "properties": [
+    {"cssName": "page", "family": "layout", "valueType": "page-value", "conditions": true},
+    {"cssName": "mask-origin", "family": "visual", "valueType": "mask-box", "conditions": true},
+    {"cssName": "mask-clip", "family": "visual", "valueType": "mask-clip", "conditions": true},
+    {"cssName": "mask-mode", "family": "visual", "valueType": "mask-mode", "conditions": true},
+    {"cssName": "mask-composite", "family": "visual", "valueType": "mask-composite", "conditions": true},
+    {"cssName": "counter-reset", "family": "typography", "valueType": "counter-changes", "conditions": true},
+    {"cssName": "counter-set", "family": "typography", "valueType": "counter-changes", "conditions": true},
+    {"cssName": "counter-increment", "family": "typography", "valueType": "counter-changes", "conditions": true},
+    {"cssName": "scroll-timeline-name", "family": "motion", "valueType": "timeline-names", "conditions": true},
+    {"cssName": "view-timeline-name", "family": "motion", "valueType": "timeline-names", "conditions": true},
+    {"cssName": "animation-timeline", "family": "motion", "valueType": "animation-timelines", "conditions": true},
+    {"cssName": "animation-range-start", "family": "motion", "valueType": "timeline-range", "conditions": true},
+    {"cssName": "animation-range-end", "family": "motion", "valueType": "timeline-range", "conditions": true},
+    {"cssName": "timeline-scope", "family": "motion", "valueType": "timeline-scope", "conditions": true},
+    {"cssName": "offset-path", "family": "motion", "valueType": "motion-path", "conditions": true},
+    {"cssName": "offset-position", "family": "motion", "valueType": "offset-position", "conditions": true},
+    {"cssName": "offset-anchor", "family": "motion", "valueType": "offset-anchor", "conditions": true},
+    {"cssName": "color-scheme", "family": "interaction", "valueType": "color-scheme", "conditions": true},
+    {"cssName": "scrollbar-color", "family": "interaction", "valueType": "scrollbar-color", "conditions": true},
+    {"cssName": "fill", "family": "visual", "valueType": "svg-paint", "conditions": true},
+    {"cssName": "stroke", "family": "visual", "valueType": "svg-paint", "conditions": true}
+  ]
+}

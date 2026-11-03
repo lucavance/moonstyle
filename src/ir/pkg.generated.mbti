@@ -1,0 +1,573 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle/ir"
+
+import {
+  "lampclaw/moonstyle/values",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn animation(AnimationName) -> StyleValue
+
+pub fn animation_list_identity(Array[AnimationName?]) -> String
+
+pub fn any_contract_property(String) -> ContractProperty
+
+pub fn clear_value() -> StyleValue
+
+pub fn container(ContainerQuery) -> Condition
+
+pub fn container_query(Array[MediaFeature], name? : String?) -> ContainerQuery
+
+pub fn container_style_condition(ContainerStyleCondition) -> Condition
+
+pub fn contract_variable(String, String) -> ContractVariable
+
+pub fn create_theme(String, VariableSet, Array[@values.VarOverride]) -> Theme
+
+pub fn declaration(String, StyleValue, conditions? : Array[Condition], source? : SourceSpan?, atomic_properties? : Array[String], keyframe_allowed? : Bool, unsafe_raw? : Bool, value_origin? : DeclarationValueOrigin?) -> Declaration
+
+pub fn define_vars(String, Array[@values.VarDefinition]) -> VariableSet
+
+pub fn dependency_ref(String, String) -> DependencyRef
+
+pub fn dynamic(String, String, category? : String) -> StyleValue
+
+pub fn exact_contract_property(String, values? : Array[String], tokens? : Array[ContractVariable], slots? : Array[ContractVariable], expressions? : Array[String]) -> ContractProperty
+
+pub fn fallbacks(Array[String]) -> StyleValue
+
+pub fn keyframe_frame(KeyframeStep, Array[Declaration]) -> KeyframeFrame
+
+pub fn keyframes(String, Array[KeyframeFrame]) -> AnimationName
+
+pub fn layer(String) -> Condition
+
+pub fn media(MediaQuery) -> Condition
+
+pub fn media_feature(String, MediaFeatureOperator, String) -> MediaFeature
+
+pub fn media_query(Array[MediaFeature], negated? : Bool, media_type? : MediaType?) -> MediaQuery
+
+pub fn pseudo(PseudoClass) -> Condition
+
+pub fn pseudo_element(PseudoElement) -> Condition
+
+pub fn registry(String, Array[StyleSet], contracts? : Array[StyleContract], variable_sets? : Array[VariableSet], themes? : Array[Theme], recipes? : Array[Recipe], markers? : Array[MarkerDefinition], position_tries? : Array[PositionTryDefinition], view_transition_classes? : Array[ViewTransitionClassDefinition], direct_dependencies? : Array[DependencyRef]) -> Registry
+
+pub fn relational(SelectorMarkerRef, MarkerRelation) -> Condition
+
+pub fn selector_marker_ref(String, String, String, states? : Array[SelectorState]) -> SelectorMarkerRef
+
+pub fn source_span(String, Int32, Int32, end_line? : Int32, end_column? : Int32, symbol? : String) -> SourceSpan
+
+pub fn style_contract(String, Array[ContractProperty]) -> StyleContract
+
+pub fn style_namespace(String, Array[Declaration]) -> Namespace
+
+pub fn style_set(String, Array[Namespace]) -> StyleSet
+
+pub fn supports(SupportsCondition) -> Condition
+
+pub fn supports_all(Array[SupportsCondition]) -> SupportsCondition
+
+pub fn supports_any(Array[SupportsCondition]) -> SupportsCondition
+
+pub fn supports_declaration(String, String) -> SupportsCondition
+
+pub fn supports_not(SupportsCondition) -> SupportsCondition
+
+pub fn text(String) -> StyleValue
+
+pub fn unsafe_at_rule(String) -> Condition
+
+pub fn unsafe_pseudo(String) -> Condition
+
+pub fn unsafe_pseudo_element(String) -> Condition
+
+// Errors
+
+// Types and methods
+pub(all) struct AnimationName {
+  keyframes : Keyframes
+} derive(Eq, @debug.Debug)
+pub fn AnimationName::equal(Self, Self) -> Bool
+pub fn AnimationName::not_equal(Self, Self) -> Bool
+pub fn AnimationName::to_repr(Self) -> @debug.Repr
+
+pub(all) enum AttributeCase {
+  DefaultCase
+  Insensitive
+  Sensitive
+} derive(Eq, @debug.Debug)
+pub fn AttributeCase::equal(Self, Self) -> Bool
+pub fn AttributeCase::not_equal(Self, Self) -> Bool
+pub fn AttributeCase::to_repr(Self) -> @debug.Repr
+
+pub(all) enum AttributeOperator {
+  Present
+  Equals
+  IncludesWord
+  DashPrefix
+  Prefix
+  Suffix
+  Substring
+} derive(Eq, @debug.Debug)
+pub fn AttributeOperator::equal(Self, Self) -> Bool
+pub fn AttributeOperator::not_equal(Self, Self) -> Bool
+pub fn AttributeOperator::to_repr(Self) -> @debug.Repr
+
+pub(all) struct AttributeSelector {
+  name : String
+  operator : AttributeOperator
+  value : String
+  case_mode : AttributeCase
+} derive(Eq, @debug.Debug)
+pub fn AttributeSelector::equal(Self, Self) -> Bool
+pub fn AttributeSelector::not_equal(Self, Self) -> Bool
+pub fn AttributeSelector::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Condition {
+  Pseudo(PseudoClass)
+  PseudoElement(PseudoElement)
+  UnsafePseudo(String)
+  UnsafePseudoElement(String)
+  UnsafeAtRule(String)
+  Media(MediaQuery)
+  Supports(SupportsCondition)
+  Container(ContainerQuery)
+  ContainerStyle(ContainerStyleCondition)
+  Relational(SelectorMarkerRef, MarkerRelation)
+  Layer(String)
+} derive(Eq, @debug.Debug)
+pub fn Condition::equal(Self, Self) -> Bool
+pub fn Condition::not_equal(Self, Self) -> Bool
+pub fn Condition::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ContainerQuery {
+  name : String?
+  features : Array[MediaFeature]
+} derive(Eq, @debug.Debug)
+pub fn ContainerQuery::equal(Self, Self) -> Bool
+pub fn ContainerQuery::not_equal(Self, Self) -> Bool
+pub fn ContainerQuery::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ContainerStyleCondition {
+  StyleEquals(@values.VariableUse, String)
+  StyleNot(ContainerStyleCondition)
+  StyleAll(Array[ContainerStyleCondition])
+  StyleAny(Array[ContainerStyleCondition])
+} derive(Eq, @debug.Debug)
+pub fn ContainerStyleCondition::equal(Self, Self) -> Bool
+pub fn ContainerStyleCondition::not_equal(Self, Self) -> Bool
+pub fn ContainerStyleCondition::to_repr(Self) -> @debug.Repr
+pub fn ContainerStyleCondition::variables(Self) -> Array[@values.VariableUse]
+
+pub(all) struct ContractProperty {
+  name : String
+  policy : ContractValuePolicy
+} derive(Eq, @debug.Debug)
+pub fn ContractProperty::equal(Self, Self) -> Bool
+pub fn ContractProperty::not_equal(Self, Self) -> Bool
+pub fn ContractProperty::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ContractValuePolicy {
+  AnySafe
+  Exact(Array[String], Array[ContractVariable], Array[ContractVariable], Array[String])
+} derive(Eq, @debug.Debug)
+pub fn ContractValuePolicy::equal(Self, Self) -> Bool
+pub fn ContractValuePolicy::not_equal(Self, Self) -> Bool
+pub fn ContractValuePolicy::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ContractVariable {
+  variable : String
+  category : String
+} derive(Eq, @debug.Debug)
+pub fn ContractVariable::equal(Self, Self) -> Bool
+pub fn ContractVariable::not_equal(Self, Self) -> Bool
+pub fn ContractVariable::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Declaration {
+  property : String
+  atomic_properties : Array[String]
+  unsafe_raw : Bool
+  value : StyleValue
+  value_origin : DeclarationValueOrigin
+  conditions : Array[Condition]
+  source : SourceSpan?
+  keyframe_allowed : Bool
+} derive(Eq, @debug.Debug)
+pub fn Declaration::equal(Self, Self) -> Bool
+pub fn Declaration::not_equal(Self, Self) -> Bool
+pub fn Declaration::to_repr(Self) -> @debug.Repr
+pub fn Declaration::with_source(Self, SourceSpan) -> Self
+
+pub(all) enum DeclarationValueOrigin {
+  LiteralOrigin(Array[String])
+  TokenOrigin(ContractVariable)
+  DynamicSlotOrigin(ContractVariable)
+  ExpressionOrigin(String)
+  ExpressionFallbackOrigin(Array[String])
+  MixedFallbackOrigin(Array[DeclarationValueOrigin])
+  AnimationOrigin
+  ClearOrigin
+  UnsafeOrigin
+} derive(Eq, @debug.Debug)
+pub fn DeclarationValueOrigin::equal(Self, Self) -> Bool
+pub fn DeclarationValueOrigin::not_equal(Self, Self) -> Bool
+pub fn DeclarationValueOrigin::to_repr(Self) -> @debug.Repr
+
+pub struct DependencyRef {
+  module_name : String
+  semantic_digest : String
+} derive(Eq, @debug.Debug)
+pub fn DependencyRef::equal(Self, Self) -> Bool
+pub fn DependencyRef::module_name(Self) -> String
+pub fn DependencyRef::not_equal(Self, Self) -> Bool
+pub fn DependencyRef::semantic_digest(Self) -> String
+pub fn DependencyRef::to_repr(Self) -> @debug.Repr
+
+pub(all) struct KeyframeDeclaration {
+  expressions : Array[@values.Expression]
+  property : String
+  values : Array[String]
+  conditions : Array[Condition]
+  dynamic : Bool
+  keyframe_allowed : Bool
+  source : SourceSpan?
+} derive(Eq, @debug.Debug)
+pub fn KeyframeDeclaration::equal(Self, Self) -> Bool
+pub fn KeyframeDeclaration::not_equal(Self, Self) -> Bool
+pub fn KeyframeDeclaration::to_repr(Self) -> @debug.Repr
+
+pub(all) struct KeyframeFrame {
+  step : KeyframeStep
+  declarations : Array[KeyframeDeclaration]
+} derive(Eq, @debug.Debug)
+pub fn KeyframeFrame::equal(Self, Self) -> Bool
+pub fn KeyframeFrame::not_equal(Self, Self) -> Bool
+pub fn KeyframeFrame::to_repr(Self) -> @debug.Repr
+
+pub(all) enum KeyframeStep {
+  From
+  To
+  Percent(Int32)
+} derive(Eq, @debug.Debug)
+pub fn KeyframeStep::equal(Self, Self) -> Bool
+pub fn KeyframeStep::not_equal(Self, Self) -> Bool
+pub fn KeyframeStep::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Keyframes {
+  name_hint : String
+  frames : Array[KeyframeFrame]
+} derive(Eq, @debug.Debug)
+pub fn Keyframes::equal(Self, Self) -> Bool
+pub fn Keyframes::not_equal(Self, Self) -> Bool
+pub fn Keyframes::to_repr(Self) -> @debug.Repr
+
+pub(all) struct MarkerDefinition {
+  name : String
+} derive(Eq, @debug.Debug)
+pub fn MarkerDefinition::equal(Self, Self) -> Bool
+pub fn MarkerDefinition::not_equal(Self, Self) -> Bool
+pub fn MarkerDefinition::to_repr(Self) -> @debug.Repr
+
+pub(all) enum MarkerRelation {
+  MarkerAncestor
+  MarkerDescendant
+  MarkerSiblingBefore
+  MarkerSiblingAfter
+  MarkerAnySibling
+} derive(Eq, @debug.Debug)
+pub fn MarkerRelation::equal(Self, Self) -> Bool
+pub fn MarkerRelation::not_equal(Self, Self) -> Bool
+pub fn MarkerRelation::to_repr(Self) -> @debug.Repr
+
+pub(all) struct MediaFeature {
+  name : String
+  operator : MediaFeatureOperator
+  value : String
+} derive(Eq, @debug.Debug)
+pub fn MediaFeature::equal(Self, Self) -> Bool
+pub fn MediaFeature::not_equal(Self, Self) -> Bool
+pub fn MediaFeature::to_repr(Self) -> @debug.Repr
+
+pub(all) enum MediaFeatureOperator {
+  Min
+  Max
+  Equal
+  LessThan
+  GreaterThan
+} derive(Eq, @debug.Debug)
+pub fn MediaFeatureOperator::equal(Self, Self) -> Bool
+pub fn MediaFeatureOperator::not_equal(Self, Self) -> Bool
+pub fn MediaFeatureOperator::to_repr(Self) -> @debug.Repr
+
+pub(all) struct MediaQuery {
+  negated : Bool
+  media_type : MediaType?
+  features : Array[MediaFeature]
+} derive(Eq, @debug.Debug)
+pub fn MediaQuery::equal(Self, Self) -> Bool
+pub fn MediaQuery::not_equal(Self, Self) -> Bool
+pub fn MediaQuery::to_repr(Self) -> @debug.Repr
+
+pub(all) enum MediaType {
+  All
+  Screen
+  Print
+  Speech
+} derive(Eq, @debug.Debug)
+pub fn MediaType::equal(Self, Self) -> Bool
+pub fn MediaType::not_equal(Self, Self) -> Bool
+pub fn MediaType::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Namespace {
+  name : String
+  declarations : Array[Declaration]
+} derive(Eq, @debug.Debug)
+pub fn Namespace::equal(Self, Self) -> Bool
+pub fn Namespace::not_equal(Self, Self) -> Bool
+pub fn Namespace::to_repr(Self) -> @debug.Repr
+
+pub(all) struct PositionTryDefinition {
+  name : String
+  descriptors : Array[PositionTryDescriptor]
+} derive(Eq, @debug.Debug)
+pub fn PositionTryDefinition::equal(Self, Self) -> Bool
+pub fn PositionTryDefinition::not_equal(Self, Self) -> Bool
+pub fn PositionTryDefinition::to_repr(Self) -> @debug.Repr
+
+pub(all) struct PositionTryDescriptor {
+  name : String
+  value : String
+} derive(Eq, @debug.Debug)
+pub fn PositionTryDescriptor::equal(Self, Self) -> Bool
+pub fn PositionTryDescriptor::not_equal(Self, Self) -> Bool
+pub fn PositionTryDescriptor::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PseudoClass {
+  Hover
+  Focus
+  FocusVisible
+  FocusWithin
+  Active
+  Disabled
+  Enabled
+  Checked
+  Required
+  Optional
+  ReadOnly
+  ReadWrite
+  PlaceholderShown
+  FirstChild
+  LastChild
+  OnlyChild
+  Empty
+  Link
+  Visited
+  Valid
+  Invalid
+  InRange
+  OutOfRange
+  Indeterminate
+  Target
+  Autofill
+  NthChild(Int32, Int32)
+  NthLastChild(Int32, Int32)
+  NthOfType(Int32, Int32)
+  NthLastOfType(Int32, Int32)
+  Is(Array[SelectorState])
+  Not(Array[SelectorState])
+  Where(Array[SelectorState])
+  MatchAttribute(AttributeSelector)
+} derive(Eq, @debug.Debug)
+pub fn PseudoClass::equal(Self, Self) -> Bool
+pub fn PseudoClass::not_equal(Self, Self) -> Bool
+pub fn PseudoClass::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PseudoElement {
+  Before
+  After
+  Placeholder
+  Selection
+  Marker
+  FirstLetter
+  FirstLine
+  Backdrop
+  FileSelectorButton
+} derive(Eq, @debug.Debug)
+pub fn PseudoElement::equal(Self, Self) -> Bool
+pub fn PseudoElement::not_equal(Self, Self) -> Bool
+pub fn PseudoElement::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Recipe {
+  name : String
+  base : Array[String]
+  variants : Array[RecipeVariantAxis]
+  compounds : Array[RecipeCompound]
+  contract : String?
+} derive(Eq, @debug.Debug)
+pub fn Recipe::equal(Self, Self) -> Bool
+pub fn Recipe::not_equal(Self, Self) -> Bool
+pub fn Recipe::to_repr(Self) -> @debug.Repr
+
+pub(all) struct RecipeCompound {
+  matches : Array[RecipeVariantMatch]
+  rules : Array[String]
+} derive(Eq, @debug.Debug)
+pub fn RecipeCompound::equal(Self, Self) -> Bool
+pub fn RecipeCompound::not_equal(Self, Self) -> Bool
+pub fn RecipeCompound::to_repr(Self) -> @debug.Repr
+
+pub(all) struct RecipeVariantAxis {
+  name : String
+  choices : Array[RecipeVariantChoice]
+  default_value : String?
+  boolean : Bool
+} derive(Eq, @debug.Debug)
+pub fn RecipeVariantAxis::equal(Self, Self) -> Bool
+pub fn RecipeVariantAxis::not_equal(Self, Self) -> Bool
+pub fn RecipeVariantAxis::to_repr(Self) -> @debug.Repr
+
+pub(all) struct RecipeVariantChoice {
+  value : String
+  rules : Array[String]
+} derive(Eq, @debug.Debug)
+pub fn RecipeVariantChoice::equal(Self, Self) -> Bool
+pub fn RecipeVariantChoice::not_equal(Self, Self) -> Bool
+pub fn RecipeVariantChoice::to_repr(Self) -> @debug.Repr
+
+pub(all) struct RecipeVariantMatch {
+  axis : String
+  value : String
+} derive(Eq, @debug.Debug)
+pub fn RecipeVariantMatch::equal(Self, Self) -> Bool
+pub fn RecipeVariantMatch::not_equal(Self, Self) -> Bool
+pub fn RecipeVariantMatch::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Registry {
+  module_name : String
+  styles : Array[StyleSet]
+  contracts : Array[StyleContract]
+  variable_sets : Array[VariableSet]
+  themes : Array[Theme]
+  recipes : Array[Recipe]
+  markers : Array[MarkerDefinition]
+  position_tries : Array[PositionTryDefinition]
+  view_transition_classes : Array[ViewTransitionClassDefinition]
+  direct_dependencies : Array[DependencyRef]
+} derive(Eq, @debug.Debug)
+pub fn Registry::equal(Self, Self) -> Bool
+pub fn Registry::not_equal(Self, Self) -> Bool
+pub fn Registry::to_repr(Self) -> @debug.Repr
+
+pub(all) struct SelectorMarkerRef {
+  module_name : String
+  name : String
+  class_name : String
+  states : Array[SelectorState]
+} derive(Eq, @debug.Debug)
+pub fn SelectorMarkerRef::equal(Self, Self) -> Bool
+pub fn SelectorMarkerRef::not_equal(Self, Self) -> Bool
+pub fn SelectorMarkerRef::to_repr(Self) -> @debug.Repr
+
+pub(all) enum SelectorState {
+  SelectorPseudo(PseudoClass)
+  SelectorAttribute(String)
+  SelectorAttributeEquals(String, String)
+  SelectorAttributeMatch(AttributeSelector)
+} derive(Eq, @debug.Debug)
+pub fn SelectorState::equal(Self, Self) -> Bool
+pub fn SelectorState::not_equal(Self, Self) -> Bool
+pub fn SelectorState::to_repr(Self) -> @debug.Repr
+
+pub(all) struct SourceSpan {
+  file : String
+  line : Int32
+  column : Int32
+  end_line : Int32
+  end_column : Int32
+  symbol : String
+} derive(Eq, @debug.Debug)
+pub fn SourceSpan::equal(Self, Self) -> Bool
+pub fn SourceSpan::not_equal(Self, Self) -> Bool
+pub fn SourceSpan::to_repr(Self) -> @debug.Repr
+
+pub(all) struct StyleContract {
+  name : String
+  properties : Array[ContractProperty]
+} derive(Eq, @debug.Debug)
+pub fn StyleContract::equal(Self, Self) -> Bool
+pub fn StyleContract::not_equal(Self, Self) -> Bool
+pub fn StyleContract::to_repr(Self) -> @debug.Repr
+
+pub(all) struct StyleSet {
+  export_name : String
+  namespaces : Array[Namespace]
+} derive(Eq, @debug.Debug)
+pub fn StyleSet::equal(Self, Self) -> Bool
+pub fn StyleSet::not_equal(Self, Self) -> Bool
+pub fn StyleSet::to_repr(Self) -> @debug.Repr
+
+pub(all) enum StyleValue {
+  Text(String)
+  Fallbacks(Array[String])
+  Dynamic(String, String, String)
+  Expression(@values.Expression)
+  ExpressionFallbacks(Array[@values.Expression])
+  Animation(AnimationName)
+  AnimationList(Array[AnimationName?])
+  Clear
+} derive(Eq, @debug.Debug)
+pub fn StyleValue::animations(Self) -> Array[AnimationName]
+pub fn StyleValue::equal(Self, Self) -> Bool
+pub fn StyleValue::not_equal(Self, Self) -> Bool
+pub fn StyleValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum SupportsCondition {
+  Declaration(String, String)
+  Not(SupportsCondition)
+  All(Array[SupportsCondition])
+  Any(Array[SupportsCondition])
+} derive(Eq, @debug.Debug)
+pub fn SupportsCondition::equal(Self, Self) -> Bool
+pub fn SupportsCondition::not_equal(Self, Self) -> Bool
+pub fn SupportsCondition::to_repr(Self) -> @debug.Repr
+
+pub(all) struct Theme {
+  name : String
+  base : VariableSet
+  overrides : Array[@values.VarOverride]
+} derive(Eq, @debug.Debug)
+pub fn Theme::equal(Self, Self) -> Bool
+pub fn Theme::not_equal(Self, Self) -> Bool
+pub fn Theme::to_repr(Self) -> @debug.Repr
+
+pub(all) struct VariableSet {
+  scope : String
+  definitions : Array[@values.VarDefinition]
+} derive(Eq, @debug.Debug)
+pub fn VariableSet::equal(Self, Self) -> Bool
+pub fn VariableSet::not_equal(Self, Self) -> Bool
+pub fn VariableSet::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ViewTransitionClassDefinition {
+  name : String
+  styles : Array[ViewTransitionStyle]
+} derive(Eq, @debug.Debug)
+pub fn ViewTransitionClassDefinition::equal(Self, Self) -> Bool
+pub fn ViewTransitionClassDefinition::not_equal(Self, Self) -> Bool
+pub fn ViewTransitionClassDefinition::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ViewTransitionStyle {
+  group : String
+  declarations : Array[Declaration]
+} derive(Eq, @debug.Debug)
+pub fn ViewTransitionStyle::equal(Self, Self) -> Bool
+pub fn ViewTransitionStyle::not_equal(Self, Self) -> Bool
+pub fn ViewTransitionStyle::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

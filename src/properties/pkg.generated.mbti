@@ -1,0 +1,2783 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle/properties"
+
+import {
+  "lampclaw/moonstyle/ir",
+  "lampclaw/moonstyle/values",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn accent_color(@values.Color) -> InteractionDeclaration
+
+pub fn accent_color_fallbacks(Array[@values.Color]) -> InteractionDeclaration
+
+pub fn align_content(Alignment) -> LayoutDeclaration
+
+pub fn align_content_fallbacks(Array[Alignment]) -> LayoutDeclaration
+
+pub fn align_items(Alignment) -> LayoutDeclaration
+
+pub fn align_items_fallbacks(Array[Alignment]) -> LayoutDeclaration
+
+pub fn align_self(Alignment) -> LayoutDeclaration
+
+pub fn align_self_fallbacks(Array[Alignment]) -> LayoutDeclaration
+
+pub fn anchor_name(@values.AnchorNames) -> LayoutDeclaration
+
+pub fn anchor_name_fallbacks(Array[@values.AnchorNames]) -> LayoutDeclaration
+
+pub fn animation_delay(@values.Time) -> MotionDeclaration
+
+pub fn animation_delay_fallbacks(Array[@values.Time]) -> MotionDeclaration
+
+pub fn animation_direction(AnimationDirection) -> MotionDeclaration
+
+pub fn animation_direction_fallbacks(Array[AnimationDirection]) -> MotionDeclaration
+
+pub fn animation_duration(@values.Time) -> MotionDeclaration
+
+pub fn animation_duration_fallbacks(Array[@values.Time]) -> MotionDeclaration
+
+pub fn animation_fill_mode(AnimationFillMode) -> MotionDeclaration
+
+pub fn animation_fill_mode_fallbacks(Array[AnimationFillMode]) -> MotionDeclaration
+
+pub fn animation_iteration_count(@values.AnimationIterations) -> MotionDeclaration
+
+pub fn animation_iteration_count_fallbacks(Array[@values.AnimationIterations]) -> MotionDeclaration
+
+pub fn animation_name(@ir.AnimationName, conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn animation_play_state(AnimationPlayState) -> MotionDeclaration
+
+pub fn animation_play_state_fallbacks(Array[AnimationPlayState]) -> MotionDeclaration
+
+pub fn animation_range_end(@values.TimelineRange, conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn animation_range_end_fallbacks(Array[@values.TimelineRange], conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn animation_range_start(@values.TimelineRange, conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn animation_range_start_fallbacks(Array[@values.TimelineRange], conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn animation_timeline(@values.AnimationTimelines, conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn animation_timeline_fallbacks(Array[@values.AnimationTimelines], conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn animation_timing_function(@values.EasingFunction) -> MotionDeclaration
+
+pub fn animation_timing_function_fallbacks(Array[@values.EasingFunction]) -> MotionDeclaration
+
+pub fn appearance(String) -> InteractionDeclaration
+
+pub fn appearance_fallbacks(Array[String]) -> InteractionDeclaration
+
+pub fn aspect_ratio(@values.Ratio) -> LayoutDeclaration
+
+pub fn aspect_ratio_fallbacks(Array[@values.Ratio]) -> LayoutDeclaration
+
+pub fn backdrop_filter(@values.FilterList) -> VisualDeclaration
+
+pub fn backdrop_filter_fallbacks(Array[@values.FilterList]) -> VisualDeclaration
+
+pub fn backface_visibility(BackfaceVisibility) -> MotionDeclaration
+
+pub fn backface_visibility_fallbacks(Array[BackfaceVisibility]) -> MotionDeclaration
+
+pub fn background_attachment(BackgroundAttachment) -> VisualDeclaration
+
+pub fn background_attachment_fallbacks(Array[BackgroundAttachment]) -> VisualDeclaration
+
+pub fn background_blend_mode(BlendMode) -> VisualDeclaration
+
+pub fn background_blend_mode_fallbacks(Array[BlendMode]) -> VisualDeclaration
+
+pub fn background_clip(BackgroundBox) -> VisualDeclaration
+
+pub fn background_clip_fallbacks(Array[BackgroundBox]) -> VisualDeclaration
+
+pub fn background_color(@values.Color, conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn background_color_fallbacks(Array[@values.Color], conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn background_image(@values.Url, conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn background_image_fallbacks(Array[@values.Url], conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn background_origin(BackgroundBox) -> VisualDeclaration
+
+pub fn background_origin_fallbacks(Array[BackgroundBox]) -> VisualDeclaration
+
+pub fn background_position_x(@values.Position) -> VisualDeclaration
+
+pub fn background_position_x_fallbacks(Array[@values.Position]) -> VisualDeclaration
+
+pub fn background_position_y(@values.Position) -> VisualDeclaration
+
+pub fn background_position_y_fallbacks(Array[@values.Position]) -> VisualDeclaration
+
+pub fn background_repeat(@values.RepeatStyle) -> VisualDeclaration
+
+pub fn background_repeat_fallbacks(Array[@values.RepeatStyle]) -> VisualDeclaration
+
+pub fn background_size(@values.BackgroundSize) -> VisualDeclaration
+
+pub fn background_size_fallbacks(Array[@values.BackgroundSize]) -> VisualDeclaration
+
+pub fn baseline_shift(@values.LengthPercentage) -> TypographyDeclaration
+
+pub fn baseline_shift_fallbacks(Array[@values.LengthPercentage]) -> TypographyDeclaration
+
+pub fn baseline_source(BaselineSourceValue) -> LayoutDeclaration
+
+pub fn baseline_source_fallbacks(Array[BaselineSourceValue]) -> LayoutDeclaration
+
+pub fn block_size(@values.Length) -> LayoutDeclaration
+
+pub fn block_size_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn border(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_block(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_block_color(@values.BorderColors) -> VisualDeclaration
+
+pub fn border_block_color_fallbacks(Array[@values.BorderColors]) -> VisualDeclaration
+
+pub fn border_block_end(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_block_end_color(@values.Color) -> VisualDeclaration
+
+pub fn border_block_end_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn border_block_end_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_block_end_style(@values.LineStyle) -> VisualDeclaration
+
+pub fn border_block_end_style_fallbacks(Array[@values.LineStyle]) -> VisualDeclaration
+
+pub fn border_block_end_width(@values.LineWidth) -> VisualDeclaration
+
+pub fn border_block_end_width_fallbacks(Array[@values.LineWidth]) -> VisualDeclaration
+
+pub fn border_block_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_block_start(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_block_start_color(@values.Color) -> VisualDeclaration
+
+pub fn border_block_start_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn border_block_start_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_block_start_style(@values.LineStyle) -> VisualDeclaration
+
+pub fn border_block_start_style_fallbacks(Array[@values.LineStyle]) -> VisualDeclaration
+
+pub fn border_block_start_width(@values.LineWidth) -> VisualDeclaration
+
+pub fn border_block_start_width_fallbacks(Array[@values.LineWidth]) -> VisualDeclaration
+
+pub fn border_block_style(@values.BorderStyles) -> VisualDeclaration
+
+pub fn border_block_style_fallbacks(Array[@values.BorderStyles]) -> VisualDeclaration
+
+pub fn border_block_width(@values.BorderWidths) -> VisualDeclaration
+
+pub fn border_block_width_fallbacks(Array[@values.BorderWidths]) -> VisualDeclaration
+
+pub fn border_bottom(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_bottom_color(@values.Color) -> VisualDeclaration
+
+pub fn border_bottom_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn border_bottom_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_bottom_left_radius(@values.CornerRadius) -> VisualDeclaration
+
+pub fn border_bottom_left_radius_fallbacks(Array[@values.CornerRadius]) -> VisualDeclaration
+
+pub fn border_bottom_right_radius(@values.CornerRadius) -> VisualDeclaration
+
+pub fn border_bottom_right_radius_fallbacks(Array[@values.CornerRadius]) -> VisualDeclaration
+
+pub fn border_bottom_style(@values.LineStyle) -> VisualDeclaration
+
+pub fn border_bottom_style_fallbacks(Array[@values.LineStyle]) -> VisualDeclaration
+
+pub fn border_bottom_width(@values.LineWidth) -> VisualDeclaration
+
+pub fn border_bottom_width_fallbacks(Array[@values.LineWidth]) -> VisualDeclaration
+
+pub fn border_collapse(BorderCollapseValue) -> LayoutDeclaration
+
+pub fn border_collapse_fallbacks(Array[BorderCollapseValue]) -> LayoutDeclaration
+
+pub fn border_color(@values.Color) -> VisualDeclaration
+
+pub fn border_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn border_end_end_radius(@values.Length) -> VisualDeclaration
+
+pub fn border_end_end_radius_fallbacks(Array[@values.Length]) -> VisualDeclaration
+
+pub fn border_end_start_radius(@values.Length) -> VisualDeclaration
+
+pub fn border_end_start_radius_fallbacks(Array[@values.Length]) -> VisualDeclaration
+
+pub fn border_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_image_repeat(BorderImageRepeatValue) -> VisualDeclaration
+
+pub fn border_image_repeat_fallbacks(Array[BorderImageRepeatValue]) -> VisualDeclaration
+
+pub fn border_inline(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_inline_color(@values.BorderColors) -> VisualDeclaration
+
+pub fn border_inline_color_fallbacks(Array[@values.BorderColors]) -> VisualDeclaration
+
+pub fn border_inline_end(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_inline_end_color(@values.Color) -> VisualDeclaration
+
+pub fn border_inline_end_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn border_inline_end_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_inline_end_style(BorderStyle) -> VisualDeclaration
+
+pub fn border_inline_end_style_fallbacks(Array[BorderStyle]) -> VisualDeclaration
+
+pub fn border_inline_end_width(@values.Length) -> VisualDeclaration
+
+pub fn border_inline_end_width_fallbacks(Array[@values.Length]) -> VisualDeclaration
+
+pub fn border_inline_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_inline_start(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_inline_start_color(@values.Color) -> VisualDeclaration
+
+pub fn border_inline_start_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn border_inline_start_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_inline_start_style(BorderStyle) -> VisualDeclaration
+
+pub fn border_inline_start_style_fallbacks(Array[BorderStyle]) -> VisualDeclaration
+
+pub fn border_inline_start_width(@values.Length) -> VisualDeclaration
+
+pub fn border_inline_start_width_fallbacks(Array[@values.Length]) -> VisualDeclaration
+
+pub fn border_inline_style(@values.BorderStyles) -> VisualDeclaration
+
+pub fn border_inline_style_fallbacks(Array[@values.BorderStyles]) -> VisualDeclaration
+
+pub fn border_inline_width(@values.BorderWidths) -> VisualDeclaration
+
+pub fn border_inline_width_fallbacks(Array[@values.BorderWidths]) -> VisualDeclaration
+
+pub fn border_left(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_left_color(@values.Color) -> VisualDeclaration
+
+pub fn border_left_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn border_left_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_left_style(@values.LineStyle) -> VisualDeclaration
+
+pub fn border_left_style_fallbacks(Array[@values.LineStyle]) -> VisualDeclaration
+
+pub fn border_left_width(@values.LineWidth) -> VisualDeclaration
+
+pub fn border_left_width_fallbacks(Array[@values.LineWidth]) -> VisualDeclaration
+
+pub fn border_radius(@values.Length) -> VisualDeclaration
+
+pub fn border_radius_fallbacks(Array[@values.Length]) -> VisualDeclaration
+
+pub fn border_right(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_right_color(@values.Color) -> VisualDeclaration
+
+pub fn border_right_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn border_right_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_right_style(@values.LineStyle) -> VisualDeclaration
+
+pub fn border_right_style_fallbacks(Array[@values.LineStyle]) -> VisualDeclaration
+
+pub fn border_right_width(@values.LineWidth) -> VisualDeclaration
+
+pub fn border_right_width_fallbacks(Array[@values.LineWidth]) -> VisualDeclaration
+
+pub fn border_spacing(@values.Length) -> LayoutDeclaration
+
+pub fn border_spacing_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn border_start_end_radius(@values.Length) -> VisualDeclaration
+
+pub fn border_start_end_radius_fallbacks(Array[@values.Length]) -> VisualDeclaration
+
+pub fn border_start_start_radius(@values.Length) -> VisualDeclaration
+
+pub fn border_start_start_radius_fallbacks(Array[@values.Length]) -> VisualDeclaration
+
+pub fn border_style(BorderStyle) -> VisualDeclaration
+
+pub fn border_style_fallbacks(Array[BorderStyle]) -> VisualDeclaration
+
+pub fn border_top(@values.BorderSide) -> VisualDeclaration
+
+pub fn border_top_color(@values.Color) -> VisualDeclaration
+
+pub fn border_top_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn border_top_fallbacks(Array[@values.BorderSide]) -> VisualDeclaration
+
+pub fn border_top_left_radius(@values.CornerRadius) -> VisualDeclaration
+
+pub fn border_top_left_radius_fallbacks(Array[@values.CornerRadius]) -> VisualDeclaration
+
+pub fn border_top_right_radius(@values.CornerRadius) -> VisualDeclaration
+
+pub fn border_top_right_radius_fallbacks(Array[@values.CornerRadius]) -> VisualDeclaration
+
+pub fn border_top_style(@values.LineStyle) -> VisualDeclaration
+
+pub fn border_top_style_fallbacks(Array[@values.LineStyle]) -> VisualDeclaration
+
+pub fn border_top_width(@values.LineWidth) -> VisualDeclaration
+
+pub fn border_top_width_fallbacks(Array[@values.LineWidth]) -> VisualDeclaration
+
+pub fn border_width(@values.Length) -> VisualDeclaration
+
+pub fn border_width_fallbacks(Array[@values.Length]) -> VisualDeclaration
+
+pub fn bottom(@values.Length) -> LayoutDeclaration
+
+pub fn bottom_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn box_decoration_break(BoxDecorationBreakValue) -> VisualDeclaration
+
+pub fn box_decoration_break_fallbacks(Array[BoxDecorationBreakValue]) -> VisualDeclaration
+
+pub fn box_shadow(@values.BoxShadowList) -> VisualDeclaration
+
+pub fn box_shadow_fallbacks(Array[@values.BoxShadowList]) -> VisualDeclaration
+
+pub fn box_sizing(BoxSizing) -> LayoutDeclaration
+
+pub fn box_sizing_fallbacks(Array[BoxSizing]) -> LayoutDeclaration
+
+pub fn break_after(BreakAfterValue) -> LayoutDeclaration
+
+pub fn break_after_fallbacks(Array[BreakAfterValue]) -> LayoutDeclaration
+
+pub fn break_before(BreakBeforeValue) -> LayoutDeclaration
+
+pub fn break_before_fallbacks(Array[BreakBeforeValue]) -> LayoutDeclaration
+
+pub fn break_inside(BreakInsideValue) -> LayoutDeclaration
+
+pub fn break_inside_fallbacks(Array[BreakInsideValue]) -> LayoutDeclaration
+
+pub fn caption_side(CaptionSideValue) -> LayoutDeclaration
+
+pub fn caption_side_fallbacks(Array[CaptionSideValue]) -> LayoutDeclaration
+
+pub fn caret_color(@values.Color) -> InteractionDeclaration
+
+pub fn caret_color_fallbacks(Array[@values.Color]) -> InteractionDeclaration
+
+pub fn clear(ClearMode) -> LayoutDeclaration
+
+pub fn clear_fallbacks(Array[ClearMode]) -> LayoutDeclaration
+
+pub fn clip_path(@values.ClipPath) -> VisualDeclaration
+
+pub fn clip_path_fallbacks(Array[@values.ClipPath]) -> VisualDeclaration
+
+pub fn clip_rule(ClipRuleValue) -> VisualDeclaration
+
+pub fn clip_rule_fallbacks(Array[ClipRuleValue]) -> VisualDeclaration
+
+pub fn color(@values.Color, conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn color_fallbacks(Array[@values.Color], conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn color_interpolation_filters(ColorInterpolationFiltersValue) -> VisualDeclaration
+
+pub fn color_interpolation_filters_fallbacks(Array[ColorInterpolationFiltersValue]) -> VisualDeclaration
+
+pub fn color_scheme(@values.ColorScheme, conditions? : Array[@ir.Condition]) -> InteractionDeclaration
+
+pub fn color_scheme_fallbacks(Array[@values.ColorScheme], conditions? : Array[@ir.Condition]) -> InteractionDeclaration
+
+pub fn column_count(@values.Integer) -> LayoutDeclaration
+
+pub fn column_count_fallbacks(Array[@values.Integer]) -> LayoutDeclaration
+
+pub fn column_fill(ColumnFillValue) -> LayoutDeclaration
+
+pub fn column_fill_fallbacks(Array[ColumnFillValue]) -> LayoutDeclaration
+
+pub fn column_gap(@values.Length) -> LayoutDeclaration
+
+pub fn column_gap_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn column_span(ColumnSpanValue) -> LayoutDeclaration
+
+pub fn column_span_fallbacks(Array[ColumnSpanValue]) -> LayoutDeclaration
+
+pub fn contain(@values.Contain) -> LayoutDeclaration
+
+pub fn contain_fallbacks(Array[@values.Contain]) -> LayoutDeclaration
+
+pub fn contain_intrinsic_block_size(@values.Length) -> LayoutDeclaration
+
+pub fn contain_intrinsic_block_size_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn contain_intrinsic_height(@values.Length) -> LayoutDeclaration
+
+pub fn contain_intrinsic_height_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn contain_intrinsic_inline_size(@values.Length) -> LayoutDeclaration
+
+pub fn contain_intrinsic_inline_size_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn contain_intrinsic_size(@values.Length) -> LayoutDeclaration
+
+pub fn contain_intrinsic_size_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn contain_intrinsic_width(@values.Length) -> LayoutDeclaration
+
+pub fn contain_intrinsic_width_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn container_name(@values.ContainerNames) -> LayoutDeclaration
+
+pub fn container_name_fallbacks(Array[@values.ContainerNames]) -> LayoutDeclaration
+
+pub fn container_type(ContainerTypeValue) -> LayoutDeclaration
+
+pub fn container_type_fallbacks(Array[ContainerTypeValue]) -> LayoutDeclaration
+
+pub fn content(@values.ContentValue) -> TypographyDeclaration
+
+pub fn content_fallbacks(Array[@values.ContentValue]) -> TypographyDeclaration
+
+pub fn content_visibility(ContentVisibility) -> InteractionDeclaration
+
+pub fn content_visibility_fallbacks(Array[ContentVisibility]) -> InteractionDeclaration
+
+pub fn counter_increment(@values.CounterChanges, conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
+pub fn counter_increment_fallbacks(Array[@values.CounterChanges], conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
+pub fn counter_reset(@values.CounterChanges, conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
+pub fn counter_reset_fallbacks(Array[@values.CounterChanges], conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
+pub fn counter_set(@values.CounterChanges, conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
+pub fn counter_set_fallbacks(Array[@values.CounterChanges], conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
+pub fn cursor(Cursor) -> InteractionDeclaration
+
+pub fn cursor_fallbacks(Array[Cursor]) -> InteractionDeclaration
+
+pub fn cx(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn cx_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn cy(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn cy_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn direction(DirectionValue) -> LayoutDeclaration
+
+pub fn direction_fallbacks(Array[DirectionValue]) -> LayoutDeclaration
+
+pub fn display(Display) -> LayoutDeclaration
+
+pub fn display_fallbacks(Array[Display]) -> LayoutDeclaration
+
+pub fn dynamic_background_color(@values.CssVar[@values.Color]) -> VisualDeclaration
+
+pub fn dynamic_color(@values.CssVar[@values.Color]) -> VisualDeclaration
+
+pub fn dynamic_width(@values.CssVar[@values.Length]) -> LayoutDeclaration
+
+pub fn empty_cells(EmptyCellsValue) -> LayoutDeclaration
+
+pub fn empty_cells_fallbacks(Array[EmptyCellsValue]) -> LayoutDeclaration
+
+pub fn field_sizing(FieldSizingValue) -> LayoutDeclaration
+
+pub fn field_sizing_fallbacks(Array[FieldSizingValue]) -> LayoutDeclaration
+
+pub fn fill(@values.SvgPaint, conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn fill_fallbacks(Array[@values.SvgPaint], conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn fill_opacity(Double) -> VisualDeclaration
+
+pub fn fill_opacity_fallbacks(Array[Double]) -> VisualDeclaration
+
+pub fn fill_rule(FillRuleValue) -> VisualDeclaration
+
+pub fn fill_rule_fallbacks(Array[FillRuleValue]) -> VisualDeclaration
+
+pub fn filter(@values.FilterList) -> VisualDeclaration
+
+pub fn filter_fallbacks(Array[@values.FilterList]) -> VisualDeclaration
+
+pub fn flex_basis(@values.Length) -> LayoutDeclaration
+
+pub fn flex_basis_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn flex_direction(FlexDirection) -> LayoutDeclaration
+
+pub fn flex_direction_fallbacks(Array[FlexDirection]) -> LayoutDeclaration
+
+pub fn flex_grow(@values.Number) -> LayoutDeclaration
+
+pub fn flex_grow_fallbacks(Array[@values.Number]) -> LayoutDeclaration
+
+pub fn flex_shrink(@values.Number) -> LayoutDeclaration
+
+pub fn flex_shrink_fallbacks(Array[@values.Number]) -> LayoutDeclaration
+
+pub fn flex_wrap(FlexWrap) -> LayoutDeclaration
+
+pub fn flex_wrap_fallbacks(Array[FlexWrap]) -> LayoutDeclaration
+
+pub fn float(FloatMode) -> LayoutDeclaration
+
+pub fn float_fallbacks(Array[FloatMode]) -> LayoutDeclaration
+
+pub fn flood_color(@values.Color) -> VisualDeclaration
+
+pub fn flood_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn flood_opacity(Double) -> VisualDeclaration
+
+pub fn flood_opacity_fallbacks(Array[Double]) -> VisualDeclaration
+
+pub fn font_family(String) -> TypographyDeclaration
+
+pub fn font_family_fallbacks(Array[String]) -> TypographyDeclaration
+
+pub fn font_kerning(FontKerning) -> TypographyDeclaration
+
+pub fn font_kerning_fallbacks(Array[FontKerning]) -> TypographyDeclaration
+
+pub fn font_optical_sizing(FontOpticalSizing) -> TypographyDeclaration
+
+pub fn font_optical_sizing_fallbacks(Array[FontOpticalSizing]) -> TypographyDeclaration
+
+pub fn font_size(@values.Length) -> TypographyDeclaration
+
+pub fn font_size_adjust(@values.Number) -> TypographyDeclaration
+
+pub fn font_size_adjust_fallbacks(Array[@values.Number]) -> TypographyDeclaration
+
+pub fn font_size_fallbacks(Array[@values.Length]) -> TypographyDeclaration
+
+pub fn font_stretch(FontStretch) -> TypographyDeclaration
+
+pub fn font_stretch_fallbacks(Array[FontStretch]) -> TypographyDeclaration
+
+pub fn font_style(FontStyle) -> TypographyDeclaration
+
+pub fn font_style_fallbacks(Array[FontStyle]) -> TypographyDeclaration
+
+pub fn font_synthesis(FontSynthesisValue) -> TypographyDeclaration
+
+pub fn font_synthesis_fallbacks(Array[FontSynthesisValue]) -> TypographyDeclaration
+
+pub fn font_synthesis_small_caps(FontSynthesisSmallCapsValue) -> TypographyDeclaration
+
+pub fn font_synthesis_small_caps_fallbacks(Array[FontSynthesisSmallCapsValue]) -> TypographyDeclaration
+
+pub fn font_synthesis_style(FontSynthesisStyleValue) -> TypographyDeclaration
+
+pub fn font_synthesis_style_fallbacks(Array[FontSynthesisStyleValue]) -> TypographyDeclaration
+
+pub fn font_synthesis_weight(FontSynthesisWeightValue) -> TypographyDeclaration
+
+pub fn font_synthesis_weight_fallbacks(Array[FontSynthesisWeightValue]) -> TypographyDeclaration
+
+pub fn font_variant_caps(FontVariantCaps) -> TypographyDeclaration
+
+pub fn font_variant_caps_fallbacks(Array[FontVariantCaps]) -> TypographyDeclaration
+
+pub fn font_variant_emoji(FontVariantEmojiValue) -> TypographyDeclaration
+
+pub fn font_variant_emoji_fallbacks(Array[FontVariantEmojiValue]) -> TypographyDeclaration
+
+pub fn font_variant_numeric(@values.FontVariantNumeric) -> TypographyDeclaration
+
+pub fn font_variant_numeric_fallbacks(Array[@values.FontVariantNumeric]) -> TypographyDeclaration
+
+pub fn font_variant_position(FontVariantPositionValue) -> TypographyDeclaration
+
+pub fn font_variant_position_fallbacks(Array[FontVariantPositionValue]) -> TypographyDeclaration
+
+pub fn font_weight(Int32) -> TypographyDeclaration
+
+pub fn font_weight_fallbacks(Array[Int32]) -> TypographyDeclaration
+
+pub fn font_width(@values.Percentage) -> TypographyDeclaration
+
+pub fn font_width_fallbacks(Array[@values.Percentage]) -> TypographyDeclaration
+
+pub fn forced_color_adjust(ForcedColorAdjustValue) -> VisualDeclaration
+
+pub fn forced_color_adjust_fallbacks(Array[ForcedColorAdjustValue]) -> VisualDeclaration
+
+pub fn gap(@values.Length) -> LayoutDeclaration
+
+pub fn gap_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn grid_area(@values.GridLine) -> LayoutDeclaration
+
+pub fn grid_area_fallbacks(Array[@values.GridLine]) -> LayoutDeclaration
+
+pub fn grid_auto_columns(@values.GridTrackList) -> LayoutDeclaration
+
+pub fn grid_auto_columns_fallbacks(Array[@values.GridTrackList]) -> LayoutDeclaration
+
+pub fn grid_auto_flow(GridAutoFlow) -> LayoutDeclaration
+
+pub fn grid_auto_flow_fallbacks(Array[GridAutoFlow]) -> LayoutDeclaration
+
+pub fn grid_auto_rows(@values.GridTrackList) -> LayoutDeclaration
+
+pub fn grid_auto_rows_fallbacks(Array[@values.GridTrackList]) -> LayoutDeclaration
+
+pub fn grid_column(@values.GridLine) -> LayoutDeclaration
+
+pub fn grid_column_end(@values.GridLine) -> LayoutDeclaration
+
+pub fn grid_column_end_fallbacks(Array[@values.GridLine]) -> LayoutDeclaration
+
+pub fn grid_column_fallbacks(Array[@values.GridLine]) -> LayoutDeclaration
+
+pub fn grid_column_start(@values.GridLine) -> LayoutDeclaration
+
+pub fn grid_column_start_fallbacks(Array[@values.GridLine]) -> LayoutDeclaration
+
+pub fn grid_row(@values.GridLine) -> LayoutDeclaration
+
+pub fn grid_row_end(@values.GridLine) -> LayoutDeclaration
+
+pub fn grid_row_end_fallbacks(Array[@values.GridLine]) -> LayoutDeclaration
+
+pub fn grid_row_fallbacks(Array[@values.GridLine]) -> LayoutDeclaration
+
+pub fn grid_row_start(@values.GridLine) -> LayoutDeclaration
+
+pub fn grid_row_start_fallbacks(Array[@values.GridLine]) -> LayoutDeclaration
+
+pub fn grid_template_areas(@values.GridTemplateAreas) -> LayoutDeclaration
+
+pub fn grid_template_areas_fallbacks(Array[@values.GridTemplateAreas]) -> LayoutDeclaration
+
+pub fn grid_template_columns(@values.GridTrackList) -> LayoutDeclaration
+
+pub fn grid_template_columns_fallbacks(Array[@values.GridTrackList]) -> LayoutDeclaration
+
+pub fn grid_template_rows(@values.GridTrackList) -> LayoutDeclaration
+
+pub fn grid_template_rows_fallbacks(Array[@values.GridTrackList]) -> LayoutDeclaration
+
+pub fn hanging_punctuation(HangingPunctuationValue) -> TypographyDeclaration
+
+pub fn hanging_punctuation_fallbacks(Array[HangingPunctuationValue]) -> TypographyDeclaration
+
+pub fn height(@values.Length) -> LayoutDeclaration
+
+pub fn height_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn hyphenate_limit_chars(@values.Integer) -> TypographyDeclaration
+
+pub fn hyphenate_limit_chars_fallbacks(Array[@values.Integer]) -> TypographyDeclaration
+
+pub fn hyphens(Hyphens) -> TypographyDeclaration
+
+pub fn hyphens_fallbacks(Array[Hyphens]) -> TypographyDeclaration
+
+pub fn image_orientation(@values.Angle) -> VisualDeclaration
+
+pub fn image_orientation_fallbacks(Array[@values.Angle]) -> VisualDeclaration
+
+pub fn image_rendering(ImageRendering) -> VisualDeclaration
+
+pub fn image_rendering_fallbacks(Array[ImageRendering]) -> VisualDeclaration
+
+pub fn inline_size(@values.Length) -> LayoutDeclaration
+
+pub fn inline_size_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn inset(@values.Length) -> LayoutDeclaration
+
+pub fn inset_block(@values.Length) -> LayoutDeclaration
+
+pub fn inset_block_end(@values.Length) -> LayoutDeclaration
+
+pub fn inset_block_end_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn inset_block_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn inset_block_start(@values.Length) -> LayoutDeclaration
+
+pub fn inset_block_start_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn inset_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn inset_inline(@values.Length) -> LayoutDeclaration
+
+pub fn inset_inline_end(@values.Length) -> LayoutDeclaration
+
+pub fn inset_inline_end_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn inset_inline_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn inset_inline_start(@values.Length) -> LayoutDeclaration
+
+pub fn inset_inline_start_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn justify_content(Alignment) -> LayoutDeclaration
+
+pub fn justify_content_fallbacks(Array[Alignment]) -> LayoutDeclaration
+
+pub fn justify_items(Alignment) -> LayoutDeclaration
+
+pub fn justify_items_fallbacks(Array[Alignment]) -> LayoutDeclaration
+
+pub fn justify_self(Alignment) -> LayoutDeclaration
+
+pub fn justify_self_fallbacks(Array[Alignment]) -> LayoutDeclaration
+
+pub fn left(@values.Length) -> LayoutDeclaration
+
+pub fn left_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn letter_spacing(@values.Length) -> TypographyDeclaration
+
+pub fn letter_spacing_fallbacks(Array[@values.Length]) -> TypographyDeclaration
+
+pub fn lighting_color(@values.Color) -> VisualDeclaration
+
+pub fn lighting_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn line_break(LineBreakValue) -> TypographyDeclaration
+
+pub fn line_break_fallbacks(Array[LineBreakValue]) -> TypographyDeclaration
+
+pub fn line_height(Double) -> TypographyDeclaration
+
+pub fn line_height_fallbacks(Array[Double]) -> TypographyDeclaration
+
+pub fn list_style_position(ListStylePosition) -> TypographyDeclaration
+
+pub fn list_style_position_fallbacks(Array[ListStylePosition]) -> TypographyDeclaration
+
+pub fn margin(@values.Length) -> LayoutDeclaration
+
+pub fn margin_block(@values.Length) -> LayoutDeclaration
+
+pub fn margin_block_end(@values.Length) -> LayoutDeclaration
+
+pub fn margin_block_end_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn margin_block_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn margin_block_start(@values.Length) -> LayoutDeclaration
+
+pub fn margin_block_start_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn margin_bottom(@values.Length) -> LayoutDeclaration
+
+pub fn margin_bottom_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn margin_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn margin_inline(@values.Length) -> LayoutDeclaration
+
+pub fn margin_inline_end(@values.Length) -> LayoutDeclaration
+
+pub fn margin_inline_end_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn margin_inline_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn margin_inline_start(@values.Length) -> LayoutDeclaration
+
+pub fn margin_inline_start_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn margin_left(@values.Length) -> LayoutDeclaration
+
+pub fn margin_left_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn margin_right(@values.Length) -> LayoutDeclaration
+
+pub fn margin_right_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn margin_top(@values.Length) -> LayoutDeclaration
+
+pub fn margin_top_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn mask_clip(@values.MaskClip, conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn mask_clip_fallbacks(Array[@values.MaskClip], conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn mask_composite(@values.MaskComposite, conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn mask_composite_fallbacks(Array[@values.MaskComposite], conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn mask_image(@values.MaskImageList) -> VisualDeclaration
+
+pub fn mask_image_fallbacks(Array[@values.MaskImageList]) -> VisualDeclaration
+
+pub fn mask_mode(@values.MaskMode, conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn mask_mode_fallbacks(Array[@values.MaskMode], conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn mask_origin(@values.MaskBox, conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn mask_origin_fallbacks(Array[@values.MaskBox], conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn mask_position(@values.PositionList) -> VisualDeclaration
+
+pub fn mask_position_fallbacks(Array[@values.PositionList]) -> VisualDeclaration
+
+pub fn mask_repeat(@values.RepeatStyleList) -> VisualDeclaration
+
+pub fn mask_repeat_fallbacks(Array[@values.RepeatStyleList]) -> VisualDeclaration
+
+pub fn mask_size(@values.BackgroundSizeList) -> VisualDeclaration
+
+pub fn mask_size_fallbacks(Array[@values.BackgroundSizeList]) -> VisualDeclaration
+
+pub fn mask_type(MaskTypeValue) -> VisualDeclaration
+
+pub fn mask_type_fallbacks(Array[MaskTypeValue]) -> VisualDeclaration
+
+pub fn math_shift(MathShiftValue) -> TypographyDeclaration
+
+pub fn math_shift_fallbacks(Array[MathShiftValue]) -> TypographyDeclaration
+
+pub fn math_style(MathStyleValue) -> TypographyDeclaration
+
+pub fn math_style_fallbacks(Array[MathStyleValue]) -> TypographyDeclaration
+
+pub fn max_block_size(@values.Length) -> LayoutDeclaration
+
+pub fn max_block_size_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn max_height(@values.Length) -> LayoutDeclaration
+
+pub fn max_height_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn max_inline_size(@values.Length) -> LayoutDeclaration
+
+pub fn max_inline_size_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn max_width(@values.Length) -> LayoutDeclaration
+
+pub fn max_width_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn min_block_size(@values.Length) -> LayoutDeclaration
+
+pub fn min_block_size_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn min_height(@values.Length) -> LayoutDeclaration
+
+pub fn min_height_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn min_inline_size(@values.Length) -> LayoutDeclaration
+
+pub fn min_inline_size_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn min_width(@values.Length) -> LayoutDeclaration
+
+pub fn min_width_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn mix_blend_mode(BlendMode) -> VisualDeclaration
+
+pub fn mix_blend_mode_fallbacks(Array[BlendMode]) -> VisualDeclaration
+
+pub fn object_fit(ObjectFit) -> LayoutDeclaration
+
+pub fn object_fit_fallbacks(Array[ObjectFit]) -> LayoutDeclaration
+
+pub fn object_position(@values.Position) -> VisualDeclaration
+
+pub fn object_position_fallbacks(Array[@values.Position]) -> VisualDeclaration
+
+pub fn offset_anchor(@values.OffsetAnchor, conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn offset_anchor_fallbacks(Array[@values.OffsetAnchor], conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn offset_distance(@values.LengthPercentage) -> MotionDeclaration
+
+pub fn offset_distance_fallbacks(Array[@values.LengthPercentage]) -> MotionDeclaration
+
+pub fn offset_path(@values.MotionPath, conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn offset_path_fallbacks(Array[@values.MotionPath], conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn offset_position(@values.OffsetPosition, conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn offset_position_fallbacks(Array[@values.OffsetPosition], conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn offset_rotate(@values.OffsetRotate) -> MotionDeclaration
+
+pub fn offset_rotate_fallbacks(Array[@values.OffsetRotate]) -> MotionDeclaration
+
+pub fn opacity(Double) -> VisualDeclaration
+
+pub fn opacity_fallbacks(Array[Double]) -> VisualDeclaration
+
+pub fn order(@values.Integer) -> LayoutDeclaration
+
+pub fn order_fallbacks(Array[@values.Integer]) -> LayoutDeclaration
+
+pub fn orphans(@values.Integer) -> TypographyDeclaration
+
+pub fn orphans_fallbacks(Array[@values.Integer]) -> TypographyDeclaration
+
+pub fn outline(@values.Outline) -> VisualDeclaration
+
+pub fn outline_color(@values.Color) -> VisualDeclaration
+
+pub fn outline_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn outline_fallbacks(Array[@values.Outline]) -> VisualDeclaration
+
+pub fn outline_offset(@values.Length) -> VisualDeclaration
+
+pub fn outline_offset_fallbacks(Array[@values.Length]) -> VisualDeclaration
+
+pub fn outline_style(BorderStyle) -> VisualDeclaration
+
+pub fn outline_style_fallbacks(Array[BorderStyle]) -> VisualDeclaration
+
+pub fn outline_width(@values.Length) -> VisualDeclaration
+
+pub fn outline_width_fallbacks(Array[@values.Length]) -> VisualDeclaration
+
+pub fn overflow(Overflow) -> LayoutDeclaration
+
+pub fn overflow_anchor(OverflowAnchorValue) -> InteractionDeclaration
+
+pub fn overflow_anchor_fallbacks(Array[OverflowAnchorValue]) -> InteractionDeclaration
+
+pub fn overflow_block(Overflow) -> LayoutDeclaration
+
+pub fn overflow_block_fallbacks(Array[Overflow]) -> LayoutDeclaration
+
+pub fn overflow_fallbacks(Array[Overflow]) -> LayoutDeclaration
+
+pub fn overflow_inline(Overflow) -> LayoutDeclaration
+
+pub fn overflow_inline_fallbacks(Array[Overflow]) -> LayoutDeclaration
+
+pub fn overflow_wrap(OverflowWrap) -> TypographyDeclaration
+
+pub fn overflow_wrap_fallbacks(Array[OverflowWrap]) -> TypographyDeclaration
+
+pub fn overflow_x(Overflow) -> LayoutDeclaration
+
+pub fn overflow_x_fallbacks(Array[Overflow]) -> LayoutDeclaration
+
+pub fn overflow_y(Overflow) -> LayoutDeclaration
+
+pub fn overflow_y_fallbacks(Array[Overflow]) -> LayoutDeclaration
+
+pub fn overscroll_behavior(OverscrollBehaviorValue) -> InteractionDeclaration
+
+pub fn overscroll_behavior_block(OverscrollBehaviorBlockValue) -> InteractionDeclaration
+
+pub fn overscroll_behavior_block_fallbacks(Array[OverscrollBehaviorBlockValue]) -> InteractionDeclaration
+
+pub fn overscroll_behavior_fallbacks(Array[OverscrollBehaviorValue]) -> InteractionDeclaration
+
+pub fn overscroll_behavior_inline(OverscrollBehaviorInlineValue) -> InteractionDeclaration
+
+pub fn overscroll_behavior_inline_fallbacks(Array[OverscrollBehaviorInlineValue]) -> InteractionDeclaration
+
+pub fn overscroll_behavior_x(OverscrollBehavior) -> InteractionDeclaration
+
+pub fn overscroll_behavior_x_fallbacks(Array[OverscrollBehavior]) -> InteractionDeclaration
+
+pub fn overscroll_behavior_y(OverscrollBehavior) -> InteractionDeclaration
+
+pub fn overscroll_behavior_y_fallbacks(Array[OverscrollBehavior]) -> InteractionDeclaration
+
+pub fn padding(@values.Length) -> LayoutDeclaration
+
+pub fn padding_block(@values.Length) -> LayoutDeclaration
+
+pub fn padding_block_end(@values.Length) -> LayoutDeclaration
+
+pub fn padding_block_end_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn padding_block_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn padding_block_start(@values.Length) -> LayoutDeclaration
+
+pub fn padding_block_start_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn padding_bottom(@values.Length) -> LayoutDeclaration
+
+pub fn padding_bottom_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn padding_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn padding_inline(@values.Length) -> LayoutDeclaration
+
+pub fn padding_inline_end(@values.Length) -> LayoutDeclaration
+
+pub fn padding_inline_end_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn padding_inline_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn padding_inline_start(@values.Length) -> LayoutDeclaration
+
+pub fn padding_inline_start_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn padding_left(@values.Length) -> LayoutDeclaration
+
+pub fn padding_left_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn padding_right(@values.Length) -> LayoutDeclaration
+
+pub fn padding_right_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn padding_top(@values.Length) -> LayoutDeclaration
+
+pub fn padding_top_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn page(@values.PageValue, conditions? : Array[@ir.Condition]) -> LayoutDeclaration
+
+pub fn page_fallbacks(Array[@values.PageValue], conditions? : Array[@ir.Condition]) -> LayoutDeclaration
+
+pub fn paint_order(PaintOrderValue) -> VisualDeclaration
+
+pub fn paint_order_fallbacks(Array[PaintOrderValue]) -> VisualDeclaration
+
+pub fn perspective(@values.Length) -> MotionDeclaration
+
+pub fn perspective_fallbacks(Array[@values.Length]) -> MotionDeclaration
+
+pub fn perspective_origin(@values.TransformOrigin) -> MotionDeclaration
+
+pub fn perspective_origin_fallbacks(Array[@values.TransformOrigin]) -> MotionDeclaration
+
+pub fn place_content(Alignment) -> LayoutDeclaration
+
+pub fn place_content_fallbacks(Array[Alignment]) -> LayoutDeclaration
+
+pub fn place_items(PlaceItems) -> LayoutDeclaration
+
+pub fn place_items_fallbacks(Array[PlaceItems]) -> LayoutDeclaration
+
+pub fn place_self(Alignment) -> LayoutDeclaration
+
+pub fn place_self_fallbacks(Array[Alignment]) -> LayoutDeclaration
+
+pub fn pointer_events(PointerEvents) -> InteractionDeclaration
+
+pub fn pointer_events_fallbacks(Array[PointerEvents]) -> InteractionDeclaration
+
+pub fn position(PositionMode) -> LayoutDeclaration
+
+pub fn position_anchor(@values.PositionAnchor) -> LayoutDeclaration
+
+pub fn position_anchor_fallbacks(Array[@values.PositionAnchor]) -> LayoutDeclaration
+
+pub fn position_area(@values.PositionArea) -> LayoutDeclaration
+
+pub fn position_area_fallbacks(Array[@values.PositionArea]) -> LayoutDeclaration
+
+pub fn position_fallbacks(Array[PositionMode]) -> LayoutDeclaration
+
+pub fn position_try(@values.PositionTryValue) -> LayoutDeclaration
+
+pub fn position_try_fallbacks(@values.PositionTryFallbacks) -> LayoutDeclaration
+
+pub fn position_try_fallbacks_fallbacks(Array[@values.PositionTryFallbacks]) -> LayoutDeclaration
+
+pub fn position_try_order(@values.PositionTryOrder) -> LayoutDeclaration
+
+pub fn position_try_order_fallbacks(Array[@values.PositionTryOrder]) -> LayoutDeclaration
+
+pub fn position_visibility(PositionVisibilityValue) -> LayoutDeclaration
+
+pub fn position_visibility_fallbacks(Array[PositionVisibilityValue]) -> LayoutDeclaration
+
+pub fn print_color_adjust(PrintColorAdjustValue) -> VisualDeclaration
+
+pub fn print_color_adjust_fallbacks(Array[PrintColorAdjustValue]) -> VisualDeclaration
+
+pub fn r(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn r_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn resize(ResizeMode) -> LayoutDeclaration
+
+pub fn resize_fallbacks(Array[ResizeMode]) -> LayoutDeclaration
+
+pub fn right(@values.Length) -> LayoutDeclaration
+
+pub fn right_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn rotate(@values.Angle) -> MotionDeclaration
+
+pub fn rotate_fallbacks(Array[@values.Angle]) -> MotionDeclaration
+
+pub fn row_gap(@values.Length) -> LayoutDeclaration
+
+pub fn row_gap_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn ruby_align(RubyAlignValue) -> TypographyDeclaration
+
+pub fn ruby_align_fallbacks(Array[RubyAlignValue]) -> TypographyDeclaration
+
+pub fn ruby_position(RubyPositionValue) -> TypographyDeclaration
+
+pub fn ruby_position_fallbacks(Array[RubyPositionValue]) -> TypographyDeclaration
+
+pub fn rx(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn rx_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn ry(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn ry_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scale(@values.Number) -> MotionDeclaration
+
+pub fn scale_fallbacks(Array[@values.Number]) -> MotionDeclaration
+
+pub fn scroll_behavior(ScrollBehavior) -> InteractionDeclaration
+
+pub fn scroll_behavior_fallbacks(Array[ScrollBehavior]) -> InteractionDeclaration
+
+pub fn scroll_margin(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_block(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_block_end(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_block_end_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_margin_block_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_margin_block_start(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_block_start_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_margin_bottom(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_bottom_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_margin_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_margin_inline(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_inline_end(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_inline_end_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_margin_inline_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_margin_inline_start(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_inline_start_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_margin_left(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_left_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_margin_right(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_right_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_margin_top(@values.Length) -> LayoutDeclaration
+
+pub fn scroll_margin_top_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn scroll_padding(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_block(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_block_end(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_block_end_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_padding_block_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_padding_block_start(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_block_start_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_padding_bottom(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_bottom_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_padding_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_padding_inline(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_inline_end(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_inline_end_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_padding_inline_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_padding_inline_start(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_inline_start_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_padding_left(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_left_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_padding_right(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_right_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_padding_top(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn scroll_padding_top_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn scroll_snap_align(ScrollSnapAlignValue) -> InteractionDeclaration
+
+pub fn scroll_snap_align_fallbacks(Array[ScrollSnapAlignValue]) -> InteractionDeclaration
+
+pub fn scroll_snap_stop(ScrollSnapStopValue) -> InteractionDeclaration
+
+pub fn scroll_snap_stop_fallbacks(Array[ScrollSnapStopValue]) -> InteractionDeclaration
+
+pub fn scroll_snap_type(ScrollSnapTypeValue) -> InteractionDeclaration
+
+pub fn scroll_snap_type_fallbacks(Array[ScrollSnapTypeValue]) -> InteractionDeclaration
+
+pub fn scroll_timeline_axis(ScrollTimelineAxisValue) -> MotionDeclaration
+
+pub fn scroll_timeline_axis_fallbacks(Array[ScrollTimelineAxisValue]) -> MotionDeclaration
+
+pub fn scroll_timeline_name(@values.TimelineNames, conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn scroll_timeline_name_fallbacks(Array[@values.TimelineNames], conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn scrollbar_color(@values.ScrollbarColor, conditions? : Array[@ir.Condition]) -> InteractionDeclaration
+
+pub fn scrollbar_color_fallbacks(Array[@values.ScrollbarColor], conditions? : Array[@ir.Condition]) -> InteractionDeclaration
+
+pub fn scrollbar_width(ScrollbarWidthValue) -> InteractionDeclaration
+
+pub fn scrollbar_width_fallbacks(Array[ScrollbarWidthValue]) -> InteractionDeclaration
+
+pub fn shape_margin(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn shape_margin_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn shape_rendering(ShapeRenderingValue) -> VisualDeclaration
+
+pub fn shape_rendering_fallbacks(Array[ShapeRenderingValue]) -> VisualDeclaration
+
+pub fn speak(SpeakValue) -> TypographyDeclaration
+
+pub fn speak_fallbacks(Array[SpeakValue]) -> TypographyDeclaration
+
+pub fn stop_color(@values.Color) -> VisualDeclaration
+
+pub fn stop_color_fallbacks(Array[@values.Color]) -> VisualDeclaration
+
+pub fn stop_opacity(Double) -> VisualDeclaration
+
+pub fn stop_opacity_fallbacks(Array[Double]) -> VisualDeclaration
+
+pub fn stroke(@values.SvgPaint, conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn stroke_fallbacks(Array[@values.SvgPaint], conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn stroke_linecap(StrokeLinecapValue) -> VisualDeclaration
+
+pub fn stroke_linecap_fallbacks(Array[StrokeLinecapValue]) -> VisualDeclaration
+
+pub fn stroke_linejoin(StrokeLinejoinValue) -> VisualDeclaration
+
+pub fn stroke_linejoin_fallbacks(Array[StrokeLinejoinValue]) -> VisualDeclaration
+
+pub fn stroke_miterlimit(@values.Number) -> VisualDeclaration
+
+pub fn stroke_miterlimit_fallbacks(Array[@values.Number]) -> VisualDeclaration
+
+pub fn stroke_opacity(Double) -> VisualDeclaration
+
+pub fn stroke_opacity_fallbacks(Array[Double]) -> VisualDeclaration
+
+pub fn tab_size(@values.Length) -> TypographyDeclaration
+
+pub fn tab_size_fallbacks(Array[@values.Length]) -> TypographyDeclaration
+
+pub fn table_layout(TableLayoutValue) -> LayoutDeclaration
+
+pub fn table_layout_fallbacks(Array[TableLayoutValue]) -> LayoutDeclaration
+
+pub fn text_align(TextAlign) -> TypographyDeclaration
+
+pub fn text_align_fallbacks(Array[TextAlign]) -> TypographyDeclaration
+
+pub fn text_align_last(TextAlign) -> TypographyDeclaration
+
+pub fn text_align_last_fallbacks(Array[TextAlign]) -> TypographyDeclaration
+
+pub fn text_anchor(TextAnchorValue) -> TypographyDeclaration
+
+pub fn text_anchor_fallbacks(Array[TextAnchorValue]) -> TypographyDeclaration
+
+pub fn text_box_trim(TextBoxTrimValue) -> TypographyDeclaration
+
+pub fn text_box_trim_fallbacks(Array[TextBoxTrimValue]) -> TypographyDeclaration
+
+pub fn text_combine_upright(TextCombineUprightValue) -> TypographyDeclaration
+
+pub fn text_combine_upright_fallbacks(Array[TextCombineUprightValue]) -> TypographyDeclaration
+
+pub fn text_decoration_color(@values.Color) -> TypographyDeclaration
+
+pub fn text_decoration_color_fallbacks(Array[@values.Color]) -> TypographyDeclaration
+
+pub fn text_decoration_inset(@values.LengthPercentage) -> TypographyDeclaration
+
+pub fn text_decoration_inset_fallbacks(Array[@values.LengthPercentage]) -> TypographyDeclaration
+
+pub fn text_decoration_line(TextDecorationLine) -> TypographyDeclaration
+
+pub fn text_decoration_line_fallbacks(Array[TextDecorationLine]) -> TypographyDeclaration
+
+pub fn text_decoration_skip_ink(TextDecorationSkipInkValue) -> TypographyDeclaration
+
+pub fn text_decoration_skip_ink_fallbacks(Array[TextDecorationSkipInkValue]) -> TypographyDeclaration
+
+pub fn text_decoration_style(TextDecorationStyle) -> TypographyDeclaration
+
+pub fn text_decoration_style_fallbacks(Array[TextDecorationStyle]) -> TypographyDeclaration
+
+pub fn text_decoration_thickness(@values.Length) -> TypographyDeclaration
+
+pub fn text_decoration_thickness_fallbacks(Array[@values.Length]) -> TypographyDeclaration
+
+pub fn text_emphasis_color(@values.Color) -> TypographyDeclaration
+
+pub fn text_emphasis_color_fallbacks(Array[@values.Color]) -> TypographyDeclaration
+
+pub fn text_indent(@values.Length) -> TypographyDeclaration
+
+pub fn text_indent_fallbacks(Array[@values.Length]) -> TypographyDeclaration
+
+pub fn text_justify(TextJustifyValue) -> TypographyDeclaration
+
+pub fn text_justify_fallbacks(Array[TextJustifyValue]) -> TypographyDeclaration
+
+pub fn text_orientation(TextOrientationValue) -> TypographyDeclaration
+
+pub fn text_orientation_fallbacks(Array[TextOrientationValue]) -> TypographyDeclaration
+
+pub fn text_overflow(TextOverflow) -> TypographyDeclaration
+
+pub fn text_overflow_fallbacks(Array[TextOverflow]) -> TypographyDeclaration
+
+pub fn text_rendering(TextRenderingValue) -> TypographyDeclaration
+
+pub fn text_rendering_fallbacks(Array[TextRenderingValue]) -> TypographyDeclaration
+
+pub fn text_shadow(@values.TextShadowList) -> TypographyDeclaration
+
+pub fn text_shadow_fallbacks(Array[@values.TextShadowList]) -> TypographyDeclaration
+
+pub fn text_transform(TextTransform) -> TypographyDeclaration
+
+pub fn text_transform_fallbacks(Array[TextTransform]) -> TypographyDeclaration
+
+pub fn text_underline_offset(@values.Length) -> TypographyDeclaration
+
+pub fn text_underline_offset_fallbacks(Array[@values.Length]) -> TypographyDeclaration
+
+pub fn text_underline_position(TextUnderlinePosition) -> TypographyDeclaration
+
+pub fn text_underline_position_fallbacks(Array[TextUnderlinePosition]) -> TypographyDeclaration
+
+pub fn text_wrap_mode(TextWrapMode) -> TypographyDeclaration
+
+pub fn text_wrap_mode_fallbacks(Array[TextWrapMode]) -> TypographyDeclaration
+
+pub fn text_wrap_style(TextWrapStyle) -> TypographyDeclaration
+
+pub fn text_wrap_style_fallbacks(Array[TextWrapStyle]) -> TypographyDeclaration
+
+pub fn timeline_scope(@values.TimelineScope, conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn timeline_scope_fallbacks(Array[@values.TimelineScope], conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn top(@values.Length) -> LayoutDeclaration
+
+pub fn top_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn touch_action(@values.TouchAction) -> InteractionDeclaration
+
+pub fn touch_action_fallbacks(Array[@values.TouchAction]) -> InteractionDeclaration
+
+pub fn transform(@values.TransformList) -> MotionDeclaration
+
+pub fn transform_box(TransformBoxValue) -> MotionDeclaration
+
+pub fn transform_box_fallbacks(Array[TransformBoxValue]) -> MotionDeclaration
+
+pub fn transform_fallbacks(Array[@values.TransformList]) -> MotionDeclaration
+
+pub fn transform_origin(@values.TransformOrigin) -> MotionDeclaration
+
+pub fn transform_origin_fallbacks(Array[@values.TransformOrigin]) -> MotionDeclaration
+
+pub fn transform_style(TransformStyle) -> MotionDeclaration
+
+pub fn transform_style_fallbacks(Array[TransformStyle]) -> MotionDeclaration
+
+pub fn transition(String) -> MotionDeclaration
+
+pub fn transition_delay(@values.Time) -> MotionDeclaration
+
+pub fn transition_delay_fallbacks(Array[@values.Time]) -> MotionDeclaration
+
+pub fn transition_duration(@values.Time) -> MotionDeclaration
+
+pub fn transition_duration_fallbacks(Array[@values.Time]) -> MotionDeclaration
+
+pub fn transition_fallbacks(Array[String]) -> MotionDeclaration
+
+pub fn transition_property(TransitionProperty) -> MotionDeclaration
+
+pub fn transition_property_fallbacks(Array[TransitionProperty]) -> MotionDeclaration
+
+pub fn transition_timing_function(@values.EasingFunction) -> MotionDeclaration
+
+pub fn transition_timing_function_fallbacks(Array[@values.EasingFunction]) -> MotionDeclaration
+
+pub fn translate(@values.Length) -> MotionDeclaration
+
+pub fn translate_fallbacks(Array[@values.Length]) -> MotionDeclaration
+
+pub fn unicode_bidi(UnicodeBidiValue) -> LayoutDeclaration
+
+pub fn unicode_bidi_fallbacks(Array[UnicodeBidiValue]) -> LayoutDeclaration
+
+pub fn user_select(UserSelect) -> InteractionDeclaration
+
+pub fn user_select_fallbacks(Array[UserSelect]) -> InteractionDeclaration
+
+pub fn vector_effect(VectorEffectValue) -> VisualDeclaration
+
+pub fn vector_effect_fallbacks(Array[VectorEffectValue]) -> VisualDeclaration
+
+pub fn view_timeline_axis(ViewTimelineAxisValue) -> MotionDeclaration
+
+pub fn view_timeline_axis_fallbacks(Array[ViewTimelineAxisValue]) -> MotionDeclaration
+
+pub fn view_timeline_inset(@values.LengthPercentage) -> MotionDeclaration
+
+pub fn view_timeline_inset_fallbacks(Array[@values.LengthPercentage]) -> MotionDeclaration
+
+pub fn view_timeline_name(@values.TimelineNames, conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn view_timeline_name_fallbacks(Array[@values.TimelineNames], conditions? : Array[@ir.Condition]) -> MotionDeclaration
+
+pub fn view_transition_class(@values.ViewTransitionClass) -> MotionDeclaration
+
+pub fn view_transition_class_fallbacks(Array[@values.ViewTransitionClass]) -> MotionDeclaration
+
+pub fn view_transition_name(@values.ViewTransitionName) -> MotionDeclaration
+
+pub fn view_transition_name_fallbacks(Array[@values.ViewTransitionName]) -> MotionDeclaration
+
+pub fn visibility(Visibility) -> LayoutDeclaration
+
+pub fn visibility_fallbacks(Array[Visibility]) -> LayoutDeclaration
+
+pub fn white_space_collapse(WhiteSpaceCollapse) -> TypographyDeclaration
+
+pub fn white_space_collapse_fallbacks(Array[WhiteSpaceCollapse]) -> TypographyDeclaration
+
+pub fn widows(@values.Integer) -> TypographyDeclaration
+
+pub fn widows_fallbacks(Array[@values.Integer]) -> TypographyDeclaration
+
+pub fn width(@values.Length, conditions? : Array[@ir.Condition]) -> LayoutDeclaration
+
+pub fn width_fallbacks(Array[@values.Length], conditions? : Array[@ir.Condition]) -> LayoutDeclaration
+
+pub fn word_break(WordBreak) -> TypographyDeclaration
+
+pub fn word_break_fallbacks(Array[WordBreak]) -> TypographyDeclaration
+
+pub fn word_spacing(@values.Length) -> TypographyDeclaration
+
+pub fn word_spacing_fallbacks(Array[@values.Length]) -> TypographyDeclaration
+
+pub fn writing_mode(WritingModeValue) -> LayoutDeclaration
+
+pub fn writing_mode_fallbacks(Array[WritingModeValue]) -> LayoutDeclaration
+
+pub fn x(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn x_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn y(@values.LengthPercentage) -> LayoutDeclaration
+
+pub fn y_fallbacks(Array[@values.LengthPercentage]) -> LayoutDeclaration
+
+pub fn z_index(@values.Integer) -> LayoutDeclaration
+
+pub fn z_index_fallbacks(Array[@values.Integer]) -> LayoutDeclaration
+
+// Errors
+
+// Types and methods
+pub(all) enum Alignment {
+  AlignmentNormal
+  AlignmentStart
+  AlignmentEnd
+  AlignmentCenter
+  AlignmentStretch
+  AlignmentBaseline
+  AlignmentSpaceBetween
+  AlignmentSpaceAround
+  AlignmentSpaceEvenly
+} derive(Eq, @debug.Debug)
+pub fn Alignment::equal(Self, Self) -> Bool
+pub fn Alignment::not_equal(Self, Self) -> Bool
+pub fn Alignment::to_css(Self) -> String
+pub fn Alignment::to_repr(Self) -> @debug.Repr
+
+pub(all) enum AnimationDirection {
+  AnimationDirectionNormal
+  AnimationDirectionReverse
+  AnimationDirectionAlternate
+  AnimationDirectionAlternateReverse
+} derive(Eq, @debug.Debug)
+pub fn AnimationDirection::equal(Self, Self) -> Bool
+pub fn AnimationDirection::not_equal(Self, Self) -> Bool
+pub fn AnimationDirection::to_css(Self) -> String
+pub fn AnimationDirection::to_repr(Self) -> @debug.Repr
+
+pub(all) enum AnimationFillMode {
+  AnimationFillModeNone
+  AnimationFillModeForwards
+  AnimationFillModeBackwards
+  AnimationFillModeBoth
+} derive(Eq, @debug.Debug)
+pub fn AnimationFillMode::equal(Self, Self) -> Bool
+pub fn AnimationFillMode::not_equal(Self, Self) -> Bool
+pub fn AnimationFillMode::to_css(Self) -> String
+pub fn AnimationFillMode::to_repr(Self) -> @debug.Repr
+
+pub(all) enum AnimationPlayState {
+  AnimationPlayStateRunning
+  AnimationPlayStatePaused
+} derive(Eq, @debug.Debug)
+pub fn AnimationPlayState::equal(Self, Self) -> Bool
+pub fn AnimationPlayState::not_equal(Self, Self) -> Bool
+pub fn AnimationPlayState::to_css(Self) -> String
+pub fn AnimationPlayState::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BackfaceVisibility {
+  BackfaceVisibilityVisible
+  BackfaceVisibilityHidden
+} derive(Eq, @debug.Debug)
+pub fn BackfaceVisibility::equal(Self, Self) -> Bool
+pub fn BackfaceVisibility::not_equal(Self, Self) -> Bool
+pub fn BackfaceVisibility::to_css(Self) -> String
+pub fn BackfaceVisibility::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BackgroundAttachment {
+  BackgroundAttachmentScroll
+  BackgroundAttachmentFixed
+  BackgroundAttachmentLocal
+} derive(Eq, @debug.Debug)
+pub fn BackgroundAttachment::equal(Self, Self) -> Bool
+pub fn BackgroundAttachment::not_equal(Self, Self) -> Bool
+pub fn BackgroundAttachment::to_css(Self) -> String
+pub fn BackgroundAttachment::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BackgroundBox {
+  BackgroundBoxBorderBox
+  BackgroundBoxPaddingBox
+  BackgroundBoxContentBox
+} derive(Eq, @debug.Debug)
+pub fn BackgroundBox::equal(Self, Self) -> Bool
+pub fn BackgroundBox::not_equal(Self, Self) -> Bool
+pub fn BackgroundBox::to_css(Self) -> String
+pub fn BackgroundBox::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BaselineSourceValue {
+  BaselineSourceValueAuto
+  BaselineSourceValueFirst
+  BaselineSourceValueLast
+} derive(Eq, @debug.Debug)
+pub fn BaselineSourceValue::equal(Self, Self) -> Bool
+pub fn BaselineSourceValue::not_equal(Self, Self) -> Bool
+pub fn BaselineSourceValue::to_css(Self) -> String
+pub fn BaselineSourceValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BlendMode {
+  BlendModeNormal
+  BlendModeMultiply
+  BlendModeScreen
+  BlendModeOverlay
+  BlendModeDarken
+  BlendModeLighten
+  BlendModeColorDodge
+  BlendModeColorBurn
+  BlendModeHardLight
+  BlendModeSoftLight
+  BlendModeDifference
+  BlendModeExclusion
+  BlendModeHue
+  BlendModeSaturation
+  BlendModeColor
+  BlendModeLuminosity
+} derive(Eq, @debug.Debug)
+pub fn BlendMode::equal(Self, Self) -> Bool
+pub fn BlendMode::not_equal(Self, Self) -> Bool
+pub fn BlendMode::to_css(Self) -> String
+pub fn BlendMode::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BorderCollapseValue {
+  BorderCollapseValueSeparate
+  BorderCollapseValueCollapse
+} derive(Eq, @debug.Debug)
+pub fn BorderCollapseValue::equal(Self, Self) -> Bool
+pub fn BorderCollapseValue::not_equal(Self, Self) -> Bool
+pub fn BorderCollapseValue::to_css(Self) -> String
+pub fn BorderCollapseValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BorderImageRepeatValue {
+  BorderImageRepeatValueStretch
+  BorderImageRepeatValueRepeat
+  BorderImageRepeatValueRound
+  BorderImageRepeatValueSpace
+} derive(Eq, @debug.Debug)
+pub fn BorderImageRepeatValue::equal(Self, Self) -> Bool
+pub fn BorderImageRepeatValue::not_equal(Self, Self) -> Bool
+pub fn BorderImageRepeatValue::to_css(Self) -> String
+pub fn BorderImageRepeatValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BorderStyle {
+  Solid
+  Dashed
+  Dotted
+  Double
+  BorderNone
+} derive(Eq, @debug.Debug)
+pub fn BorderStyle::equal(Self, Self) -> Bool
+pub fn BorderStyle::not_equal(Self, Self) -> Bool
+pub fn BorderStyle::to_css(Self) -> String
+pub fn BorderStyle::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BoxDecorationBreakValue {
+  BoxDecorationBreakValueSlice
+  BoxDecorationBreakValueClone
+} derive(Eq, @debug.Debug)
+pub fn BoxDecorationBreakValue::equal(Self, Self) -> Bool
+pub fn BoxDecorationBreakValue::not_equal(Self, Self) -> Bool
+pub fn BoxDecorationBreakValue::to_css(Self) -> String
+pub fn BoxDecorationBreakValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BoxSizing {
+  BoxSizingContentBox
+  BoxSizingBorderBox
+} derive(Eq, @debug.Debug)
+pub fn BoxSizing::equal(Self, Self) -> Bool
+pub fn BoxSizing::not_equal(Self, Self) -> Bool
+pub fn BoxSizing::to_css(Self) -> String
+pub fn BoxSizing::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BreakAfterValue {
+  BreakAfterValueAuto
+  BreakAfterValueAvoid
+  BreakAfterValueAlways
+  BreakAfterValueAll
+  BreakAfterValueAvoidPage
+  BreakAfterValuePage
+  BreakAfterValueLeft
+  BreakAfterValueRight
+  BreakAfterValueRecto
+  BreakAfterValueVerso
+  BreakAfterValueAvoidColumn
+  BreakAfterValueColumn
+  BreakAfterValueAvoidRegion
+  BreakAfterValueRegion
+} derive(Eq, @debug.Debug)
+pub fn BreakAfterValue::equal(Self, Self) -> Bool
+pub fn BreakAfterValue::not_equal(Self, Self) -> Bool
+pub fn BreakAfterValue::to_css(Self) -> String
+pub fn BreakAfterValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BreakBeforeValue {
+  BreakBeforeValueAuto
+  BreakBeforeValueAvoid
+  BreakBeforeValueAlways
+  BreakBeforeValueAll
+  BreakBeforeValueAvoidPage
+  BreakBeforeValuePage
+  BreakBeforeValueLeft
+  BreakBeforeValueRight
+  BreakBeforeValueRecto
+  BreakBeforeValueVerso
+  BreakBeforeValueAvoidColumn
+  BreakBeforeValueColumn
+  BreakBeforeValueAvoidRegion
+  BreakBeforeValueRegion
+} derive(Eq, @debug.Debug)
+pub fn BreakBeforeValue::equal(Self, Self) -> Bool
+pub fn BreakBeforeValue::not_equal(Self, Self) -> Bool
+pub fn BreakBeforeValue::to_css(Self) -> String
+pub fn BreakBeforeValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum BreakInsideValue {
+  BreakInsideValueAuto
+  BreakInsideValueAvoid
+  BreakInsideValueAvoidPage
+  BreakInsideValueAvoidColumn
+  BreakInsideValueAvoidRegion
+} derive(Eq, @debug.Debug)
+pub fn BreakInsideValue::equal(Self, Self) -> Bool
+pub fn BreakInsideValue::not_equal(Self, Self) -> Bool
+pub fn BreakInsideValue::to_css(Self) -> String
+pub fn BreakInsideValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum CaptionSideValue {
+  CaptionSideValueTop
+  CaptionSideValueBottom
+} derive(Eq, @debug.Debug)
+pub fn CaptionSideValue::equal(Self, Self) -> Bool
+pub fn CaptionSideValue::not_equal(Self, Self) -> Bool
+pub fn CaptionSideValue::to_css(Self) -> String
+pub fn CaptionSideValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ClearMode {
+  ClearModeNone
+  ClearModeLeft
+  ClearModeRight
+  ClearModeBoth
+  ClearModeInlineStart
+  ClearModeInlineEnd
+} derive(Eq, @debug.Debug)
+pub fn ClearMode::equal(Self, Self) -> Bool
+pub fn ClearMode::not_equal(Self, Self) -> Bool
+pub fn ClearMode::to_css(Self) -> String
+pub fn ClearMode::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ClipRuleValue {
+  ClipRuleValueNonzero
+  ClipRuleValueEvenodd
+} derive(Eq, @debug.Debug)
+pub fn ClipRuleValue::equal(Self, Self) -> Bool
+pub fn ClipRuleValue::not_equal(Self, Self) -> Bool
+pub fn ClipRuleValue::to_css(Self) -> String
+pub fn ClipRuleValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ColorInterpolationFiltersValue {
+  ColorInterpolationFiltersValueAuto
+  ColorInterpolationFiltersValueSRGB
+  ColorInterpolationFiltersValueLinearRGB
+} derive(Eq, @debug.Debug)
+pub fn ColorInterpolationFiltersValue::equal(Self, Self) -> Bool
+pub fn ColorInterpolationFiltersValue::not_equal(Self, Self) -> Bool
+pub fn ColorInterpolationFiltersValue::to_css(Self) -> String
+pub fn ColorInterpolationFiltersValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ColumnFillValue {
+  ColumnFillValueAuto
+  ColumnFillValueBalance
+} derive(Eq, @debug.Debug)
+pub fn ColumnFillValue::equal(Self, Self) -> Bool
+pub fn ColumnFillValue::not_equal(Self, Self) -> Bool
+pub fn ColumnFillValue::to_css(Self) -> String
+pub fn ColumnFillValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ColumnSpanValue {
+  ColumnSpanValueNone
+  ColumnSpanValueAll
+} derive(Eq, @debug.Debug)
+pub fn ColumnSpanValue::equal(Self, Self) -> Bool
+pub fn ColumnSpanValue::not_equal(Self, Self) -> Bool
+pub fn ColumnSpanValue::to_css(Self) -> String
+pub fn ColumnSpanValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ContainerTypeValue {
+  ContainerTypeValueNormal
+  ContainerTypeValueSize
+  ContainerTypeValueInlineSize
+} derive(Eq, @debug.Debug)
+pub fn ContainerTypeValue::equal(Self, Self) -> Bool
+pub fn ContainerTypeValue::not_equal(Self, Self) -> Bool
+pub fn ContainerTypeValue::to_css(Self) -> String
+pub fn ContainerTypeValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ContentVisibility {
+  ContentVisibilityVisible
+  ContentVisibilityAuto
+  ContentVisibilityHidden
+} derive(Eq, @debug.Debug)
+pub fn ContentVisibility::equal(Self, Self) -> Bool
+pub fn ContentVisibility::not_equal(Self, Self) -> Bool
+pub fn ContentVisibility::to_css(Self) -> String
+pub fn ContentVisibility::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Cursor {
+  Default
+  Pointer
+  Text
+  NotAllowed
+  Wait
+} derive(Eq, @debug.Debug)
+pub fn Cursor::equal(Self, Self) -> Bool
+pub fn Cursor::not_equal(Self, Self) -> Bool
+pub fn Cursor::to_css(Self) -> String
+pub fn Cursor::to_repr(Self) -> @debug.Repr
+
+pub(all) enum DirectionValue {
+  DirectionValueLtr
+  DirectionValueRtl
+} derive(Eq, @debug.Debug)
+pub fn DirectionValue::equal(Self, Self) -> Bool
+pub fn DirectionValue::not_equal(Self, Self) -> Bool
+pub fn DirectionValue::to_css(Self) -> String
+pub fn DirectionValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Display {
+  Block
+  Flex
+  Grid
+  Inline
+  InlineBlock
+  InlineFlex
+  None
+} derive(Eq, @debug.Debug)
+pub fn Display::equal(Self, Self) -> Bool
+pub fn Display::not_equal(Self, Self) -> Bool
+pub fn Display::to_css(Self) -> String
+pub fn Display::to_repr(Self) -> @debug.Repr
+
+pub(all) enum EmptyCellsValue {
+  EmptyCellsValueShow
+  EmptyCellsValueHide
+} derive(Eq, @debug.Debug)
+pub fn EmptyCellsValue::equal(Self, Self) -> Bool
+pub fn EmptyCellsValue::not_equal(Self, Self) -> Bool
+pub fn EmptyCellsValue::to_css(Self) -> String
+pub fn EmptyCellsValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FieldSizingValue {
+  FieldSizingValueFixed
+  FieldSizingValueContent
+} derive(Eq, @debug.Debug)
+pub fn FieldSizingValue::equal(Self, Self) -> Bool
+pub fn FieldSizingValue::not_equal(Self, Self) -> Bool
+pub fn FieldSizingValue::to_css(Self) -> String
+pub fn FieldSizingValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FillRuleValue {
+  FillRuleValueNonzero
+  FillRuleValueEvenodd
+} derive(Eq, @debug.Debug)
+pub fn FillRuleValue::equal(Self, Self) -> Bool
+pub fn FillRuleValue::not_equal(Self, Self) -> Bool
+pub fn FillRuleValue::to_css(Self) -> String
+pub fn FillRuleValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FlexDirection {
+  FlexDirectionRow
+  FlexDirectionRowReverse
+  FlexDirectionColumn
+  FlexDirectionColumnReverse
+} derive(Eq, @debug.Debug)
+pub fn FlexDirection::equal(Self, Self) -> Bool
+pub fn FlexDirection::not_equal(Self, Self) -> Bool
+pub fn FlexDirection::to_css(Self) -> String
+pub fn FlexDirection::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FlexWrap {
+  FlexWrapNowrap
+  FlexWrapWrap
+  FlexWrapWrapReverse
+} derive(Eq, @debug.Debug)
+pub fn FlexWrap::equal(Self, Self) -> Bool
+pub fn FlexWrap::not_equal(Self, Self) -> Bool
+pub fn FlexWrap::to_css(Self) -> String
+pub fn FlexWrap::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FloatMode {
+  FloatModeNone
+  FloatModeLeft
+  FloatModeRight
+  FloatModeInlineStart
+  FloatModeInlineEnd
+} derive(Eq, @debug.Debug)
+pub fn FloatMode::equal(Self, Self) -> Bool
+pub fn FloatMode::not_equal(Self, Self) -> Bool
+pub fn FloatMode::to_css(Self) -> String
+pub fn FloatMode::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontKerning {
+  FontKerningAuto
+  FontKerningNormal
+  FontKerningNone
+} derive(Eq, @debug.Debug)
+pub fn FontKerning::equal(Self, Self) -> Bool
+pub fn FontKerning::not_equal(Self, Self) -> Bool
+pub fn FontKerning::to_css(Self) -> String
+pub fn FontKerning::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontOpticalSizing {
+  FontOpticalSizingAuto
+  FontOpticalSizingNone
+} derive(Eq, @debug.Debug)
+pub fn FontOpticalSizing::equal(Self, Self) -> Bool
+pub fn FontOpticalSizing::not_equal(Self, Self) -> Bool
+pub fn FontOpticalSizing::to_css(Self) -> String
+pub fn FontOpticalSizing::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontStretch {
+  FontStretchNormal
+  FontStretchUltraCondensed
+  FontStretchExtraCondensed
+  FontStretchCondensed
+  FontStretchSemiCondensed
+  FontStretchSemiExpanded
+  FontStretchExpanded
+  FontStretchExtraExpanded
+  FontStretchUltraExpanded
+} derive(Eq, @debug.Debug)
+pub fn FontStretch::equal(Self, Self) -> Bool
+pub fn FontStretch::not_equal(Self, Self) -> Bool
+pub fn FontStretch::to_css(Self) -> String
+pub fn FontStretch::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontStyle {
+  FontStyleNormal
+  FontStyleItalic
+  FontStyleOblique
+} derive(Eq, @debug.Debug)
+pub fn FontStyle::equal(Self, Self) -> Bool
+pub fn FontStyle::not_equal(Self, Self) -> Bool
+pub fn FontStyle::to_css(Self) -> String
+pub fn FontStyle::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontSynthesisSmallCapsValue {
+  FontSynthesisSmallCapsValueAuto
+  FontSynthesisSmallCapsValueNone
+} derive(Eq, @debug.Debug)
+pub fn FontSynthesisSmallCapsValue::equal(Self, Self) -> Bool
+pub fn FontSynthesisSmallCapsValue::not_equal(Self, Self) -> Bool
+pub fn FontSynthesisSmallCapsValue::to_css(Self) -> String
+pub fn FontSynthesisSmallCapsValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontSynthesisStyleValue {
+  FontSynthesisStyleValueAuto
+  FontSynthesisStyleValueNone
+} derive(Eq, @debug.Debug)
+pub fn FontSynthesisStyleValue::equal(Self, Self) -> Bool
+pub fn FontSynthesisStyleValue::not_equal(Self, Self) -> Bool
+pub fn FontSynthesisStyleValue::to_css(Self) -> String
+pub fn FontSynthesisStyleValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontSynthesisValue {
+  FontSynthesisValueNone
+  FontSynthesisValueWeight
+  FontSynthesisValueStyle
+  FontSynthesisValueSmallCaps
+  FontSynthesisValuePosition
+} derive(Eq, @debug.Debug)
+pub fn FontSynthesisValue::equal(Self, Self) -> Bool
+pub fn FontSynthesisValue::not_equal(Self, Self) -> Bool
+pub fn FontSynthesisValue::to_css(Self) -> String
+pub fn FontSynthesisValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontSynthesisWeightValue {
+  FontSynthesisWeightValueAuto
+  FontSynthesisWeightValueNone
+} derive(Eq, @debug.Debug)
+pub fn FontSynthesisWeightValue::equal(Self, Self) -> Bool
+pub fn FontSynthesisWeightValue::not_equal(Self, Self) -> Bool
+pub fn FontSynthesisWeightValue::to_css(Self) -> String
+pub fn FontSynthesisWeightValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontVariantCaps {
+  FontVariantCapsNormal
+  FontVariantCapsSmallCaps
+  FontVariantCapsAllSmallCaps
+  FontVariantCapsPetiteCaps
+  FontVariantCapsAllPetiteCaps
+  FontVariantCapsUnicase
+  FontVariantCapsTitlingCaps
+} derive(Eq, @debug.Debug)
+pub fn FontVariantCaps::equal(Self, Self) -> Bool
+pub fn FontVariantCaps::not_equal(Self, Self) -> Bool
+pub fn FontVariantCaps::to_css(Self) -> String
+pub fn FontVariantCaps::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontVariantEmojiValue {
+  FontVariantEmojiValueNormal
+  FontVariantEmojiValueText
+  FontVariantEmojiValueEmoji
+  FontVariantEmojiValueUnicode
+} derive(Eq, @debug.Debug)
+pub fn FontVariantEmojiValue::equal(Self, Self) -> Bool
+pub fn FontVariantEmojiValue::not_equal(Self, Self) -> Bool
+pub fn FontVariantEmojiValue::to_css(Self) -> String
+pub fn FontVariantEmojiValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontVariantPositionValue {
+  FontVariantPositionValueNormal
+  FontVariantPositionValueSub
+  FontVariantPositionValueSuper
+} derive(Eq, @debug.Debug)
+pub fn FontVariantPositionValue::equal(Self, Self) -> Bool
+pub fn FontVariantPositionValue::not_equal(Self, Self) -> Bool
+pub fn FontVariantPositionValue::to_css(Self) -> String
+pub fn FontVariantPositionValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ForcedColorAdjustValue {
+  ForcedColorAdjustValueAuto
+  ForcedColorAdjustValueNone
+  ForcedColorAdjustValuePreserveParentColor
+} derive(Eq, @debug.Debug)
+pub fn ForcedColorAdjustValue::equal(Self, Self) -> Bool
+pub fn ForcedColorAdjustValue::not_equal(Self, Self) -> Bool
+pub fn ForcedColorAdjustValue::to_css(Self) -> String
+pub fn ForcedColorAdjustValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum GridAutoFlow {
+  GridAutoFlowRow
+  GridAutoFlowColumn
+  GridAutoFlowDense
+  GridAutoFlowRowDense
+  GridAutoFlowColumnDense
+} derive(Eq, @debug.Debug)
+pub fn GridAutoFlow::equal(Self, Self) -> Bool
+pub fn GridAutoFlow::not_equal(Self, Self) -> Bool
+pub fn GridAutoFlow::to_css(Self) -> String
+pub fn GridAutoFlow::to_repr(Self) -> @debug.Repr
+
+pub(all) enum HangingPunctuationValue {
+  HangingPunctuationValueNone
+  HangingPunctuationValueFirst
+  HangingPunctuationValueForceEnd
+  HangingPunctuationValueAllowEnd
+  HangingPunctuationValueLast
+} derive(Eq, @debug.Debug)
+pub fn HangingPunctuationValue::equal(Self, Self) -> Bool
+pub fn HangingPunctuationValue::not_equal(Self, Self) -> Bool
+pub fn HangingPunctuationValue::to_css(Self) -> String
+pub fn HangingPunctuationValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Hyphens {
+  HyphensNone
+  HyphensManual
+  HyphensAuto
+} derive(Eq, @debug.Debug)
+pub fn Hyphens::equal(Self, Self) -> Bool
+pub fn Hyphens::not_equal(Self, Self) -> Bool
+pub fn Hyphens::to_css(Self) -> String
+pub fn Hyphens::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ImageRendering {
+  ImageRenderingAuto
+  ImageRenderingSmooth
+  ImageRenderingHighQuality
+  ImageRenderingCrispEdges
+  ImageRenderingPixelated
+} derive(Eq, @debug.Debug)
+pub fn ImageRendering::equal(Self, Self) -> Bool
+pub fn ImageRendering::not_equal(Self, Self) -> Bool
+pub fn ImageRendering::to_css(Self) -> String
+pub fn ImageRendering::to_repr(Self) -> @debug.Repr
+
+pub struct InteractionDeclaration {
+  declaration : @ir.Declaration
+}
+pub fn InteractionDeclaration::to_declaration(Self) -> @ir.Declaration
+pub fn InteractionDeclaration::with_source(Self, @ir.SourceSpan) -> Self
+
+pub struct LayoutDeclaration {
+  declaration : @ir.Declaration
+}
+pub fn LayoutDeclaration::to_declaration(Self) -> @ir.Declaration
+pub fn LayoutDeclaration::with_source(Self, @ir.SourceSpan) -> Self
+
+pub(all) enum LineBreakValue {
+  LineBreakValueAuto
+  LineBreakValueLoose
+  LineBreakValueNormal
+  LineBreakValueStrict
+  LineBreakValueAnywhere
+} derive(Eq, @debug.Debug)
+pub fn LineBreakValue::equal(Self, Self) -> Bool
+pub fn LineBreakValue::not_equal(Self, Self) -> Bool
+pub fn LineBreakValue::to_css(Self) -> String
+pub fn LineBreakValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ListStylePosition {
+  ListStylePositionInside
+  ListStylePositionOutside
+} derive(Eq, @debug.Debug)
+pub fn ListStylePosition::equal(Self, Self) -> Bool
+pub fn ListStylePosition::not_equal(Self, Self) -> Bool
+pub fn ListStylePosition::to_css(Self) -> String
+pub fn ListStylePosition::to_repr(Self) -> @debug.Repr
+
+pub(all) enum MaskTypeValue {
+  MaskTypeValueLuminance
+  MaskTypeValueAlpha
+} derive(Eq, @debug.Debug)
+pub fn MaskTypeValue::equal(Self, Self) -> Bool
+pub fn MaskTypeValue::not_equal(Self, Self) -> Bool
+pub fn MaskTypeValue::to_css(Self) -> String
+pub fn MaskTypeValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum MathShiftValue {
+  MathShiftValueNormal
+  MathShiftValueCompact
+} derive(Eq, @debug.Debug)
+pub fn MathShiftValue::equal(Self, Self) -> Bool
+pub fn MathShiftValue::not_equal(Self, Self) -> Bool
+pub fn MathShiftValue::to_css(Self) -> String
+pub fn MathShiftValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum MathStyleValue {
+  MathStyleValueNormal
+  MathStyleValueCompact
+} derive(Eq, @debug.Debug)
+pub fn MathStyleValue::equal(Self, Self) -> Bool
+pub fn MathStyleValue::not_equal(Self, Self) -> Bool
+pub fn MathStyleValue::to_css(Self) -> String
+pub fn MathStyleValue::to_repr(Self) -> @debug.Repr
+
+pub struct MotionDeclaration {
+  declaration : @ir.Declaration
+}
+pub fn MotionDeclaration::to_declaration(Self) -> @ir.Declaration
+pub fn MotionDeclaration::with_source(Self, @ir.SourceSpan) -> Self
+
+pub(all) enum ObjectFit {
+  ObjectFitFill
+  ObjectFitContain
+  ObjectFitCover
+  ObjectFitNone
+  ObjectFitScaleDown
+} derive(Eq, @debug.Debug)
+pub fn ObjectFit::equal(Self, Self) -> Bool
+pub fn ObjectFit::not_equal(Self, Self) -> Bool
+pub fn ObjectFit::to_css(Self) -> String
+pub fn ObjectFit::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Overflow {
+  Visible
+  Hidden
+  Auto
+  Scroll
+} derive(Eq, @debug.Debug)
+pub fn Overflow::equal(Self, Self) -> Bool
+pub fn Overflow::not_equal(Self, Self) -> Bool
+pub fn Overflow::to_css(Self) -> String
+pub fn Overflow::to_repr(Self) -> @debug.Repr
+
+pub(all) enum OverflowAnchorValue {
+  OverflowAnchorValueAuto
+  OverflowAnchorValueNone
+} derive(Eq, @debug.Debug)
+pub fn OverflowAnchorValue::equal(Self, Self) -> Bool
+pub fn OverflowAnchorValue::not_equal(Self, Self) -> Bool
+pub fn OverflowAnchorValue::to_css(Self) -> String
+pub fn OverflowAnchorValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum OverflowWrap {
+  OverflowWrapNormal
+  OverflowWrapBreakWord
+  OverflowWrapAnywhere
+} derive(Eq, @debug.Debug)
+pub fn OverflowWrap::equal(Self, Self) -> Bool
+pub fn OverflowWrap::not_equal(Self, Self) -> Bool
+pub fn OverflowWrap::to_css(Self) -> String
+pub fn OverflowWrap::to_repr(Self) -> @debug.Repr
+
+pub(all) enum OverscrollBehavior {
+  OverscrollBehaviorAuto
+  OverscrollBehaviorContain
+  OverscrollBehaviorNone
+} derive(Eq, @debug.Debug)
+pub fn OverscrollBehavior::equal(Self, Self) -> Bool
+pub fn OverscrollBehavior::not_equal(Self, Self) -> Bool
+pub fn OverscrollBehavior::to_css(Self) -> String
+pub fn OverscrollBehavior::to_repr(Self) -> @debug.Repr
+
+pub(all) enum OverscrollBehaviorBlockValue {
+  OverscrollBehaviorBlockValueContain
+  OverscrollBehaviorBlockValueNone
+  OverscrollBehaviorBlockValueAuto
+} derive(Eq, @debug.Debug)
+pub fn OverscrollBehaviorBlockValue::equal(Self, Self) -> Bool
+pub fn OverscrollBehaviorBlockValue::not_equal(Self, Self) -> Bool
+pub fn OverscrollBehaviorBlockValue::to_css(Self) -> String
+pub fn OverscrollBehaviorBlockValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum OverscrollBehaviorInlineValue {
+  OverscrollBehaviorInlineValueContain
+  OverscrollBehaviorInlineValueNone
+  OverscrollBehaviorInlineValueAuto
+} derive(Eq, @debug.Debug)
+pub fn OverscrollBehaviorInlineValue::equal(Self, Self) -> Bool
+pub fn OverscrollBehaviorInlineValue::not_equal(Self, Self) -> Bool
+pub fn OverscrollBehaviorInlineValue::to_css(Self) -> String
+pub fn OverscrollBehaviorInlineValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum OverscrollBehaviorValue {
+  OverscrollBehaviorValueContain
+  OverscrollBehaviorValueNone
+  OverscrollBehaviorValueAuto
+} derive(Eq, @debug.Debug)
+pub fn OverscrollBehaviorValue::equal(Self, Self) -> Bool
+pub fn OverscrollBehaviorValue::not_equal(Self, Self) -> Bool
+pub fn OverscrollBehaviorValue::to_css(Self) -> String
+pub fn OverscrollBehaviorValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PaintOrderValue {
+  PaintOrderValueNormal
+  PaintOrderValueFill
+  PaintOrderValueStroke
+  PaintOrderValueMarkers
+} derive(Eq, @debug.Debug)
+pub fn PaintOrderValue::equal(Self, Self) -> Bool
+pub fn PaintOrderValue::not_equal(Self, Self) -> Bool
+pub fn PaintOrderValue::to_css(Self) -> String
+pub fn PaintOrderValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PlaceItems {
+  Start
+  Center
+  End
+  Stretch
+} derive(Eq, @debug.Debug)
+pub fn PlaceItems::equal(Self, Self) -> Bool
+pub fn PlaceItems::not_equal(Self, Self) -> Bool
+pub fn PlaceItems::to_css(Self) -> String
+pub fn PlaceItems::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PointerEvents {
+  PointerEventsAuto
+  PointerEventsNone
+} derive(Eq, @debug.Debug)
+pub fn PointerEvents::equal(Self, Self) -> Bool
+pub fn PointerEvents::not_equal(Self, Self) -> Bool
+pub fn PointerEvents::to_css(Self) -> String
+pub fn PointerEvents::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PositionMode {
+  PositionModeStatic
+  PositionModeRelative
+  PositionModeAbsolute
+  PositionModeFixed
+  PositionModeSticky
+} derive(Eq, @debug.Debug)
+pub fn PositionMode::equal(Self, Self) -> Bool
+pub fn PositionMode::not_equal(Self, Self) -> Bool
+pub fn PositionMode::to_css(Self) -> String
+pub fn PositionMode::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PositionVisibilityValue {
+  PositionVisibilityValueAlways
+  PositionVisibilityValueNoOverflow
+} derive(Eq, @debug.Debug)
+pub fn PositionVisibilityValue::equal(Self, Self) -> Bool
+pub fn PositionVisibilityValue::not_equal(Self, Self) -> Bool
+pub fn PositionVisibilityValue::to_css(Self) -> String
+pub fn PositionVisibilityValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PrintColorAdjustValue {
+  PrintColorAdjustValueEconomy
+  PrintColorAdjustValueExact
+} derive(Eq, @debug.Debug)
+pub fn PrintColorAdjustValue::equal(Self, Self) -> Bool
+pub fn PrintColorAdjustValue::not_equal(Self, Self) -> Bool
+pub fn PrintColorAdjustValue::to_css(Self) -> String
+pub fn PrintColorAdjustValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ResizeMode {
+  ResizeModeNone
+  ResizeModeBoth
+  ResizeModeHorizontal
+  ResizeModeVertical
+  ResizeModeBlock
+  ResizeModeInline
+} derive(Eq, @debug.Debug)
+pub fn ResizeMode::equal(Self, Self) -> Bool
+pub fn ResizeMode::not_equal(Self, Self) -> Bool
+pub fn ResizeMode::to_css(Self) -> String
+pub fn ResizeMode::to_repr(Self) -> @debug.Repr
+
+pub(all) enum RubyAlignValue {
+  RubyAlignValueStart
+  RubyAlignValueCenter
+  RubyAlignValueSpaceBetween
+  RubyAlignValueSpaceAround
+} derive(Eq, @debug.Debug)
+pub fn RubyAlignValue::equal(Self, Self) -> Bool
+pub fn RubyAlignValue::not_equal(Self, Self) -> Bool
+pub fn RubyAlignValue::to_css(Self) -> String
+pub fn RubyAlignValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum RubyPositionValue {
+  RubyPositionValueAlternate
+  RubyPositionValueOver
+  RubyPositionValueUnder
+  RubyPositionValueInterCharacter
+} derive(Eq, @debug.Debug)
+pub fn RubyPositionValue::equal(Self, Self) -> Bool
+pub fn RubyPositionValue::not_equal(Self, Self) -> Bool
+pub fn RubyPositionValue::to_css(Self) -> String
+pub fn RubyPositionValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ScrollBehavior {
+  ScrollBehaviorAuto
+  ScrollBehaviorSmooth
+} derive(Eq, @debug.Debug)
+pub fn ScrollBehavior::equal(Self, Self) -> Bool
+pub fn ScrollBehavior::not_equal(Self, Self) -> Bool
+pub fn ScrollBehavior::to_css(Self) -> String
+pub fn ScrollBehavior::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ScrollSnapAlignValue {
+  ScrollSnapAlignValueNone
+  ScrollSnapAlignValueStart
+  ScrollSnapAlignValueEnd
+  ScrollSnapAlignValueCenter
+} derive(Eq, @debug.Debug)
+pub fn ScrollSnapAlignValue::equal(Self, Self) -> Bool
+pub fn ScrollSnapAlignValue::not_equal(Self, Self) -> Bool
+pub fn ScrollSnapAlignValue::to_css(Self) -> String
+pub fn ScrollSnapAlignValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ScrollSnapStopValue {
+  ScrollSnapStopValueNormal
+  ScrollSnapStopValueAlways
+} derive(Eq, @debug.Debug)
+pub fn ScrollSnapStopValue::equal(Self, Self) -> Bool
+pub fn ScrollSnapStopValue::not_equal(Self, Self) -> Bool
+pub fn ScrollSnapStopValue::to_css(Self) -> String
+pub fn ScrollSnapStopValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ScrollSnapTypeValue {
+  ScrollSnapTypeValueNone
+  ScrollSnapTypeValueX
+  ScrollSnapTypeValueY
+  ScrollSnapTypeValueBlock
+  ScrollSnapTypeValueInline
+  ScrollSnapTypeValueBoth
+} derive(Eq, @debug.Debug)
+pub fn ScrollSnapTypeValue::equal(Self, Self) -> Bool
+pub fn ScrollSnapTypeValue::not_equal(Self, Self) -> Bool
+pub fn ScrollSnapTypeValue::to_css(Self) -> String
+pub fn ScrollSnapTypeValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ScrollTimelineAxisValue {
+  ScrollTimelineAxisValueBlock
+  ScrollTimelineAxisValueInline
+  ScrollTimelineAxisValueX
+  ScrollTimelineAxisValueY
+} derive(Eq, @debug.Debug)
+pub fn ScrollTimelineAxisValue::equal(Self, Self) -> Bool
+pub fn ScrollTimelineAxisValue::not_equal(Self, Self) -> Bool
+pub fn ScrollTimelineAxisValue::to_css(Self) -> String
+pub fn ScrollTimelineAxisValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ScrollbarWidthValue {
+  ScrollbarWidthValueAuto
+  ScrollbarWidthValueThin
+  ScrollbarWidthValueNone
+} derive(Eq, @debug.Debug)
+pub fn ScrollbarWidthValue::equal(Self, Self) -> Bool
+pub fn ScrollbarWidthValue::not_equal(Self, Self) -> Bool
+pub fn ScrollbarWidthValue::to_css(Self) -> String
+pub fn ScrollbarWidthValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ShapeRenderingValue {
+  ShapeRenderingValueAuto
+  ShapeRenderingValueOptimizeSpeed
+  ShapeRenderingValueCrispEdges
+  ShapeRenderingValueGeometricPrecision
+} derive(Eq, @debug.Debug)
+pub fn ShapeRenderingValue::equal(Self, Self) -> Bool
+pub fn ShapeRenderingValue::not_equal(Self, Self) -> Bool
+pub fn ShapeRenderingValue::to_css(Self) -> String
+pub fn ShapeRenderingValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum SpeakValue {
+  SpeakValueAuto
+  SpeakValueNever
+  SpeakValueAlways
+} derive(Eq, @debug.Debug)
+pub fn SpeakValue::equal(Self, Self) -> Bool
+pub fn SpeakValue::not_equal(Self, Self) -> Bool
+pub fn SpeakValue::to_css(Self) -> String
+pub fn SpeakValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum StrokeLinecapValue {
+  StrokeLinecapValueButt
+  StrokeLinecapValueRound
+  StrokeLinecapValueSquare
+} derive(Eq, @debug.Debug)
+pub fn StrokeLinecapValue::equal(Self, Self) -> Bool
+pub fn StrokeLinecapValue::not_equal(Self, Self) -> Bool
+pub fn StrokeLinecapValue::to_css(Self) -> String
+pub fn StrokeLinecapValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum StrokeLinejoinValue {
+  StrokeLinejoinValueMiter
+  StrokeLinejoinValueBevel
+  StrokeLinejoinValueRound
+} derive(Eq, @debug.Debug)
+pub fn StrokeLinejoinValue::equal(Self, Self) -> Bool
+pub fn StrokeLinejoinValue::not_equal(Self, Self) -> Bool
+pub fn StrokeLinejoinValue::to_css(Self) -> String
+pub fn StrokeLinejoinValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TableLayoutValue {
+  TableLayoutValueAuto
+  TableLayoutValueFixed
+} derive(Eq, @debug.Debug)
+pub fn TableLayoutValue::equal(Self, Self) -> Bool
+pub fn TableLayoutValue::not_equal(Self, Self) -> Bool
+pub fn TableLayoutValue::to_css(Self) -> String
+pub fn TableLayoutValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextAlign {
+  TextAlignStart
+  TextAlignEnd
+  TextAlignLeft
+  TextAlignRight
+  TextAlignCenter
+  TextAlignJustify
+  TextAlignMatchParent
+} derive(Eq, @debug.Debug)
+pub fn TextAlign::equal(Self, Self) -> Bool
+pub fn TextAlign::not_equal(Self, Self) -> Bool
+pub fn TextAlign::to_css(Self) -> String
+pub fn TextAlign::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextAnchorValue {
+  TextAnchorValueStart
+  TextAnchorValueMiddle
+  TextAnchorValueEnd
+} derive(Eq, @debug.Debug)
+pub fn TextAnchorValue::equal(Self, Self) -> Bool
+pub fn TextAnchorValue::not_equal(Self, Self) -> Bool
+pub fn TextAnchorValue::to_css(Self) -> String
+pub fn TextAnchorValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextBoxTrimValue {
+  TextBoxTrimValueNone
+  TextBoxTrimValueTrimStart
+  TextBoxTrimValueTrimEnd
+  TextBoxTrimValueTrimBoth
+} derive(Eq, @debug.Debug)
+pub fn TextBoxTrimValue::equal(Self, Self) -> Bool
+pub fn TextBoxTrimValue::not_equal(Self, Self) -> Bool
+pub fn TextBoxTrimValue::to_css(Self) -> String
+pub fn TextBoxTrimValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextCombineUprightValue {
+  TextCombineUprightValueNone
+  TextCombineUprightValueAll
+  TextCombineUprightValueDigits
+} derive(Eq, @debug.Debug)
+pub fn TextCombineUprightValue::equal(Self, Self) -> Bool
+pub fn TextCombineUprightValue::not_equal(Self, Self) -> Bool
+pub fn TextCombineUprightValue::to_css(Self) -> String
+pub fn TextCombineUprightValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextDecorationLine {
+  TextDecorationLineNone
+  TextDecorationLineUnderline
+  TextDecorationLineOverline
+  TextDecorationLineLineThrough
+} derive(Eq, @debug.Debug)
+pub fn TextDecorationLine::equal(Self, Self) -> Bool
+pub fn TextDecorationLine::not_equal(Self, Self) -> Bool
+pub fn TextDecorationLine::to_css(Self) -> String
+pub fn TextDecorationLine::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextDecorationSkipInkValue {
+  TextDecorationSkipInkValueAuto
+  TextDecorationSkipInkValueNone
+  TextDecorationSkipInkValueAll
+} derive(Eq, @debug.Debug)
+pub fn TextDecorationSkipInkValue::equal(Self, Self) -> Bool
+pub fn TextDecorationSkipInkValue::not_equal(Self, Self) -> Bool
+pub fn TextDecorationSkipInkValue::to_css(Self) -> String
+pub fn TextDecorationSkipInkValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextDecorationStyle {
+  TextDecorationStyleSolid
+  TextDecorationStyleDouble
+  TextDecorationStyleDotted
+  TextDecorationStyleDashed
+  TextDecorationStyleWavy
+} derive(Eq, @debug.Debug)
+pub fn TextDecorationStyle::equal(Self, Self) -> Bool
+pub fn TextDecorationStyle::not_equal(Self, Self) -> Bool
+pub fn TextDecorationStyle::to_css(Self) -> String
+pub fn TextDecorationStyle::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextJustifyValue {
+  TextJustifyValueAuto
+  TextJustifyValueNone
+  TextJustifyValueInterWord
+  TextJustifyValueInterCharacter
+} derive(Eq, @debug.Debug)
+pub fn TextJustifyValue::equal(Self, Self) -> Bool
+pub fn TextJustifyValue::not_equal(Self, Self) -> Bool
+pub fn TextJustifyValue::to_css(Self) -> String
+pub fn TextJustifyValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextOrientationValue {
+  TextOrientationValueMixed
+  TextOrientationValueUpright
+  TextOrientationValueSideways
+} derive(Eq, @debug.Debug)
+pub fn TextOrientationValue::equal(Self, Self) -> Bool
+pub fn TextOrientationValue::not_equal(Self, Self) -> Bool
+pub fn TextOrientationValue::to_css(Self) -> String
+pub fn TextOrientationValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextOverflow {
+  TextOverflowClip
+  TextOverflowEllipsis
+} derive(Eq, @debug.Debug)
+pub fn TextOverflow::equal(Self, Self) -> Bool
+pub fn TextOverflow::not_equal(Self, Self) -> Bool
+pub fn TextOverflow::to_css(Self) -> String
+pub fn TextOverflow::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextRenderingValue {
+  TextRenderingValueAuto
+  TextRenderingValueOptimizeSpeed
+  TextRenderingValueOptimizeLegibility
+  TextRenderingValueGeometricPrecision
+} derive(Eq, @debug.Debug)
+pub fn TextRenderingValue::equal(Self, Self) -> Bool
+pub fn TextRenderingValue::not_equal(Self, Self) -> Bool
+pub fn TextRenderingValue::to_css(Self) -> String
+pub fn TextRenderingValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextTransform {
+  TextTransformNone
+  TextTransformCapitalize
+  TextTransformUppercase
+  TextTransformLowercase
+  TextTransformFullWidth
+  TextTransformFullSizeKana
+} derive(Eq, @debug.Debug)
+pub fn TextTransform::equal(Self, Self) -> Bool
+pub fn TextTransform::not_equal(Self, Self) -> Bool
+pub fn TextTransform::to_css(Self) -> String
+pub fn TextTransform::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextUnderlinePosition {
+  TextUnderlinePositionAuto
+  TextUnderlinePositionUnder
+  TextUnderlinePositionLeft
+  TextUnderlinePositionRight
+} derive(Eq, @debug.Debug)
+pub fn TextUnderlinePosition::equal(Self, Self) -> Bool
+pub fn TextUnderlinePosition::not_equal(Self, Self) -> Bool
+pub fn TextUnderlinePosition::to_css(Self) -> String
+pub fn TextUnderlinePosition::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextWrapMode {
+  TextWrapModeWrap
+  TextWrapModeNowrap
+} derive(Eq, @debug.Debug)
+pub fn TextWrapMode::equal(Self, Self) -> Bool
+pub fn TextWrapMode::not_equal(Self, Self) -> Bool
+pub fn TextWrapMode::to_css(Self) -> String
+pub fn TextWrapMode::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TextWrapStyle {
+  TextWrapStyleAuto
+  TextWrapStyleBalance
+  TextWrapStylePretty
+  TextWrapStyleStable
+} derive(Eq, @debug.Debug)
+pub fn TextWrapStyle::equal(Self, Self) -> Bool
+pub fn TextWrapStyle::not_equal(Self, Self) -> Bool
+pub fn TextWrapStyle::to_css(Self) -> String
+pub fn TextWrapStyle::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TransformBoxValue {
+  TransformBoxValueContentBox
+  TransformBoxValueBorderBox
+  TransformBoxValueFillBox
+  TransformBoxValueStrokeBox
+  TransformBoxValueViewBox
+} derive(Eq, @debug.Debug)
+pub fn TransformBoxValue::equal(Self, Self) -> Bool
+pub fn TransformBoxValue::not_equal(Self, Self) -> Bool
+pub fn TransformBoxValue::to_css(Self) -> String
+pub fn TransformBoxValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TransformStyle {
+  TransformStyleFlat
+  TransformStylePreserve3d
+} derive(Eq, @debug.Debug)
+pub fn TransformStyle::equal(Self, Self) -> Bool
+pub fn TransformStyle::not_equal(Self, Self) -> Bool
+pub fn TransformStyle::to_css(Self) -> String
+pub fn TransformStyle::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TransitionProperty {
+  TransitionPropertyNone
+  TransitionPropertyAll
+  TransitionPropertyOpacity
+  TransitionPropertyTransform
+  TransitionPropertyColor
+  TransitionPropertyBackgroundColor
+} derive(Eq, @debug.Debug)
+pub fn TransitionProperty::equal(Self, Self) -> Bool
+pub fn TransitionProperty::not_equal(Self, Self) -> Bool
+pub fn TransitionProperty::to_css(Self) -> String
+pub fn TransitionProperty::to_repr(Self) -> @debug.Repr
+
+pub struct TypographyDeclaration {
+  declaration : @ir.Declaration
+}
+pub fn TypographyDeclaration::to_declaration(Self) -> @ir.Declaration
+pub fn TypographyDeclaration::with_source(Self, @ir.SourceSpan) -> Self
+
+pub(all) enum UnicodeBidiValue {
+  UnicodeBidiValueNormal
+  UnicodeBidiValueEmbed
+  UnicodeBidiValueIsolate
+  UnicodeBidiValueBidiOverride
+  UnicodeBidiValueIsolateOverride
+  UnicodeBidiValuePlaintext
+} derive(Eq, @debug.Debug)
+pub fn UnicodeBidiValue::equal(Self, Self) -> Bool
+pub fn UnicodeBidiValue::not_equal(Self, Self) -> Bool
+pub fn UnicodeBidiValue::to_css(Self) -> String
+pub fn UnicodeBidiValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum UserSelect {
+  UserSelectAuto
+  UserSelectText
+  UserSelectNone
+  UserSelectContain
+  UserSelectAll
+} derive(Eq, @debug.Debug)
+pub fn UserSelect::equal(Self, Self) -> Bool
+pub fn UserSelect::not_equal(Self, Self) -> Bool
+pub fn UserSelect::to_css(Self) -> String
+pub fn UserSelect::to_repr(Self) -> @debug.Repr
+
+pub(all) enum VectorEffectValue {
+  VectorEffectValueNone
+  VectorEffectValueNonScalingStroke
+  VectorEffectValueNonScalingSize
+  VectorEffectValueNonRotation
+  VectorEffectValueFixedPosition
+} derive(Eq, @debug.Debug)
+pub fn VectorEffectValue::equal(Self, Self) -> Bool
+pub fn VectorEffectValue::not_equal(Self, Self) -> Bool
+pub fn VectorEffectValue::to_css(Self) -> String
+pub fn VectorEffectValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ViewTimelineAxisValue {
+  ViewTimelineAxisValueBlock
+  ViewTimelineAxisValueInline
+  ViewTimelineAxisValueX
+  ViewTimelineAxisValueY
+} derive(Eq, @debug.Debug)
+pub fn ViewTimelineAxisValue::equal(Self, Self) -> Bool
+pub fn ViewTimelineAxisValue::not_equal(Self, Self) -> Bool
+pub fn ViewTimelineAxisValue::to_css(Self) -> String
+pub fn ViewTimelineAxisValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum Visibility {
+  VisibilityVisible
+  VisibilityHidden
+  VisibilityCollapse
+} derive(Eq, @debug.Debug)
+pub fn Visibility::equal(Self, Self) -> Bool
+pub fn Visibility::not_equal(Self, Self) -> Bool
+pub fn Visibility::to_css(Self) -> String
+pub fn Visibility::to_repr(Self) -> @debug.Repr
+
+pub struct VisualDeclaration {
+  declaration : @ir.Declaration
+}
+pub fn VisualDeclaration::to_declaration(Self) -> @ir.Declaration
+pub fn VisualDeclaration::with_source(Self, @ir.SourceSpan) -> Self
+
+pub(all) enum WhiteSpaceCollapse {
+  WhiteSpaceCollapseCollapse
+  WhiteSpaceCollapsePreserve
+  WhiteSpaceCollapsePreserveBreaks
+  WhiteSpaceCollapsePreserveSpaces
+  WhiteSpaceCollapseBreakSpaces
+} derive(Eq, @debug.Debug)
+pub fn WhiteSpaceCollapse::equal(Self, Self) -> Bool
+pub fn WhiteSpaceCollapse::not_equal(Self, Self) -> Bool
+pub fn WhiteSpaceCollapse::to_css(Self) -> String
+pub fn WhiteSpaceCollapse::to_repr(Self) -> @debug.Repr
+
+pub(all) enum WordBreak {
+  WordBreakNormal
+  WordBreakBreakAll
+  WordBreakKeepAll
+  WordBreakBreakWord
+} derive(Eq, @debug.Debug)
+pub fn WordBreak::equal(Self, Self) -> Bool
+pub fn WordBreak::not_equal(Self, Self) -> Bool
+pub fn WordBreak::to_css(Self) -> String
+pub fn WordBreak::to_repr(Self) -> @debug.Repr
+
+pub(all) enum WritingModeValue {
+  WritingModeValueHorizontalTb
+  WritingModeValueVerticalRl
+  WritingModeValueVerticalLr
+  WritingModeValueSidewaysRl
+  WritingModeValueSidewaysLr
+} derive(Eq, @debug.Debug)
+pub fn WritingModeValue::equal(Self, Self) -> Bool
+pub fn WritingModeValue::not_equal(Self, Self) -> Bool
+pub fn WritingModeValue::to_css(Self) -> String
+pub fn WritingModeValue::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits
