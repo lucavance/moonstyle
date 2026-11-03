@@ -1,0 +1,43 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle/rabbita"
+
+import {
+  "lampclaw/moonstyle/runtime",
+  "moonbit-community/rabbita/html",
+  "moonbit-community/rabbita/svg",
+}
+
+// Values
+pub fn apply_inline_vars(@html.Attrs, @runtime.AppliedStyle) -> @html.Attrs
+
+pub fn[T : @runtime.StaticStyleInput] attrs(T, base? : @html.Attrs) -> @html.Attrs
+
+pub fn attrs_applied(@runtime.AppliedStyle, base? : @html.Attrs) -> @html.Attrs
+
+#deprecated
+pub fn attrs_checked(Array[Result[@runtime.CompiledStyle, Array[@runtime.DynamicValueError]]], base_styles? : Array[@runtime.CompiledStyle], base? : @html.Attrs) -> Result[@html.Attrs, Array[@runtime.DynamicValueError]]
+
+#deprecated
+pub fn attrs_list(@runtime.StyleList, base? : @html.Attrs) -> Result[@html.Attrs, Array[@runtime.DynamicValueError]]
+
+pub fn[T : @runtime.StaticStyleInput] attrs_many(Array[T], base? : @html.Attrs) -> @html.Attrs
+
+pub fn[T : @runtime.StyleInput] attrs_or_abort(T, base? : @html.Attrs) -> @html.Attrs
+
+pub fn[T : @runtime.StaticStyleInput] svg_attrs(T, base? : @svg.Attrs) -> @svg.Attrs
+
+pub fn svg_attrs_applied(@runtime.AppliedStyle, base? : @svg.Attrs) -> @svg.Attrs
+
+pub fn[T : @runtime.StyleInput] svg_attrs_or_abort(T, base? : @svg.Attrs) -> @svg.Attrs
+
+pub fn[T : @runtime.StyleInput] try_attrs(T, base? : @html.Attrs) -> Result[@html.Attrs, Array[@runtime.DynamicValueError]]
+
+pub fn[T : @runtime.StyleInput] try_svg_attrs(T, base? : @svg.Attrs) -> Result[@svg.Attrs, Array[@runtime.DynamicValueError]]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

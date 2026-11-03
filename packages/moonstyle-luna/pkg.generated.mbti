@@ -1,0 +1,26 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-luna"
+
+import {
+  "lampclaw/moonstyle/runtime",
+  "mizchi/luna/core",
+}
+
+// Values
+pub fn[T : @runtime.StaticStyleInput] attrs(Array[T], base? : Array[(String, @core.Attr[Unit, String])]) -> Array[(String, @core.Attr[Unit, String])]
+
+pub fn attrs_applied(@runtime.AppliedStyle, base? : Array[(String, @core.Attr[Unit, String])]) -> Array[(String, @core.Attr[Unit, String])]
+
+pub fn attrs_list(@runtime.StyleList, base? : Array[(String, @core.Attr[Unit, String])]) -> Result[Array[(String, @core.Attr[Unit, String])], Array[@runtime.DynamicValueError]]
+
+pub fn class_name(@runtime.AppliedStyle) -> String
+
+pub fn inline_style(@runtime.AppliedStyle) -> String
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

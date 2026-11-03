@@ -1,0 +1,7 @@
+import {
+  "lampclaw/moonstyle/runtime",
+  "mizchi/luna/dom/static" @luna,
+  "mizchi/luna/core" @luna_core,
+}
+
+supported_targets = "js"

@@ -1,0 +1,9 @@
+import {
+  "lampclaw/moonstyle/runtime",
+  "moonbit-community/rabbita/html",
+  "moonbit-community/rabbita/svg",
+}
+
+supported_targets = "js"
+
+warnings = "-alert_unstable"

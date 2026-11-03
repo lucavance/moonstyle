@@ -1,1 +1,5 @@
-members = [".", "validation"]
+members = [
+  ".",
+  "validation",
+  "packages/moonstyle-luna",
+]
