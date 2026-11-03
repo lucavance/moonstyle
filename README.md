@@ -23,6 +23,8 @@ The root package now exposes fluent rules, recipes and exact contracts.
 
 Rabbita is the supported framework adapter; the independent Luna module is experimental.
 
+The private tooling package provides the CLI and Vite integration.
+
 Use the exact environment in `toolchain.json`. Run `moon update`, then
 `vp install --frozen-lockfile` and `vp run check-toolchain`.
 Run `vp run moon-test` for the library packages available in this revision.

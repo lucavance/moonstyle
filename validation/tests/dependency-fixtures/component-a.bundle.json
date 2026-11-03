@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 13,
+  "module": "fixture/component-a",
+  "mappingsPackage": "lampclaw/moonstyle-validation/tests/component_a_generated",
+  "semanticDigest": "sha256:766a10ad2443fc3ade680eed97c6145e6a17b7824aede5b4879b86d949b911f5",
+  "semantics": {
+    "profile": "stylex-0.19.1-application-order+font-aliases-v1",
+    "digest": "sha256:c1499c3696fe74b407416dfa6cfa9031ecaba2cebccae05c1ea08fab2332af08"
+  },
+  "directDependencies": [],
+  "dependencyClosure": [],
+  "contracts": [
+    {
+      "module": "fixture/component-a",
+      "name": "button",
+      "mappingsPackage": "lampclaw/moonstyle-validation/tests/component_a_generated",
+      "trait": "ButtonStyleInput",
+      "properties": [
+        {
+          "name": "color",
+          "policy": "exact",
+          "values": [],
+          "tokens": [],
+          "slots": [
+            {
+              "variable": "--component-button-text",
+              "category": "color"
+            }
+          ],
+          "expressions": []
+        },
+        {
+          "name": "borderColor",
+          "policy": "exact",
+          "values": [],
+          "tokens": [
+            {
+              "variable": "--component-button-border",
+              "category": "color"
+            }
+          ],
+          "slots": [],
+          "expressions": []
+        },
+        {
+          "name": "backgroundColor",
+          "policy": "exact",
+          "values": ["rgb(210 235 220)"],
+          "tokens": [
+            {
+              "variable": "--component-button-surface",
+              "category": "color"
+            }
+          ],
+          "slots": [],
+          "expressions": []
+        }
+      ]
+    }
+  ],
+  "namespaces": [
+    {
+      "name": "badge",
+      "entries": [["kWkggS", "dep-a"]]
+    }
+  ],
+  "rules": [
+    {
+      "property": "backgroundColor",
+      "className": "dep-a",
+      "ltr": ".dep-a{background-color:rgb(210 235 220)}",
+      "rtl": null,
+      "priority100": 300000
+    }
+  ],
+  "globals": [],
+  "recipes": [],
+  "markers": [],
+  "viewTransitionClasses": []
+}

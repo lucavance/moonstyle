@@ -5,10 +5,26 @@
   "description": "MoonStyle project tooling and Vite integration for typed atomic CSS in MoonBit",
   "license": "MIT",
   "repository": "https://github.com/lucavance/moonstyle",
+  "bin": {
+    "moonstyle": "./tooling/cli.mjs"
+  },
   "workspaces": [
     "validation"
   ],
+  "files": [
+    "tooling",
+    "templates/rabbita-vite/.vscode/tasks.json.template",
+    "templates/rabbita-vite/style.config.json.template",
+    "templates/rabbita-vite/style_extractor/main.mbt",
+    "templates/rabbita-vite/style_extractor/moon.pkg.template",
+    "LICENSE",
+    "NOTICE"
+  ],
   "type": "module",
+  "exports": {
+    "./vite": "./tooling/vite-plugin-moonstyle.mjs",
+    "./package.json": "./package.json"
+  },
   "devDependencies": {
     "@mdn/browser-compat-data": "8.1.7",
     "@rabbita/vite": "0.2.0",
