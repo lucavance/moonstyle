@@ -1,0 +1,17 @@
+# MoonStyle
+
+MoonStyle — Typed atomic CSS for MoonBit.
+为 MoonBit 提供类型安全的原子化 CSS。
+
+MoonBit is the authoring language. This is a source-distributed 0.1.0 candidate;
+no registry publication is implied.
+
+The repository root declares `lampclaw/moonstyle`, with source under `src/`.
+The separate `validation/` module is reserved for application integration.
+
+Use the exact environment in `toolchain.json`. Run `moon update`, then
+`vp install --frozen-lockfile` and `vp run check-toolchain`.
+
+Source: https://github.com/lucavance/moonstyle
+
+The project adapts selected StyleX semantics under MIT; retain LICENSE and NOTICE.

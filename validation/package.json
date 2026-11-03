@@ -1,0 +1,9 @@
+{
+  "name": "@lampclaw/moonstyle-validation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@lampclaw/moonstyle-tooling": "workspace:*"
+  }
+}

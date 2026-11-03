@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "release": {
+    "os": "ubuntu",
+    "osVersion": "26.04",
+    "architecture": "x64"
+  },
+  "tools": {
+    "moonCli": "0.1.20261029",
+    "moonRevision": "ee2274c",
+    "moonCompiler": "0.10.19+97801ee1b",
+    "moonCore": "0.10.19+97801ee1b",
+    "vitePlus": "1.4.0",
+    "bun": "1.4.4",
+    "node": "26.12.1",
+    "playwright": "1.64.1"
+  }
+}
