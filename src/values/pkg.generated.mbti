@@ -1,0 +1,2454 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle/values"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn angle_slot(String, String, Angle) -> DynamicSlot[Angle]
+
+pub fn angle_token(String, String, Angle) -> Token[Angle]
+
+pub fn animation_iterations(Array[Number?]) -> AnimationIterations
+
+pub fn animation_timelines(Array[AnimationTimeline]) -> AnimationTimelines
+
+pub fn authored_anchor_name(String) -> AnchorName
+
+pub fn authored_anchor_names(Array[AnchorName]) -> AnchorNames
+
+pub fn authored_background_sizes(Array[BackgroundSize]) -> BackgroundSizeList
+
+pub fn authored_border_side(width? : LineWidth?, style? : LineStyle?, color? : Color?) -> BorderSide
+
+pub fn authored_box_shadows(Array[Shadow]) -> BoxShadowList
+
+pub fn authored_ch(Double) -> Length
+
+pub fn authored_clip_path_circle(LengthPercentage, center? : Position?) -> ClipPath
+
+pub fn authored_clip_path_url(Url) -> ClipPath
+
+pub fn authored_contain(Array[ContainPart]) -> Contain
+
+pub fn authored_container_names(Array[String]) -> ContainerNames
+
+pub fn authored_content_none() -> ContentValue
+
+pub fn authored_content_text(String) -> ContentValue
+
+pub fn authored_corner_radius(LengthPercentage, vertical? : LengthPercentage?) -> CornerRadius
+
+pub fn authored_cubic_bezier(Double, Double, Double, Double) -> EasingFunction
+
+pub fn authored_deg(Double) -> Angle
+
+pub fn authored_dpi(Double) -> Resolution
+
+pub fn authored_dppx(Double) -> Resolution
+
+pub fn authored_dvh(Double) -> Length
+
+pub fn authored_em(Double) -> Length
+
+pub fn authored_filter_list(Array[FilterFunction]) -> FilterList
+
+pub fn authored_font_variant_numeric(Array[FontVariantNumericPart]) -> FontVariantNumeric
+
+pub fn authored_fr(Double) -> GridTrack
+
+pub fn authored_grid_line(Int32) -> GridLine
+
+pub fn authored_grid_span(Int32) -> GridLine
+
+pub fn authored_grid_template_areas(Array[Array[String]]) -> GridTemplateAreas
+
+pub fn authored_grid_tracks(Array[GridTrack]) -> GridTrackList
+
+pub fn authored_hex_color(String) -> Color
+
+pub fn authored_hsl(Double, Double, Double) -> Color
+
+pub fn authored_length(Double, LengthUnit) -> Length
+
+pub fn authored_line_width_from_length(Length) -> LineWidth
+
+pub fn authored_lvh(Double) -> Length
+
+pub fn authored_mask_image_url(Url) -> MaskImage
+
+pub fn authored_mask_images(Array[MaskImage]) -> MaskImageList
+
+pub fn authored_named_grid_line(String) -> GridLine
+
+pub fn authored_number(Double) -> Number
+
+pub fn authored_outline(width? : LineWidth?, style? : OutlineStyle?, color? : OutlineColor?) -> Outline
+
+pub fn authored_percentage(Double) -> Percentage
+
+pub fn authored_position_anchor(AnchorName) -> PositionAnchor
+
+pub fn authored_position_area(PositionAreaHorizontal, PositionAreaVertical) -> PositionArea
+
+pub fn authored_position_try_area(PositionArea) -> PositionTryFallback
+
+pub fn authored_position_try_fallbacks(Array[PositionTryFallback]) -> PositionTryFallbacks
+
+pub fn authored_position_try_named(String) -> PositionTryFallback
+
+pub fn authored_position_try_tactic(PositionTryTactic) -> PositionTryFallback
+
+pub fn authored_position_try_value(PositionTryFallbacks, order? : PositionTryOrder?) -> PositionTryValue
+
+pub fn authored_positions(Array[Position]) -> PositionList
+
+pub fn authored_ratio(Int32, Int32) -> Ratio
+
+pub fn authored_rem(Double) -> Length
+
+pub fn authored_repeat_styles(Array[RepeatStyle]) -> RepeatStyleList
+
+pub fn authored_repeat_tracks(Int32, GridTrackList) -> GridTrack
+
+pub fn authored_rgb(Int32, Int32, Int32) -> Color
+
+pub fn authored_rgba(Int32, Int32, Int32, Double) -> Color
+
+pub fn authored_scale_transform(Double, y? : Double?) -> TransformFunction
+
+pub fn authored_seconds(Double) -> Time
+
+pub fn authored_steps(Int32, at_start? : Bool) -> EasingFunction
+
+pub fn authored_svh(Double) -> Length
+
+pub fn authored_text_shadows(Array[Shadow]) -> TextShadowList
+
+pub fn authored_touch_action(Array[TouchActionPart]) -> TouchAction
+
+pub fn authored_transform_list(Array[TransformFunction]) -> TransformList
+
+pub fn authored_turn(Double) -> Angle
+
+pub fn authored_url(String) -> Url
+
+pub fn authored_view_transition_class(String) -> ViewTransitionClass
+
+pub fn authored_view_transition_name(String) -> ViewTransitionName
+
+pub fn authored_vmax(Double) -> Length
+
+pub fn authored_vmin(Double) -> Length
+
+pub fn auto() -> Length
+
+pub fn auto_fill(GridTrackList) -> GridTrack
+
+pub fn auto_fit(GridTrackList) -> GridTrack
+
+pub fn background_contain() -> BackgroundSize
+
+pub fn background_cover() -> BackgroundSize
+
+pub fn background_images(Array[Image]) -> Image
+
+pub fn[I : ImageInput] background_layer(I, position? : GradientPosition, size? : LayerSize, repeat? : RepeatStyle, attachment? : LayerAttachment, origin? : LayerBox, clip? : LayerBox) -> BackgroundLayer
+
+pub fn background_layers(Array[BackgroundLayer]) -> BackgroundLayers
+
+pub fn background_size(LengthPercentage, LengthPercentage) -> BackgroundSize
+
+pub fn basis_content() -> FlexBasis
+
+pub fn[T : LengthMathInput] blur_filter(T) -> FilterFunction
+
+pub fn border_colors(Color, second? : Color?) -> BorderColors
+
+pub fn border_radii(Array[MathExpr[LengthPercentage]], vertical? : Array[MathExpr[LengthPercentage]]) -> BorderRadii
+
+pub fn border_side(width? : LineWidth?, style? : LineStyle?, color? : Color?) -> BorderSide raise ValueError
+
+pub fn border_styles(LineStyle, second? : LineStyle?) -> BorderStyles
+
+pub fn border_widths(LineWidth, second? : LineWidth?) -> BorderWidths
+
+pub fn[T : BoxSizeValueInput] box_size(T) -> BoxSize
+
+pub fn box_size_keyword(BoxSizeKeyword) -> BoxSize
+
+pub fn[T : FilterAmountInput] brightness_filter(T) -> FilterFunction
+
+pub fn ch(Double) -> Length raise ValueError
+
+pub fn[R : LengthPercentageMathInput] circle_shape(R, center? : GradientPosition) -> BasicShape
+
+pub fn[C : GradientColorInput] color_expression(C) -> ColorExpr
+
+pub fn color_interpolation(ColorSpace, hue? : HueInterpolation) -> ColorInterpolation
+
+pub fn[A : GradientColorInput, B : GradientColorInput] color_mix(ColorSpace, A, B, first_weight? : Percentage, second_weight? : Percentage, hue? : HueInterpolation) -> ColorExpr
+
+pub fn color_scheme(Array[ColorSchemeName], only? : Bool) -> ColorScheme
+
+pub fn color_slot(String, String, Color) -> DynamicSlot[Color]
+
+pub fn color_space(ColorSpace, Double, Double, Double, alpha? : Double) -> Color
+
+pub fn[C : GradientColorInput] color_stop(C, position? : MathExpr[LengthPercentage]?, end? : MathExpr[LengthPercentage]?) -> GradientStop[LengthPercentage]
+
+pub fn color_token(String, String, Color) -> Token[Color]
+
+pub fn color_var(String, String, Color) -> CssVar[Color] raise ValueError
+
+pub fn[A : AngleMathInput] conic_angle(A) -> ConicPosition
+
+pub fn conic_gradient(Array[GradientStop[ConicPosition]], angle? : MathExpr[Angle]?, center? : GradientPosition, repeating? : Bool, interpolation? : ColorInterpolation) -> Image
+
+pub fn conic_hint(ConicPosition) -> GradientStop[ConicPosition]
+
+pub fn[P : PercentageMathInput] conic_percentage(P) -> ConicPosition
+
+pub fn[C : GradientColorInput] conic_stop(C, position? : ConicPosition?, end? : ConicPosition?) -> GradientStop[ConicPosition]
+
+pub fn contain(Array[ContainPart]) -> Contain raise ValueError
+
+pub fn contain_none() -> Contain
+
+pub fn contain_strict() -> Contain
+
+pub fn content_sequence(Array[ContentValue]) -> ContentValue
+
+pub fn[T : FilterAmountInput] contrast_filter(T) -> FilterFunction
+
+pub fn[T : BoxSizeValueInput] corner_radius(T, vertical? : LengthPercentage?) -> CornerRadius
+
+pub fn counter_change(CounterName, Int32) -> CounterChange
+
+pub fn counter_changes(Array[CounterChange]) -> CounterChanges
+
+pub fn counter_content(CounterName, style? : CounterStyle) -> ContentValue
+
+pub fn counter_name(String) -> CounterName
+
+pub fn counters_content(CounterName, String, style? : CounterStyle) -> ContentValue
+
+pub fn counters_none() -> CounterChanges
+
+pub fn[T] css_clamp(MathExpr[T], MathExpr[T], MathExpr[T]) -> MathExpr[T]
+
+pub fn[T] css_max(Array[MathExpr[T]]) -> MathExpr[T]
+
+pub fn[T] css_min(Array[MathExpr[T]]) -> MathExpr[T]
+
+pub fn cubic_bezier(Double, Double, Double, Double) -> EasingFunction raise ValueError
+
+pub fn declaration_expression(String, VariableUse?) -> Expression
+
+pub fn declaration_list(Array[Expression], String) -> Expression
+
+pub fn deg(Double) -> Angle raise ValueError
+
+pub fn dpi(Double) -> Resolution raise ValueError
+
+pub fn dppx(Double) -> Resolution raise ValueError
+
+pub fn dvh(Double) -> Length raise ValueError
+
+pub fn ease() -> EasingFunction
+
+pub fn[X : LengthPercentageMathInput, Y : LengthPercentageMathInput] ellipse_shape(X, Y, center? : GradientPosition) -> BasicShape
+
+pub fn em(Double) -> Length raise ValueError
+
+pub fn env_length(EnvironmentLength, fallback? : MathExpr[Length]) -> MathExpr[Length]
+
+pub fn expression_value_issues(Array[String], String) -> Array[ValueIssue]
+
+pub fn[T : LengthPercentageMathInput] fit_content(T) -> GridTrack
+
+pub fn[T : BoxSizeValueInput] fit_content_size(T) -> BoxSize
+
+pub fn[T : FlexBasisValueInput] flex_basis_value(T) -> FlexBasis
+
+pub fn font_size_keyword(FontSizeKeyword) -> FontSize
+
+pub fn[T : FontSizeValueInput] font_size_value(T) -> FontSize
+
+pub fn font_variant_numeric(Array[FontVariantNumericPart]) -> FontVariantNumeric raise ValueError
+
+pub fn font_variant_numeric_normal() -> FontVariantNumeric
+
+pub fn fr(Double) -> GridTrack raise ValueError
+
+pub fn geometry_box(GeometryBox) -> BasicShape
+
+pub fn[A : AngleMathInput] gradient_angle(A) -> GradientDirection
+
+pub fn gradient_center() -> GradientPosition
+
+pub fn[P : LengthPercentageMathInput] gradient_hint(P) -> GradientStop[LengthPercentage]
+
+pub fn[X : LengthPercentageMathInput, Y : LengthPercentageMathInput] gradient_position(X, Y) -> GradientPosition
+
+pub fn gradient_to(GradientSide) -> GradientDirection
+
+pub fn[T : FilterAmountInput] grayscale_filter(T) -> FilterFunction
+
+pub fn grid_auto() -> GridLine
+
+pub fn grid_line(Int32) -> GridLine raise ValueError
+
+pub fn grid_span(Int32) -> GridLine raise ValueError
+
+pub fn grid_tracks(Array[GridTrack]) -> GridTrackList raise ValueError
+
+pub fn hex_color(String) -> Color raise ValueError
+
+pub fn hsl(Double, Double, Double) -> Color raise ValueError
+
+pub fn[T : AngleMathInput] hue_rotate_filter(T) -> FilterFunction
+
+pub fn hwb(Angle, Percentage, Percentage, alpha? : Double) -> Color
+
+pub fn[I : ImageInput] image(I) -> Image
+
+pub fn[I : ImageInput] image_candidate(I, resolution? : Resolution, mime? : String) -> ImageCandidate
+
+pub fn image_none() -> Image
+
+pub fn image_set(Array[ImageCandidate]) -> Image
+
+pub fn inset_shape(Array[MathExpr[LengthPercentage]], radius? : MathExpr[LengthPercentage]) -> BasicShape
+
+pub fn integer(Int32) -> Integer
+
+pub fn integer_slot(String, String, Integer) -> DynamicSlot[Integer]
+
+pub fn integer_token(String, String, Integer) -> Token[Integer]
+
+pub fn invalid_expression(String, String) -> Expression
+
+pub fn lab(Double, Double, Double, alpha? : Double) -> Color
+
+pub fn[X : LengthPercentageMathInput, Y : LengthPercentageMathInput] layer_dimensions(X, Y) -> LayerSize
+
+pub fn layer_size(BackgroundSize) -> LayerSize
+
+pub fn lch(Double, Double, Angle, alpha? : Double) -> Color
+
+pub fn length(Double, LengthUnit) -> Length raise ValueError
+
+pub fn length_percentage_from_length(Length) -> LengthPercentage
+
+pub fn length_percentage_from_percentage(Percentage) -> LengthPercentage
+
+pub fn length_percentage_slot(String, String, LengthPercentage) -> DynamicSlot[LengthPercentage]
+
+pub fn length_percentage_token(String, String, LengthPercentage) -> Token[LengthPercentage]
+
+pub fn length_slot(String, String, Length) -> DynamicSlot[Length]
+
+pub fn length_token(String, String, Length) -> Token[Length]
+
+pub fn length_var(String, String, Length) -> CssVar[Length] raise ValueError
+
+pub fn line_height_normal() -> LineHeight
+
+pub fn[T : LineHeightValueInput] line_height_value(T) -> LineHeight
+
+pub fn line_width_from_length(Length) -> LineWidth raise ValueError
+
+pub fn line_width_keyword(LineWidthKeyword) -> LineWidth
+
+pub fn linear_easing() -> EasingFunction
+
+pub fn linear_gradient(Array[GradientStop[LengthPercentage]], direction? : GradientDirection, repeating? : Bool, interpolation? : ColorInterpolation) -> Image
+
+pub fn lvh(Double) -> Length raise ValueError
+
+pub fn[I : ImageInput] mask_layer(I, position? : GradientPosition, size? : LayerSize, repeat? : RepeatStyle, origin? : MaskBox, clip? : MaskClip, mode? : MaskMode, composite? : MaskComposite) -> MaskLayer
+
+pub fn mask_layers(Array[MaskLayer]) -> MaskLayers
+
+pub fn[T : AngleMathInput] math_angle(T) -> MathExpr[Angle]
+
+pub fn[T : LengthMathInput] math_length(T) -> MathExpr[Length]
+
+pub fn[T : LengthPercentageMathInput] math_length_percentage(T) -> MathExpr[LengthPercentage]
+
+pub fn[T : NumberMathInput] math_number(T) -> MathExpr[Number]
+
+pub fn[T : PercentageMathInput] math_percentage(T) -> MathExpr[Percentage]
+
+pub fn[T : ResolutionMathInput] math_resolution(T) -> MathExpr[Resolution]
+
+pub fn[T : TimeMathInput] math_time(T) -> MathExpr[Time]
+
+pub fn matrix(Array[Number]) -> TransformFunction
+
+pub fn matrix3d(Array[Number]) -> TransformFunction
+
+pub fn minmax(GridTrack, GridTrack) -> GridTrack
+
+pub fn motion_none() -> MotionPath
+
+pub fn motion_path(PathData) -> MotionPath
+
+pub fn motion_shape(BasicShape) -> MotionPath
+
+pub fn motion_url(Url) -> MotionPath
+
+pub fn ms(Int32) -> Time
+
+pub fn named_color(String) -> Color
+
+pub fn named_grid_line(String) -> GridLine raise ValueError
+
+pub fn named_lines(Array[String]) -> GridTrack
+
+pub fn named_timeline(TimelineName) -> AnimationTimeline
+
+pub fn normal_color_scheme() -> ColorScheme
+
+pub fn number(Double) -> Number raise ValueError
+
+pub fn number_slot(String, String, Number) -> DynamicSlot[Number]
+
+pub fn number_token(String, String, Number) -> Token[Number]
+
+pub fn number_var(String, String, Number) -> CssVar[Number] raise ValueError
+
+pub fn offset_anchor(GradientPosition) -> OffsetAnchor
+
+pub fn offset_anchor_auto() -> OffsetAnchor
+
+pub fn offset_position(GradientPosition) -> OffsetPosition
+
+pub fn offset_position_auto() -> OffsetPosition
+
+pub fn offset_position_normal() -> OffsetPosition
+
+pub fn[A : AngleMathInput] offset_rotation(A, automatic? : Bool, reverse? : Bool) -> OffsetRotate
+
+pub fn oklab(Double, Double, Double, alpha? : Double) -> Color
+
+pub fn oklch(Double, Double, Angle, alpha? : Double) -> Color
+
+pub fn outline(width? : LineWidth?, style? : OutlineStyle?, color? : OutlineColor?) -> Outline raise ValueError
+
+pub fn outline_auto_color() -> OutlineColor
+
+pub fn outline_color_from_color(Color) -> OutlineColor
+
+pub fn override_color(CssVar[Color], Color) -> VarOverride
+
+pub fn override_length(CssVar[Length], Length) -> VarOverride
+
+pub fn override_number(CssVar[Number], Number) -> VarOverride
+
+pub fn override_percentage(CssVar[Percentage], Percentage) -> VarOverride
+
+pub fn page_auto() -> PageValue
+
+pub fn page_name(String) -> PageValue
+
+pub fn[C : GradientColorInput] paint(C) -> SvgPaint
+
+pub fn paint_none() -> SvgPaint
+
+pub fn path_data(String) -> PathData
+
+pub fn path_shape(PathData, fill? : FillRule) -> BasicShape
+
+pub fn percent(Int32) -> Length
+
+pub fn percentage(Double) -> Percentage raise ValueError
+
+pub fn percentage_as_length(MathExpr[Percentage]) -> MathExpr[LengthPercentage]
+
+pub fn percentage_slot(String, String, Percentage) -> DynamicSlot[Percentage]
+
+pub fn percentage_token(String, String, Percentage) -> Token[Percentage]
+
+pub fn percentage_var(String, String, Percentage) -> CssVar[Percentage] raise ValueError
+
+pub fn[T : LengthMathInput] perspective_transform(T) -> TransformFunction
+
+pub fn polygon_shape(Array[GradientPosition], fill? : FillRule) -> BasicShape
+
+pub fn position(LengthPercentage, LengthPercentage) -> Position
+
+pub fn position_center() -> Position
+
+pub fn property_value_issues(String, String) -> Array[ValueIssue]
+
+pub fn px(Int32) -> Length
+
+pub fn radial_extent(RadialExtent) -> RadialSize
+
+pub fn radial_gradient(Array[GradientStop[LengthPercentage]], shape? : RadialShape, size? : RadialSize, center? : GradientPosition, repeating? : Bool, interpolation? : ColorInterpolation) -> Image
+
+pub fn[X : LengthPercentageMathInput, Y : LengthPercentageMathInput] radial_radii(X, Y) -> RadialSize
+
+pub fn[L : LengthMathInput] radial_radius(L) -> RadialSize
+
+pub fn ratio(Int32, Int32) -> Ratio raise ValueError
+
+pub fn ratio_auto() -> Ratio
+
+pub fn[A : AngleMathInput] ray_path(A, size? : RaySize, contain? : Bool, center? : GradientPosition) -> MotionPath
+
+pub fn rem(Double) -> Length raise ValueError
+
+pub fn repeat_tracks(Int32, GridTrackList) -> GridTrack raise ValueError
+
+pub fn resolution_slot(String, String, Resolution) -> DynamicSlot[Resolution]
+
+pub fn resolution_token(String, String, Resolution) -> Token[Resolution]
+
+pub fn rgb(Int32, Int32, Int32) -> Color
+
+pub fn rgba(Int32, Int32, Int32, Double) -> Color raise ValueError
+
+pub fn[X : NumberMathInput, Y : NumberMathInput, Z : NumberMathInput, A : AngleMathInput] rotate3d(X, Y, Z, A) -> TransformFunction
+
+pub fn rotate_transform(Angle) -> TransformFunction
+
+pub fn[T : AngleMathInput] rotate_x(T) -> TransformFunction
+
+pub fn[T : AngleMathInput] rotate_y(T) -> TransformFunction
+
+pub fn[T : AngleMathInput] rotate_z(T) -> TransformFunction
+
+pub fn[X : NumberMathInput, Y : NumberMathInput, Z : NumberMathInput] scale3d(X, Y, Z) -> TransformFunction
+
+pub fn scale_transform(Double, y? : Double?) -> TransformFunction raise ValueError
+
+pub fn[T : NumberMathInput] scale_x(T) -> TransformFunction
+
+pub fn[T : NumberMathInput] scale_y(T) -> TransformFunction
+
+pub fn[T : NumberMathInput] scale_z(T) -> TransformFunction
+
+pub fn scroll_timeline(axis? : TimelineAxis, scroller? : TimelineScroller) -> AnimationTimeline
+
+pub fn scrollbar_auto() -> ScrollbarColor
+
+pub fn[A : GradientColorInput, B : GradientColorInput] scrollbar_colors(thumb~ : A, track~ : B) -> ScrollbarColor
+
+pub fn seconds(Double) -> Time raise ValueError
+
+pub fn[X : LengthMathInput, Y : LengthMathInput] shadow(X, Y, blur? : Length?, spread? : Length?, color? : Color?, inset? : Bool) -> Shadow
+
+pub fn[T : BoxSizeValueInput] single_radius(T) -> BorderRadii
+
+pub fn[X : AngleMathInput, Y : AngleMathInput] skew(X, Y) -> TransformFunction
+
+pub fn[T : AngleMathInput] skew_x(T) -> TransformFunction
+
+pub fn[T : AngleMathInput] skew_y(T) -> TransformFunction
+
+pub fn steps(Int32, at_start? : Bool) -> EasingFunction raise ValueError
+
+pub fn subgrid(lines? : Array[Array[String]]) -> GridTrackList
+
+pub fn svh(Double) -> Length raise ValueError
+
+pub fn time_slot(String, String, Time) -> DynamicSlot[Time]
+
+pub fn time_token(String, String, Time) -> Token[Time]
+
+pub fn timeline_auto() -> AnimationTimeline
+
+pub fn timeline_name(String) -> TimelineName
+
+pub fn timeline_names(Array[TimelineName]) -> TimelineNames
+
+pub fn timeline_names_none() -> TimelineNames
+
+pub fn timeline_none() -> AnimationTimeline
+
+pub fn timeline_range(TimelineRangeName, offset? : MathExpr[LengthPercentage]) -> TimelineRange
+
+pub fn timeline_range_normal() -> TimelineRange
+
+pub fn[T : LengthPercentageMathInput] timeline_range_offset(T) -> TimelineRange
+
+pub fn timeline_ranges(Array[TimelineRange]) -> TimelineRange
+
+pub fn timeline_scope(Array[TimelineName]) -> TimelineScope
+
+pub fn timeline_scope_all() -> TimelineScope
+
+pub fn timeline_scope_none() -> TimelineScope
+
+pub fn touch_action(Array[TouchActionPart]) -> TouchAction raise ValueError
+
+pub fn touch_auto() -> TouchAction
+
+pub fn touch_none() -> TouchAction
+
+pub fn track_auto() -> GridTrack
+
+pub fn[T : LengthPercentageMathInput] track_length(T) -> GridTrack
+
+pub fn track_max_content() -> GridTrack
+
+pub fn track_min_content() -> GridTrack
+
+pub fn transform_list(Array[TransformFunction]) -> TransformList raise ValueError
+
+pub fn transform_none() -> TransformList
+
+pub fn transform_origin(Position, z? : Length?) -> TransformOrigin
+
+pub fn translate(LengthPercentage, LengthPercentage) -> TransformFunction
+
+pub fn[X : LengthPercentageMathInput, Y : LengthPercentageMathInput, Z : LengthMathInput] translate3d(X, Y, Z) -> TransformFunction
+
+pub fn[T : LengthPercentageMathInput] translate_x(T) -> TransformFunction
+
+pub fn[T : LengthPercentageMathInput] translate_y(T) -> TransformFunction
+
+pub fn[T : LengthMathInput] translate_z(T) -> TransformFunction
+
+pub fn transparent() -> Color
+
+pub fn turn(Double) -> Angle raise ValueError
+
+pub fn url(String) -> Url raise ValueError
+
+pub fn url_slot(String, String, Url) -> DynamicSlot[Url]
+
+pub fn url_token(String, String, Url) -> Token[Url]
+
+pub fn valid_expression_identity(String) -> Bool
+
+pub fn value_issues(String) -> Array[ValueIssue]
+
+pub fn var_color(CssVar[Color]) -> Color
+
+pub fn var_length(CssVar[Length]) -> Length
+
+pub fn variable_scope(String) -> VariableScope
+
+pub fn vh(Int32) -> Length
+
+pub fn view_timeline(axis? : TimelineAxis, inset? : MathExpr[LengthPercentage], end_inset? : MathExpr[LengthPercentage]) -> AnimationTimeline
+
+pub fn vmax(Double) -> Length raise ValueError
+
+pub fn vmin(Double) -> Length raise ValueError
+
+pub fn vw(Int32) -> Length
+
+pub fn zero() -> Length
+
+// Errors
+pub(all) suberror ValueError {
+  NonFinite(String)
+  OutOfRange(String)
+  EmptyUrl
+  InvalidUrl
+  EmptyValue(String)
+  InvalidValue(String)
+  InvalidCustomPropertyName(String)
+} derive(Eq, @debug.Debug)
+pub fn ValueError::equal(Self, Self) -> Bool
+pub fn ValueError::not_equal(Self, Self) -> Bool
+pub fn ValueError::to_repr(Self) -> @debug.Repr
+
+// Types and methods
+pub struct AnchorName {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn AnchorName::equal(Self, Self) -> Bool
+pub fn AnchorName::not_equal(Self, Self) -> Bool
+pub fn AnchorName::to_repr(Self) -> @debug.Repr
+
+pub struct AnchorNames {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn AnchorNames::equal(Self, Self) -> Bool
+pub fn AnchorNames::not_equal(Self, Self) -> Bool
+pub fn AnchorNames::to_css(Self) -> String
+pub fn AnchorNames::to_repr(Self) -> @debug.Repr
+
+pub struct Angle {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Angle::angle_math(Self) -> MathExpr[Self]
+pub fn Angle::css_value(Self) -> String
+pub fn Angle::equal(Self, Self) -> Bool
+pub fn Angle::not_equal(Self, Self) -> Bool
+pub fn Angle::to_css(Self) -> String
+pub fn Angle::to_repr(Self) -> @debug.Repr
+pub fn Angle::value_category(Self) -> ValueCategory
+pub impl AngleMathInput for Angle
+pub impl CssValue for Angle
+
+pub struct AnimationIterations {
+  css : String
+}
+pub fn AnimationIterations::to_css(Self) -> String
+
+pub struct AnimationTimeline {
+  expression : Expression
+}
+
+pub struct AnimationTimelines {
+  expression : Expression
+}
+pub fn AnimationTimelines::expression(Self) -> Expression
+pub fn AnimationTimelines::to_css(Self) -> String
+
+pub struct BackgroundLayer {
+  image : Expression
+  position : GradientPosition
+  size : LayerSize
+  repeat : RepeatStyle
+  attachment : LayerAttachment
+  origin : LayerBox
+  clip : LayerBox
+} derive(Eq, @debug.Debug)
+pub fn BackgroundLayer::equal(Self, Self) -> Bool
+pub fn BackgroundLayer::not_equal(Self, Self) -> Bool
+pub fn BackgroundLayer::to_repr(Self) -> @debug.Repr
+
+pub struct BackgroundLayers {
+  layers : Array[BackgroundLayer]
+} derive(Eq, @debug.Debug)
+pub fn BackgroundLayers::equal(Self, Self) -> Bool
+pub fn BackgroundLayers::longhands(Self) -> Array[(String, Expression)]
+pub fn BackgroundLayers::not_equal(Self, Self) -> Bool
+pub fn BackgroundLayers::property_expression(Self, String) -> Expression
+pub fn BackgroundLayers::to_repr(Self) -> @debug.Repr
+
+pub struct BackgroundSize {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn BackgroundSize::equal(Self, Self) -> Bool
+pub fn BackgroundSize::not_equal(Self, Self) -> Bool
+pub fn BackgroundSize::to_css(Self) -> String
+pub fn BackgroundSize::to_repr(Self) -> @debug.Repr
+
+pub struct BackgroundSizeList {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn BackgroundSizeList::equal(Self, Self) -> Bool
+pub fn BackgroundSizeList::not_equal(Self, Self) -> Bool
+pub fn BackgroundSizeList::to_css(Self) -> String
+pub fn BackgroundSizeList::to_repr(Self) -> @debug.Repr
+
+pub struct BasicShape {
+  expression : Expression
+}
+pub fn BasicShape::expression(Self) -> Expression
+pub fn BasicShape::in_box(Self, GeometryBox) -> Self
+pub fn BasicShape::to_css(Self) -> String
+
+pub struct BorderColors {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn BorderColors::equal(Self, Self) -> Bool
+pub fn BorderColors::not_equal(Self, Self) -> Bool
+pub fn BorderColors::to_css(Self) -> String
+pub fn BorderColors::to_repr(Self) -> @debug.Repr
+
+pub struct BorderRadii {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn BorderRadii::box_size_contract_expression(Self) -> String
+pub fn BorderRadii::equal(Self, Self) -> Bool
+pub fn BorderRadii::expression(Self) -> Expression
+pub fn BorderRadii::not_equal(Self, Self) -> Bool
+pub fn BorderRadii::to_css(Self) -> String
+pub fn BorderRadii::to_repr(Self) -> @debug.Repr
+pub impl BoxSizeContractExpression for BorderRadii
+
+pub struct BorderSide {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn BorderSide::equal(Self, Self) -> Bool
+pub fn BorderSide::not_equal(Self, Self) -> Bool
+pub fn BorderSide::to_css(Self) -> String
+pub fn BorderSide::to_repr(Self) -> @debug.Repr
+
+pub struct BorderStyles {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn BorderStyles::equal(Self, Self) -> Bool
+pub fn BorderStyles::not_equal(Self, Self) -> Bool
+pub fn BorderStyles::to_css(Self) -> String
+pub fn BorderStyles::to_repr(Self) -> @debug.Repr
+
+pub struct BorderWidths {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn BorderWidths::equal(Self, Self) -> Bool
+pub fn BorderWidths::not_equal(Self, Self) -> Bool
+pub fn BorderWidths::to_css(Self) -> String
+pub fn BorderWidths::to_repr(Self) -> @debug.Repr
+
+pub struct BoxShadowList {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn BoxShadowList::equal(Self, Self) -> Bool
+pub fn BoxShadowList::expression(Self) -> Expression
+pub fn BoxShadowList::not_equal(Self, Self) -> Bool
+pub fn BoxShadowList::to_css(Self) -> String
+pub fn BoxShadowList::to_repr(Self) -> @debug.Repr
+
+pub struct BoxSize {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn BoxSize::box_size_contract_expression(Self) -> String
+pub fn BoxSize::equal(Self, Self) -> Bool
+pub fn BoxSize::expression(Self) -> Expression
+pub fn BoxSize::flex_basis_contract_expression(Self) -> String
+#deprecated
+pub fn BoxSize::flex_basis_value_expression(Self) -> Expression
+pub fn BoxSize::not_equal(Self, Self) -> Bool
+pub fn BoxSize::to_css(Self) -> String
+pub fn BoxSize::to_repr(Self) -> @debug.Repr
+#deprecated
+pub fn BoxSize::value_expression(Self) -> Expression
+pub impl BoxSizeContractExpression for BoxSize
+pub impl BoxSizeValueInput for BoxSize
+pub impl FlexBasisContractExpression for BoxSize
+pub impl FlexBasisValueInput for BoxSize
+
+pub(all) enum BoxSizeKeyword {
+  SizeAuto
+  SizeNone
+  SizeMinContent
+  SizeMaxContent
+  SizeFitContent
+} derive(Eq, @debug.Debug)
+pub fn BoxSizeKeyword::equal(Self, Self) -> Bool
+pub fn BoxSizeKeyword::not_equal(Self, Self) -> Bool
+pub fn BoxSizeKeyword::to_repr(Self) -> @debug.Repr
+
+pub struct ClipPath {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn ClipPath::equal(Self, Self) -> Bool
+pub fn ClipPath::not_equal(Self, Self) -> Bool
+pub fn ClipPath::to_css(Self) -> String
+pub fn ClipPath::to_repr(Self) -> @debug.Repr
+
+pub struct Color {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Color::as_outline_color(Self) -> OutlineColor
+pub fn Color::css_value(Self) -> String
+pub fn Color::equal(Self, Self) -> Bool
+pub fn Color::gradient_color(Self) -> Expression
+pub fn Color::not_equal(Self, Self) -> Bool
+pub fn Color::to_css(Self) -> String
+pub fn Color::to_repr(Self) -> @debug.Repr
+pub fn Color::value_category(Self) -> ValueCategory
+pub impl CssValue for Color
+pub impl GradientColorInput for Color
+
+pub struct ColorExpr {
+  expression : Expression
+}
+pub fn ColorExpr::expression(Self) -> Expression
+pub fn ColorExpr::gradient_color(Self) -> Expression
+pub fn ColorExpr::to_css(Self) -> String
+pub impl GradientColorInput for ColorExpr
+
+pub struct ColorInterpolation {
+  css : String
+}
+
+pub struct ColorScheme {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn ColorScheme::equal(Self, Self) -> Bool
+pub fn ColorScheme::expression(Self) -> Expression
+pub fn ColorScheme::not_equal(Self, Self) -> Bool
+pub fn ColorScheme::to_css(Self) -> String
+pub fn ColorScheme::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ColorSchemeName {
+  SchemeLight
+  SchemeDark
+} derive(Eq, @debug.Debug)
+pub fn ColorSchemeName::equal(Self, Self) -> Bool
+pub fn ColorSchemeName::not_equal(Self, Self) -> Bool
+pub fn ColorSchemeName::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ColorSpace {
+  Srgb
+  SrgbLinear
+  DisplayP3
+  A98Rgb
+  ProphotoRgb
+  Rec2020
+  XyzD50
+  XyzD65
+  Lab
+  Oklab
+  Lch
+  Oklch
+  Hsl
+  Hwb
+} derive(Eq, @debug.Debug)
+pub fn ColorSpace::equal(Self, Self) -> Bool
+pub fn ColorSpace::not_equal(Self, Self) -> Bool
+pub fn ColorSpace::to_css(Self) -> String
+pub fn ColorSpace::to_repr(Self) -> @debug.Repr
+
+pub struct ConicPosition {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn ConicPosition::equal(Self, Self) -> Bool
+pub fn ConicPosition::not_equal(Self, Self) -> Bool
+pub fn ConicPosition::to_repr(Self) -> @debug.Repr
+
+pub struct Contain {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Contain::equal(Self, Self) -> Bool
+pub fn Contain::not_equal(Self, Self) -> Bool
+pub fn Contain::to_css(Self) -> String
+pub fn Contain::to_repr(Self) -> @debug.Repr
+
+pub(all) enum ContainPart {
+  Size
+  InlineSize
+  Layout
+  Style
+  Paint
+} derive(Eq, @debug.Debug)
+pub fn ContainPart::equal(Self, Self) -> Bool
+pub fn ContainPart::not_equal(Self, Self) -> Bool
+pub fn ContainPart::to_repr(Self) -> @debug.Repr
+
+pub struct ContainerNames {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn ContainerNames::equal(Self, Self) -> Bool
+pub fn ContainerNames::not_equal(Self, Self) -> Bool
+pub fn ContainerNames::to_css(Self) -> String
+pub fn ContainerNames::to_repr(Self) -> @debug.Repr
+
+pub struct ContentValue {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn ContentValue::equal(Self, Self) -> Bool
+pub fn ContentValue::not_equal(Self, Self) -> Bool
+pub fn ContentValue::to_css(Self) -> String
+pub fn ContentValue::to_repr(Self) -> @debug.Repr
+
+pub struct CornerRadius {
+  expression : Expression
+  horizontal : Expression
+} derive(Eq, @debug.Debug)
+pub fn CornerRadius::box_size_contract_expression(Self) -> String
+pub fn CornerRadius::equal(Self, Self) -> Bool
+pub fn CornerRadius::expression(Self) -> Expression
+pub fn CornerRadius::not_equal(Self, Self) -> Bool
+pub fn CornerRadius::to_css(Self) -> String
+pub fn CornerRadius::to_repr(Self) -> @debug.Repr
+pub fn[T : BoxSizeValueInput] CornerRadius::vertical(Self, T) -> Self
+pub impl BoxSizeContractExpression for CornerRadius
+
+pub struct CounterChange {
+  css : String
+}
+
+pub struct CounterChanges {
+  css : String
+}
+pub fn CounterChanges::to_css(Self) -> String
+
+pub struct CounterName {
+  css : String
+}
+
+pub(all) enum CounterStyle {
+  Decimal
+  DecimalLeadingZero
+  LowerAlpha
+  UpperAlpha
+  LowerRoman
+  UpperRoman
+} derive(Eq, @debug.Debug)
+pub fn CounterStyle::equal(Self, Self) -> Bool
+pub fn CounterStyle::not_equal(Self, Self) -> Bool
+pub fn CounterStyle::to_repr(Self) -> @debug.Repr
+
+pub struct CssVar[T] {
+  name : String
+  default_css : String
+  category : ValueCategory
+  marker : T?
+}
+pub fn[T] CssVar::default_css(Self[T]) -> String
+pub fn[T] CssVar::definition(Self[T]) -> VarDefinition
+pub fn[T] CssVar::name(Self[T]) -> String
+
+pub(all) enum CssWideKeyword {
+  Initial
+  Inherit
+  Unset
+  Revert
+  RevertLayer
+} derive(Eq, @debug.Debug)
+pub fn CssWideKeyword::equal(Self, Self) -> Bool
+pub fn CssWideKeyword::not_equal(Self, Self) -> Bool
+pub fn CssWideKeyword::to_css(Self) -> String
+pub fn CssWideKeyword::to_repr(Self) -> @debug.Repr
+
+pub struct DynamicSlot[T] {
+  variable : CssVar[T]
+  scope : String
+  local_name : String
+}
+pub fn DynamicSlot::angle_math(Self[Angle]) -> MathExpr[Angle]
+pub fn[T : BoxSizeDimension] DynamicSlot::box_size_contract_expression(Self[T]) -> String
+#deprecated
+pub fn[T : FilterAmountDimension] DynamicSlot::filter_amount(Self[T]) -> Expression
+pub fn[T : FlexBasisDimension] DynamicSlot::flex_basis_contract_expression(Self[T]) -> String
+#deprecated
+pub fn[T : FlexBasisDimension] DynamicSlot::flex_basis_value_expression(Self[T]) -> Expression
+pub fn[T : FontSizeDimension] DynamicSlot::font_size_contract_expression(Self[T]) -> String
+#deprecated
+pub fn[T : FontSizeDimension] DynamicSlot::font_size_value_expression(Self[T]) -> Expression
+pub fn DynamicSlot::gradient_color(Self[Color]) -> Expression
+pub fn DynamicSlot::image_expression(Self[Url]) -> Expression
+pub fn DynamicSlot::length_math(Self[Length]) -> MathExpr[Length]
+pub fn DynamicSlot::length_percentage_math(Self[LengthPercentage]) -> MathExpr[LengthPercentage]
+pub fn[T : LineHeightDimension] DynamicSlot::line_height_contract_expression(Self[T]) -> String
+#deprecated
+pub fn[T : LineHeightDimension] DynamicSlot::line_height_value_expression(Self[T]) -> Expression
+pub fn DynamicSlot::number_math(Self[Number]) -> MathExpr[Number]
+pub fn DynamicSlot::percentage_math(Self[Percentage]) -> MathExpr[Percentage]
+pub fn DynamicSlot::resolution_math(Self[Resolution]) -> MathExpr[Resolution]
+pub fn DynamicSlot::time_math(Self[Time]) -> MathExpr[Time]
+#deprecated
+pub fn[T : BoxSizeDimension] DynamicSlot::value_expression(Self[T]) -> Expression
+pub fn[T] DynamicSlot::variable_name(Self[T]) -> String
+pub fn[T] DynamicSlot::variable_use(Self[T]) -> VariableUse
+pub impl AngleMathInput for DynamicSlot[Angle]
+pub impl[T : BoxSizeDimension] BoxSizeContractExpression for DynamicSlot[T]
+pub impl[T : BoxSizeDimension] BoxSizeValueInput for DynamicSlot[T]
+pub impl[T : FilterAmountDimension] FilterAmountInput for DynamicSlot[T]
+pub impl[T : FlexBasisDimension] FlexBasisContractExpression for DynamicSlot[T]
+pub impl[T : FlexBasisDimension] FlexBasisValueInput for DynamicSlot[T]
+pub impl[T : FontSizeDimension] FontSizeContractExpression for DynamicSlot[T]
+pub impl[T : FontSizeDimension] FontSizeValueInput for DynamicSlot[T]
+pub impl GradientColorInput for DynamicSlot[Color]
+pub impl ImageInput for DynamicSlot[Url]
+pub impl LengthMathInput for DynamicSlot[Length]
+pub impl LengthPercentageMathInput for DynamicSlot[LengthPercentage]
+pub impl[T : LineHeightDimension] LineHeightContractExpression for DynamicSlot[T]
+pub impl[T : LineHeightDimension] LineHeightValueInput for DynamicSlot[T]
+pub impl NumberMathInput for DynamicSlot[Number]
+pub impl PercentageMathInput for DynamicSlot[Percentage]
+pub impl ResolutionMathInput for DynamicSlot[Resolution]
+pub impl TimeMathInput for DynamicSlot[Time]
+
+pub struct EasingFunction {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn EasingFunction::equal(Self, Self) -> Bool
+pub fn EasingFunction::not_equal(Self, Self) -> Bool
+pub fn EasingFunction::to_css(Self) -> String
+pub fn EasingFunction::to_repr(Self) -> @debug.Repr
+
+pub(all) enum EnvironmentLength {
+  SafeAreaTop
+  SafeAreaRight
+  SafeAreaBottom
+  SafeAreaLeft
+  SafeAreaMaxTop
+  SafeAreaMaxRight
+  SafeAreaMaxBottom
+  SafeAreaMaxLeft
+  ViewportSegmentWidth(Int32, Int32)
+  ViewportSegmentHeight(Int32, Int32)
+  ViewportSegmentTop(Int32, Int32)
+  ViewportSegmentRight(Int32, Int32)
+  ViewportSegmentBottom(Int32, Int32)
+  ViewportSegmentLeft(Int32, Int32)
+} derive(Eq, @debug.Debug)
+pub fn EnvironmentLength::equal(Self, Self) -> Bool
+pub fn EnvironmentLength::not_equal(Self, Self) -> Bool
+pub fn EnvironmentLength::to_repr(Self) -> @debug.Repr
+
+pub struct Expression {
+  node : ValueNode
+  category : String
+} derive(Eq, @debug.Debug)
+pub fn Expression::equal(Self, Self) -> Bool
+pub fn Expression::identity(Self) -> String
+pub fn Expression::is_dynamic(Self) -> Bool
+pub fn Expression::issues(Self, String) -> Array[ValueIssue]
+pub fn Expression::not_equal(Self, Self) -> Bool
+pub fn Expression::property_constraints(Self, String) -> Array[String]
+pub fn Expression::to_css(Self) -> String
+pub fn Expression::to_repr(Self) -> @debug.Repr
+pub fn Expression::value_category(Self) -> String
+pub fn Expression::variables(Self) -> Array[ExpressionVariable]
+
+pub(all) struct ExpressionVariable {
+  variable : VariableUse
+  constraints : Array[String]
+} derive(Eq, @debug.Debug)
+pub fn ExpressionVariable::equal(Self, Self) -> Bool
+pub fn ExpressionVariable::not_equal(Self, Self) -> Bool
+pub fn ExpressionVariable::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FillRule {
+  Nonzero
+  Evenodd
+} derive(Eq, @debug.Debug)
+pub fn FillRule::equal(Self, Self) -> Bool
+pub fn FillRule::not_equal(Self, Self) -> Bool
+pub fn FillRule::to_repr(Self) -> @debug.Repr
+
+pub struct FilterFunction {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn FilterFunction::equal(Self, Self) -> Bool
+pub fn FilterFunction::not_equal(Self, Self) -> Bool
+pub fn FilterFunction::to_repr(Self) -> @debug.Repr
+
+pub struct FilterList {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn FilterList::equal(Self, Self) -> Bool
+pub fn FilterList::expression(Self) -> Expression
+pub fn FilterList::not_equal(Self, Self) -> Bool
+pub fn FilterList::to_css(Self) -> String
+pub fn FilterList::to_repr(Self) -> @debug.Repr
+
+pub struct FlexBasis {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn FlexBasis::equal(Self, Self) -> Bool
+pub fn FlexBasis::expression(Self) -> Expression
+pub fn FlexBasis::flex_basis_contract_expression(Self) -> String
+#deprecated
+pub fn FlexBasis::flex_basis_value_expression(Self) -> Expression
+pub fn FlexBasis::not_equal(Self, Self) -> Bool
+pub fn FlexBasis::to_css(Self) -> String
+pub fn FlexBasis::to_repr(Self) -> @debug.Repr
+pub impl FlexBasisContractExpression for FlexBasis
+pub impl FlexBasisValueInput for FlexBasis
+
+pub struct FontSize {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn FontSize::equal(Self, Self) -> Bool
+pub fn FontSize::expression(Self) -> Expression
+pub fn FontSize::font_size_contract_expression(Self) -> String
+#deprecated
+pub fn FontSize::font_size_value_expression(Self) -> Expression
+pub fn FontSize::not_equal(Self, Self) -> Bool
+pub fn FontSize::to_css(Self) -> String
+pub fn FontSize::to_repr(Self) -> @debug.Repr
+pub impl FontSizeContractExpression for FontSize
+pub impl FontSizeValueInput for FontSize
+
+pub(all) enum FontSizeKeyword {
+  FontXXSmall
+  FontXSmall
+  FontSmall
+  FontMedium
+  FontLarge
+  FontXLarge
+  FontXXLarge
+  FontXXXLarge
+  FontSmaller
+  FontLarger
+} derive(Eq, @debug.Debug)
+pub fn FontSizeKeyword::equal(Self, Self) -> Bool
+pub fn FontSizeKeyword::not_equal(Self, Self) -> Bool
+pub fn FontSizeKeyword::to_repr(Self) -> @debug.Repr
+
+pub struct FontVariantNumeric {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn FontVariantNumeric::equal(Self, Self) -> Bool
+pub fn FontVariantNumeric::not_equal(Self, Self) -> Bool
+pub fn FontVariantNumeric::to_css(Self) -> String
+pub fn FontVariantNumeric::to_repr(Self) -> @debug.Repr
+
+pub(all) enum FontVariantNumericPart {
+  LiningNums
+  OldstyleNums
+  ProportionalNums
+  TabularNums
+  DiagonalFractions
+  StackedFractions
+  Ordinal
+  SlashedZero
+} derive(Eq, @debug.Debug)
+pub fn FontVariantNumericPart::equal(Self, Self) -> Bool
+pub fn FontVariantNumericPart::not_equal(Self, Self) -> Bool
+pub fn FontVariantNumericPart::to_repr(Self) -> @debug.Repr
+
+pub(all) enum GeometryBox {
+  BorderBox
+  PaddingBox
+  ContentBox
+  MarginBox
+  FillBox
+  StrokeBox
+  ViewBox
+} derive(Eq, @debug.Debug)
+pub fn GeometryBox::equal(Self, Self) -> Bool
+pub fn GeometryBox::not_equal(Self, Self) -> Bool
+pub fn GeometryBox::to_css(Self) -> String
+pub fn GeometryBox::to_repr(Self) -> @debug.Repr
+
+pub struct GradientDirection {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn GradientDirection::equal(Self, Self) -> Bool
+pub fn GradientDirection::not_equal(Self, Self) -> Bool
+pub fn GradientDirection::to_repr(Self) -> @debug.Repr
+
+pub struct GradientPosition {
+  x : Expression
+  y : Expression
+} derive(Eq, @debug.Debug)
+pub fn GradientPosition::equal(Self, Self) -> Bool
+pub fn GradientPosition::not_equal(Self, Self) -> Bool
+pub fn GradientPosition::to_repr(Self) -> @debug.Repr
+
+pub(all) enum GradientSide {
+  ToTop
+  ToBottom
+  ToLeft
+  ToRight
+  ToTopLeft
+  ToTopRight
+  ToBottomLeft
+  ToBottomRight
+} derive(Eq, @debug.Debug)
+pub fn GradientSide::equal(Self, Self) -> Bool
+pub fn GradientSide::not_equal(Self, Self) -> Bool
+pub fn GradientSide::to_repr(Self) -> @debug.Repr
+
+pub struct GradientStop[T] {
+  expression : Expression
+  hint : Bool
+  marker : T?
+} derive(Eq, @debug.Debug)
+pub fn[T : Eq] GradientStop::equal(Self[T], Self[T]) -> Bool
+pub fn[T : Eq] GradientStop::not_equal(Self[T], Self[T]) -> Bool
+pub fn[T : @debug.Debug] GradientStop::to_repr(Self[T]) -> @debug.Repr
+
+pub struct GridLine {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn GridLine::equal(Self, Self) -> Bool
+pub fn GridLine::not_equal(Self, Self) -> Bool
+pub fn GridLine::to_css(Self) -> String
+pub fn GridLine::to_repr(Self) -> @debug.Repr
+
+pub struct GridTemplateAreas {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn GridTemplateAreas::equal(Self, Self) -> Bool
+pub fn GridTemplateAreas::not_equal(Self, Self) -> Bool
+pub fn GridTemplateAreas::to_css(Self) -> String
+pub fn GridTemplateAreas::to_repr(Self) -> @debug.Repr
+
+pub struct GridTrack {
+  css : String
+  expression : Expression
+  kind : TrackKind
+} derive(Eq, @debug.Debug)
+pub fn GridTrack::equal(Self, Self) -> Bool
+pub fn GridTrack::not_equal(Self, Self) -> Bool
+pub fn GridTrack::to_repr(Self) -> @debug.Repr
+
+pub struct GridTrackList {
+  css : String
+  expression : Expression
+  tracks : Array[GridTrack]
+  subgrid : Bool
+} derive(Eq, @debug.Debug)
+pub fn GridTrackList::auto_tracks_allowed(Self) -> Bool
+pub fn GridTrackList::equal(Self, Self) -> Bool
+pub fn GridTrackList::expression(Self) -> Expression
+pub fn GridTrackList::not_equal(Self, Self) -> Bool
+pub fn GridTrackList::to_css(Self) -> String
+pub fn GridTrackList::to_repr(Self) -> @debug.Repr
+
+pub(all) enum HueInterpolation {
+  Shorter
+  Longer
+  Increasing
+  Decreasing
+} derive(Eq, @debug.Debug)
+pub fn HueInterpolation::equal(Self, Self) -> Bool
+pub fn HueInterpolation::not_equal(Self, Self) -> Bool
+pub fn HueInterpolation::to_repr(Self) -> @debug.Repr
+
+pub struct Image {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn Image::equal(Self, Self) -> Bool
+pub fn Image::expression(Self) -> Expression
+pub fn Image::image_expression(Self) -> Expression
+pub fn Image::not_equal(Self, Self) -> Bool
+pub fn Image::to_css(Self) -> String
+pub fn Image::to_repr(Self) -> @debug.Repr
+pub impl ImageInput for Image
+
+pub struct ImageCandidate {
+  expression : Expression
+}
+
+pub struct Integer {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Integer::css_value(Self) -> String
+pub fn Integer::equal(Self, Self) -> Bool
+pub fn Integer::not_equal(Self, Self) -> Bool
+pub fn Integer::to_css(Self) -> String
+pub fn Integer::to_repr(Self) -> @debug.Repr
+pub fn Integer::value_category(Self) -> ValueCategory
+pub impl CssValue for Integer
+
+pub(all) enum LayerAttachment {
+  LayerScroll
+  LayerFixed
+  LayerLocal
+} derive(Eq, @debug.Debug)
+pub fn LayerAttachment::equal(Self, Self) -> Bool
+pub fn LayerAttachment::not_equal(Self, Self) -> Bool
+pub fn LayerAttachment::to_repr(Self) -> @debug.Repr
+
+pub(all) enum LayerBox {
+  LayerBorderBox
+  LayerPaddingBox
+  LayerContentBox
+} derive(Eq, @debug.Debug)
+pub fn LayerBox::equal(Self, Self) -> Bool
+pub fn LayerBox::not_equal(Self, Self) -> Bool
+pub fn LayerBox::to_repr(Self) -> @debug.Repr
+
+pub struct LayerSize {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn LayerSize::equal(Self, Self) -> Bool
+pub fn LayerSize::not_equal(Self, Self) -> Bool
+pub fn LayerSize::to_repr(Self) -> @debug.Repr
+
+pub struct Length {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Length::as_length_percentage(Self) -> LengthPercentage
+pub fn Length::as_line_width(Self) -> LineWidth
+pub fn Length::box_size_contract_expression(Self) -> String
+pub fn Length::css_value(Self) -> String
+pub fn Length::equal(Self, Self) -> Bool
+pub fn Length::flex_basis_contract_expression(Self) -> String
+#deprecated
+pub fn Length::flex_basis_value_expression(Self) -> Expression
+pub fn Length::font_size_contract_expression(Self) -> String
+#deprecated
+pub fn Length::font_size_value_expression(Self) -> Expression
+pub fn Length::length_math(Self) -> MathExpr[Self]
+pub fn Length::line_height_contract_expression(Self) -> String
+#deprecated
+pub fn Length::line_height_value_expression(Self) -> Expression
+pub fn Length::not_equal(Self, Self) -> Bool
+pub fn Length::to_css(Self) -> String
+pub fn Length::to_repr(Self) -> @debug.Repr
+pub fn Length::value_category(Self) -> ValueCategory
+#deprecated
+pub fn Length::value_expression(Self) -> Expression
+pub impl BoxSizeContractExpression for Length
+pub impl BoxSizeDimension for Length
+pub impl BoxSizeValueInput for Length
+pub impl CssValue for Length
+pub impl FlexBasisContractExpression for Length
+pub impl FlexBasisDimension for Length
+pub impl FlexBasisValueInput for Length
+pub impl FontSizeContractExpression for Length
+pub impl FontSizeDimension for Length
+pub impl FontSizeValueInput for Length
+pub impl LengthMathDimension for Length
+pub impl LengthMathInput for Length
+pub impl LineHeightContractExpression for Length
+pub impl LineHeightDimension for Length
+pub impl LineHeightValueInput for Length
+
+pub struct LengthPercentage {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn LengthPercentage::box_size_contract_expression(Self) -> String
+pub fn LengthPercentage::css_value(Self) -> String
+pub fn LengthPercentage::equal(Self, Self) -> Bool
+pub fn LengthPercentage::flex_basis_contract_expression(Self) -> String
+#deprecated
+pub fn LengthPercentage::flex_basis_value_expression(Self) -> Expression
+pub fn LengthPercentage::font_size_contract_expression(Self) -> String
+#deprecated
+pub fn LengthPercentage::font_size_value_expression(Self) -> Expression
+pub fn LengthPercentage::length_percentage_math(Self) -> MathExpr[Self]
+pub fn LengthPercentage::line_height_contract_expression(Self) -> String
+#deprecated
+pub fn LengthPercentage::line_height_value_expression(Self) -> Expression
+pub fn LengthPercentage::not_equal(Self, Self) -> Bool
+pub fn LengthPercentage::to_css(Self) -> String
+pub fn LengthPercentage::to_repr(Self) -> @debug.Repr
+pub fn LengthPercentage::value_category(Self) -> ValueCategory
+#deprecated
+pub fn LengthPercentage::value_expression(Self) -> Expression
+pub impl BoxSizeContractExpression for LengthPercentage
+pub impl BoxSizeDimension for LengthPercentage
+pub impl BoxSizeValueInput for LengthPercentage
+pub impl CssValue for LengthPercentage
+pub impl FlexBasisContractExpression for LengthPercentage
+pub impl FlexBasisDimension for LengthPercentage
+pub impl FlexBasisValueInput for LengthPercentage
+pub impl FontSizeContractExpression for LengthPercentage
+pub impl FontSizeDimension for LengthPercentage
+pub impl FontSizeValueInput for LengthPercentage
+pub impl LengthMathDimension for LengthPercentage
+pub impl LengthPercentageMathInput for LengthPercentage
+pub impl LineHeightContractExpression for LengthPercentage
+pub impl LineHeightDimension for LengthPercentage
+pub impl LineHeightValueInput for LengthPercentage
+
+pub(all) enum LengthUnit {
+  Px
+  Rem
+  Em
+  Ch
+  Vh
+  Vw
+  Vmin
+  Vmax
+  Svh
+  Lvh
+  Dvh
+  Cm
+  Mm
+  Q
+  In
+  Pc
+  Pt
+  Ex
+  Cap
+  Ic
+  Rex
+  Rcap
+  Rch
+  Ric
+  Lh
+  Rlh
+  Vi
+  Vb
+  Svw
+  Svi
+  Svb
+  Svmin
+  Svmax
+  Lvw
+  Lvi
+  Lvb
+  Lvmin
+  Lvmax
+  Dvw
+  Dvi
+  Dvb
+  Dvmin
+  Dvmax
+  Cqw
+  Cqh
+  Cqi
+  Cqb
+  Cqmin
+  Cqmax
+} derive(Eq, @debug.Debug)
+pub fn LengthUnit::equal(Self, Self) -> Bool
+pub fn LengthUnit::not_equal(Self, Self) -> Bool
+pub fn LengthUnit::to_repr(Self) -> @debug.Repr
+
+pub struct LineHeight {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn LineHeight::equal(Self, Self) -> Bool
+pub fn LineHeight::expression(Self) -> Expression
+pub fn LineHeight::line_height_contract_expression(Self) -> String
+#deprecated
+pub fn LineHeight::line_height_value_expression(Self) -> Expression
+pub fn LineHeight::not_equal(Self, Self) -> Bool
+pub fn LineHeight::to_css(Self) -> String
+pub fn LineHeight::to_repr(Self) -> @debug.Repr
+pub impl LineHeightContractExpression for LineHeight
+pub impl LineHeightValueInput for LineHeight
+
+pub(all) enum LineStyle {
+  LineStyleNone
+  LineStyleHidden
+  LineStyleDotted
+  LineStyleDashed
+  LineStyleSolid
+  LineStyleDouble
+  LineStyleGroove
+  LineStyleRidge
+  LineStyleInset
+  LineStyleOutset
+} derive(Eq, @debug.Debug)
+pub fn LineStyle::equal(Self, Self) -> Bool
+pub fn LineStyle::not_equal(Self, Self) -> Bool
+pub fn LineStyle::to_css(Self) -> String
+pub fn LineStyle::to_repr(Self) -> @debug.Repr
+
+pub struct LineWidth {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn LineWidth::equal(Self, Self) -> Bool
+pub fn LineWidth::not_equal(Self, Self) -> Bool
+pub fn LineWidth::to_css(Self) -> String
+pub fn LineWidth::to_repr(Self) -> @debug.Repr
+
+pub(all) enum LineWidthKeyword {
+  LineWidthThin
+  LineWidthMedium
+  LineWidthThick
+} derive(Eq, @debug.Debug)
+pub fn LineWidthKeyword::equal(Self, Self) -> Bool
+pub fn LineWidthKeyword::not_equal(Self, Self) -> Bool
+pub fn LineWidthKeyword::to_repr(Self) -> @debug.Repr
+
+pub(all) enum MaskBox {
+  MaskBorderBox
+  MaskPaddingBox
+  MaskContentBox
+  MaskFillBox
+  MaskStrokeBox
+  MaskViewBox
+} derive(Eq, @debug.Debug)
+pub fn MaskBox::equal(Self, Self) -> Bool
+pub fn MaskBox::not_equal(Self, Self) -> Bool
+pub fn MaskBox::to_css(Self) -> String
+pub fn MaskBox::to_repr(Self) -> @debug.Repr
+
+pub(all) enum MaskClip {
+  ClipBox(MaskBox)
+  NoClip
+} derive(Eq, @debug.Debug)
+pub fn MaskClip::equal(Self, Self) -> Bool
+pub fn MaskClip::not_equal(Self, Self) -> Bool
+pub fn MaskClip::to_css(Self) -> String
+pub fn MaskClip::to_repr(Self) -> @debug.Repr
+
+pub(all) enum MaskComposite {
+  MaskAdd
+  MaskSubtract
+  MaskIntersect
+  MaskExclude
+} derive(Eq, @debug.Debug)
+pub fn MaskComposite::equal(Self, Self) -> Bool
+pub fn MaskComposite::not_equal(Self, Self) -> Bool
+pub fn MaskComposite::to_css(Self) -> String
+pub fn MaskComposite::to_repr(Self) -> @debug.Repr
+
+pub struct MaskImage {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn MaskImage::equal(Self, Self) -> Bool
+pub fn MaskImage::not_equal(Self, Self) -> Bool
+pub fn MaskImage::to_repr(Self) -> @debug.Repr
+
+pub struct MaskImageList {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn MaskImageList::equal(Self, Self) -> Bool
+pub fn MaskImageList::not_equal(Self, Self) -> Bool
+pub fn MaskImageList::to_css(Self) -> String
+pub fn MaskImageList::to_repr(Self) -> @debug.Repr
+
+pub struct MaskLayer {
+  image : Expression
+  position : GradientPosition
+  size : LayerSize
+  repeat : RepeatStyle
+  origin : MaskBox
+  clip : MaskClip
+  mode : MaskMode
+  composite : MaskComposite
+}
+
+pub struct MaskLayers {
+  layers : Array[MaskLayer]
+}
+pub fn MaskLayers::longhands(Self) -> Array[(String, Expression)]
+
+pub(all) enum MaskMode {
+  MatchSource
+  Alpha
+  Luminance
+} derive(Eq, @debug.Debug)
+pub fn MaskMode::equal(Self, Self) -> Bool
+pub fn MaskMode::not_equal(Self, Self) -> Bool
+pub fn MaskMode::to_css(Self) -> String
+pub fn MaskMode::to_repr(Self) -> @debug.Repr
+
+pub struct MathExpr[T] {
+  expression : Expression
+  marker : T?
+} derive(Eq, @debug.Debug)
+pub fn[T] MathExpr::add(Self[T], Self[T]) -> Self[T]
+pub fn MathExpr::angle_math(Self[Angle]) -> Self[Angle]
+pub fn MathExpr::as_length_percentage(Self[Length]) -> Self[LengthPercentage]
+pub fn[T : BoxSizeDimension] MathExpr::box_size_contract_expression(Self[T]) -> String
+pub fn[T : LengthMathDimension] MathExpr::contract_expression(Self[T]) -> String
+pub fn[T] MathExpr::divide(Self[T], Double) -> Self[T]
+pub fn[T : Eq] MathExpr::equal(Self[T], Self[T]) -> Bool
+pub fn[T] MathExpr::expression(Self[T]) -> Expression
+#deprecated
+pub fn[T : FilterAmountDimension] MathExpr::filter_amount(Self[T]) -> Expression
+pub fn[T : FlexBasisDimension] MathExpr::flex_basis_contract_expression(Self[T]) -> String
+#deprecated
+pub fn[T : FlexBasisDimension] MathExpr::flex_basis_value_expression(Self[T]) -> Expression
+pub fn[T : FontSizeDimension] MathExpr::font_size_contract_expression(Self[T]) -> String
+#deprecated
+pub fn[T : FontSizeDimension] MathExpr::font_size_value_expression(Self[T]) -> Expression
+pub fn MathExpr::length_math(Self[Length]) -> Self[Length]
+pub fn MathExpr::length_percentage_math(Self[LengthPercentage]) -> Self[LengthPercentage]
+pub fn[T : LineHeightDimension] MathExpr::line_height_contract_expression(Self[T]) -> String
+#deprecated
+pub fn[T : LineHeightDimension] MathExpr::line_height_value_expression(Self[T]) -> Expression
+pub fn[T : Eq] MathExpr::not_equal(Self[T], Self[T]) -> Bool
+pub fn MathExpr::number_math(Self[Number]) -> Self[Number]
+pub fn MathExpr::percentage_math(Self[Percentage]) -> Self[Percentage]
+pub fn MathExpr::resolution_math(Self[Resolution]) -> Self[Resolution]
+pub fn[T] MathExpr::scale(Self[T], Self[Number]) -> Self[T]
+pub fn[T] MathExpr::subtract(Self[T], Self[T]) -> Self[T]
+pub fn MathExpr::time_math(Self[Time]) -> Self[Time]
+pub fn[T] MathExpr::to_css(Self[T]) -> String
+pub fn[T : @debug.Debug] MathExpr::to_repr(Self[T]) -> @debug.Repr
+#deprecated
+pub fn[T : BoxSizeDimension] MathExpr::value_expression(Self[T]) -> Expression
+pub impl AngleMathInput for MathExpr[Angle]
+pub impl[T : BoxSizeDimension] BoxSizeContractExpression for MathExpr[T]
+pub impl[T : BoxSizeDimension] BoxSizeValueInput for MathExpr[T]
+pub impl[T : FilterAmountDimension] FilterAmountInput for MathExpr[T]
+pub impl[T : FlexBasisDimension] FlexBasisContractExpression for MathExpr[T]
+pub impl[T : FlexBasisDimension] FlexBasisValueInput for MathExpr[T]
+pub impl[T : FontSizeDimension] FontSizeContractExpression for MathExpr[T]
+pub impl[T : FontSizeDimension] FontSizeValueInput for MathExpr[T]
+pub impl[T : LengthMathDimension] LengthContractExpression for MathExpr[T]
+pub impl LengthMathInput for MathExpr[Length]
+pub impl LengthPercentageMathInput for MathExpr[LengthPercentage]
+pub impl[T : LineHeightDimension] LineHeightContractExpression for MathExpr[T]
+pub impl[T : LineHeightDimension] LineHeightValueInput for MathExpr[T]
+pub impl NumberMathInput for MathExpr[Number]
+pub impl PercentageMathInput for MathExpr[Percentage]
+pub impl ResolutionMathInput for MathExpr[Resolution]
+pub impl TimeMathInput for MathExpr[Time]
+
+pub struct MotionPath {
+  expression : Expression
+}
+pub fn MotionPath::expression(Self) -> Expression
+pub fn MotionPath::in_box(Self, GeometryBox) -> Self
+pub fn MotionPath::to_css(Self) -> String
+
+pub struct Number {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Number::css_value(Self) -> String
+pub fn Number::equal(Self, Self) -> Bool
+#deprecated
+pub fn Number::filter_amount(Self) -> Expression
+pub fn Number::line_height_contract_expression(Self) -> String
+#deprecated
+pub fn Number::line_height_value_expression(Self) -> Expression
+pub fn Number::not_equal(Self, Self) -> Bool
+pub fn Number::number_math(Self) -> MathExpr[Self]
+pub fn Number::to_css(Self) -> String
+pub fn Number::to_repr(Self) -> @debug.Repr
+pub fn Number::value_category(Self) -> ValueCategory
+pub impl CssValue for Number
+pub impl FilterAmountDimension for Number
+pub impl FilterAmountInput for Number
+pub impl LineHeightContractExpression for Number
+pub impl LineHeightDimension for Number
+pub impl LineHeightValueInput for Number
+pub impl NumberMathInput for Number
+
+pub struct OffsetAnchor {
+  expression : Expression
+}
+pub fn OffsetAnchor::expression(Self) -> Expression
+pub fn OffsetAnchor::to_css(Self) -> String
+
+pub struct OffsetPosition {
+  expression : Expression
+}
+pub fn OffsetPosition::expression(Self) -> Expression
+pub fn OffsetPosition::to_css(Self) -> String
+
+pub struct OffsetRotate {
+  expression : Expression
+}
+pub fn OffsetRotate::expression(Self) -> Expression
+pub fn OffsetRotate::to_css(Self) -> String
+
+pub struct Outline {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Outline::equal(Self, Self) -> Bool
+pub fn Outline::not_equal(Self, Self) -> Bool
+pub fn Outline::to_css(Self) -> String
+pub fn Outline::to_repr(Self) -> @debug.Repr
+
+pub struct OutlineColor {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn OutlineColor::equal(Self, Self) -> Bool
+pub fn OutlineColor::not_equal(Self, Self) -> Bool
+pub fn OutlineColor::to_css(Self) -> String
+pub fn OutlineColor::to_repr(Self) -> @debug.Repr
+
+pub(all) enum OutlineStyle {
+  OutlineStyleNone
+  OutlineStyleAuto
+  OutlineStyleDotted
+  OutlineStyleDashed
+  OutlineStyleSolid
+  OutlineStyleDouble
+  OutlineStyleGroove
+  OutlineStyleRidge
+  OutlineStyleInset
+  OutlineStyleOutset
+} derive(Eq, @debug.Debug)
+pub fn OutlineStyle::equal(Self, Self) -> Bool
+pub fn OutlineStyle::not_equal(Self, Self) -> Bool
+pub fn OutlineStyle::to_css(Self) -> String
+pub fn OutlineStyle::to_repr(Self) -> @debug.Repr
+
+pub struct PageValue {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn PageValue::equal(Self, Self) -> Bool
+pub fn PageValue::not_equal(Self, Self) -> Bool
+pub fn PageValue::to_css(Self) -> String
+pub fn PageValue::to_repr(Self) -> @debug.Repr
+
+pub struct PathData {
+  data : String
+}
+pub fn PathData::to_string(Self) -> String
+
+pub struct Percentage {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Percentage::as_length_percentage(Self) -> LengthPercentage
+pub fn Percentage::box_size_contract_expression(Self) -> String
+pub fn Percentage::css_value(Self) -> String
+pub fn Percentage::equal(Self, Self) -> Bool
+#deprecated
+pub fn Percentage::filter_amount(Self) -> Expression
+pub fn Percentage::flex_basis_contract_expression(Self) -> String
+#deprecated
+pub fn Percentage::flex_basis_value_expression(Self) -> Expression
+pub fn Percentage::font_size_contract_expression(Self) -> String
+#deprecated
+pub fn Percentage::font_size_value_expression(Self) -> Expression
+pub fn Percentage::line_height_contract_expression(Self) -> String
+#deprecated
+pub fn Percentage::line_height_value_expression(Self) -> Expression
+pub fn Percentage::not_equal(Self, Self) -> Bool
+pub fn Percentage::percentage_math(Self) -> MathExpr[Self]
+pub fn Percentage::to_css(Self) -> String
+pub fn Percentage::to_repr(Self) -> @debug.Repr
+pub fn Percentage::value_category(Self) -> ValueCategory
+#deprecated
+pub fn Percentage::value_expression(Self) -> Expression
+pub impl BoxSizeContractExpression for Percentage
+pub impl BoxSizeDimension for Percentage
+pub impl BoxSizeValueInput for Percentage
+pub impl CssValue for Percentage
+pub impl FilterAmountDimension for Percentage
+pub impl FilterAmountInput for Percentage
+pub impl FlexBasisContractExpression for Percentage
+pub impl FlexBasisDimension for Percentage
+pub impl FlexBasisValueInput for Percentage
+pub impl FontSizeContractExpression for Percentage
+pub impl FontSizeDimension for Percentage
+pub impl FontSizeValueInput for Percentage
+pub impl LineHeightContractExpression for Percentage
+pub impl LineHeightDimension for Percentage
+pub impl LineHeightValueInput for Percentage
+pub impl PercentageMathInput for Percentage
+
+pub struct Position {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Position::equal(Self, Self) -> Bool
+pub fn Position::not_equal(Self, Self) -> Bool
+pub fn Position::to_css(Self) -> String
+pub fn Position::to_repr(Self) -> @debug.Repr
+
+pub struct PositionAnchor {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn PositionAnchor::equal(Self, Self) -> Bool
+pub fn PositionAnchor::not_equal(Self, Self) -> Bool
+pub fn PositionAnchor::to_css(Self) -> String
+pub fn PositionAnchor::to_repr(Self) -> @debug.Repr
+
+pub struct PositionArea {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn PositionArea::equal(Self, Self) -> Bool
+pub fn PositionArea::not_equal(Self, Self) -> Bool
+pub fn PositionArea::to_css(Self) -> String
+pub fn PositionArea::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PositionAreaHorizontal {
+  AreaLeft
+  AreaCenter
+  AreaRight
+  AreaInlineStart
+  AreaInlineEnd
+} derive(Eq, @debug.Debug)
+pub fn PositionAreaHorizontal::equal(Self, Self) -> Bool
+pub fn PositionAreaHorizontal::not_equal(Self, Self) -> Bool
+pub fn PositionAreaHorizontal::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PositionAreaVertical {
+  AreaTop
+  AreaCenterVertical
+  AreaBottom
+  AreaBlockStart
+  AreaBlockEnd
+} derive(Eq, @debug.Debug)
+pub fn PositionAreaVertical::equal(Self, Self) -> Bool
+pub fn PositionAreaVertical::not_equal(Self, Self) -> Bool
+pub fn PositionAreaVertical::to_repr(Self) -> @debug.Repr
+
+pub struct PositionList {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn PositionList::equal(Self, Self) -> Bool
+pub fn PositionList::not_equal(Self, Self) -> Bool
+pub fn PositionList::to_css(Self) -> String
+pub fn PositionList::to_repr(Self) -> @debug.Repr
+
+pub struct PositionTryFallback {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn PositionTryFallback::equal(Self, Self) -> Bool
+pub fn PositionTryFallback::not_equal(Self, Self) -> Bool
+pub fn PositionTryFallback::to_repr(Self) -> @debug.Repr
+
+pub struct PositionTryFallbacks {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn PositionTryFallbacks::equal(Self, Self) -> Bool
+pub fn PositionTryFallbacks::not_equal(Self, Self) -> Bool
+pub fn PositionTryFallbacks::to_css(Self) -> String
+pub fn PositionTryFallbacks::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PositionTryOrder {
+  TryOrderNormal
+  TryOrderMostWidth
+  TryOrderMostHeight
+  TryOrderMostBlockSize
+  TryOrderMostInlineSize
+} derive(Eq, @debug.Debug)
+pub fn PositionTryOrder::equal(Self, Self) -> Bool
+pub fn PositionTryOrder::not_equal(Self, Self) -> Bool
+pub fn PositionTryOrder::to_css(Self) -> String
+pub fn PositionTryOrder::to_repr(Self) -> @debug.Repr
+
+pub(all) enum PositionTryTactic {
+  TryFlipBlock
+  TryFlipInline
+  TryFlipStart
+} derive(Eq, @debug.Debug)
+pub fn PositionTryTactic::equal(Self, Self) -> Bool
+pub fn PositionTryTactic::not_equal(Self, Self) -> Bool
+pub fn PositionTryTactic::to_repr(Self) -> @debug.Repr
+
+pub struct PositionTryValue {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn PositionTryValue::equal(Self, Self) -> Bool
+pub fn PositionTryValue::not_equal(Self, Self) -> Bool
+pub fn PositionTryValue::to_css(Self) -> String
+pub fn PositionTryValue::to_repr(Self) -> @debug.Repr
+
+pub(all) enum RadialExtent {
+  ClosestSide
+  FarthestSide
+  ClosestCorner
+  FarthestCorner
+} derive(Eq, @debug.Debug)
+pub fn RadialExtent::equal(Self, Self) -> Bool
+pub fn RadialExtent::not_equal(Self, Self) -> Bool
+pub fn RadialExtent::to_repr(Self) -> @debug.Repr
+
+pub(all) enum RadialShape {
+  Circle
+  Ellipse
+} derive(Eq, @debug.Debug)
+pub fn RadialShape::equal(Self, Self) -> Bool
+pub fn RadialShape::not_equal(Self, Self) -> Bool
+pub fn RadialShape::to_repr(Self) -> @debug.Repr
+
+pub struct RadialSize {
+  expression : Expression
+  shape : RadialShape?
+} derive(Eq, @debug.Debug)
+pub fn RadialSize::equal(Self, Self) -> Bool
+pub fn RadialSize::not_equal(Self, Self) -> Bool
+pub fn RadialSize::to_repr(Self) -> @debug.Repr
+
+pub struct Ratio {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Ratio::equal(Self, Self) -> Bool
+pub fn Ratio::not_equal(Self, Self) -> Bool
+pub fn Ratio::to_css(Self) -> String
+pub fn Ratio::to_repr(Self) -> @debug.Repr
+
+pub(all) enum RaySize {
+  RayClosestSide
+  RayClosestCorner
+  RayFarthestSide
+  RayFarthestCorner
+  RaySides
+} derive(Eq, @debug.Debug)
+pub fn RaySize::equal(Self, Self) -> Bool
+pub fn RaySize::not_equal(Self, Self) -> Bool
+pub fn RaySize::to_repr(Self) -> @debug.Repr
+
+pub(all) enum RepeatStyle {
+  Repeat
+  NoRepeat
+  RepeatX
+  RepeatY
+  Space
+  Round
+} derive(Eq, @debug.Debug)
+pub fn RepeatStyle::equal(Self, Self) -> Bool
+pub fn RepeatStyle::not_equal(Self, Self) -> Bool
+pub fn RepeatStyle::to_css(Self) -> String
+pub fn RepeatStyle::to_repr(Self) -> @debug.Repr
+
+pub struct RepeatStyleList {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn RepeatStyleList::equal(Self, Self) -> Bool
+pub fn RepeatStyleList::not_equal(Self, Self) -> Bool
+pub fn RepeatStyleList::to_css(Self) -> String
+pub fn RepeatStyleList::to_repr(Self) -> @debug.Repr
+
+pub struct Resolution {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Resolution::css_value(Self) -> String
+pub fn Resolution::equal(Self, Self) -> Bool
+pub fn Resolution::not_equal(Self, Self) -> Bool
+pub fn Resolution::resolution_math(Self) -> MathExpr[Self]
+pub fn Resolution::to_css(Self) -> String
+pub fn Resolution::to_repr(Self) -> @debug.Repr
+pub fn Resolution::value_category(Self) -> ValueCategory
+pub impl CssValue for Resolution
+pub impl ResolutionMathInput for Resolution
+
+pub struct ScrollbarColor {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn ScrollbarColor::equal(Self, Self) -> Bool
+pub fn ScrollbarColor::expression(Self) -> Expression
+pub fn ScrollbarColor::not_equal(Self, Self) -> Bool
+pub fn ScrollbarColor::to_css(Self) -> String
+pub fn ScrollbarColor::to_repr(Self) -> @debug.Repr
+
+pub struct Shadow {
+  x : Expression
+  y : Expression
+  blur_value : Expression?
+  spread_value : Expression?
+  color_value : Expression?
+  inset_value : Bool
+} derive(Eq, @debug.Debug)
+pub fn[T : LengthMathInput] Shadow::blur(Self, T) -> Self
+pub fn[T : GradientColorInput] Shadow::color(Self, T) -> Self
+pub fn Shadow::equal(Self, Self) -> Bool
+pub fn Shadow::expression(Self) -> Expression
+pub fn Shadow::inset(Self) -> Self
+pub fn Shadow::not_equal(Self, Self) -> Bool
+pub fn[T : LengthMathInput] Shadow::spread(Self, T) -> Self
+pub fn Shadow::to_repr(Self) -> @debug.Repr
+
+pub struct SvgPaint {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn SvgPaint::equal(Self, Self) -> Bool
+pub fn SvgPaint::expression(Self) -> Expression
+pub fn SvgPaint::not_equal(Self, Self) -> Bool
+pub fn SvgPaint::to_css(Self) -> String
+pub fn SvgPaint::to_repr(Self) -> @debug.Repr
+
+pub struct TextShadowList {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn TextShadowList::equal(Self, Self) -> Bool
+pub fn TextShadowList::expression(Self) -> Expression
+pub fn TextShadowList::not_equal(Self, Self) -> Bool
+pub fn TextShadowList::to_css(Self) -> String
+pub fn TextShadowList::to_repr(Self) -> @debug.Repr
+
+pub struct Time {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Time::css_value(Self) -> String
+pub fn Time::equal(Self, Self) -> Bool
+pub fn Time::not_equal(Self, Self) -> Bool
+pub fn Time::time_math(Self) -> MathExpr[Self]
+pub fn Time::to_css(Self) -> String
+pub fn Time::to_repr(Self) -> @debug.Repr
+pub fn Time::value_category(Self) -> ValueCategory
+pub impl CssValue for Time
+pub impl TimeMathInput for Time
+
+pub struct TimeList {
+  values : Array[Expression]
+}
+pub fn[T : TimeMathInput] TimeList::add(Self, T) -> Self
+pub fn TimeList::expression(Self) -> Expression
+pub fn TimeList::new() -> Self
+pub fn TimeList::to_css(Self) -> String
+
+pub(all) enum TimelineAxis {
+  BlockAxis
+  InlineAxis
+  XAxis
+  YAxis
+} derive(Eq, @debug.Debug)
+pub fn TimelineAxis::equal(Self, Self) -> Bool
+pub fn TimelineAxis::not_equal(Self, Self) -> Bool
+pub fn TimelineAxis::to_css(Self) -> String
+pub fn TimelineAxis::to_repr(Self) -> @debug.Repr
+
+pub struct TimelineName {
+  css : String
+}
+
+pub struct TimelineNames {
+  css : String
+}
+pub fn TimelineNames::to_css(Self) -> String
+
+pub struct TimelineRange {
+  expression : Expression
+}
+pub fn TimelineRange::expression(Self) -> Expression
+pub fn TimelineRange::to_css(Self) -> String
+
+pub(all) enum TimelineRangeName {
+  Cover
+  ContainRange
+  Entry
+  Exit
+  EntryCrossing
+  ExitCrossing
+} derive(Eq, @debug.Debug)
+pub fn TimelineRangeName::equal(Self, Self) -> Bool
+pub fn TimelineRangeName::not_equal(Self, Self) -> Bool
+pub fn TimelineRangeName::to_repr(Self) -> @debug.Repr
+
+pub struct TimelineScope {
+  css : String
+}
+pub fn TimelineScope::to_css(Self) -> String
+
+pub(all) enum TimelineScroller {
+  NearestScroller
+  RootScroller
+  SelfScroller
+} derive(Eq, @debug.Debug)
+pub fn TimelineScroller::equal(Self, Self) -> Bool
+pub fn TimelineScroller::not_equal(Self, Self) -> Bool
+pub fn TimelineScroller::to_repr(Self) -> @debug.Repr
+
+pub struct Token[T] {
+  variable : CssVar[T]
+  scope : String
+  local_name : String
+}
+pub fn Token::angle_math(Self[Angle]) -> MathExpr[Angle]
+pub fn[T : BoxSizeDimension] Token::box_size_contract_expression(Self[T]) -> String
+pub fn[T] Token::definition(Self[T]) -> VarDefinition
+pub fn[T] Token::definition_use(Self[T]) -> VariableUse
+#deprecated
+pub fn[T : FilterAmountDimension] Token::filter_amount(Self[T]) -> Expression
+pub fn[T : FlexBasisDimension] Token::flex_basis_contract_expression(Self[T]) -> String
+#deprecated
+pub fn[T : FlexBasisDimension] Token::flex_basis_value_expression(Self[T]) -> Expression
+pub fn[T : FontSizeDimension] Token::font_size_contract_expression(Self[T]) -> String
+#deprecated
+pub fn[T : FontSizeDimension] Token::font_size_value_expression(Self[T]) -> Expression
+pub fn Token::gradient_color(Self[Color]) -> Expression
+pub fn Token::image_expression(Self[Url]) -> Expression
+pub fn Token::length_math(Self[Length]) -> MathExpr[Length]
+pub fn Token::length_percentage_math(Self[LengthPercentage]) -> MathExpr[LengthPercentage]
+pub fn[T : LineHeightDimension] Token::line_height_contract_expression(Self[T]) -> String
+#deprecated
+pub fn[T : LineHeightDimension] Token::line_height_value_expression(Self[T]) -> Expression
+pub fn Token::number_math(Self[Number]) -> MathExpr[Number]
+pub fn Token::percentage_math(Self[Percentage]) -> MathExpr[Percentage]
+pub fn[T] Token::reference_css(Self[T]) -> String
+pub fn Token::resolution_math(Self[Resolution]) -> MathExpr[Resolution]
+pub fn Token::time_math(Self[Time]) -> MathExpr[Time]
+#deprecated
+pub fn[T : BoxSizeDimension] Token::value_expression(Self[T]) -> Expression
+pub fn[T] Token::variable_use(Self[T]) -> VariableUse
+pub fn[T : CssValue] Token::with_value(Self[T], T) -> TokenOverride
+pub impl AngleMathInput for Token[Angle]
+pub impl[T : BoxSizeDimension] BoxSizeContractExpression for Token[T]
+pub impl[T : BoxSizeDimension] BoxSizeValueInput for Token[T]
+pub impl[T : FilterAmountDimension] FilterAmountInput for Token[T]
+pub impl[T : FlexBasisDimension] FlexBasisContractExpression for Token[T]
+pub impl[T : FlexBasisDimension] FlexBasisValueInput for Token[T]
+pub impl[T : FontSizeDimension] FontSizeContractExpression for Token[T]
+pub impl[T : FontSizeDimension] FontSizeValueInput for Token[T]
+pub impl GradientColorInput for Token[Color]
+pub impl ImageInput for Token[Url]
+pub impl LengthMathInput for Token[Length]
+pub impl LengthPercentageMathInput for Token[LengthPercentage]
+pub impl[T : LineHeightDimension] LineHeightContractExpression for Token[T]
+pub impl[T : LineHeightDimension] LineHeightValueInput for Token[T]
+pub impl NumberMathInput for Token[Number]
+pub impl PercentageMathInput for Token[Percentage]
+pub impl ResolutionMathInput for Token[Resolution]
+pub impl TimeMathInput for Token[Time]
+
+pub(all) struct TokenOverride {
+  variable : VariableUse
+  override_ : VarOverride
+} derive(Eq, @debug.Debug)
+pub fn TokenOverride::equal(Self, Self) -> Bool
+pub fn TokenOverride::not_equal(Self, Self) -> Bool
+pub fn TokenOverride::to_repr(Self) -> @debug.Repr
+
+pub struct TouchAction {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn TouchAction::equal(Self, Self) -> Bool
+pub fn TouchAction::not_equal(Self, Self) -> Bool
+pub fn TouchAction::to_css(Self) -> String
+pub fn TouchAction::to_repr(Self) -> @debug.Repr
+
+pub(all) enum TouchActionPart {
+  PanX
+  PanY
+  PinchZoom
+} derive(Eq, @debug.Debug)
+pub fn TouchActionPart::equal(Self, Self) -> Bool
+pub fn TouchActionPart::not_equal(Self, Self) -> Bool
+pub fn TouchActionPart::to_repr(Self) -> @debug.Repr
+
+type TrackKind derive(Eq, @debug.Debug)
+pub fn TrackKind::equal(Self, Self) -> Bool
+pub fn TrackKind::not_equal(Self, Self) -> Bool
+pub fn TrackKind::to_repr(Self) -> @debug.Repr
+
+pub struct TransformFunction {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn TransformFunction::equal(Self, Self) -> Bool
+pub fn TransformFunction::not_equal(Self, Self) -> Bool
+pub fn TransformFunction::to_css(Self) -> String
+pub fn TransformFunction::to_repr(Self) -> @debug.Repr
+
+pub struct TransformList {
+  expression : Expression
+} derive(Eq, @debug.Debug)
+pub fn TransformList::equal(Self, Self) -> Bool
+pub fn TransformList::expression(Self) -> Expression
+pub fn TransformList::not_equal(Self, Self) -> Bool
+pub fn TransformList::to_css(Self) -> String
+pub fn TransformList::to_repr(Self) -> @debug.Repr
+
+pub struct TransformOrigin {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn TransformOrigin::equal(Self, Self) -> Bool
+pub fn TransformOrigin::not_equal(Self, Self) -> Bool
+pub fn TransformOrigin::to_css(Self) -> String
+pub fn TransformOrigin::to_repr(Self) -> @debug.Repr
+
+pub struct Url {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn Url::css_value(Self) -> String
+pub fn Url::equal(Self, Self) -> Bool
+pub fn Url::image_expression(Self) -> Expression
+pub fn Url::not_equal(Self, Self) -> Bool
+pub fn Url::to_css(Self) -> String
+pub fn Url::to_repr(Self) -> @debug.Repr
+pub fn Url::value_category(Self) -> ValueCategory
+pub impl CssValue for Url
+pub impl ImageInput for Url
+
+pub(all) enum ValueCategory {
+  LengthCategory
+  ColorCategory
+  NumberCategory
+  PercentageCategory
+  LengthPercentageCategory
+  IntegerCategory
+  TimeCategory
+  AngleCategory
+  ResolutionCategory
+  UrlCategory
+} derive(Eq, @debug.Debug)
+pub fn ValueCategory::equal(Self, Self) -> Bool
+pub fn ValueCategory::name(Self) -> String
+pub fn ValueCategory::not_equal(Self, Self) -> Bool
+pub fn ValueCategory::to_repr(Self) -> @debug.Repr
+
+pub(all) struct ValueIssue {
+  code : String
+  label : String
+} derive(Eq, @debug.Debug)
+pub fn ValueIssue::equal(Self, Self) -> Bool
+pub fn ValueIssue::not_equal(Self, Self) -> Bool
+pub fn ValueIssue::to_repr(Self) -> @debug.Repr
+
+type ValueNode derive(Eq, @debug.Debug)
+pub fn ValueNode::equal(Self, Self) -> Bool
+pub fn ValueNode::not_equal(Self, Self) -> Bool
+pub fn ValueNode::to_repr(Self) -> @debug.Repr
+
+pub(all) struct VarDefinition {
+  name : String
+  default_css : String
+  category : ValueCategory
+} derive(Eq, @debug.Debug)
+pub fn VarDefinition::equal(Self, Self) -> Bool
+pub fn VarDefinition::not_equal(Self, Self) -> Bool
+pub fn VarDefinition::to_repr(Self) -> @debug.Repr
+
+pub(all) struct VarOverride {
+  name : String
+  value_css : String
+  category : ValueCategory
+} derive(Eq, @debug.Debug)
+pub fn VarOverride::equal(Self, Self) -> Bool
+pub fn VarOverride::not_equal(Self, Self) -> Bool
+pub fn VarOverride::to_repr(Self) -> @debug.Repr
+
+pub(all) enum VariableRole {
+  TokenRole
+  DynamicSlotRole
+} derive(Eq, @debug.Debug)
+pub fn VariableRole::equal(Self, Self) -> Bool
+pub fn VariableRole::not_equal(Self, Self) -> Bool
+pub fn VariableRole::to_repr(Self) -> @debug.Repr
+
+pub struct VariableScope {
+  scope : String
+}
+pub fn VariableScope::angle_slot(Self, String, Angle) -> DynamicSlot[Angle]
+pub fn VariableScope::angle_token(Self, String, Angle) -> Token[Angle]
+pub fn VariableScope::color_slot(Self, String, Color) -> DynamicSlot[Color]
+pub fn VariableScope::color_token(Self, String, Color) -> Token[Color]
+pub fn VariableScope::integer_slot(Self, String, Integer) -> DynamicSlot[Integer]
+pub fn VariableScope::integer_token(Self, String, Integer) -> Token[Integer]
+pub fn VariableScope::length_percentage_slot(Self, String, LengthPercentage) -> DynamicSlot[LengthPercentage]
+pub fn VariableScope::length_percentage_token(Self, String, LengthPercentage) -> Token[LengthPercentage]
+pub fn VariableScope::length_slot(Self, String, Length) -> DynamicSlot[Length]
+pub fn VariableScope::length_token(Self, String, Length) -> Token[Length]
+pub fn VariableScope::number_slot(Self, String, Number) -> DynamicSlot[Number]
+pub fn VariableScope::number_token(Self, String, Number) -> Token[Number]
+pub fn VariableScope::percentage_slot(Self, String, Percentage) -> DynamicSlot[Percentage]
+pub fn VariableScope::percentage_token(Self, String, Percentage) -> Token[Percentage]
+pub fn VariableScope::resolution_slot(Self, String, Resolution) -> DynamicSlot[Resolution]
+pub fn VariableScope::resolution_token(Self, String, Resolution) -> Token[Resolution]
+pub fn VariableScope::time_slot(Self, String, Time) -> DynamicSlot[Time]
+pub fn VariableScope::time_token(Self, String, Time) -> Token[Time]
+pub fn VariableScope::url_slot(Self, String, Url) -> DynamicSlot[Url]
+pub fn VariableScope::url_token(Self, String, Url) -> Token[Url]
+
+pub(all) struct VariableUse {
+  scope : String
+  local_name : String
+  definition : VarDefinition
+  role : VariableRole
+} derive(Eq, @debug.Debug)
+pub fn VariableUse::equal(Self, Self) -> Bool
+pub fn VariableUse::not_equal(Self, Self) -> Bool
+pub fn VariableUse::to_repr(Self) -> @debug.Repr
+
+pub struct ViewTransitionClass {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn ViewTransitionClass::equal(Self, Self) -> Bool
+pub fn ViewTransitionClass::not_equal(Self, Self) -> Bool
+pub fn ViewTransitionClass::to_css(Self) -> String
+pub fn ViewTransitionClass::to_repr(Self) -> @debug.Repr
+
+pub struct ViewTransitionName {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn ViewTransitionName::equal(Self, Self) -> Bool
+pub fn ViewTransitionName::not_equal(Self, Self) -> Bool
+pub fn ViewTransitionName::to_css(Self) -> String
+pub fn ViewTransitionName::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+pub type AngleSlot = DynamicSlot[Angle]
+
+pub type AngleToken = Token[Angle]
+
+pub type ColorSlot = DynamicSlot[Color]
+
+pub type ColorToken = Token[Color]
+
+pub type IntegerSlot = DynamicSlot[Integer]
+
+pub type IntegerToken = Token[Integer]
+
+pub type LengthPercentageSlot = DynamicSlot[LengthPercentage]
+
+pub type LengthPercentageToken = Token[LengthPercentage]
+
+pub type LengthSlot = DynamicSlot[Length]
+
+pub type LengthToken = Token[Length]
+
+pub type NumberSlot = DynamicSlot[Number]
+
+pub type NumberToken = Token[Number]
+
+pub type PercentageSlot = DynamicSlot[Percentage]
+
+pub type PercentageToken = Token[Percentage]
+
+pub type ResolutionSlot = DynamicSlot[Resolution]
+
+pub type ResolutionToken = Token[Resolution]
+
+pub type TimeSlot = DynamicSlot[Time]
+
+pub type TimeToken = Token[Time]
+
+pub type UrlSlot = DynamicSlot[Url]
+
+pub type UrlToken = Token[Url]
+
+// Traits
+pub trait AngleMathInput {
+  fn angle_math(Self) -> MathExpr[Angle]
+}
+
+pub trait BoxSizeContractExpression {
+  fn box_size_contract_expression(Self) -> String
+}
+
+pub trait BoxSizeDimension {
+}
+
+pub trait BoxSizeValueInput {
+  fn value_expression(Self) -> Expression
+}
+
+pub trait CssValue {
+  fn css_value(Self) -> String
+  fn value_category(Self) -> ValueCategory
+}
+
+pub trait FilterAmountDimension {
+}
+
+pub trait FilterAmountInput {
+  fn filter_amount(Self) -> Expression
+}
+
+pub trait FlexBasisContractExpression {
+  fn flex_basis_contract_expression(Self) -> String
+}
+
+pub trait FlexBasisDimension {
+}
+
+pub trait FlexBasisValueInput {
+  fn flex_basis_value_expression(Self) -> Expression
+}
+
+pub trait FontSizeContractExpression {
+  fn font_size_contract_expression(Self) -> String
+}
+
+pub trait FontSizeDimension {
+}
+
+pub trait FontSizeValueInput {
+  fn font_size_value_expression(Self) -> Expression
+}
+
+pub trait GradientColorInput {
+  fn gradient_color(Self) -> Expression
+}
+
+pub trait ImageInput {
+  fn image_expression(Self) -> Expression
+}
+
+pub trait LengthContractExpression {
+  fn contract_expression(Self) -> String
+}
+
+pub trait LengthMathDimension {
+}
+
+pub trait LengthMathInput {
+  fn length_math(Self) -> MathExpr[Length]
+}
+
+pub trait LengthPercentageMathInput {
+  fn length_percentage_math(Self) -> MathExpr[LengthPercentage]
+}
+
+pub trait LineHeightContractExpression {
+  fn line_height_contract_expression(Self) -> String
+}
+
+pub trait LineHeightDimension {
+}
+
+pub trait LineHeightValueInput {
+  fn line_height_value_expression(Self) -> Expression
+}
+pub impl LineHeightValueInput for Double
+
+pub trait NumberMathInput {
+  fn number_math(Self) -> MathExpr[Number]
+}
+
+pub trait PercentageMathInput {
+  fn percentage_math(Self) -> MathExpr[Percentage]
+}
+
+pub trait ResolutionMathInput {
+  fn resolution_math(Self) -> MathExpr[Resolution]
+}
+
+pub trait TimeMathInput {
+  fn time_math(Self) -> MathExpr[Time]
+}

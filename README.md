@@ -9,8 +9,11 @@ no registry publication is implied.
 The repository root declares `lampclaw/moonstyle`, with source under `src/`.
 The separate `validation/` module is reserved for application integration.
 
+Typed CSS values and expressions are available in `lampclaw/moonstyle/values`.
+
 Use the exact environment in `toolchain.json`. Run `moon update`, then
 `vp install --frozen-lockfile` and `vp run check-toolchain`.
+Run `vp run moon-test` for the library packages available in this revision.
 
 Source: https://github.com/lucavance/moonstyle
 
