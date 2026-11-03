@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "toolingVersion": "0.1.0",
+  "stylesPackage": "lampclaw/moonstyle-validation/examples/styles",
+  "extractorPackage": "cmd/style_extract",
+  "viteConfig": "vite.config.mjs",
+  "entrypoints": ["entry.mjs"],
+  "managedFiles": {
+    ".vscode/tasks.json": "sha256:cdf938d31b1d1721dddb0060daddf47d834b962a1821bbbea12d252023f6267d",
+    "cmd/style_extract/main.mbt": "sha256:122299100b8defc6496d5d147d35765ce60872ffbb6dfc5fac279ca8caecbe87",
+    "cmd/style_extract/moon.pkg": "sha256:431659141540cac6e5c0e71b01af63089e525b17dd572f09ab685f93095e50ef"
+  }
+}

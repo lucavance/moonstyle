@@ -25,6 +25,9 @@ Rabbita is the supported framework adapter; the independent Luna module is exper
 
 The private tooling package provides the CLI and Vite integration.
 
+The `validation/` application demonstrates extraction, generated mappings and Rabbita.
+Run `vp run generate`, `vp dev`, or `vp build` from the repository root.
+
 Use the exact environment in `toolchain.json`. Run `moon update`, then
 `vp install --frozen-lockfile` and `vp run check-toolchain`.
 Run `vp run moon-test` for the library packages available in this revision.

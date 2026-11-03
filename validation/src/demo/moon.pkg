@@ -1,0 +1,13 @@
+import {
+  "lampclaw/moonstyle",
+  "lampclaw/moonstyle/rabbita" @css,
+  "lampclaw/moonstyle/runtime" @style_fixture_runtime,
+  "lampclaw/moonstyle-validation/src/generated" @styles,
+  "lampclaw/moonstyle-validation/tests/component_a_generated" @component_button,
+  "moonbit-community/rabbita",
+  "moonbit-community/rabbita/html",
+}
+
+supported_targets = "js"
+
+pkgtype(kind: "executable")

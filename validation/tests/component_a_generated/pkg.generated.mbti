@@ -1,0 +1,55 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-validation/tests/component_a_generated"
+
+import {
+  "lampclaw/moonstyle/ir",
+  "lampclaw/moonstyle/runtime",
+}
+
+// Values
+pub let badge : BadgeStyle
+
+pub let bundle_ref : @ir.DependencyRef
+
+pub let button_contract_name : String
+
+pub let button_contract_properties : Array[String]
+
+pub fn[T : ButtonStyleInput] button_styles(T) -> ButtonStyleList
+
+pub fn empty_button_styles() -> ButtonStyleList
+
+// Errors
+
+// Types and methods
+pub struct BadgeStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BadgeStyle::append_button_style(Self, ButtonStyleList) -> ButtonStyleList
+pub fn BadgeStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BadgeStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl ButtonStyleInput for BadgeStyle
+pub impl @runtime.StaticStyleInput for BadgeStyle
+pub impl @runtime.StyleInput for BadgeStyle
+
+pub struct ButtonStyleList {
+  inner : @runtime.StyleList
+}
+pub fn[T : ButtonStyleInput] ButtonStyleList::add(Self, T) -> Self
+pub fn ButtonStyleList::append_button_style(Self, Self) -> Self
+pub fn ButtonStyleList::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ButtonStyleList::resolve(Self) -> Result[@runtime.AppliedStyle, Array[@runtime.DynamicValueError]]
+pub fn ButtonStyleList::to_style_list(Self) -> @runtime.StyleList
+pub fn[T : ButtonStyleInput] ButtonStyleList::when(Self, Bool, T) -> Self
+pub impl ButtonStyleInput for ButtonStyleList
+pub impl @runtime.StyleInput for ButtonStyleList
+
+// Type aliases
+
+// Traits
+pub(open) trait ButtonStyleInput : @runtime.StyleInput {
+  fn append_button_style(Self, ButtonStyleList) -> ButtonStyleList = _
+}
+pub impl[T : ButtonStyleInput] ButtonStyleInput for T?
+pub impl[T : ButtonStyleInput] ButtonStyleInput for Array[T]
+pub impl[T : ButtonStyleInput] ButtonStyleInput for Result[T, Array[@runtime.DynamicValueError]]

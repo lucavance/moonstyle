@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-validation/src/demo"
+
+// Values
+
+// Errors
+
+// Types and methods
+pub(all) enum Message {
+  Toggle
+} derive(Eq)
+
+type Model derive(Eq)
+
+// Type aliases
+
+// Traits

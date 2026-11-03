@@ -1,0 +1,36 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-validation/src/css_runtime"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn compiled(Array[(String, String)], inline_vars? : Array[(String, String)]) -> CompiledStyle
+
+pub let none : CompiledStyle
+
+pub fn props(Array[CompiledStyle]) -> AppliedStyle
+
+// Errors
+
+// Types and methods
+pub(all) struct AppliedStyle {
+  class_name : String
+  inline_vars : Array[(String, String)]
+} derive(Eq, @debug.Debug)
+pub fn AppliedStyle::equal(Self, Self) -> Bool
+pub fn AppliedStyle::not_equal(Self, Self) -> Bool
+pub fn AppliedStyle::to_repr(Self) -> @debug.Repr
+
+pub(all) struct CompiledStyle {
+  entries : Array[(String, String)]
+  inline_vars : Array[(String, String)]
+} derive(Eq, @debug.Debug)
+pub fn CompiledStyle::equal(Self, Self) -> Bool
+pub fn CompiledStyle::not_equal(Self, Self) -> Bool
+pub fn CompiledStyle::to_repr(Self) -> @debug.Repr
+
+// Type aliases
+
+// Traits

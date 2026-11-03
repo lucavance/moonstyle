@@ -1,0 +1,722 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-validation/src/generated"
+
+import {
+  "lampclaw/moonstyle-validation/tests/component_a_generated",
+  "lampclaw/moonstyle/ir",
+  "lampclaw/moonstyle/runtime",
+  "lampclaw/moonstyle/values",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub let active : ActiveStyle
+
+pub let animated : AnimatedStyle
+
+pub fn badge_recipe(size? : BadgeRecipeSize, muted? : Bool) -> @runtime.StyleList
+
+pub let badge_recipe__base_0 : BadgeRecipeBase0Style
+
+pub let badge_recipe__compound__0_0 : BadgeRecipeCompound00Style
+
+pub let badge_recipe__muted__true_0 : BadgeRecipeMutedTrue0Style
+
+pub let badge_recipe__size__compact_0 : BadgeRecipeSizeCompact0Style
+
+pub let badge_recipe__size__roomy_0 : BadgeRecipeSizeRoomy0Style
+
+pub let borderCompositeCorner : BorderCompositeCornerStyle
+
+pub let borderCompositeLonghands : BorderCompositeLonghandsStyle
+
+pub let borderCompositeOutline : BorderCompositeOutlineStyle
+
+pub let borderCompositePairs : BorderCompositePairsStyle
+
+pub let borderCompositeSide : BorderCompositeSideStyle
+
+pub let bundle_ref : @ir.DependencyRef
+
+pub let button : ButtonStyle
+
+pub fn buttonTone(@values.Color) -> Result[ButtonToneStyle, Array[@runtime.DynamicValueError]]
+
+pub let card : CardStyle
+
+pub let clearBase : ClearBaseStyle
+
+pub let clearColor : ClearColorStyle
+
+pub let conflictConditionalMargin : ConflictConditionalMarginStyle
+
+pub let conflictGap : ConflictGapStyle
+
+pub let conflictLogicalMargin : ConflictLogicalMarginStyle
+
+pub let conflictMargin : ConflictMarginStyle
+
+pub let conflictMarginTop : ConflictMarginTopStyle
+
+pub let conflictPadding : ConflictPaddingStyle
+
+pub let conflictPaddingLeft : ConflictPaddingLeftStyle
+
+pub let conflictPhysicalMargin : ConflictPhysicalMarginStyle
+
+pub let conflictRowGap : ConflictRowGapStyle
+
+pub let copy : CopyStyle
+
+pub let coverageAnimation : CoverageAnimationStyle
+
+pub let coverageColor : CoverageColorStyle
+
+pub let coverageContainerStyle : CoverageContainerStyleStyle
+
+pub let coverageCounter : CoverageCounterStyle
+
+pub let coverageEnv : CoverageEnvStyle
+
+pub let coverageImageSet : CoverageImageSetStyle
+
+pub let coverageMask : CoverageMaskStyle
+
+pub let coverageMotion : CoverageMotionStyle
+
+pub let coveragePageAuto : CoveragePageAutoStyle
+
+pub let coveragePageNamed : CoveragePageNamedStyle
+
+pub let coverageScrollEffect : CoverageScrollEffectStyle
+
+pub let coverageShape : CoverageShapeStyle
+
+pub let coverageState : CoverageStateStyle
+
+pub let coverageTimeline : CoverageTimelineStyle
+
+pub let coverageTransform : CoverageTransformStyle
+
+pub let dark : @runtime.CompiledStyle
+
+pub let demo_group_marker : @runtime.SelectorMarker
+
+pub let demo_shared_view_transition_class : @values.ViewTransitionClass
+
+pub fn expressionGrid(@values.LengthPercentage) -> Result[ExpressionGridStyle, Array[@runtime.DynamicValueError]]
+
+pub fn expressionLimits(@values.Percentage) -> Result[ExpressionLimitsStyle, Array[@runtime.DynamicValueError]]
+
+pub fn expressionPanel(@values.Length, @values.Angle) -> Result[ExpressionPanelStyle, Array[@runtime.DynamicValueError]]
+
+pub let expressionSubgrid : ExpressionSubgridStyle
+
+pub fn fontWidthDynamic(@values.Percentage) -> Result[FontWidthDynamicStyle, Array[@runtime.DynamicValueError]]
+
+pub let markerChild : MarkerChildStyle
+
+pub fn meter(@values.Length) -> Result[MeterStyle, Array[@runtime.DynamicValueError]]
+
+pub let meterTrack : MeterTrackStyle
+
+pub fn multiDynamic(@values.Length, @values.Color, @values.Color) -> Result[MultiDynamicStyle, Array[@runtime.DynamicValueError]]
+
+pub let page : PageStyle
+
+pub let rtlDirectional : RtlDirectionalStyle
+
+pub let scalarBlockSize : ScalarBlockSizeStyle
+
+pub let scalarHeight : ScalarHeightStyle
+
+pub let scalarInlineSize : ScalarInlineSizeStyle
+
+pub let scalarOverscroll : ScalarOverscrollStyle
+
+pub let scalarOverscrollBlock : ScalarOverscrollBlockStyle
+
+pub let scalarScrollMargin : ScalarScrollMarginStyle
+
+pub let scalarScrollMarginTop : ScalarScrollMarginTopStyle
+
+pub let scalarSvg : ScalarSvgStyle
+
+pub let scalarTransition : ScalarTransitionStyle
+
+pub let scalarTransitionDuration : ScalarTransitionDurationStyle
+
+pub let scalarWidth : ScalarWidthStyle
+
+pub let title : TitleStyle
+
+pub let upstreamContent : UpstreamContentStyle
+
+pub fn upstreamDynamicResource(@values.Url) -> Result[UpstreamDynamicResourceStyle, Array[@runtime.DynamicValueError]]
+
+pub let upstreamResource : UpstreamResourceStyle
+
+// Errors
+
+// Types and methods
+pub struct ActiveStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ActiveStyle::append_button_style(Self, @component_a_generated.ButtonStyleList) -> @component_a_generated.ButtonStyleList
+pub fn ActiveStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ActiveStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @component_a_generated.ButtonStyleInput for ActiveStyle
+pub impl @runtime.StaticStyleInput for ActiveStyle
+pub impl @runtime.StyleInput for ActiveStyle
+
+pub struct AnimatedStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn AnimatedStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn AnimatedStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for AnimatedStyle
+pub impl @runtime.StyleInput for AnimatedStyle
+
+pub struct BadgeRecipeBase0Style {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BadgeRecipeBase0Style::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BadgeRecipeBase0Style::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for BadgeRecipeBase0Style
+pub impl @runtime.StyleInput for BadgeRecipeBase0Style
+
+pub struct BadgeRecipeCompound00Style {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BadgeRecipeCompound00Style::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BadgeRecipeCompound00Style::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for BadgeRecipeCompound00Style
+pub impl @runtime.StyleInput for BadgeRecipeCompound00Style
+
+pub struct BadgeRecipeMutedTrue0Style {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BadgeRecipeMutedTrue0Style::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BadgeRecipeMutedTrue0Style::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for BadgeRecipeMutedTrue0Style
+pub impl @runtime.StyleInput for BadgeRecipeMutedTrue0Style
+
+pub(all) enum BadgeRecipeSize {
+  BadgeRecipeSizeCompact
+  BadgeRecipeSizeRoomy
+} derive(Eq, @debug.Debug)
+pub fn BadgeRecipeSize::equal(Self, Self) -> Bool
+pub fn BadgeRecipeSize::not_equal(Self, Self) -> Bool
+pub fn BadgeRecipeSize::to_repr(Self) -> @debug.Repr
+
+pub struct BadgeRecipeSizeCompact0Style {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BadgeRecipeSizeCompact0Style::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BadgeRecipeSizeCompact0Style::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for BadgeRecipeSizeCompact0Style
+pub impl @runtime.StyleInput for BadgeRecipeSizeCompact0Style
+
+pub struct BadgeRecipeSizeRoomy0Style {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BadgeRecipeSizeRoomy0Style::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BadgeRecipeSizeRoomy0Style::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for BadgeRecipeSizeRoomy0Style
+pub impl @runtime.StyleInput for BadgeRecipeSizeRoomy0Style
+
+pub struct BorderCompositeCornerStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BorderCompositeCornerStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BorderCompositeCornerStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for BorderCompositeCornerStyle
+pub impl @runtime.StyleInput for BorderCompositeCornerStyle
+
+pub struct BorderCompositeLonghandsStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BorderCompositeLonghandsStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BorderCompositeLonghandsStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for BorderCompositeLonghandsStyle
+pub impl @runtime.StyleInput for BorderCompositeLonghandsStyle
+
+pub struct BorderCompositeOutlineStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BorderCompositeOutlineStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BorderCompositeOutlineStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for BorderCompositeOutlineStyle
+pub impl @runtime.StyleInput for BorderCompositeOutlineStyle
+
+pub struct BorderCompositePairsStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BorderCompositePairsStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BorderCompositePairsStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for BorderCompositePairsStyle
+pub impl @runtime.StyleInput for BorderCompositePairsStyle
+
+pub struct BorderCompositeSideStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn BorderCompositeSideStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn BorderCompositeSideStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for BorderCompositeSideStyle
+pub impl @runtime.StyleInput for BorderCompositeSideStyle
+
+pub struct ButtonStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ButtonStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ButtonStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ButtonStyle
+pub impl @runtime.StyleInput for ButtonStyle
+
+pub struct ButtonToneStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ButtonToneStyle::append_button_style(Self, @component_a_generated.ButtonStyleList) -> @component_a_generated.ButtonStyleList
+pub fn ButtonToneStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ButtonToneStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @component_a_generated.ButtonStyleInput for ButtonToneStyle
+pub impl @runtime.StaticStyleInput for ButtonToneStyle
+pub impl @runtime.StyleInput for ButtonToneStyle
+
+pub struct CardStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CardStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CardStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CardStyle
+pub impl @runtime.StyleInput for CardStyle
+
+pub struct ClearBaseStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ClearBaseStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ClearBaseStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ClearBaseStyle
+pub impl @runtime.StyleInput for ClearBaseStyle
+
+pub struct ClearColorStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ClearColorStyle::append_button_style(Self, @component_a_generated.ButtonStyleList) -> @component_a_generated.ButtonStyleList
+pub fn ClearColorStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ClearColorStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @component_a_generated.ButtonStyleInput for ClearColorStyle
+pub impl @runtime.StaticStyleInput for ClearColorStyle
+pub impl @runtime.StyleInput for ClearColorStyle
+
+pub struct ConflictConditionalMarginStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ConflictConditionalMarginStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ConflictConditionalMarginStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ConflictConditionalMarginStyle
+pub impl @runtime.StyleInput for ConflictConditionalMarginStyle
+
+pub struct ConflictGapStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ConflictGapStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ConflictGapStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ConflictGapStyle
+pub impl @runtime.StyleInput for ConflictGapStyle
+
+pub struct ConflictLogicalMarginStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ConflictLogicalMarginStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ConflictLogicalMarginStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ConflictLogicalMarginStyle
+pub impl @runtime.StyleInput for ConflictLogicalMarginStyle
+
+pub struct ConflictMarginStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ConflictMarginStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ConflictMarginStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ConflictMarginStyle
+pub impl @runtime.StyleInput for ConflictMarginStyle
+
+pub struct ConflictMarginTopStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ConflictMarginTopStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ConflictMarginTopStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ConflictMarginTopStyle
+pub impl @runtime.StyleInput for ConflictMarginTopStyle
+
+pub struct ConflictPaddingLeftStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ConflictPaddingLeftStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ConflictPaddingLeftStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ConflictPaddingLeftStyle
+pub impl @runtime.StyleInput for ConflictPaddingLeftStyle
+
+pub struct ConflictPaddingStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ConflictPaddingStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ConflictPaddingStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ConflictPaddingStyle
+pub impl @runtime.StyleInput for ConflictPaddingStyle
+
+pub struct ConflictPhysicalMarginStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ConflictPhysicalMarginStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ConflictPhysicalMarginStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ConflictPhysicalMarginStyle
+pub impl @runtime.StyleInput for ConflictPhysicalMarginStyle
+
+pub struct ConflictRowGapStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ConflictRowGapStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ConflictRowGapStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ConflictRowGapStyle
+pub impl @runtime.StyleInput for ConflictRowGapStyle
+
+pub struct CopyStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CopyStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CopyStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CopyStyle
+pub impl @runtime.StyleInput for CopyStyle
+
+pub struct CoverageAnimationStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageAnimationStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageAnimationStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageAnimationStyle
+pub impl @runtime.StyleInput for CoverageAnimationStyle
+
+pub struct CoverageColorStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageColorStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageColorStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageColorStyle
+pub impl @runtime.StyleInput for CoverageColorStyle
+
+pub struct CoverageContainerStyleStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageContainerStyleStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageContainerStyleStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageContainerStyleStyle
+pub impl @runtime.StyleInput for CoverageContainerStyleStyle
+
+pub struct CoverageCounterStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageCounterStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageCounterStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageCounterStyle
+pub impl @runtime.StyleInput for CoverageCounterStyle
+
+pub struct CoverageEnvStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageEnvStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageEnvStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageEnvStyle
+pub impl @runtime.StyleInput for CoverageEnvStyle
+
+pub struct CoverageImageSetStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageImageSetStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageImageSetStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageImageSetStyle
+pub impl @runtime.StyleInput for CoverageImageSetStyle
+
+pub struct CoverageMaskStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageMaskStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageMaskStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageMaskStyle
+pub impl @runtime.StyleInput for CoverageMaskStyle
+
+pub struct CoverageMotionStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageMotionStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageMotionStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageMotionStyle
+pub impl @runtime.StyleInput for CoverageMotionStyle
+
+pub struct CoveragePageAutoStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoveragePageAutoStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoveragePageAutoStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoveragePageAutoStyle
+pub impl @runtime.StyleInput for CoveragePageAutoStyle
+
+pub struct CoveragePageNamedStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoveragePageNamedStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoveragePageNamedStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoveragePageNamedStyle
+pub impl @runtime.StyleInput for CoveragePageNamedStyle
+
+pub struct CoverageScrollEffectStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageScrollEffectStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageScrollEffectStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageScrollEffectStyle
+pub impl @runtime.StyleInput for CoverageScrollEffectStyle
+
+pub struct CoverageShapeStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageShapeStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageShapeStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageShapeStyle
+pub impl @runtime.StyleInput for CoverageShapeStyle
+
+pub struct CoverageStateStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageStateStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageStateStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageStateStyle
+pub impl @runtime.StyleInput for CoverageStateStyle
+
+pub struct CoverageTimelineStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageTimelineStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageTimelineStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageTimelineStyle
+pub impl @runtime.StyleInput for CoverageTimelineStyle
+
+pub struct CoverageTransformStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn CoverageTransformStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn CoverageTransformStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for CoverageTransformStyle
+pub impl @runtime.StyleInput for CoverageTransformStyle
+
+pub struct ExpressionGridStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ExpressionGridStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ExpressionGridStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ExpressionGridStyle
+pub impl @runtime.StyleInput for ExpressionGridStyle
+
+pub struct ExpressionLimitsStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ExpressionLimitsStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ExpressionLimitsStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ExpressionLimitsStyle
+pub impl @runtime.StyleInput for ExpressionLimitsStyle
+
+pub struct ExpressionPanelStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ExpressionPanelStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ExpressionPanelStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ExpressionPanelStyle
+pub impl @runtime.StyleInput for ExpressionPanelStyle
+
+pub struct ExpressionSubgridStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ExpressionSubgridStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ExpressionSubgridStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ExpressionSubgridStyle
+pub impl @runtime.StyleInput for ExpressionSubgridStyle
+
+pub struct FontWidthDynamicStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn FontWidthDynamicStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn FontWidthDynamicStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for FontWidthDynamicStyle
+pub impl @runtime.StyleInput for FontWidthDynamicStyle
+
+pub struct MarkerChildStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn MarkerChildStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn MarkerChildStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for MarkerChildStyle
+pub impl @runtime.StyleInput for MarkerChildStyle
+
+pub struct MeterStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn MeterStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn MeterStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for MeterStyle
+pub impl @runtime.StyleInput for MeterStyle
+
+pub struct MeterTrackStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn MeterTrackStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn MeterTrackStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for MeterTrackStyle
+pub impl @runtime.StyleInput for MeterTrackStyle
+
+pub struct MultiDynamicStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn MultiDynamicStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn MultiDynamicStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for MultiDynamicStyle
+pub impl @runtime.StyleInput for MultiDynamicStyle
+
+pub struct PageStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn PageStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn PageStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for PageStyle
+pub impl @runtime.StyleInput for PageStyle
+
+pub struct RtlDirectionalStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn RtlDirectionalStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn RtlDirectionalStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for RtlDirectionalStyle
+pub impl @runtime.StyleInput for RtlDirectionalStyle
+
+pub struct ScalarBlockSizeStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarBlockSizeStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarBlockSizeStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarBlockSizeStyle
+pub impl @runtime.StyleInput for ScalarBlockSizeStyle
+
+pub struct ScalarHeightStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarHeightStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarHeightStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarHeightStyle
+pub impl @runtime.StyleInput for ScalarHeightStyle
+
+pub struct ScalarInlineSizeStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarInlineSizeStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarInlineSizeStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarInlineSizeStyle
+pub impl @runtime.StyleInput for ScalarInlineSizeStyle
+
+pub struct ScalarOverscrollBlockStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarOverscrollBlockStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarOverscrollBlockStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarOverscrollBlockStyle
+pub impl @runtime.StyleInput for ScalarOverscrollBlockStyle
+
+pub struct ScalarOverscrollStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarOverscrollStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarOverscrollStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarOverscrollStyle
+pub impl @runtime.StyleInput for ScalarOverscrollStyle
+
+pub struct ScalarScrollMarginStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarScrollMarginStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarScrollMarginStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarScrollMarginStyle
+pub impl @runtime.StyleInput for ScalarScrollMarginStyle
+
+pub struct ScalarScrollMarginTopStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarScrollMarginTopStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarScrollMarginTopStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarScrollMarginTopStyle
+pub impl @runtime.StyleInput for ScalarScrollMarginTopStyle
+
+pub struct ScalarSvgStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarSvgStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarSvgStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarSvgStyle
+pub impl @runtime.StyleInput for ScalarSvgStyle
+
+pub struct ScalarTransitionDurationStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarTransitionDurationStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarTransitionDurationStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarTransitionDurationStyle
+pub impl @runtime.StyleInput for ScalarTransitionDurationStyle
+
+pub struct ScalarTransitionStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarTransitionStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarTransitionStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarTransitionStyle
+pub impl @runtime.StyleInput for ScalarTransitionStyle
+
+pub struct ScalarWidthStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn ScalarWidthStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn ScalarWidthStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for ScalarWidthStyle
+pub impl @runtime.StyleInput for ScalarWidthStyle
+
+pub struct TitleStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn TitleStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn TitleStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for TitleStyle
+pub impl @runtime.StyleInput for TitleStyle
+
+pub struct UpstreamContentStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn UpstreamContentStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn UpstreamContentStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for UpstreamContentStyle
+pub impl @runtime.StyleInput for UpstreamContentStyle
+
+pub struct UpstreamDynamicResourceStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn UpstreamDynamicResourceStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn UpstreamDynamicResourceStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for UpstreamDynamicResourceStyle
+pub impl @runtime.StyleInput for UpstreamDynamicResourceStyle
+
+pub struct UpstreamResourceStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn UpstreamResourceStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn UpstreamResourceStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for UpstreamResourceStyle
+pub impl @runtime.StyleInput for UpstreamResourceStyle
+
+// Type aliases
+
+// Traits

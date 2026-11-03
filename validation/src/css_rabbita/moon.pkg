@@ -1,0 +1,6 @@
+import {
+  "lampclaw/moonstyle-validation/src/css_runtime" @css,
+  "moonbit-community/rabbita/html",
+}
+
+supported_targets = "js"

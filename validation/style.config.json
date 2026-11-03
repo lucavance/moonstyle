@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "mappingsPackage": "lampclaw/moonstyle-validation/src/generated",
+  "outputs": {
+    "css": "src/generated/styles.generated.css",
+    "mappings": "src/generated/styles.generated.mbt",
+    "mappingsManifest": "src/generated/moon.pkg",
+    "bundle": "src/generated/styles.bundle.json"
+  },
+  "dependencyRoots": ["tests/dependency-fixtures"],
+  "cacheDirectory": "_build/style-cache"
+}

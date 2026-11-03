@@ -1,0 +1,18 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-validation/src/css_rabbita"
+
+import {
+  "lampclaw/moonstyle-validation/src/css_runtime",
+  "moonbit-community/rabbita/html",
+}
+
+// Values
+pub fn apply_inline_vars(@html.Attrs, @css_runtime.AppliedStyle) -> @html.Attrs
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

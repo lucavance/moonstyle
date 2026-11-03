@@ -1,0 +1,58 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-validation/src/css_manifest"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn at_rule(String, String) -> ConditionalBranch
+
+pub fn conditional(String, String, Array[ConditionalBranch]) -> Declaration
+
+pub fn decl(String, String) -> Declaration
+
+pub fn dynamic(String, String) -> Declaration
+
+pub fn pseudo(String, String) -> ConditionalBranch
+
+pub fn style_namespace(String, Array[Declaration]) -> Namespace
+
+// Errors
+
+// Types and methods
+pub(all) enum Condition {
+  Pseudo(String)
+  AtRule(String)
+} derive(Eq, @debug.Debug)
+
+pub(all) struct ConditionalBranch {
+  condition : Condition
+  value : String
+} derive(Eq, @debug.Debug)
+
+pub(all) struct Declaration {
+  property : String
+  value : StyleValue
+} derive(Eq, @debug.Debug)
+
+pub(all) struct Namespace {
+  name : String
+  declarations : Array[Declaration]
+} derive(Eq, @debug.Debug)
+
+pub(all) struct StyleSet {
+  export_name : String
+  namespaces : Array[Namespace]
+} derive(Eq, @debug.Debug)
+pub fn StyleSet::to_manifest_json(Self) -> Json
+
+pub(all) enum StyleValue {
+  Static(String)
+  Conditional(String, Array[ConditionalBranch])
+  Dynamic(String)
+} derive(Eq, @debug.Debug)
+
+// Type aliases
+
+// Traits
