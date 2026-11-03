@@ -28,6 +28,8 @@ The private tooling package provides the CLI and Vite integration.
 The `validation/` application demonstrates extraction, generated mappings and Rabbita.
 Run `vp run generate`, `vp dev`, or `vp build` from the repository root.
 
+Differential, rejection, consumer, and browser tests verify the implementation.
+
 Use the exact environment in `toolchain.json`. Run `moon update`, then
 `vp install --frozen-lockfile` and `vp run check-toolchain`.
 Run `vp run moon-test` for the library packages available in this revision.
