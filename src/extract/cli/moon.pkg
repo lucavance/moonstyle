@@ -1,0 +1,16 @@
+import {
+  "lampclaw/moonstyle/core",
+  "lampclaw/moonstyle/extract",
+  "lampclaw/moonstyle/ir",
+  "moonbitlang/core/encoding/utf8",
+  "moonbitlang/core/env",
+  "moonbitlang/x/fs",
+  "moonbitlang/x/sys",
+}
+
+supported_targets = "native"
+
+options(
+  "is-main": false,
+  "native-stub": [ "atomic_write.c" ],
+)

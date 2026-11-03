@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle/extract/cli"
+
+import {
+  "lampclaw/moonstyle/ir",
+}
+
+// Values
+pub fn run(@ir.Registry) -> Unit
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

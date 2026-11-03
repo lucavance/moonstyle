@@ -1,0 +1,145 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle/extract"
+
+import {
+  "lampclaw/moonstyle/core",
+  "lampclaw/moonstyle/ir",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn cache_eligible(CompiledBundle) -> Bool
+
+pub fn compile_registry(@ir.Registry, mappings_package? : String, dependencies? : Array[DependencyBundle]) -> CompiledBundle
+
+pub fn content_digest(String) -> String
+
+pub fn decode_bundle(String) -> Result[DependencyBundle, Array[@core.Diagnostic]]
+
+pub fn decode_cache_entry(CompiledBundle, String) -> CachedOutputs?
+
+pub fn decode_cache_lookup(String, String) -> CachedOutputs?
+
+pub fn extraction_cache_key(CompiledBundle) -> String
+
+pub fn merge_bundles(CompiledBundle, Array[DependencyBundle]) -> Result[CompiledBundle, Array[@core.Diagnostic]]
+
+pub fn migrate_v2(String) -> Result[String, Array[@core.Diagnostic]]
+
+pub fn migrate_v3_to_v4(String, Array[String]) -> Result[String, Array[@core.Diagnostic]]
+
+pub fn migrate_v4_to_v5(String, Array[DependencyBundle]) -> Result[String, Array[@core.Diagnostic]]
+
+pub fn migrate_v5_to_v6(String, String, Array[DependencyBundle]) -> Result[String, Array[@core.Diagnostic]]
+
+pub fn migrate_v6_to_v7(String, Array[DependencyBundle]) -> Result[String, Array[@core.Diagnostic]]
+
+pub fn migrate_v7_to_v8(String, Array[DependencyBundle]) -> Result[String, Array[@core.Diagnostic]]
+
+pub fn render_cache_metadata(CompiledBundle) -> String
+
+pub fn render_cache_pack(CompiledBundle) -> String
+
+pub fn render_debug_manifest(@ir.Registry, CompiledBundle) -> Result[String, Array[@core.Diagnostic]]
+
+pub fn render_diagnostics_json(Array[@core.Diagnostic]) -> String
+
+pub fn render_diagnostics_text(Array[@core.Diagnostic]) -> String
+
+pub fn validate_bundle(DependencyBundle) -> Array[@core.Diagnostic]
+
+pub fn validate_cache_entry(CompiledBundle, String, String, String, String, String) -> Bool
+
+pub fn validate_cache_lookup(String, String, String, String, String, String) -> Bool
+
+pub fn validate_debug_manifest(String, String, String) -> Bool
+
+pub fn validate_debug_manifest_outputs(String, String, String) -> Bool
+
+// Errors
+
+// Types and methods
+type BundleContract derive(Eq, @debug.Debug)
+pub fn BundleContract::equal(Self, Self) -> Bool
+pub fn BundleContract::not_equal(Self, Self) -> Bool
+pub fn BundleContract::to_repr(Self) -> @debug.Repr
+
+type BundleContractV6 derive(Eq, @debug.Debug)
+pub fn BundleContractV6::equal(Self, Self) -> Bool
+pub fn BundleContractV6::not_equal(Self, Self) -> Bool
+pub fn BundleContractV6::to_repr(Self) -> @debug.Repr
+
+type BundleDependency derive(Eq, @debug.Debug)
+pub fn BundleDependency::equal(Self, Self) -> Bool
+pub fn BundleDependency::not_equal(Self, Self) -> Bool
+pub fn BundleDependency::to_repr(Self) -> @debug.Repr
+
+type BundleGlobal derive(Eq, @debug.Debug)
+pub fn BundleGlobal::equal(Self, Self) -> Bool
+pub fn BundleGlobal::not_equal(Self, Self) -> Bool
+pub fn BundleGlobal::to_repr(Self) -> @debug.Repr
+
+type BundleMarker derive(Eq, @debug.Debug)
+pub fn BundleMarker::equal(Self, Self) -> Bool
+pub fn BundleMarker::not_equal(Self, Self) -> Bool
+pub fn BundleMarker::to_repr(Self) -> @debug.Repr
+
+type BundleNamespace derive(Eq, @debug.Debug)
+pub fn BundleNamespace::equal(Self, Self) -> Bool
+pub fn BundleNamespace::not_equal(Self, Self) -> Bool
+pub fn BundleNamespace::to_repr(Self) -> @debug.Repr
+
+type BundleRecipe derive(Eq, @debug.Debug)
+pub fn BundleRecipe::equal(Self, Self) -> Bool
+pub fn BundleRecipe::not_equal(Self, Self) -> Bool
+pub fn BundleRecipe::to_repr(Self) -> @debug.Repr
+
+type BundleRule derive(Eq, @debug.Debug)
+pub fn BundleRule::equal(Self, Self) -> Bool
+pub fn BundleRule::not_equal(Self, Self) -> Bool
+pub fn BundleRule::to_repr(Self) -> @debug.Repr
+
+type BundleViewTransitionClass derive(Eq, @debug.Debug)
+pub fn BundleViewTransitionClass::equal(Self, Self) -> Bool
+pub fn BundleViewTransitionClass::not_equal(Self, Self) -> Bool
+pub fn BundleViewTransitionClass::to_repr(Self) -> @debug.Repr
+
+pub struct CachedOutputs {
+  css : String
+  mappings : String
+  mappings_manifest : String
+  manifest : String
+}
+
+pub(all) struct CompiledBundle {
+  schema_version : Int32
+  module_name : String
+  semantic_digest : String
+  css : String
+  mappings : String
+  mappings_manifest : String
+  manifest : String
+  diagnostics : Array[@core.Diagnostic]
+} derive(Eq, @debug.Debug)
+pub fn CompiledBundle::equal(Self, Self) -> Bool
+pub fn CompiledBundle::not_equal(Self, Self) -> Bool
+pub fn CompiledBundle::to_repr(Self) -> @debug.Repr
+
+pub struct DependencyBundle {
+  module_name : String
+  mappings_package : String
+  semantic_digest : String
+  direct_dependencies : Array[BundleDependency]
+  dependency_closure : Array[BundleDependency]
+  contracts : Array[BundleContract]
+  namespaces : Array[BundleNamespace]
+  rules : Array[BundleRule]
+  globals : Array[BundleGlobal]
+  recipes : Array[BundleRecipe]
+  markers : Array[BundleMarker]
+  view_transition_classes : Array[BundleViewTransitionClass]
+}
+
+// Type aliases
+
+// Traits
