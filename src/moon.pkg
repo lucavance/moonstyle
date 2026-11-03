@@ -1,1 +1,17 @@
-// Public authoring facade.
+import {
+  "lampclaw/moonstyle/builder",
+  "lampclaw/moonstyle/ir",
+  "lampclaw/moonstyle/properties",
+  "lampclaw/moonstyle/runtime",
+  "lampclaw/moonstyle/values",
+}
+
+import {
+  "lampclaw/moonstyle/core",
+  "lampclaw/moonstyle/values",
+} for "wbtest"
+
+import {
+  "lampclaw/moonstyle/extract",
+  "moonbitlang/core/json",
+} for "test"

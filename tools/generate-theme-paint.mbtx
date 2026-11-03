@@ -1,0 +1,135 @@
+----
+import {
+  "moonbitlang/async@0.22.5",
+  "moonbitlang/async@0.22.5/fs",
+  "moonbitlang/core/json",
+}
+----
+
+///|
+// Specialize the reviewed theme/paint profile after the shared property/input
+// generators. Composite contracts authorize expression identities, never a
+// flattened var() string. Low-level declarations retain the same expressions.
+async fn main {
+  let builder_path = "src/builder/rules.generated.mbt"
+  let blocks = @fs.read_file(builder_path)
+    .text()
+    .split("///|")
+    .map(part => part.to_owned())
+    .to_array()
+  let output = StringBuilder()
+  for index, original in blocks {
+    if original.contains("Frame::color_scheme") {
+      continue
+    }
+    let mut block = original
+    if block.contains("StyleContract::allow_scrollbar_color(") {
+      block = (
+        #|
+        #|pub fn StyleContract::allow_scrollbar_color(
+        #|  self : StyleContract,
+        #|  expressions? : Array[@values.ScrollbarColor] = [],
+        #|  keywords? : Array[@values.CssWideKeyword] = [],
+        #|) -> StyleContract {
+        #|  self.allow_property("scrollbarColor",
+        #|    expressions=expressions.map(value => value.expression().identity()),
+        #|    values=keywords.map(value => value.to_css()))
+        #|}
+        #|
+      )
+    }
+    for property in ["fill", "stroke"] {
+      if block.contains("StyleContract::allow_" + property + "(") {
+        block = (
+          $|
+          $|pub fn StyleContract::allow_\{property}(
+          $|  self : StyleContract,
+          $|  values? : Array[@values.Color] = [],
+          $|  tokens? : Array[@values.ColorToken] = [],
+          $|  slots? : Array[@values.ColorSlot] = [],
+          $|  expressions? : Array[@values.SvgPaint] = [],
+          $|  keywords? : Array[@values.CssWideKeyword] = [],
+          $|) -> StyleContract {
+          $|  self.allow_property("\{property}",
+          $|    values=values.map(value => value.to_css()) + keywords.map(value => value.to_css()),
+          $|    tokens=tokens.map(value => contract_token(value)),
+          $|    slots=slots.map(value => contract_slot(value)),
+          $|    expressions=expressions.map(value => value.expression().identity()))
+          $|}
+          $|
+        )
+      }
+    }
+    if block.contains("Rule::color_scheme(") {
+      block = block.replace_all(
+        old="source, \"\", true)",
+        new="source, \"\", false)",
+      )
+    }
+    if index > 0 {
+      output.write_string("///|")
+    }
+    output.write_string(block)
+  }
+  @fs.write_file(builder_path, output.to_string())
+  let property_path = "src/properties/properties.mbt"
+  let mut source = @fs.read_file(property_path).text()
+  for property in ["colorScheme", "scrollbarColor", "fill", "stroke"] {
+    source = source
+      .replace_all(
+        old="declaration(\"" + property + "\", value.to_css(), conditions)",
+        new="theme_paint_declaration(\"" +
+          property +
+          "\", value.expression(), conditions)",
+      )
+      .replace_all(
+        old="fallback_declaration(\"" +
+          property +
+          "\", values.map(value => value.to_css()), conditions)",
+        new="theme_paint_fallback_declaration(\"" +
+          property +
+          "\", values.map(value => value.expression()), conditions)",
+      )
+  }
+  @fs.write_file(property_path, source)
+  for filename in ["property-metadata.json", "property-coverage.json"] {
+    let path = "src/properties/" + filename
+    let document = @json.parse(@fs.read_file(path).text())
+    guard document is { "properties": Array(properties), .. } else {
+      fail("Missing property metadata")
+    }
+    for property in properties {
+      guard property is Object(fields) &&
+        fields.get("cssName") is Some(String(name)) else {
+        continue
+      }
+      if !["color-scheme", "scrollbar-color", "fill", "stroke"].contains(name) {
+        continue
+      }
+      if filename == "property-metadata.json" {
+        fields["authoredValueProfile"] = "theme-paint-v1"
+        fields["authoredValueType"] = Json(
+          match name {
+            "color-scheme" => "ColorScheme"
+            "scrollbar-color" => "ScrollbarColor"
+            _ => "SvgPaint"
+          },
+        )
+        fields["excludedSyntax"] = match name {
+          "color-scheme" => ["<custom-ident>"]
+          "scrollbar-color" => []
+          _ =>
+            [
+              "url() paint servers and fallback paints", "context-fill", "context-stroke",
+            ]
+        }
+        fields["keyframeAllowed"] = Json(name != "color-scheme")
+        fields["grammarReason"] = "reviewed-adapter:theme-paint-v1"
+      } else {
+        fields["reason"] = "reviewed-adapter:theme-paint-v1"
+      }
+      fields["grammarTier"] = "tier-b"
+    }
+    @fs.write_file(path, document.stringify(indent=2) + "\n")
+  }
+}

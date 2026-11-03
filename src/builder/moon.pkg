@@ -1,0 +1,10 @@
+import {
+  "moonbitlang/core/debug",
+  "lampclaw/moonstyle/ir",
+  "lampclaw/moonstyle/properties",
+  "lampclaw/moonstyle/runtime",
+  "lampclaw/moonstyle/values",
+  "moonbitlang/core/json",
+}
+
+formatter(ignore: [ "rules.generated.mbt" ])

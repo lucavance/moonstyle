@@ -1,0 +1,1788 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle"
+
+import {
+  "lampclaw/moonstyle/builder",
+  "lampclaw/moonstyle/ir",
+  "lampclaw/moonstyle/properties",
+  "lampclaw/moonstyle/runtime",
+  "lampclaw/moonstyle/values",
+}
+
+// Values
+pub let active : @builder.When
+
+pub let after : @builder.When
+
+pub let always : @builder.When
+
+pub fn anchor_name(String) -> @values.AnchorName
+
+pub fn anchor_names(Array[@values.AnchorName]) -> @values.AnchorNames
+
+pub fn angle_slot(String, String, @values.Angle) -> @values.DynamicSlot[@values.Angle]
+
+pub fn angle_token(String, String, @values.Angle) -> @values.Token[@values.Angle]
+
+pub fn animation_iterations(Array[@values.Number?]) -> @values.AnimationIterations
+
+pub fn animation_names(Array[@builder.AnimationName?]) -> @builder.AnimationNames
+
+pub fn animation_timelines(Array[@values.AnimationTimeline]) -> @values.AnimationTimelines
+
+pub fn attribute(String, operator? : @ir.AttributeOperator, value? : String, case_mode? : @ir.AttributeCase) -> @builder.When
+
+pub fn attribute_state(String, operator? : @ir.AttributeOperator, value? : String, case_mode? : @ir.AttributeCase) -> @ir.SelectorState
+
+pub fn auto() -> @values.Length
+
+pub fn auto_fill(@values.GridTrackList) -> @values.GridTrack
+
+pub fn auto_fit(@values.GridTrackList) -> @values.GridTrack
+
+pub fn background_contain() -> @values.BackgroundSize
+
+pub fn background_cover() -> @values.BackgroundSize
+
+pub fn background_images(Array[@values.Image]) -> @values.Image
+
+pub fn[I : @values.ImageInput] background_layer(I, position? : @values.GradientPosition, size? : @values.LayerSize, repeat? : @values.RepeatStyle, attachment? : @values.LayerAttachment, origin? : @values.LayerBox, clip? : @values.LayerBox) -> @values.BackgroundLayer
+
+pub fn background_layers(Array[@values.BackgroundLayer]) -> @values.BackgroundLayers
+
+pub fn background_size(@values.LengthPercentage, @values.LengthPercentage) -> @values.BackgroundSize
+
+pub fn background_sizes(Array[@values.BackgroundSize]) -> @values.BackgroundSizeList
+
+pub fn basis_content() -> @values.FlexBasis
+
+pub let before : @builder.When
+
+pub fn[T : @values.LengthMathInput] blur_filter(T) -> @values.FilterFunction
+
+pub fn boolean_variant_is(String, Bool) -> @builder.VariantSelection
+
+pub fn border_colors(@values.Color, second? : @values.Color?) -> @values.BorderColors
+
+pub fn border_radii(Array[@values.MathExpr[@values.LengthPercentage]], vertical? : Array[@values.MathExpr[@values.LengthPercentage]]) -> @values.BorderRadii
+
+pub fn border_side(width? : @values.LineWidth?, style? : @values.LineStyle?, color? : @values.Color?) -> @values.BorderSide
+
+pub fn border_styles(@values.LineStyle, second? : @values.LineStyle?) -> @values.BorderStyles
+
+pub fn border_widths(@values.LineWidth, second? : @values.LineWidth?) -> @values.BorderWidths
+
+pub fn box_shadows(Array[@values.Shadow]) -> @values.BoxShadowList
+
+pub fn[T : @values.BoxSizeValueInput] box_size(T) -> @values.BoxSize
+
+pub fn box_size_keyword(@values.BoxSizeKeyword) -> @values.BoxSize
+
+pub fn[T : @values.FilterAmountInput] brightness_filter(T) -> @values.FilterFunction
+
+pub fn ch(Double) -> @values.Length
+
+pub let checked : @builder.When
+
+pub fn checked_when(Result[@runtime.CompiledStyle, Array[@runtime.DynamicValueError]], Bool) -> Result[@runtime.CompiledStyle, Array[@runtime.DynamicValueError]]
+
+pub fn[R : @values.LengthPercentageMathInput] circle_shape(R, center? : @values.GradientPosition) -> @values.BasicShape
+
+pub fn clip_path_circle(@values.LengthPercentage, center? : @values.Position?) -> @values.ClipPath
+
+pub fn clip_path_url(@values.Url) -> @values.ClipPath
+
+pub fn[C : @values.GradientColorInput] color_expression(C) -> @values.ColorExpr
+
+pub fn color_interpolation(@values.ColorSpace, hue? : @values.HueInterpolation) -> @values.ColorInterpolation
+
+pub fn[A : @values.GradientColorInput, B : @values.GradientColorInput] color_mix(@values.ColorSpace, A, B, first_weight? : @values.Percentage, second_weight? : @values.Percentage, hue? : @values.HueInterpolation) -> @values.ColorExpr
+
+pub fn color_scheme(Array[@values.ColorSchemeName], only? : Bool) -> @values.ColorScheme
+
+pub fn color_slot(String, String, @values.Color) -> @values.DynamicSlot[@values.Color]
+
+pub fn color_space(@values.ColorSpace, Double, Double, Double, alpha? : Double) -> @values.Color
+
+pub fn[C : @values.GradientColorInput] color_stop(C, position? : @values.MathExpr[@values.LengthPercentage]?, end? : @values.MathExpr[@values.LengthPercentage]?) -> @values.GradientStop[@values.LengthPercentage]
+
+pub fn color_token(String, String, @values.Color) -> @values.Token[@values.Color]
+
+pub fn[T : @runtime.StyleInput] compose(T) -> @runtime.StyleList
+
+pub fn[A : @values.AngleMathInput] conic_angle(A) -> @values.ConicPosition
+
+pub fn conic_gradient(Array[@values.GradientStop[@values.ConicPosition]], angle? : @values.MathExpr[@values.Angle]?, center? : @values.GradientPosition, repeating? : Bool, interpolation? : @values.ColorInterpolation) -> @values.Image
+
+pub fn conic_hint(@values.ConicPosition) -> @values.GradientStop[@values.ConicPosition]
+
+pub fn[P : @values.PercentageMathInput] conic_percentage(P) -> @values.ConicPosition
+
+pub fn[C : @values.GradientColorInput] conic_stop(C, position? : @values.ConicPosition?, end? : @values.ConicPosition?) -> @values.GradientStop[@values.ConicPosition]
+
+pub fn contain(Array[@values.ContainPart]) -> @values.Contain
+
+pub fn contain_none() -> @values.Contain
+
+pub fn contain_strict() -> @values.Contain
+
+pub fn container_feature(@builder.ContainerAxis, @builder.ContainerOperator, @values.Length) -> @builder.ContainerFeature
+
+pub fn container_max_width(@values.Length, name? : @builder.ContainerName?) -> @builder.When
+
+pub fn container_min_width(@values.Length, name? : @builder.ContainerName?) -> @builder.When
+
+pub fn container_name(String) -> @builder.ContainerName
+
+pub fn container_names(Array[String]) -> @values.ContainerNames
+
+pub fn container_query(Array[@builder.ContainerFeature], name? : @builder.ContainerName?) -> @builder.When
+
+pub fn container_style_all(Array[@builder.ContainerStyleQuery]) -> @builder.ContainerStyleQuery
+
+pub fn container_style_any(Array[@builder.ContainerStyleQuery]) -> @builder.ContainerStyleQuery
+
+pub fn[T : @values.CssValue] container_style_equals(@values.Token[T], T) -> @builder.ContainerStyleQuery
+
+pub fn container_style_not(@builder.ContainerStyleQuery) -> @builder.ContainerStyleQuery
+
+pub fn container_style_query(@builder.ContainerStyleQuery) -> @builder.When
+
+pub fn[T : @values.CssValue] container_style_slot_equals(@values.DynamicSlot[T], T) -> @builder.ContainerStyleQuery
+
+pub fn container_width_between(@values.Length, @values.Length, name? : @builder.ContainerName?) -> @builder.When
+
+pub fn content_none() -> @values.ContentValue
+
+pub fn content_sequence(Array[@values.ContentValue]) -> @values.ContentValue
+
+pub fn content_text(String) -> @values.ContentValue
+
+pub fn[T : @values.FilterAmountInput] contrast_filter(T) -> @values.FilterFunction
+
+pub fn[T : @values.BoxSizeValueInput] corner_radius(T, vertical? : @values.LengthPercentage?) -> @values.CornerRadius
+
+pub fn counter_change(@values.CounterName, Int32) -> @values.CounterChange
+
+pub fn counter_changes(Array[@values.CounterChange]) -> @values.CounterChanges
+
+pub fn counter_content(@values.CounterName, style? : @values.CounterStyle) -> @values.ContentValue
+
+pub fn counter_name(String) -> @values.CounterName
+
+pub fn counters_content(@values.CounterName, String, style? : @values.CounterStyle) -> @values.ContentValue
+
+pub fn counters_none() -> @values.CounterChanges
+
+pub fn[T] css_clamp(@values.MathExpr[T], @values.MathExpr[T], @values.MathExpr[T]) -> @values.MathExpr[T]
+
+pub fn[T] css_max(Array[@values.MathExpr[T]]) -> @values.MathExpr[T]
+
+pub fn[T] css_min(Array[@values.MathExpr[T]]) -> @values.MathExpr[T]
+
+pub fn cubic_bezier(Double, Double, Double, Double) -> @values.EasingFunction
+
+pub fn define_marker(String) -> @builder.MarkerDefinition
+
+pub fn define_view_transition_class(String) -> @builder.ViewTransitionClassDefinition
+
+pub fn deg(Double) -> @values.Angle
+
+pub fn dependency_ref(String, String) -> @ir.DependencyRef
+
+pub let disabled : @builder.When
+
+pub fn dpi(Double) -> @values.Resolution
+
+pub fn dppx(Double) -> @values.Resolution
+
+pub fn dvh(Double) -> @values.Length
+
+pub fn ease() -> @values.EasingFunction
+
+pub fn[X : @values.LengthPercentageMathInput, Y : @values.LengthPercentageMathInput] ellipse_shape(X, Y, center? : @values.GradientPosition) -> @values.BasicShape
+
+pub fn em(Double) -> @values.Length
+
+pub let empty : @builder.When
+
+pub let enabled : @builder.When
+
+pub fn env_length(@values.EnvironmentLength, fallback? : @values.MathExpr[@values.Length]) -> @values.MathExpr[@values.Length]
+
+pub fn[T] expect_dynamic(Result[T, Array[@runtime.DynamicValueError]]) -> T
+
+pub fn filters(Array[@values.FilterFunction]) -> @values.FilterList
+
+pub let first_child : @builder.When
+
+pub let first_letter : @builder.When
+
+pub let first_line : @builder.When
+
+pub fn[T : @values.LengthPercentageMathInput] fit_content(T) -> @values.GridTrack
+
+pub fn[T : @values.BoxSizeValueInput] fit_content_size(T) -> @values.BoxSize
+
+pub fn[T : @values.FlexBasisValueInput] flex_basis_value(T) -> @values.FlexBasis
+
+pub let focus : @builder.When
+
+pub let focus_visible : @builder.When
+
+pub let focus_within : @builder.When
+
+pub fn font_size_keyword(@values.FontSizeKeyword) -> @values.FontSize
+
+pub fn[T : @values.FontSizeValueInput] font_size_value(T) -> @values.FontSize
+
+pub fn font_variant_numeric(Array[@values.FontVariantNumericPart]) -> @values.FontVariantNumeric
+
+pub fn font_variant_numeric_normal() -> @values.FontVariantNumeric
+
+pub fn fr(Double) -> @values.GridTrack
+
+pub fn frame(@ir.KeyframeStep) -> @builder.Frame
+
+pub fn geometry_box(@values.GeometryBox) -> @values.BasicShape
+
+pub fn[A : @values.AngleMathInput] gradient_angle(A) -> @values.GradientDirection
+
+pub fn gradient_center() -> @values.GradientPosition
+
+pub fn[P : @values.LengthPercentageMathInput] gradient_hint(P) -> @values.GradientStop[@values.LengthPercentage]
+
+pub fn[X : @values.LengthPercentageMathInput, Y : @values.LengthPercentageMathInput] gradient_position(X, Y) -> @values.GradientPosition
+
+pub fn gradient_to(@values.GradientSide) -> @values.GradientDirection
+
+pub fn[T : @values.FilterAmountInput] grayscale_filter(T) -> @values.FilterFunction
+
+pub fn grid_auto() -> @values.GridLine
+
+pub fn grid_line(Int32) -> @values.GridLine
+
+pub fn grid_span(Int32) -> @values.GridLine
+
+pub fn grid_template_areas(Array[Array[String]]) -> @values.GridTemplateAreas
+
+pub fn grid_tracks(Array[@values.GridTrack]) -> @values.GridTrackList
+
+pub fn hex_color(String) -> @values.Color
+
+pub let hover : @builder.When
+
+pub fn hsl(Double, Double, Double) -> @values.Color
+
+pub fn[T : @values.AngleMathInput] hue_rotate_filter(T) -> @values.FilterFunction
+
+pub fn hwb(@values.Angle, @values.Percentage, @values.Percentage, alpha? : Double) -> @values.Color
+
+pub fn[I : @values.ImageInput] image(I) -> @values.Image
+
+pub fn[I : @values.ImageInput] image_candidate(I, resolution? : @values.Resolution, mime? : String) -> @values.ImageCandidate
+
+pub fn image_none() -> @values.Image
+
+pub fn image_set(Array[@values.ImageCandidate]) -> @values.Image
+
+pub fn inset_shape(Array[@values.MathExpr[@values.LengthPercentage]], radius? : @values.MathExpr[@values.LengthPercentage]) -> @values.BasicShape
+
+pub fn integer(Int32) -> @values.Integer
+
+pub fn integer_slot(String, String, @values.Integer) -> @values.DynamicSlot[@values.Integer]
+
+pub fn integer_token(String, String, @values.Integer) -> @values.Token[@values.Integer]
+
+pub fn is_state(Array[@ir.SelectorState]) -> @builder.When
+
+pub fn keyframes(String, Array[@builder.Frame]) -> @builder.AnimationName
+
+pub fn lab(Double, Double, Double, alpha? : Double) -> @values.Color
+
+pub let last_child : @builder.When
+
+pub fn layer(String) -> @builder.When
+
+pub fn[X : @values.LengthPercentageMathInput, Y : @values.LengthPercentageMathInput] layer_dimensions(X, Y) -> @values.LayerSize
+
+pub fn layer_size(@values.BackgroundSize) -> @values.LayerSize
+
+pub fn lch(Double, Double, @values.Angle, alpha? : Double) -> @values.Color
+
+pub fn length(Double, @values.LengthUnit) -> @values.Length
+
+pub fn length_percentage_from_length(@values.Length) -> @values.LengthPercentage
+
+pub fn length_percentage_from_percentage(@values.Percentage) -> @values.LengthPercentage
+
+pub fn length_percentage_slot(String, String, @values.LengthPercentage) -> @values.DynamicSlot[@values.LengthPercentage]
+
+pub fn length_percentage_token(String, String, @values.LengthPercentage) -> @values.Token[@values.LengthPercentage]
+
+pub fn length_slot(String, String, @values.Length) -> @values.DynamicSlot[@values.Length]
+
+pub fn length_token(String, String, @values.Length) -> @values.Token[@values.Length]
+
+pub fn line_height_normal() -> @values.LineHeight
+
+pub fn[T : @values.LineHeightValueInput] line_height_value(T) -> @values.LineHeight
+
+pub fn line_width_from_length(@values.Length) -> @values.LineWidth
+
+pub fn line_width_keyword(@values.LineWidthKeyword) -> @values.LineWidth
+
+pub fn linear_easing() -> @values.EasingFunction
+
+pub fn linear_gradient(Array[@values.GradientStop[@values.LengthPercentage]], direction? : @values.GradientDirection, repeating? : Bool, interpolation? : @values.ColorInterpolation) -> @values.Image
+
+pub let link : @builder.When
+
+pub fn lvh(Double) -> @values.Length
+
+pub let marker : @builder.When
+
+pub fn[T : @builder.MarkerInput] marker_ancestor(T) -> @builder.When
+
+pub fn[T : @builder.MarkerInput] marker_any_sibling(T) -> @builder.When
+
+pub fn[T : @builder.MarkerInput] marker_descendant(T) -> @builder.When
+
+pub fn[T : @builder.MarkerInput] marker_sibling_after(T) -> @builder.When
+
+pub fn[T : @builder.MarkerInput] marker_sibling_before(T) -> @builder.When
+
+pub fn mask_image_url(@values.Url) -> @values.MaskImage
+
+pub fn mask_images(Array[@values.MaskImage]) -> @values.MaskImageList
+
+pub fn[I : @values.ImageInput] mask_layer(I, position? : @values.GradientPosition, size? : @values.LayerSize, repeat? : @values.RepeatStyle, origin? : @values.MaskBox, clip? : @values.MaskClip, mode? : @values.MaskMode, composite? : @values.MaskComposite) -> @values.MaskLayer
+
+pub fn mask_layers(Array[@values.MaskLayer]) -> @values.MaskLayers
+
+pub fn[T : @values.AngleMathInput] math_angle(T) -> @values.MathExpr[@values.Angle]
+
+pub fn[T : @values.LengthMathInput] math_length(T) -> @values.MathExpr[@values.Length]
+
+pub fn[T : @values.LengthPercentageMathInput] math_length_percentage(T) -> @values.MathExpr[@values.LengthPercentage]
+
+pub fn[T : @values.NumberMathInput] math_number(T) -> @values.MathExpr[@values.Number]
+
+pub fn[T : @values.PercentageMathInput] math_percentage(T) -> @values.MathExpr[@values.Percentage]
+
+pub fn[T : @values.ResolutionMathInput] math_resolution(T) -> @values.MathExpr[@values.Resolution]
+
+pub fn[T : @values.TimeMathInput] math_time(T) -> @values.MathExpr[@values.Time]
+
+pub fn matrix(Array[@values.Number]) -> @values.TransformFunction
+
+pub fn matrix3d(Array[@values.Number]) -> @values.TransformFunction
+
+pub fn max_width(@values.Length) -> @builder.When
+
+pub fn media(@ir.MediaQuery) -> @builder.When
+
+pub fn media_feature(String, @ir.MediaFeatureOperator, String) -> @ir.MediaFeature
+
+pub fn media_query(Array[@ir.MediaFeature], negated? : Bool, media_type? : @ir.MediaType?) -> @ir.MediaQuery
+
+pub fn min_width(@values.Length) -> @builder.When
+
+pub fn minmax(@values.GridTrack, @values.GridTrack) -> @values.GridTrack
+
+pub fn motion_none() -> @values.MotionPath
+
+pub fn motion_path(@values.PathData) -> @values.MotionPath
+
+pub fn motion_shape(@values.BasicShape) -> @values.MotionPath
+
+pub fn motion_url(@values.Url) -> @values.MotionPath
+
+pub fn ms(Int32) -> @values.Time
+
+pub fn named_color(String) -> @values.Color
+
+pub fn named_grid_line(String) -> @values.GridLine
+
+pub fn named_lines(Array[String]) -> @values.GridTrack
+
+pub fn named_timeline(@values.TimelineName) -> @values.AnimationTimeline
+
+pub let none : @runtime.CompiledStyle
+
+pub fn normal_color_scheme() -> @values.ColorScheme
+
+pub fn not_state(Array[@ir.SelectorState]) -> @builder.When
+
+pub fn number(Double) -> @values.Number
+
+pub fn number_slot(String, String, @values.Number) -> @values.DynamicSlot[@values.Number]
+
+pub fn number_token(String, String, @values.Number) -> @values.Token[@values.Number]
+
+pub fn offset_anchor(@values.GradientPosition) -> @values.OffsetAnchor
+
+pub fn offset_anchor_auto() -> @values.OffsetAnchor
+
+pub fn offset_position(@values.GradientPosition) -> @values.OffsetPosition
+
+pub fn offset_position_auto() -> @values.OffsetPosition
+
+pub fn offset_position_normal() -> @values.OffsetPosition
+
+pub fn[A : @values.AngleMathInput] offset_rotation(A, automatic? : Bool, reverse? : Bool) -> @values.OffsetRotate
+
+pub fn oklab(Double, Double, Double, alpha? : Double) -> @values.Color
+
+pub fn oklch(Double, Double, @values.Angle, alpha? : Double) -> @values.Color
+
+pub let only_child : @builder.When
+
+pub let optional : @builder.When
+
+pub fn orientation(@builder.ViewportOrientation) -> @builder.When
+
+pub fn outline(width? : @values.LineWidth?, style? : @values.OutlineStyle?, color? : @values.OutlineColor?) -> @values.Outline
+
+pub fn outline_auto_color() -> @values.OutlineColor
+
+pub fn outline_color_from_color(@values.Color) -> @values.OutlineColor
+
+pub fn page_auto() -> @values.PageValue
+
+pub fn page_name(String) -> @values.PageValue
+
+pub fn[C : @values.GradientColorInput] paint(C) -> @values.SvgPaint
+
+pub fn paint_none() -> @values.SvgPaint
+
+pub fn path_data(String) -> @values.PathData
+
+pub fn path_shape(@values.PathData, fill? : @values.FillRule) -> @values.BasicShape
+
+pub fn percent(Int32) -> @values.Length
+
+pub fn percentage(Double) -> @values.Percentage
+
+pub fn percentage_as_length(@values.MathExpr[@values.Percentage]) -> @values.MathExpr[@values.LengthPercentage]
+
+pub fn percentage_slot(String, String, @values.Percentage) -> @values.DynamicSlot[@values.Percentage]
+
+pub fn percentage_token(String, String, @values.Percentage) -> @values.Token[@values.Percentage]
+
+pub fn[T : @values.LengthMathInput] perspective_transform(T) -> @values.TransformFunction
+
+pub let placeholder : @builder.When
+
+pub let placeholder_shown : @builder.When
+
+pub fn polygon_shape(Array[@values.GradientPosition], fill? : @values.FillRule) -> @values.BasicShape
+
+pub fn position(@values.LengthPercentage, @values.LengthPercentage) -> @values.Position
+
+pub fn position_anchor(@values.AnchorName) -> @values.PositionAnchor
+
+pub fn position_area(@values.PositionAreaHorizontal, @values.PositionAreaVertical) -> @values.PositionArea
+
+pub fn position_center() -> @values.Position
+
+pub fn position_try_area(@values.PositionArea) -> @values.PositionTryFallback
+
+pub fn position_try_fallbacks(Array[@values.PositionTryFallback]) -> @values.PositionTryFallbacks
+
+pub fn position_try_named(String) -> @values.PositionTryFallback
+
+pub fn position_try_rule(String) -> @builder.PositionTryRule
+
+pub fn position_try_tactic(@values.PositionTryTactic) -> @values.PositionTryFallback
+
+pub fn position_try_value(@values.PositionTryFallbacks, order? : @values.PositionTryOrder?) -> @values.PositionTryValue
+
+pub fn positions(Array[@values.Position]) -> @values.PositionList
+
+pub fn prefers_color_scheme(@builder.PreferredColorScheme) -> @builder.When
+
+pub fn prefers_reduced_motion(@builder.MotionPreference) -> @builder.When
+
+pub fn[T : @runtime.StaticStyleInput] props(Array[T]) -> @runtime.AppliedStyle
+
+pub fn props_checked(Array[Result[@runtime.CompiledStyle, Array[@runtime.DynamicValueError]]], base_styles? : Array[@runtime.CompiledStyle]) -> Result[@runtime.AppliedStyle, Array[@runtime.DynamicValueError]]
+
+pub fn pseudo(@ir.PseudoClass) -> @builder.When
+
+pub fn pseudo_element(@ir.PseudoElement) -> @builder.When
+
+pub fn pseudo_state(@ir.PseudoClass) -> @ir.SelectorState
+
+pub fn px(Int32) -> @values.Length
+
+pub fn radial_extent(@values.RadialExtent) -> @values.RadialSize
+
+pub fn radial_gradient(Array[@values.GradientStop[@values.LengthPercentage]], shape? : @values.RadialShape, size? : @values.RadialSize, center? : @values.GradientPosition, repeating? : Bool, interpolation? : @values.ColorInterpolation) -> @values.Image
+
+pub fn[X : @values.LengthPercentageMathInput, Y : @values.LengthPercentageMathInput] radial_radii(X, Y) -> @values.RadialSize
+
+pub fn[L : @values.LengthMathInput] radial_radius(L) -> @values.RadialSize
+
+pub fn ratio(Int32, Int32) -> @values.Ratio
+
+pub fn ratio_auto() -> @values.Ratio
+
+pub fn[A : @values.AngleMathInput] ray_path(A, size? : @values.RaySize, contain? : Bool, center? : @values.GradientPosition) -> @values.MotionPath
+
+pub let read_only : @builder.When
+
+pub let read_write : @builder.When
+
+pub fn recipe(String, Array[@builder.Rule]) -> @builder.Recipe
+
+pub fn recipe_rule() -> @builder.Rule
+
+pub fn registry(String, Array[@builder.Rule], export_name? : String, contracts? : Array[@builder.StyleContract], themes? : Array[@builder.Theme], recipes? : Array[@builder.Recipe], markers? : Array[@builder.MarkerDefinition], position_tries? : Array[@builder.PositionTryRule], view_transition_classes? : Array[@builder.ViewTransitionClassDefinition], dependencies? : Array[@ir.DependencyRef], extra_tokens? : Array[@values.VariableUse]) -> @ir.Registry
+
+pub fn registry_builder(String) -> RegistryBuilder
+
+pub fn registry_sheets(String, Array[StyleSheet], contracts? : Array[@builder.StyleContract], themes? : Array[@builder.Theme], recipes? : Array[@builder.Recipe], markers? : Array[@builder.MarkerDefinition], position_tries? : Array[@builder.PositionTryRule], view_transition_classes? : Array[@builder.ViewTransitionClassDefinition], dependencies? : Array[@ir.DependencyRef], extra_tokens? : Array[@values.VariableUse]) -> @ir.Registry
+
+pub fn rem(Double) -> @values.Length
+
+pub fn repeat_styles(Array[@values.RepeatStyle]) -> @values.RepeatStyleList
+
+pub fn repeat_tracks(Int32, @values.GridTrackList) -> @values.GridTrack
+
+pub let required : @builder.When
+
+pub fn resolution_slot(String, String, @values.Resolution) -> @values.DynamicSlot[@values.Resolution]
+
+pub fn resolution_token(String, String, @values.Resolution) -> @values.Token[@values.Resolution]
+
+pub fn rgb(Int32, Int32, Int32) -> @values.Color
+
+pub fn rgba(Int32, Int32, Int32, Double) -> @values.Color
+
+pub fn[X : @values.NumberMathInput, Y : @values.NumberMathInput, Z : @values.NumberMathInput, A : @values.AngleMathInput] rotate3d(X, Y, Z, A) -> @values.TransformFunction
+
+pub fn rotate_transform(@values.Angle) -> @values.TransformFunction
+
+pub fn[T : @values.AngleMathInput] rotate_x(T) -> @values.TransformFunction
+
+pub fn[T : @values.AngleMathInput] rotate_y(T) -> @values.TransformFunction
+
+pub fn[T : @values.AngleMathInput] rotate_z(T) -> @values.TransformFunction
+
+pub fn rule(String) -> @builder.Rule
+
+pub fn[X : @values.NumberMathInput, Y : @values.NumberMathInput, Z : @values.NumberMathInput] scale3d(X, Y, Z) -> @values.TransformFunction
+
+pub fn scale_transform(Double, y? : Double?) -> @values.TransformFunction
+
+pub fn[T : @values.NumberMathInput] scale_x(T) -> @values.TransformFunction
+
+pub fn[T : @values.NumberMathInput] scale_y(T) -> @values.TransformFunction
+
+pub fn[T : @values.NumberMathInput] scale_z(T) -> @values.TransformFunction
+
+pub fn scroll_timeline(axis? : @values.TimelineAxis, scroller? : @values.TimelineScroller) -> @values.AnimationTimeline
+
+pub fn scrollbar_auto() -> @values.ScrollbarColor
+
+pub fn[A : @values.GradientColorInput, B : @values.GradientColorInput] scrollbar_colors(thumb~ : A, track~ : B) -> @values.ScrollbarColor
+
+pub fn seconds(Double) -> @values.Time
+
+pub let selection : @builder.When
+
+pub fn[T : @builder.MarkerInput] selector_attribute(T, String) -> @builder.MarkerSelector
+
+pub fn[T : @builder.MarkerInput] selector_attribute_equals(T, String, String) -> @builder.MarkerSelector
+
+pub fn[T : @builder.MarkerInput] selector_pseudo(T, @ir.PseudoClass) -> @builder.MarkerSelector
+
+pub fn[T : @builder.MarkerInput] selector_state(T, @ir.SelectorState) -> @builder.MarkerSelector
+
+pub fn[X : @values.LengthMathInput, Y : @values.LengthMathInput] shadow(X, Y, blur? : @values.Length?, spread? : @values.Length?, color? : @values.Color?, inset? : Bool) -> @values.Shadow
+
+pub fn sheet(String, Array[@builder.Rule]) -> StyleSheet
+
+pub fn[T : @values.BoxSizeValueInput] single_radius(T) -> @values.BorderRadii
+
+pub fn[X : @values.AngleMathInput, Y : @values.AngleMathInput] skew(X, Y) -> @values.TransformFunction
+
+pub fn[T : @values.AngleMathInput] skew_x(T) -> @values.TransformFunction
+
+pub fn[T : @values.AngleMathInput] skew_y(T) -> @values.TransformFunction
+
+pub fn source_span(String, Int32, Int32, end_line? : Int32, end_column? : Int32, symbol? : String) -> @ir.SourceSpan
+
+pub fn steps(Int32, at_start? : Bool) -> @values.EasingFunction
+
+pub fn style_contract(String) -> @builder.StyleContract
+
+pub fn style_list() -> @runtime.StyleList
+
+#deprecated
+pub fn[T : @runtime.StyleInput] styles(Array[T]) -> @runtime.StyleList
+
+pub fn subgrid(lines? : Array[Array[String]]) -> @values.GridTrackList
+
+pub fn supports(@ir.SupportsCondition) -> @builder.When
+
+pub fn supports_all(Array[@ir.SupportsCondition]) -> @ir.SupportsCondition
+
+pub fn supports_any(Array[@ir.SupportsCondition]) -> @ir.SupportsCondition
+
+pub fn supports_declaration(String, String) -> @ir.SupportsCondition
+
+pub fn supports_not(@ir.SupportsCondition) -> @ir.SupportsCondition
+
+pub fn supports_property(String, String) -> @builder.When
+
+pub fn svh(Double) -> @values.Length
+
+pub fn text_shadows(Array[@values.Shadow]) -> @values.TextShadowList
+
+pub fn theme(String, Array[@values.TokenOverride]) -> @builder.Theme
+
+pub fn time_slot(String, String, @values.Time) -> @values.DynamicSlot[@values.Time]
+
+pub fn time_token(String, String, @values.Time) -> @values.Token[@values.Time]
+
+pub fn timeline_auto() -> @values.AnimationTimeline
+
+pub fn timeline_name(String) -> @values.TimelineName
+
+pub fn timeline_names(Array[@values.TimelineName]) -> @values.TimelineNames
+
+pub fn timeline_names_none() -> @values.TimelineNames
+
+pub fn timeline_none() -> @values.AnimationTimeline
+
+pub fn timeline_range(@values.TimelineRangeName, offset? : @values.MathExpr[@values.LengthPercentage]) -> @values.TimelineRange
+
+pub fn timeline_range_normal() -> @values.TimelineRange
+
+pub fn[T : @values.LengthPercentageMathInput] timeline_range_offset(T) -> @values.TimelineRange
+
+pub fn timeline_ranges(Array[@values.TimelineRange]) -> @values.TimelineRange
+
+pub fn timeline_scope(Array[@values.TimelineName]) -> @values.TimelineScope
+
+pub fn timeline_scope_all() -> @values.TimelineScope
+
+pub fn timeline_scope_none() -> @values.TimelineScope
+
+pub fn touch_action(Array[@values.TouchActionPart]) -> @values.TouchAction
+
+pub fn touch_auto() -> @values.TouchAction
+
+pub fn touch_none() -> @values.TouchAction
+
+pub fn track_auto() -> @values.GridTrack
+
+pub fn[T : @values.LengthPercentageMathInput] track_length(T) -> @values.GridTrack
+
+pub fn track_max_content() -> @values.GridTrack
+
+pub fn track_min_content() -> @values.GridTrack
+
+pub fn transform_list(Array[@values.TransformFunction]) -> @values.TransformList
+
+pub fn transform_none() -> @values.TransformList
+
+pub fn transform_origin(@values.Position, z? : @values.Length?) -> @values.TransformOrigin
+
+pub fn translate(@values.LengthPercentage, @values.LengthPercentage) -> @values.TransformFunction
+
+pub fn[X : @values.LengthPercentageMathInput, Y : @values.LengthPercentageMathInput, Z : @values.LengthMathInput] translate3d(X, Y, Z) -> @values.TransformFunction
+
+pub fn[T : @values.LengthPercentageMathInput] translate_x(T) -> @values.TransformFunction
+
+pub fn[T : @values.LengthPercentageMathInput] translate_y(T) -> @values.TransformFunction
+
+pub fn[T : @values.LengthMathInput] translate_z(T) -> @values.TransformFunction
+
+pub fn transparent() -> @values.Color
+
+pub fn turn(Double) -> @values.Angle
+
+pub fn unsafe_at_rule(String) -> @builder.When
+
+pub fn unsafe_pseudo(String) -> @builder.When
+
+pub fn unsafe_pseudo_element(String) -> @builder.When
+
+pub fn url(String) -> @values.Url
+
+pub fn url_slot(String, String, @values.Url) -> @values.DynamicSlot[@values.Url]
+
+pub fn url_token(String, String, @values.Url) -> @values.Token[@values.Url]
+
+pub fn variable_scope(String) -> @values.VariableScope
+
+pub fn variant_choice(String, Array[@builder.Rule]) -> @builder.VariantChoice
+
+pub fn variant_is(String, String) -> @builder.VariantSelection
+
+pub fn vh(Int32) -> @values.Length
+
+pub fn view_timeline(axis? : @values.TimelineAxis, inset? : @values.MathExpr[@values.LengthPercentage], end_inset? : @values.MathExpr[@values.LengthPercentage]) -> @values.AnimationTimeline
+
+pub fn view_transition_class(String) -> @values.ViewTransitionClass
+
+pub fn view_transition_name(String) -> @values.ViewTransitionName
+
+pub let visited : @builder.When
+
+pub fn vmax(Double) -> @values.Length
+
+pub fn vmin(Double) -> @values.Length
+
+pub fn vw(Int32) -> @values.Length
+
+pub fn when(Array[@ir.Condition]) -> @builder.When
+
+pub fn when_all(Array[@builder.When]) -> @builder.When
+
+pub fn where_state(Array[@ir.SelectorState]) -> @builder.When
+
+pub fn width_between(@values.Length, @values.Length) -> @builder.When
+
+pub fn zero() -> @values.Length
+
+// Errors
+
+// Types and methods
+pub struct RegistryBuilder {
+  module_name : String
+  sheets : Array[StyleSheet]
+  contracts : Array[@builder.StyleContract]
+  themes : Array[@builder.Theme]
+  recipes : Array[@builder.Recipe]
+  markers : Array[@builder.MarkerDefinition]
+  position_tries : Array[@builder.PositionTryRule]
+  view_transition_classes : Array[@builder.ViewTransitionClassDefinition]
+  dependencies : Array[@ir.DependencyRef]
+  extra_tokens : Array[@values.VariableUse]
+}
+pub fn RegistryBuilder::build(Self) -> @ir.Registry
+pub fn RegistryBuilder::contract(Self, @builder.StyleContract) -> Self
+pub fn RegistryBuilder::dependency(Self, @ir.DependencyRef) -> Self
+pub fn RegistryBuilder::extra_token(Self, @values.VariableUse) -> Self
+pub fn RegistryBuilder::marker(Self, @builder.MarkerDefinition) -> Self
+pub fn RegistryBuilder::position_try(Self, @builder.PositionTryRule) -> Self
+pub fn RegistryBuilder::recipe(Self, @builder.Recipe) -> Self
+pub fn RegistryBuilder::rules(Self, Array[@builder.Rule], export_name? : String) -> Self
+pub fn RegistryBuilder::theme(Self, @builder.Theme) -> Self
+pub fn RegistryBuilder::view_transition_class(Self, @builder.ViewTransitionClassDefinition) -> Self
+
+pub struct StyleSheet {
+  export_name : String
+  rules : Array[@builder.Rule]
+}
+
+// Type aliases
+pub using @properties {type Alignment}
+
+pub using @builder {type AlignmentFallbacks}
+
+pub using @values {type AnchorName}
+
+pub using @values {type AnchorNames}
+
+pub using @builder {type AnchorNamesFallbacks}
+
+pub using @values {type Angle}
+
+pub using @builder {type AngleFallbacks}
+
+pub type AngleSlot = @values.DynamicSlot[@values.Angle]
+
+pub type AngleToken = @values.Token[@values.Angle]
+
+pub using @properties {type AnimationDirection}
+
+pub using @builder {type AnimationDirectionFallbacks}
+
+pub using @builder {type AnimationDirectionList}
+
+pub using @properties {type AnimationFillMode}
+
+pub using @builder {type AnimationFillModeFallbacks}
+
+pub using @builder {type AnimationFillModeList}
+
+pub using @values {type AnimationIterations}
+
+pub using @builder {type AnimationIterationsFallbacks}
+
+pub using @builder {type AnimationName}
+
+pub using @builder {type AnimationNames}
+
+pub using @properties {type AnimationPlayState}
+
+pub using @builder {type AnimationPlayStateFallbacks}
+
+pub using @builder {type AnimationPlayStateList}
+
+pub using @values {type AnimationTimeline}
+
+pub using @values {type AnimationTimelines}
+
+pub using @builder {type AnimationTimelinesFallbacks}
+
+pub using @runtime {type AppliedStyle}
+
+pub using @ir {type AttributeCase}
+
+pub using @ir {type AttributeOperator}
+
+pub using @properties {type BackfaceVisibility}
+
+pub using @builder {type BackfaceVisibilityFallbacks}
+
+pub using @properties {type BackgroundAttachment}
+
+pub using @builder {type BackgroundAttachmentFallbacks}
+
+pub using @properties {type BackgroundBox}
+
+pub using @builder {type BackgroundBoxFallbacks}
+
+pub using @values {type BackgroundLayer}
+
+pub using @values {type BackgroundLayers}
+
+pub using @values {type BackgroundSize}
+
+pub using @builder {type BackgroundSizeFallbacks}
+
+pub using @values {type BackgroundSizeList}
+
+pub using @builder {type BackgroundSizeListFallbacks}
+
+pub using @properties {type BaselineSourceValue}
+
+pub using @builder {type BaselineSourceValueFallbacks}
+
+pub using @values {type BasicShape}
+
+pub using @properties {type BlendMode}
+
+pub using @builder {type BlendModeFallbacks}
+
+pub using @properties {type BorderCollapseValue}
+
+pub using @builder {type BorderCollapseValueFallbacks}
+
+pub using @values {type BorderColors}
+
+pub using @builder {type BorderColorsFallbacks}
+
+pub using @properties {type BorderImageRepeatValue}
+
+pub using @builder {type BorderImageRepeatValueFallbacks}
+
+pub using @values {type BorderRadii}
+
+pub using @builder {type BorderRadiiFallbacks}
+
+pub using @values {type BorderSide}
+
+pub using @builder {type BorderSideFallbacks}
+
+pub using @properties {type BorderStyle}
+
+pub using @builder {type BorderStyleFallbacks}
+
+pub using @values {type BorderStyles}
+
+pub using @builder {type BorderStylesFallbacks}
+
+pub using @values {type BorderWidths}
+
+pub using @builder {type BorderWidthsFallbacks}
+
+pub using @properties {type BoxDecorationBreakValue}
+
+pub using @builder {type BoxDecorationBreakValueFallbacks}
+
+pub using @values {type BoxShadowList}
+
+pub using @builder {type BoxShadowListFallbacks}
+
+pub using @values {type BoxSize}
+
+pub using @builder {type BoxSizeFallbacks}
+
+pub using @values {type BoxSizeKeyword}
+
+pub using @properties {type BoxSizing}
+
+pub using @builder {type BoxSizingFallbacks}
+
+pub using @properties {type BreakAfterValue}
+
+pub using @builder {type BreakAfterValueFallbacks}
+
+pub using @properties {type BreakBeforeValue}
+
+pub using @builder {type BreakBeforeValueFallbacks}
+
+pub using @properties {type BreakInsideValue}
+
+pub using @builder {type BreakInsideValueFallbacks}
+
+pub using @properties {type CaptionSideValue}
+
+pub using @builder {type CaptionSideValueFallbacks}
+
+pub using @properties {type ClearMode}
+
+pub using @builder {type ClearModeFallbacks}
+
+pub using @values {type ClipPath}
+
+pub using @builder {type ClipPathFallbacks}
+
+pub using @properties {type ClipRuleValue}
+
+pub using @builder {type ClipRuleValueFallbacks}
+
+pub using @values {type Color}
+
+pub using @values {type ColorExpr}
+
+pub using @builder {type ColorFallbacks}
+
+pub using @values {type ColorInterpolation}
+
+pub using @properties {type ColorInterpolationFiltersValue}
+
+pub using @builder {type ColorInterpolationFiltersValueFallbacks}
+
+pub using @values {type ColorScheme}
+
+pub using @builder {type ColorSchemeFallbacks}
+
+pub using @values {type ColorSchemeName}
+
+pub type ColorSlot = @values.DynamicSlot[@values.Color]
+
+pub using @values {type ColorSpace}
+
+pub type ColorToken = @values.Token[@values.Color]
+
+pub using @properties {type ColumnFillValue}
+
+pub using @builder {type ColumnFillValueFallbacks}
+
+pub using @properties {type ColumnSpanValue}
+
+pub using @builder {type ColumnSpanValueFallbacks}
+
+pub using @runtime {type CompiledStyle}
+
+pub using @ir {type Condition}
+
+pub using @values {type ConicPosition}
+
+pub using @values {type Contain}
+
+pub using @builder {type ContainFallbacks}
+
+pub using @values {type ContainPart}
+
+pub using @builder {type ContainerAxis}
+
+pub using @builder {type ContainerFeature}
+
+pub using @builder {type ContainerName}
+
+pub using @values {type ContainerNames}
+
+pub using @builder {type ContainerNamesFallbacks}
+
+pub using @builder {type ContainerOperator}
+
+pub using @builder {type ContainerStyleQuery}
+
+pub using @properties {type ContainerTypeValue}
+
+pub using @builder {type ContainerTypeValueFallbacks}
+
+pub using @values {type ContentValue}
+
+pub using @builder {type ContentValueFallbacks}
+
+pub using @properties {type ContentVisibility}
+
+pub using @builder {type ContentVisibilityFallbacks}
+
+pub using @values {type CornerRadius}
+
+pub using @builder {type CornerRadiusFallbacks}
+
+pub using @values {type CounterChange}
+
+pub using @values {type CounterChanges}
+
+pub using @builder {type CounterChangesFallbacks}
+
+pub using @values {type CounterName}
+
+pub using @values {type CounterStyle}
+
+pub using @values {type CssWideKeyword}
+
+pub using @properties {type Cursor}
+
+pub using @builder {type CursorFallbacks}
+
+pub using @ir {type DependencyRef}
+
+pub using @properties {type DirectionValue}
+
+pub using @builder {type DirectionValueFallbacks}
+
+pub using @properties {type Display}
+
+pub using @builder {type DisplayFallbacks}
+
+pub using @builder {type DoubleFallbacks}
+
+pub using @values {type DynamicSlot}
+
+pub using @runtime {type DynamicValueError}
+
+pub using @values {type EasingFunction}
+
+pub using @builder {type EasingFunctionFallbacks}
+
+pub using @builder {type EasingFunctionList}
+
+pub using @properties {type EmptyCellsValue}
+
+pub using @builder {type EmptyCellsValueFallbacks}
+
+pub using @values {type EnvironmentLength}
+
+pub using @properties {type FieldSizingValue}
+
+pub using @builder {type FieldSizingValueFallbacks}
+
+pub using @values {type FillRule}
+
+pub using @properties {type FillRuleValue}
+
+pub using @builder {type FillRuleValueFallbacks}
+
+pub using @values {type FilterFunction}
+
+pub using @values {type FilterList}
+
+pub using @builder {type FilterListFallbacks}
+
+pub using @values {type FlexBasis}
+
+pub using @builder {type FlexBasisFallbacks}
+
+pub using @properties {type FlexDirection}
+
+pub using @builder {type FlexDirectionFallbacks}
+
+pub using @properties {type FlexWrap}
+
+pub using @builder {type FlexWrapFallbacks}
+
+pub using @properties {type FloatMode}
+
+pub using @builder {type FloatModeFallbacks}
+
+pub using @properties {type FontKerning}
+
+pub using @builder {type FontKerningFallbacks}
+
+pub using @properties {type FontOpticalSizing}
+
+pub using @builder {type FontOpticalSizingFallbacks}
+
+pub using @values {type FontSize}
+
+pub using @builder {type FontSizeFallbacks}
+
+pub using @values {type FontSizeKeyword}
+
+pub using @properties {type FontStretch}
+
+pub using @builder {type FontStretchFallbacks}
+
+pub using @properties {type FontStyle}
+
+pub using @builder {type FontStyleFallbacks}
+
+pub using @properties {type FontSynthesisSmallCapsValue}
+
+pub using @builder {type FontSynthesisSmallCapsValueFallbacks}
+
+pub using @properties {type FontSynthesisStyleValue}
+
+pub using @builder {type FontSynthesisStyleValueFallbacks}
+
+pub using @properties {type FontSynthesisValue}
+
+pub using @builder {type FontSynthesisValueFallbacks}
+
+pub using @properties {type FontSynthesisWeightValue}
+
+pub using @builder {type FontSynthesisWeightValueFallbacks}
+
+pub using @properties {type FontVariantCaps}
+
+pub using @builder {type FontVariantCapsFallbacks}
+
+pub using @properties {type FontVariantEmojiValue}
+
+pub using @builder {type FontVariantEmojiValueFallbacks}
+
+pub using @values {type FontVariantNumeric}
+
+pub using @builder {type FontVariantNumericFallbacks}
+
+pub using @values {type FontVariantNumericPart}
+
+pub using @properties {type FontVariantPositionValue}
+
+pub using @builder {type FontVariantPositionValueFallbacks}
+
+pub using @properties {type ForcedColorAdjustValue}
+
+pub using @builder {type ForcedColorAdjustValueFallbacks}
+
+pub using @builder {type Frame}
+
+pub using @values {type GeometryBox}
+
+pub using @values {type GradientDirection}
+
+pub using @values {type GradientPosition}
+
+pub using @values {type GradientSide}
+
+pub using @values {type GradientStop}
+
+pub using @properties {type GridAutoFlow}
+
+pub using @builder {type GridAutoFlowFallbacks}
+
+pub using @values {type GridLine}
+
+pub using @builder {type GridLineFallbacks}
+
+pub using @values {type GridTemplateAreas}
+
+pub using @builder {type GridTemplateAreasFallbacks}
+
+pub using @values {type GridTrack}
+
+pub using @values {type GridTrackList}
+
+pub using @builder {type GridTrackListFallbacks}
+
+pub using @properties {type HangingPunctuationValue}
+
+pub using @builder {type HangingPunctuationValueFallbacks}
+
+pub using @values {type HueInterpolation}
+
+pub using @properties {type Hyphens}
+
+pub using @builder {type HyphensFallbacks}
+
+pub using @values {type Image}
+
+pub using @values {type ImageCandidate}
+
+pub using @builder {type ImageFallbacks}
+
+pub using @properties {type ImageRendering}
+
+pub using @builder {type ImageRenderingFallbacks}
+
+pub using @builder {type IntFallbacks}
+
+pub using @values {type Integer}
+
+pub using @builder {type IntegerFallbacks}
+
+pub type IntegerSlot = @values.DynamicSlot[@values.Integer]
+
+pub type IntegerToken = @values.Token[@values.Integer]
+
+pub using @ir {type KeyframeStep}
+
+pub using @values {type LayerAttachment}
+
+pub using @values {type LayerBox}
+
+pub using @values {type LayerSize}
+
+pub using @values {type Length}
+
+pub using @builder {type LengthFallbacks}
+
+pub using @values {type LengthPercentage}
+
+pub using @builder {type LengthPercentageFallbacks}
+
+pub type LengthPercentageSlot = @values.DynamicSlot[@values.LengthPercentage]
+
+pub type LengthPercentageToken = @values.Token[@values.LengthPercentage]
+
+pub type LengthSlot = @values.DynamicSlot[@values.Length]
+
+pub type LengthToken = @values.Token[@values.Length]
+
+pub using @values {type LengthUnit}
+
+pub using @properties {type LineBreakValue}
+
+pub using @builder {type LineBreakValueFallbacks}
+
+pub using @values {type LineHeight}
+
+pub using @builder {type LineHeightFallbacks}
+
+pub using @values {type LineStyle}
+
+pub using @builder {type LineStyleFallbacks}
+
+pub using @values {type LineWidth}
+
+pub using @builder {type LineWidthFallbacks}
+
+pub using @values {type LineWidthKeyword}
+
+pub using @properties {type ListStylePosition}
+
+pub using @builder {type ListStylePositionFallbacks}
+
+pub using @builder {type MarkerDefinition}
+
+pub using @builder {type MarkerSelector}
+
+pub using @values {type MaskBox}
+
+pub using @builder {type MaskBoxFallbacks}
+
+pub using @builder {type MaskBoxList}
+
+pub using @values {type MaskClip}
+
+pub using @builder {type MaskClipFallbacks}
+
+pub using @builder {type MaskClipList}
+
+pub using @values {type MaskComposite}
+
+pub using @builder {type MaskCompositeFallbacks}
+
+pub using @builder {type MaskCompositeList}
+
+pub using @values {type MaskImage}
+
+pub using @values {type MaskImageList}
+
+pub using @builder {type MaskImageListFallbacks}
+
+pub using @values {type MaskLayer}
+
+pub using @values {type MaskLayers}
+
+pub using @values {type MaskMode}
+
+pub using @builder {type MaskModeFallbacks}
+
+pub using @builder {type MaskModeList}
+
+pub using @properties {type MaskTypeValue}
+
+pub using @builder {type MaskTypeValueFallbacks}
+
+pub using @values {type MathExpr}
+
+pub using @properties {type MathShiftValue}
+
+pub using @builder {type MathShiftValueFallbacks}
+
+pub using @properties {type MathStyleValue}
+
+pub using @builder {type MathStyleValueFallbacks}
+
+pub using @ir {type MediaFeature}
+
+pub using @ir {type MediaFeatureOperator}
+
+pub using @ir {type MediaQuery}
+
+pub using @ir {type MediaType}
+
+pub using @values {type MotionPath}
+
+pub using @builder {type MotionPathFallbacks}
+
+pub using @builder {type MotionPreference}
+
+pub using @values {type Number}
+
+pub using @builder {type NumberFallbacks}
+
+pub type NumberSlot = @values.DynamicSlot[@values.Number]
+
+pub type NumberToken = @values.Token[@values.Number]
+
+pub using @properties {type ObjectFit}
+
+pub using @builder {type ObjectFitFallbacks}
+
+pub using @values {type OffsetAnchor}
+
+pub using @builder {type OffsetAnchorFallbacks}
+
+pub using @values {type OffsetPosition}
+
+pub using @builder {type OffsetPositionFallbacks}
+
+pub using @values {type OffsetRotate}
+
+pub using @builder {type OffsetRotateFallbacks}
+
+pub using @values {type Outline}
+
+pub using @values {type OutlineColor}
+
+pub using @builder {type OutlineFallbacks}
+
+pub using @values {type OutlineStyle}
+
+pub using @properties {type Overflow}
+
+pub using @properties {type OverflowAnchorValue}
+
+pub using @builder {type OverflowAnchorValueFallbacks}
+
+pub using @builder {type OverflowFallbacks}
+
+pub using @properties {type OverflowWrap}
+
+pub using @builder {type OverflowWrapFallbacks}
+
+pub using @properties {type OverscrollBehavior}
+
+pub using @properties {type OverscrollBehaviorBlockValue}
+
+pub using @builder {type OverscrollBehaviorBlockValueFallbacks}
+
+pub using @builder {type OverscrollBehaviorFallbacks}
+
+pub using @properties {type OverscrollBehaviorInlineValue}
+
+pub using @builder {type OverscrollBehaviorInlineValueFallbacks}
+
+pub using @properties {type OverscrollBehaviorValue}
+
+pub using @builder {type OverscrollBehaviorValueFallbacks}
+
+pub using @values {type PageValue}
+
+pub using @builder {type PageValueFallbacks}
+
+pub using @properties {type PaintOrderValue}
+
+pub using @builder {type PaintOrderValueFallbacks}
+
+pub using @values {type PathData}
+
+pub using @values {type Percentage}
+
+pub using @builder {type PercentageFallbacks}
+
+pub type PercentageSlot = @values.DynamicSlot[@values.Percentage]
+
+pub type PercentageToken = @values.Token[@values.Percentage]
+
+pub using @properties {type PlaceItems}
+
+pub using @builder {type PlaceItemsFallbacks}
+
+pub using @properties {type PointerEvents}
+
+pub using @builder {type PointerEventsFallbacks}
+
+pub using @values {type Position}
+
+pub using @values {type PositionAnchor}
+
+pub using @builder {type PositionAnchorFallbacks}
+
+pub using @values {type PositionArea}
+
+pub using @builder {type PositionAreaFallbacks}
+
+pub using @values {type PositionAreaHorizontal}
+
+pub using @values {type PositionAreaVertical}
+
+pub using @builder {type PositionFallbacks}
+
+pub using @values {type PositionList}
+
+pub using @builder {type PositionListFallbacks}
+
+pub using @properties {type PositionMode}
+
+pub using @builder {type PositionModeFallbacks}
+
+pub using @values {type PositionTryFallback}
+
+pub using @values {type PositionTryFallbacks}
+
+pub using @builder {type PositionTryFallbacksFallbacks}
+
+pub using @values {type PositionTryOrder}
+
+pub using @builder {type PositionTryOrderFallbacks}
+
+pub using @builder {type PositionTryRule}
+
+pub using @values {type PositionTryTactic}
+
+pub using @values {type PositionTryValue}
+
+pub using @builder {type PositionTryValueFallbacks}
+
+pub using @properties {type PositionVisibilityValue}
+
+pub using @builder {type PositionVisibilityValueFallbacks}
+
+pub using @builder {type PreferredColorScheme}
+
+pub using @properties {type PrintColorAdjustValue}
+
+pub using @builder {type PrintColorAdjustValueFallbacks}
+
+pub using @ir {type PseudoClass}
+
+pub using @ir {type PseudoElement}
+
+pub using @values {type RadialExtent}
+
+pub using @values {type RadialShape}
+
+pub using @values {type RadialSize}
+
+pub using @values {type Ratio}
+
+pub using @builder {type RatioFallbacks}
+
+pub using @values {type RaySize}
+
+pub using @builder {type Recipe}
+
+pub using @ir {type Registry}
+
+pub using @values {type RepeatStyle}
+
+pub using @builder {type RepeatStyleFallbacks}
+
+pub using @values {type RepeatStyleList}
+
+pub using @builder {type RepeatStyleListFallbacks}
+
+pub using @properties {type ResizeMode}
+
+pub using @builder {type ResizeModeFallbacks}
+
+pub using @values {type Resolution}
+
+pub type ResolutionSlot = @values.DynamicSlot[@values.Resolution]
+
+pub type ResolutionToken = @values.Token[@values.Resolution]
+
+pub using @properties {type RubyAlignValue}
+
+pub using @builder {type RubyAlignValueFallbacks}
+
+pub using @properties {type RubyPositionValue}
+
+pub using @builder {type RubyPositionValueFallbacks}
+
+pub using @builder {type Rule}
+
+pub using @properties {type ScrollBehavior}
+
+pub using @builder {type ScrollBehaviorFallbacks}
+
+pub using @properties {type ScrollSnapAlignValue}
+
+pub using @builder {type ScrollSnapAlignValueFallbacks}
+
+pub using @properties {type ScrollSnapStopValue}
+
+pub using @builder {type ScrollSnapStopValueFallbacks}
+
+pub using @properties {type ScrollSnapTypeValue}
+
+pub using @builder {type ScrollSnapTypeValueFallbacks}
+
+pub using @properties {type ScrollTimelineAxisValue}
+
+pub using @builder {type ScrollTimelineAxisValueFallbacks}
+
+pub using @values {type ScrollbarColor}
+
+pub using @builder {type ScrollbarColorFallbacks}
+
+pub using @properties {type ScrollbarWidthValue}
+
+pub using @builder {type ScrollbarWidthValueFallbacks}
+
+pub using @runtime {type SelectorMarker}
+
+pub using @ir {type SelectorState}
+
+pub using @values {type Shadow}
+
+pub using @properties {type ShapeRenderingValue}
+
+pub using @builder {type ShapeRenderingValueFallbacks}
+
+pub using @ir {type SourceSpan}
+
+pub using @properties {type SpeakValue}
+
+pub using @builder {type SpeakValueFallbacks}
+
+pub using @builder {type StringFallbacks}
+
+pub using @properties {type StrokeLinecapValue}
+
+pub using @builder {type StrokeLinecapValueFallbacks}
+
+pub using @properties {type StrokeLinejoinValue}
+
+pub using @builder {type StrokeLinejoinValueFallbacks}
+
+pub using @builder {type StyleContract}
+
+pub using @runtime {type StyleList}
+
+pub type StyleResult = Result[@runtime.CompiledStyle, Array[@runtime.DynamicValueError]]
+
+pub using @ir {type SupportsCondition}
+
+pub using @values {type SvgPaint}
+
+pub using @builder {type SvgPaintFallbacks}
+
+pub using @properties {type TableLayoutValue}
+
+pub using @builder {type TableLayoutValueFallbacks}
+
+pub using @properties {type TextAlign}
+
+pub using @builder {type TextAlignFallbacks}
+
+pub using @properties {type TextAnchorValue}
+
+pub using @builder {type TextAnchorValueFallbacks}
+
+pub using @properties {type TextBoxTrimValue}
+
+pub using @builder {type TextBoxTrimValueFallbacks}
+
+pub using @properties {type TextCombineUprightValue}
+
+pub using @builder {type TextCombineUprightValueFallbacks}
+
+pub using @properties {type TextDecorationLine}
+
+pub using @builder {type TextDecorationLineFallbacks}
+
+pub using @properties {type TextDecorationSkipInkValue}
+
+pub using @builder {type TextDecorationSkipInkValueFallbacks}
+
+pub using @properties {type TextDecorationStyle}
+
+pub using @builder {type TextDecorationStyleFallbacks}
+
+pub using @properties {type TextJustifyValue}
+
+pub using @builder {type TextJustifyValueFallbacks}
+
+pub using @properties {type TextOrientationValue}
+
+pub using @builder {type TextOrientationValueFallbacks}
+
+pub using @properties {type TextOverflow}
+
+pub using @builder {type TextOverflowFallbacks}
+
+pub using @properties {type TextRenderingValue}
+
+pub using @builder {type TextRenderingValueFallbacks}
+
+pub using @values {type TextShadowList}
+
+pub using @builder {type TextShadowListFallbacks}
+
+pub using @properties {type TextTransform}
+
+pub using @builder {type TextTransformFallbacks}
+
+pub using @properties {type TextUnderlinePosition}
+
+pub using @builder {type TextUnderlinePositionFallbacks}
+
+pub using @properties {type TextWrapMode}
+
+pub using @builder {type TextWrapModeFallbacks}
+
+pub using @properties {type TextWrapStyle}
+
+pub using @builder {type TextWrapStyleFallbacks}
+
+pub using @builder {type Theme}
+
+pub using @values {type Time}
+
+pub using @builder {type TimeFallbacks}
+
+pub using @values {type TimeList}
+
+pub type TimeSlot = @values.DynamicSlot[@values.Time]
+
+pub type TimeToken = @values.Token[@values.Time]
+
+pub using @values {type TimelineAxis}
+
+pub using @values {type TimelineName}
+
+pub using @values {type TimelineNames}
+
+pub using @builder {type TimelineNamesFallbacks}
+
+pub using @values {type TimelineRange}
+
+pub using @builder {type TimelineRangeFallbacks}
+
+pub using @values {type TimelineRangeName}
+
+pub using @values {type TimelineScope}
+
+pub using @builder {type TimelineScopeFallbacks}
+
+pub using @values {type TimelineScroller}
+
+pub using @values {type Token}
+
+pub using @values {type TokenOverride}
+
+pub using @values {type TouchAction}
+
+pub using @builder {type TouchActionFallbacks}
+
+pub using @values {type TouchActionPart}
+
+pub using @properties {type TransformBoxValue}
+
+pub using @builder {type TransformBoxValueFallbacks}
+
+pub using @values {type TransformFunction}
+
+pub using @values {type TransformList}
+
+pub using @builder {type TransformListFallbacks}
+
+pub using @values {type TransformOrigin}
+
+pub using @builder {type TransformOriginFallbacks}
+
+pub using @properties {type TransformStyle}
+
+pub using @builder {type TransformStyleFallbacks}
+
+pub using @properties {type TransitionProperty}
+
+pub using @builder {type TransitionPropertyFallbacks}
+
+pub using @builder {type TransitionPropertyList}
+
+pub using @properties {type UnicodeBidiValue}
+
+pub using @builder {type UnicodeBidiValueFallbacks}
+
+pub using @values {type Url}
+
+pub type UrlSlot = @values.DynamicSlot[@values.Url]
+
+pub type UrlToken = @values.Token[@values.Url]
+
+pub using @properties {type UserSelect}
+
+pub using @builder {type UserSelectFallbacks}
+
+pub using @values {type VariableScope}
+
+pub using @values {type VariableUse}
+
+pub using @builder {type VariantChoice}
+
+pub using @builder {type VariantSelection}
+
+pub using @properties {type VectorEffectValue}
+
+pub using @builder {type VectorEffectValueFallbacks}
+
+pub using @properties {type ViewTimelineAxisValue}
+
+pub using @builder {type ViewTimelineAxisValueFallbacks}
+
+pub using @values {type ViewTransitionClass}
+
+pub using @builder {type ViewTransitionClassDefinition}
+
+pub using @builder {type ViewTransitionClassFallbacks}
+
+pub using @values {type ViewTransitionName}
+
+pub using @builder {type ViewTransitionNameFallbacks}
+
+pub using @builder {type ViewportOrientation}
+
+pub using @properties {type Visibility}
+
+pub using @builder {type VisibilityFallbacks}
+
+pub using @builder {type When}
+
+pub using @properties {type WhiteSpaceCollapse}
+
+pub using @builder {type WhiteSpaceCollapseFallbacks}
+
+pub using @properties {type WordBreak}
+
+pub using @builder {type WordBreakFallbacks}
+
+pub using @properties {type WritingModeValue}
+
+pub using @builder {type WritingModeValueFallbacks}
+
+pub using @builder {trait MarkerInput}
+
+pub using @runtime {trait StaticStyleInput}
+
+pub using @runtime {trait StyleInput}
+
+// Traits

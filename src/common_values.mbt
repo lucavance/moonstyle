@@ -1,0 +1,20 @@
+///|
+pub using @values {
+  type BoxSizeKeyword,
+  type FontSizeKeyword,
+  type BorderRadii,
+  box_size_keyword,
+  fit_content_size,
+  basis_content,
+  font_size_keyword,
+  line_height_normal,
+  border_radii,
+  single_radius,
+  corner_radius,
+  shadow,
+  blur_filter,
+  brightness_filter,
+  contrast_filter,
+  grayscale_filter,
+  hue_rotate_filter,
+}
