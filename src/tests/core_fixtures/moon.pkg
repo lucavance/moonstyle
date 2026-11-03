@@ -1,0 +1,7 @@
+import {
+  "lampclaw/moonstyle/core",
+  "lampclaw/moonstyle/ir",
+  "lampclaw/moonstyle/runtime",
+}
+
+pkgtype(kind: "executable")

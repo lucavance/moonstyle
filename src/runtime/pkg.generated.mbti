@@ -1,0 +1,114 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle/runtime"
+
+import {
+  "lampclaw/moonstyle/values",
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn bind_color(@values.CssVar[@values.Color], @values.Color) -> (String, String)
+
+pub fn bind_length(@values.CssVar[@values.Length], @values.Length) -> (String, String)
+
+pub fn bind_number(@values.CssVar[@values.Number], @values.Number) -> (String, String)
+
+pub fn bind_percentage(@values.CssVar[@values.Percentage], @values.Percentage) -> (String, String)
+
+pub fn checked_when(Result[CompiledStyle, Array[DynamicValueError]], Bool) -> Result[CompiledStyle, Array[DynamicValueError]]
+
+pub fn compiled(Array[(String, String)], inline_vars? : Array[(String, String)]) -> CompiledStyle
+
+pub fn compiled_v2(Array[(String, String?)], inline_vars? : Array[(String, String)]) -> CompiledStyle
+
+pub fn compiled_v3(Array[(String, String?)], inline_vars? : Array[(String, String)]) -> CompiledStyle
+
+pub fn compiled_v5(Array[(String, String?)], inline_vars? : Array[(String, String)]) -> CompiledStyle
+
+pub fn[T : StyleInput] compose(T) -> StyleList
+
+pub fn dynamic_value_error(String, String, String) -> DynamicValueError
+
+pub fn[T] expect_dynamic(Result[T, Array[DynamicValueError]]) -> T
+
+pub let none : CompiledStyle
+
+pub fn[T : StaticStyleInput] props(Array[T]) -> AppliedStyle
+
+pub fn props_checked(Array[Result[CompiledStyle, Array[DynamicValueError]]], base_styles? : Array[CompiledStyle]) -> Result[AppliedStyle, Array[DynamicValueError]]
+
+pub fn selector_marker(String, String, String) -> SelectorMarker
+
+pub fn style_list() -> StyleList
+
+#deprecated
+pub fn[T : StyleInput] styles(Array[T]) -> StyleList
+
+// Errors
+
+// Types and methods
+pub(all) struct AppliedStyle {
+  class_name : String
+  inline_vars : Array[(String, String)]
+} derive(Eq, @debug.Debug)
+pub fn AppliedStyle::equal(Self, Self) -> Bool
+pub fn AppliedStyle::not_equal(Self, Self) -> Bool
+pub fn AppliedStyle::to_repr(Self) -> @debug.Repr
+
+pub struct CompiledStyle {
+  entries : Array[(String, String?)]
+  inline_vars : Array[(String, String)]
+}
+pub fn CompiledStyle::append_to(Self, StyleList) -> StyleList
+pub fn CompiledStyle::to_compiled(Self) -> Self
+pub fn CompiledStyle::when(Self, Bool) -> Self
+pub impl StaticStyleInput for CompiledStyle
+pub impl StyleInput for CompiledStyle
+
+pub(all) struct DynamicValueError {
+  variable : String
+  code : String
+  label : String
+} derive(Eq, @debug.Debug)
+pub fn DynamicValueError::equal(Self, Self) -> Bool
+pub fn DynamicValueError::not_equal(Self, Self) -> Bool
+pub fn DynamicValueError::to_repr(Self) -> @debug.Repr
+
+pub struct SelectorMarker {
+  module_name : String
+  name : String
+  class_name : String
+  compiled : CompiledStyle
+}
+pub fn SelectorMarker::append_to(Self, StyleList) -> StyleList
+pub fn SelectorMarker::class_name(Self) -> String
+pub fn SelectorMarker::module_name(Self) -> String
+pub fn SelectorMarker::name(Self) -> String
+pub fn SelectorMarker::to_compiled(Self) -> CompiledStyle
+pub impl StaticStyleInput for SelectorMarker
+pub impl StyleInput for SelectorMarker
+
+pub struct StyleList {
+  styles : Array[CompiledStyle]
+  errors : Array[DynamicValueError]
+}
+pub fn[T : StyleInput] StyleList::add(Self, T) -> Self
+pub fn StyleList::append_to(Self, Self) -> Self
+pub fn StyleList::resolve(Self) -> Result[AppliedStyle, Array[DynamicValueError]]
+pub fn[T : StyleInput] StyleList::when(Self, Bool, T) -> Self
+pub impl StyleInput for StyleList
+
+// Type aliases
+pub type StyleResult = Result[CompiledStyle, Array[DynamicValueError]]
+
+// Traits
+pub(open) trait StaticStyleInput {
+  fn to_compiled(Self) -> CompiledStyle
+}
+
+pub(open) trait StyleInput {
+  fn append_to(Self, StyleList) -> StyleList
+}
+pub impl[T : StyleInput] StyleInput for T?
+pub impl[T : StyleInput] StyleInput for Array[T]
+pub impl[T : StyleInput] StyleInput for Result[T, Array[DynamicValueError]]
