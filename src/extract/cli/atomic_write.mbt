@@ -8,11 +8,11 @@ priv struct Artifact {
 
 ///|
 #borrow(from, to)
-extern "C" fn rename_ffi(from : Bytes, to : Bytes) -> Int32 = "lampclaw_style_rename"
+extern "C" fn rename_ffi(from : Bytes, to : Bytes) -> Int32 = "moonstyle_atomic_rename"
 
 ///|
 #borrow(path)
-extern "C" fn mkdirs_ffi(path : Bytes) -> Int32 = "lampclaw_style_mkdirs"
+extern "C" fn mkdirs_ffi(path : Bytes) -> Int32 = "moonstyle_atomic_mkdirs"
 
 ///|
 fn rename_path(from : String, to : String) -> Bool {

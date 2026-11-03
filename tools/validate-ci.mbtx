@@ -1,0 +1,68 @@
+----
+import {
+  "moonbitlang/async@0.22.5",
+  "moonbitlang/async@0.22.5/fs",
+  "moonbitlang/async@0.22.5/shell",
+  "moonbitlang/core/json",
+}
+----
+
+///|
+async fn main {
+  @shell.Cmd("node", ["tools/check-toolchain.mjs", "--release"]).run()
+  @shell.Cmd("node", [
+    "tools/stylex-oracle/generate-application-order.mjs", "--check-release",
+  ]).run()
+  @fs.mkdir(".generated", allow_exist=true)
+  let report = ".generated/e2e-results.json"
+  if @fs.exists(report) {
+    @fs.remove(report)
+  }
+  let validation = @shell.Cmd(
+    "vp",
+    ["run", "validate-source"],
+    env=Map([("STYLE_E2E_REPORT", report), ("STYLE_REQUIRE_ALL_BROWSERS", "1")]),
+  ).status()
+  let failures : Array[String] = []
+  if validation != 0 {
+    failures.push("source validation failed")
+  }
+  for task in ["test-oracle", "audit-oracle"] {
+    if @shell.Cmd("vp", ["run", task]).status() != 0 {
+      failures.push(task + " failed")
+    }
+  }
+  if @shell.Cmd("node", ["tools/release-audit.mjs", "--require-oracle"]).status() !=
+    0 {
+    failures.push("license audit failed")
+  }
+  let browser = @json.parse(@fs.read_file(report).text()) catch {
+    _ => Json::null()
+  }
+  guard browser
+    is {
+      "schemaVersion": Number(1, ..),
+      "required": True,
+      "results": Array(results),
+      ..
+    } &&
+    results.length() == 3 else {
+    fail("complete required browser report is missing")
+  }
+  for index, name in ["chromium", "firefox", "webkit"] {
+    guard results[index]
+      is { "name": String(actual), "status": String(status), .. } &&
+      actual == name &&
+      status == "passed" else {
+      fail("browser did not pass: " + name)
+    }
+  }
+  // Final CI never creates a synthetic snapshot to stand in for the commit.
+  if failures.is_empty() {
+    @shell.Cmd("moon", ["run", "tools/verify-consumer.mbtx"]).run()
+  }
+  guard failures.is_empty() else { fail(failures.join("\n")) }
+  println(
+    "Strict candidate CI passed with three browsers, oracle, and actual-commit consumer acceptance.",
+  )
+}

@@ -6,12 +6,12 @@
 
 #include "moonbit.h"
 
-MOONBIT_FFI_EXPORT int lampclaw_style_rename(moonbit_bytes_t from,
+MOONBIT_FFI_EXPORT int moonstyle_atomic_rename(moonbit_bytes_t from,
                                              moonbit_bytes_t to) {
   return rename((const char *)from, (const char *)to);
 }
 
-MOONBIT_FFI_EXPORT int lampclaw_style_mkdirs(moonbit_bytes_t input) {
+MOONBIT_FFI_EXPORT int moonstyle_atomic_mkdirs(moonbit_bytes_t input) {
   const char *path = (const char *)input;
   size_t length = strlen(path);
   char *copy = malloc(length + 1);

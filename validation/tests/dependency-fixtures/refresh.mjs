@@ -21,10 +21,7 @@ function semanticDigest(bundle) {
 }
 
 function validateSyntheticRecords(bundle, property, className, css) {
-  assert.ok(
-    bundle.schemaVersion === 13 ||
-      (process.argv.includes('--write') && bundle.schemaVersion === 12),
-  );
+  assert.equal(bundle.schemaVersion, 13);
   assert.equal(bundle.semanticDigest, semanticDigest(bundle), 'Existing fixture digest is invalid');
   assert.equal(bundle.rules.length, 1);
   const oracle = lock.properties.find((record) => record.property === property);
@@ -72,25 +69,8 @@ assert.deepEqual(fixtures[1].directDependencies, [previousDependency]);
 assert.deepEqual(fixtures[1].dependencyClosure, [previousDependency]);
 assert.deepEqual(fixtures[1].contracts, fixtures[0].contracts);
 
-// These synthetic oracle fixtures are reconstructed and checked against the
-// authoring source below. Production v9 bundles are never migrated in place.
-for (const fixture of fixtures) {
-  fixture.schemaVersion = 13;
-  fixture.mappingsPackage = fixture.mappingsPackage.replace(
-    'lampclaw/style-validation/',
-    'lampclaw/moonstyle-validation/',
-  );
-  for (const contract of fixture.contracts) {
-    contract.mappingsPackage = contract.mappingsPackage.replace(
-      'lampclaw/style-validation/',
-      'lampclaw/moonstyle-validation/',
-    );
-    for (const property of contract.properties) {
-      if (property.policy === 'exact') property.expressions ??= [];
-    }
-  }
-}
-
+// Refresh semantic identities; native validation below checks the fixture
+// schema and contract structure before any outputs are written.
 fixtures[0].semantics = { profile: lock.profile.name, digest: lock.semanticsDigest };
 fixtures[0].semanticDigest = semanticDigest(fixtures[0]);
 fixtures[1].semantics = { ...fixtures[0].semantics };

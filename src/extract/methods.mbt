@@ -1,4 +1,4 @@
-// Preserve the existing method surface explicitly with MoonBit 0.10.14.
+// Expose trait methods on their owning public types.
 
 ///|
 pub extend BundleContract with @moonbitlang/core/debug.Debug::{to_repr}

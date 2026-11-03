@@ -1,0 +1,73 @@
+name: Candidate CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches:
+      - main
+      - 'release/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: candidate-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Ubuntu 26.04 candidate validation
+    runs-on: ubuntu-26.04
+    timeout-minutes: 90
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/.cache/playwright
+    steps:
+      - name: Check out candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up VitePlus and Node
+        uses: voidzero-dev/setup-vp@68f39c78aaf39be468cabd2afb09c162574c84af # v1.21.2
+        with:
+          version: '1.4.0'
+          node-version: '26.12.1'
+          cache: true
+          run-install: false
+
+      - name: Set up MoonBit
+        uses: ./.github/actions/setup-moonbit
+        with:
+          version: '0.10.19+97801ee1b'
+          core-version: '0.10.19+97801ee1b'
+
+      - name: Initialize MoonBit registry
+        run: |
+          moon version --all
+          moon update
+
+      - name: Install frozen dependencies
+        run: vp install --frozen-lockfile
+
+      - name: Install isolated StyleX oracle dependencies
+        run: vp run install-oracle
+
+      - name: Install Playwright browsers and operating-system dependencies
+        run: vp run install-browsers-ci
+
+      - name: Run strict candidate validation
+        run: vp run validate-ci
+
+      - name: Verify validation did not change the candidate
+        run: node tools/check-worktree.mjs
+
+      - name: Upload browser evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: browser-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .generated/e2e-results.json
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 90

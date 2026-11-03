@@ -11,7 +11,6 @@
 /.generated/
 /.npm-cache/
 /test-results/
-/docs/evidence/*.tmp.png
 *.log
 *.tmp
 .vitest/

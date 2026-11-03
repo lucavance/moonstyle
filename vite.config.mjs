@@ -67,8 +67,38 @@ export default defineConfig(({ mode }) => ({
         ],
         cache: false,
       },
+      'check-generated': {
+        command: 'node tools/check-generated.mjs',
+        cache: false,
+        dependsOn: ['generate'],
+      },
+      'check-interfaces': {
+        command: 'node tools/check-interfaces.mjs',
+        cache: false,
+      },
+      'check-api-baseline': {
+        command: 'node tools/api-baseline.mjs',
+        cache: false,
+        dependsOn: ['check-interfaces'],
+      },
+      'check-docs': {
+        command: 'node tools/docs-contract.mjs',
+        cache: false,
+      },
+      'check-consumer': {
+        command: 'moon run tools/verify-consumer.mbtx',
+        cache: false,
+      },
+      'check-consumer-snapshot': {
+        command: 'moon run tools/verify-consumer.mbtx --snapshot',
+        cache: false,
+      },
       'check-toolchain': {
         command: 'node tools/check-toolchain.mjs',
+        cache: false,
+      },
+      'update-api-baseline': {
+        command: 'node tools/api-baseline.mjs --write',
         cache: false,
       },
       'moon-test': {
@@ -124,6 +154,39 @@ export default defineConfig(({ mode }) => ({
       },
       'check-project-strict': {
         command: 'node tooling/cli.mjs doctor --root validation --strict',
+        cache: false,
+      },
+      'release-audit': {
+        command: 'node tools/release-audit.mjs',
+        cache: false,
+      },
+      validate: {
+        command: ['vp run validate-source', 'vp run check-consumer-snapshot'],
+        cache: false,
+      },
+      'validate-source': {
+        command: [
+          'vp run generate',
+          'vp run check-project-strict',
+          'vp run check-interfaces',
+          'vp run check-api-baseline',
+          'vp run check-docs',
+          'vp run audit-dependencies',
+          'vp check',
+          'vp test run',
+          'moon test --target all',
+          'moon -C validation test src/generated src/css_runtime --target all',
+          'moon -C packages/moonstyle-luna test . --target js',
+          'moon test src/core --target all',
+          'vp run benchmark-dx',
+          'vp build',
+          'vp run check-generated',
+          'vp run release-audit',
+        ],
+        cache: false,
+      },
+      'validate-ci': {
+        command: 'moon run tools/validate-ci.mbtx',
         cache: false,
       },
     },

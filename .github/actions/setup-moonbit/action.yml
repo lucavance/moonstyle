@@ -1,0 +1,34 @@
+name: Set up pinned MoonBit
+description: Install matching compiler and core with the verified official installer
+inputs:
+  version:
+    description: Exact MoonBit compiler release
+    required: true
+  core-version:
+    description: Matching core release installed by the official installer
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Require matching compiler and core releases
+      if: ${{ inputs.version != inputs.core-version }}
+      shell: bash
+      run: 'false'
+    - name: Download the official MoonBit installer
+      shell: bash
+      run: curl --fail --silent --show-error --location --retry 3 https://cli.moonbitlang.com/install/unix.sh --output "$RUNNER_TEMP/moonbit-install.sh"
+    - name: Verify the reviewed installer checksum
+      shell: bash
+      working-directory: ${{ runner.temp }}
+      run: sha256sum --check --strict "$GITHUB_ACTION_PATH/installer.sha256"
+    - name: Install the exact compiler and core
+      shell: bash
+      env:
+        MOON_HOME: ${{ runner.temp }}/moonstyle-moon
+        MOONBIT_VERSION: ${{ inputs.version }}
+      run: bash "$RUNNER_TEMP/moonbit-install.sh" "$MOONBIT_VERSION"
+    - name: Configure the MoonBit runner environment
+      shell: bash
+      run: |
+        echo "$RUNNER_TEMP/moonstyle-moon/bin" >> "$GITHUB_PATH"
+        echo "MOON_HOME=$RUNNER_TEMP/moonstyle-moon" >> "$GITHUB_ENV"

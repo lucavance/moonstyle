@@ -1,0 +1,310 @@
+----
+import {
+  "moonbitlang/async@0.22.5",
+  "moonbitlang/async@0.22.5/fs",
+  "moonbitlang/async@0.22.5/process",
+  "moonbitlang/async@0.22.5/shell",
+  "moonbitlang/core/env",
+  "moonbitlang/core/json",
+}
+----
+
+///|
+async fn command(
+  cwd : String,
+  program : String,
+  args : Array[String],
+) -> String {
+  let output = @shell.Cmd(program, args, cwd~).output()
+  if output.exit_code() != 0 {
+    fail(
+      program + " " + args.join(" ") + "\n" + output.stdout() + output.stderr(),
+    )
+  }
+  output.stdout().trim().to_owned()
+}
+
+///|
+async fn write(filename : String, content : String) -> Unit {
+  let parts = filename.split("/").map(part => part.to_owned()).to_array()
+  ignore(parts.pop())
+  @fs.mkdir(parts.join("/"), recursive=true, allow_exist=true)
+  @fs.write_file(filename, content)
+}
+
+///|
+fn field(value : Json, name : String) -> String raise {
+  guard value is Object(fields) && fields.get(name) is Some(String(value)) else {
+    fail("Missing JSON string " + name)
+  }
+  value
+}
+
+///|
+fn snippets(markdown : String) -> Array[(String, String)] raise {
+  let output = []
+  let blocks = markdown.split("<!-- consumer-file: ").to_array()
+  for block in blocks[1:] {
+    let filename = block.split(" -->").next().unwrap().to_owned()
+    let code = block.split("```").to_array()
+    guard code.length() >= 3 else {
+      fail("Missing quickstart code fence: " + filename)
+    }
+    let lines = code[1].split("\n").map(line => line.to_owned()).to_array()
+    output.push((filename, lines[1:].to_owned().join("\n")))
+  }
+  guard output.length() >= 10 else {
+    fail("Quickstart does not contain the executable consumer")
+  }
+  output
+}
+
+///|
+async fn cli(cli : String, directory : String, args : Array[String]) -> Json {
+  let args = [cli, ..args, "--root", directory, "--json"]
+  @json.parse(command(directory, "node", args))
+}
+
+///|
+async fn formal_outputs(app : String) -> Array[String] {
+  let output = []
+  for
+    name in [
+      "styles.generated.css", "styles.generated.mbt", "moon.pkg", "styles.bundle.json",
+    ] {
+    output.push(@fs.read_file(app + "/src/generated/" + name).text())
+  }
+  output
+}
+
+///|
+async fn watch_recovery(cli_path : String, app : String) -> Unit {
+  let filename = app + "/styles/styles.mbt"
+  let original = @fs.read_file(filename).text()
+  let before = formal_outputs(app)
+  @async.with_timeout(60000, async fn() {
+    @async.with_task_group(async fn(group) {
+      let (reader, writer) = @process.read_from_process()
+      defer reader.close()
+      let child = @process.spawn(
+        group,
+        "node",
+        [cli_path, "watch", "--root", app, "--json"],
+        cwd=app,
+        stdout=writer,
+        cancel_handler=@process.graceful_cancel(timeout=3000),
+      )
+      writer.close()
+      let mut state = 0
+      while state < 3 {
+        guard reader.read_until("\n") is Some(line) else {
+          fail("Watch stopped before recovery")
+        }
+        let event = @json.parse(line)
+        match event {
+          { "event": "watch-cycle", "passed": value, .. } => {
+            let passed = value is True
+            if state == 0 {
+              guard passed else {
+                fail("Initial watch extraction failed: " + line)
+              }
+              @fs.write_file(
+                filename,
+                original.replace_all(
+                  old="@component.width()",
+                  new="@moonstyle.math_length(@moonstyle.auto())",
+                ),
+              )
+              state = 1
+            } else if state == 1 && !passed {
+              assert_eq(formal_outputs(app), before)
+              @fs.write_file(filename, original)
+              state = 2
+            } else if state == 2 && passed {
+              state = 3
+            }
+          }
+          _ => ()
+        }
+      }
+      child.cancel()
+      ignore(child.wait())
+    })
+  })
+}
+
+///|
+async fn main {
+  let root = @fs.realpath(".")
+  let snapshot = @env.args().contains("--snapshot")
+  let temporary = @fs.tmpdir(prefix="style independent consumer ")
+  println("Independent consumer workspace: " + temporary)
+  // Preserve failed workspaces for diagnosis; successful runs clean up below.
+  let mut repository = root
+  if snapshot {
+    repository = temporary + "/snapshot"
+    @fs.mkdir(repository)
+    let files = command(root, "git", [
+      "ls-files", "--cached", "--others", "--exclude-standard",
+    ])
+    for file in files.split("\n") {
+      let filename = file.to_owned()
+      if @fs.exists(root + "/" + filename) {
+        let parts = filename.split("/").map(part => part.to_owned()).to_array()
+        ignore(parts.pop())
+        @fs.mkdir(
+          repository + "/" + parts.join("/"),
+          recursive=true,
+          allow_exist=true,
+        )
+        @fs.write_file(
+          repository + "/" + filename,
+          @fs.read_file(root + "/" + filename),
+        )
+      }
+    }
+    ignore(command(repository, "git", ["init", "-q"]))
+    ignore(command(repository, "git", ["add", "."]))
+    ignore(
+      command(repository, "git", [
+        "-c", "user.name=Consumer validation", "-c", "user.email=validation@localhost",
+        "commit", "-qm", "Consumer source snapshot",
+      ]),
+    )
+  } else {
+    guard command(root, "git", ["status", "--porcelain"]).is_empty() else {
+      fail(
+        "Final consumer acceptance requires a clean candidate commit; use --snapshot during development",
+      )
+    }
+  }
+  let revision = command(repository, "git", ["rev-parse", "HEAD"])
+  let tree = command(repository, "git", ["rev-parse", "HEAD^{tree}"])
+  let remote = temporary + "/remote.git"
+  ignore(command(temporary, "git", ["clone", "--bare", repository, remote]))
+  ignore(command(temporary, "git", ["clone", "file://" + remote, "source"]))
+  let source = temporary + "/source"
+  ignore(command(source, "git", ["checkout", "--detach", revision]))
+  assert_eq(command(source, "git", ["rev-parse", "HEAD^{tree}"]), tree)
+  let packed = @json.parse(
+    command(source, "npm", ["pack", "--json", "--pack-destination", temporary]),
+  )
+  guard packed is [package_] else {
+    fail("npm pack must return exactly one package")
+  }
+  let tarball = temporary + "/" + field(package_, "filename")
+  let files = snippets(@fs.read_file(source + "/docs/quickstart.md").text())
+  for (filename, content) in files {
+    if filename.has_prefix("app/main/") {
+      continue
+    }
+    write(
+      temporary + "/" + filename,
+      content.replace_all(old="__TOOLING_TARBALL__", new=tarball),
+    )
+  }
+  let app = temporary + "/app"
+  let component = temporary + "/components"
+  println("Installing tooling packed from " + revision)
+  ignore(command(app, "bun", ["install", "--ignore-scripts"]))
+  let cli_path = app +
+    "/node_modules/@lampclaw/moonstyle-tooling/tooling/cli.mjs"
+  ignore(cli(cli_path, component, ["init"]))
+  ignore(cli(cli_path, component, ["generate"]))
+  let bundle_text = @fs.read_file(
+    component + "/src/generated/styles.bundle.json",
+  ).text()
+  let digest = field(@json.parse(bundle_text), "semanticDigest")
+  for (filename, content) in files {
+    if content.contains("__COMPONENT_DIGEST__") {
+      write(
+        temporary + "/" + filename,
+        content.replace_all(old="__COMPONENT_DIGEST__", new=digest),
+      )
+    }
+  }
+  ignore(command(component, "git", ["init", "-q"]))
+  ignore(
+    command(component, "git", ["add", "moon.mod", "styles", "src/generated"]),
+  )
+  ignore(
+    command(component, "git", [
+      "-c", "user.name=Consumer validation", "-c", "user.email=validation@localhost",
+      "commit", "-qm", "Component source and exact v13 contracts",
+    ]),
+  )
+  ignore(cli(cli_path, app, ["init"]))
+  let config_file = app + "/style.config.json"
+  let config = @fs.read_file(config_file)
+    .text()
+    .replace_all(
+      old="\"dependencyRoots\": []",
+      new="\"dependencyRoots\": [\"dependencies\"]",
+    )
+  @fs.write_file(config_file, config)
+  write(app + "/dependencies/component.bundle.json", bundle_text)
+  ignore(cli(cli_path, app, ["generate"]))
+  for (filename, content) in files {
+    if filename.has_prefix("app/main/") {
+      write(temporary + "/" + filename, content)
+    }
+  }
+  ignore(cli(cli_path, component, ["doctor", "--strict"]))
+  ignore(cli(cli_path, app, ["doctor", "--strict"]))
+  ignore(cli(cli_path, app, ["check"]))
+  let repeated = cli(cli_path, app, ["init"])
+  guard repeated is { "changedFiles": [], .. } else {
+    fail("init must be idempotent")
+  }
+  let before = formal_outputs(app)
+  for old_schema in [9, 10, 11, 12] {
+    @fs.write_file(
+      app + "/dependencies/component.bundle.json",
+      bundle_text.replace_all(
+        old="\"schemaVersion\":13",
+        new="\"schemaVersion\":" + old_schema.to_string(),
+      ),
+    )
+    let rejected = @shell.Cmd(
+      "node",
+      [cli_path, "generate", "--root", app, "--json"],
+      cwd=app,
+    ).output()
+    assert_true(
+      rejected.exit_code() != 0 &&
+      rejected.stdout().contains("STYLE_BUNDLE_SCHEMA"),
+    )
+    assert_eq(formal_outputs(app), before)
+  }
+  ignore(cli(cli_path, component, ["generate"]))
+  @fs.write_file(
+    app + "/dependencies/component.bundle.json",
+    @fs.read_file(component + "/src/generated/styles.bundle.json"),
+  )
+  ignore(cli(cli_path, app, ["generate"]))
+  println("Checking independent watch failure and recovery")
+  watch_recovery(cli_path, app)
+  ignore(cli(cli_path, app, ["generate"]))
+  ignore(cli(cli_path, app, ["check"]))
+  println("Building independent Rabbita application")
+  ignore(command(app, app + "/node_modules/.bin/vp", ["build"]))
+  assert_true(@fs.exists(app + "/dist/index.html"))
+  let report : Json = {
+    "schemaVersion": 1,
+    "revision": revision,
+    "tree": tree,
+    "snapshot": snapshot,
+    "passed": true,
+    "componentDigest": digest,
+    "checks": [
+      "git-clone-exact-revision", "executable-quickstart", "packed-tooling", "component-committed-contract",
+      "init-idempotence", "strict-resolution", "generate-check", "v9-rejected-without-writes",
+      "v10-rejected-without-writes", "v11-rejected-without-writes", "v12-rejected-without-writes",
+      "modern-colors-3d-exact-contract", "bottom-up-reextraction", "watch-recovery",
+      "rabbita-production-build",
+    ],
+  }
+  write(root + "/.generated/consumer.json", report.stringify(indent=2) + "\n")
+  println(report.stringify(indent=2))
+  @fs.rmdir(temporary, recursive=true)
+}
