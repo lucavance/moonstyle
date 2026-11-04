@@ -27,16 +27,24 @@ function freePort() {
 beforeAll(async () => {
   const port = await freePort();
   origin = `http://127.0.0.1:${port}`;
-  devServer = spawn('vp', ['dev', '--host', '127.0.0.1', '--port', String(port), '--strictPort'], {
+  devServer = spawn('moon', ['run', 'tools/dev.mbtx', '--', '--port', String(port)], {
     cwd: root,
     env: process.env,
     stdio: ['ignore', 'pipe', 'pipe'],
+    detached: true,
   });
-  await waitForHttpServer(devServer, origin, { name: 'VitePlus dev server', timeoutMs: 30_000 });
+  await waitForHttpServer(devServer, origin, { name: 'MoonStyle native dev server', timeoutMs: 60_000 });
+  for (let attempt = 0; attempt < 120; attempt += 1) {
+    const status = await fetch(`${origin}/__moonstyle/status`).then(response => response.json());
+    if (status.state === 'ready') return;
+    if (status.state === 'stale') throw Error(JSON.stringify(status));
+    await new Promise(resolve => setTimeout(resolve, 500));
+  }
+  throw Error('Native development build did not become ready');
 }, 60_000);
 
 afterAll(() => {
-  if (devServer && devServer.exitCode === null) devServer.kill('SIGTERM');
+  if (devServer && devServer.exitCode === null) process.kill(-devServer.pid, 'SIGTERM');
 });
 
 const browserMatrix = /** @type {const} */ ([

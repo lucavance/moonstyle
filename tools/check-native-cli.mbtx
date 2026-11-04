@@ -1,0 +1,76 @@
+----
+import { "moonbitlang/async@0.22.5", "moonbitlang/async@0.22.5/fs", "moonbitlang/async@0.22.5/shell", "moonbitlang/async@0.22.5/http", "moonbitlang/async@0.22.5/socket", "moonbitlang/core/env", "moonbitlang/core/json" }
+----
+fn field(value : Json, key : String) -> Json { match value { Object(fields) => fields.get(key).unwrap_or(Json::null()); _ => Json::null() } }
+
+async fn main {
+  let repository = @fs.realpath(".")
+  let directory = @fs.tmpdir(prefix="moonstyle-native-acceptance-")
+  defer @fs.rmdir(directory, recursive=true)
+  let write = async fn(path : String, content : String) -> Unit {
+    let parts = path.split("/").collect()
+    if parts.length() > 1 { @fs.mkdir(directory + "/" + parts[:parts.length() - 1].map(part => part.to_owned()).join("/"), recursive=true, allow_exist=true) }
+    @fs.write_file(directory + "/" + path, content)
+  }
+  let bin = directory + "/bin"
+  @shell.Cmd("moon", ["install", "./tooling/native/src/cmd/moonstyle", "--bin", bin]).run()
+  let cli = async fn(args : Array[String]) -> Json {
+    let result = @shell.Cmd(bin + "/moonstyle", args + ["--root", directory, "--json"]).output()
+    guard result.exit_code() == 0 else { fail(result.stdout() + result.stderr()) }
+    @json.parse(result.stdout())
+  }
+  write("moon.mod", "name = \"local/native-consumer\"\nversion = \"0.0.0\"\nsource = \"src\"\npreferred_target = \"js\"\nimport { \"lampclaw/moonstyle@0.3.0\" }\n")
+  write("moon.work", "members = [\".\", " + Json(repository).stringify() + "]\n")
+  write("src/styles/moon.pkg", "import { \"lampclaw/moonstyle\" }\n")
+  let styles = "pub fn registry() -> @moonstyle.Registry { @moonstyle.registry(\"local/native-consumer\", Array::makei(600, index => @moonstyle.rule(\"card_\" + index.to_string()).color(@moonstyle.rgb(255, 0, 0)))) }\n"
+  write("src/styles/styles.mbt", styles)
+  write("src/demo/moon.pkg", "options(\"is-main\": true)\nsupported_targets = \"js\"\n")
+  write("src/demo/main.mbt", "fn main { println(\"Native MoonStyle consumer\") }\n")
+  write("index.html", "<!doctype html><title>Acceptance</title><!-- moonstyle-assets --><div id=\"app\"></div>\n")
+  ignore(cli(["init"]))
+  ignore(cli(["generate"]))
+  let cached = cli(["generate"])
+  assert_eq(field(field(cached, "extraction"), "cacheStatus"), Json("hit"))
+  ignore(cli(["check"]))
+  ignore(cli(["doctor", "--strict"]))
+  ignore(cli(["build"]))
+  assert_false(@fs.read_file(directory + "/dist/index.html").text().contains("dev-client"))
+  assert_eq(@fs.readdir(directory + "/dist", sort=true), ["app.js", "index.html", "styles.css"])
+  let reserved = @http.Server(@socket.Addr::resolve("127.0.0.1", port=0))
+  let origin = "http://" + reserved.addr.to_string()
+  let port = reserved.addr.port().to_string()
+  reserved.close()
+  let fetch = async fn(path : String) -> String { let (response, body) = @http.get(origin + path); guard response.code == 200 else { fail(path) }; body.text() }
+  let wait = async fn(state : String, previous : Json) -> Json {
+    for attempt = 0; attempt < 600; attempt = attempt + 1 {
+      let value = @json.parse(fetch("/__moonstyle/status")) catch { _ => Json::null() }
+      if field(value, "state") == Json(state) && (previous is Null || field(value, "revision") != previous || state == "stale") { return value }
+      @async.sleep(200)
+    }
+    fail("Timed out waiting for native server state " + state)
+  }
+  ignore(@async.any([
+    async fn() -> Bool { @shell.Cmd(bin + "/moonstyle", ["dev", "--root", directory, "--port", port]).run(); fail("Development server exited early") },
+    async fn() -> Bool {
+      let initial = wait("ready", Json::null())
+      let revision = field(initial, "revision")
+      let css = fetch("/styles.css")
+      assert_true(css.contains("sourceMappingURL"))
+      assert_true(fetch("/dev-client.js").contains("MoonStyle Inspector"))
+      let mapping = @json.parse(fetch("/styles.css.map"))
+      assert_true(field(mapping, "sources") is Array([_, ..]))
+      write("src/styles/styles.mbt", styles + "\nthis is not valid MoonBit\n")
+      let stale = wait("stale", revision)
+      assert_eq(field(stale, "revision"), revision)
+      assert_eq(fetch("/styles.css"), css)
+      write("src/styles/styles.mbt", styles.replace_all(old="255, 0, 0", new="0, 0, 255"))
+      let recovered = wait("ready", revision)
+      assert_true(fetch("/styles.css").contains("rgb(0 0 255)"))
+      write("index.html", "<!doctype html><title>Changed template</title><!-- moonstyle-assets -->\n")
+      ignore(wait("ready", field(recovered, "revision")))
+      assert_true(fetch("/").contains("Changed template"))
+      println("Installed native CLI: cache, strict checks, production build, HTTP, source maps, source/template watching and failure recovery passed.")
+      true
+    },
+  ]))
+}

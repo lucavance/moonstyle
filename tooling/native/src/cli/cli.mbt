@@ -1,6 +1,6 @@
 ///|
 pub let usage =
-  #|Usage: moonstyle <init|doctor|upgrade|generate|check|watch> [options]
+  #|Usage: moonstyle <init|doctor|upgrade|generate|check|watch|build|dev> [options]
   #|
   #|  --root <directory>          MoonBit module root (default: current directory)
   #|  --json                      Versioned JSON reports; watch emits NDJSON
@@ -8,6 +8,8 @@ pub let usage =
   #|  init --styles-package <name> --extractor-package <path>
   #|  doctor --strict             Check native compilation and current artifacts
   #|  upgrade --dry-run           Preview the complete managed-file transaction
+  #|  build --main-package <path> --out-dir <path>  Emit a static site (defaults: src/demo, dist)
+  #|  dev --main-package <path> --port <number> --host <address>  Serve and reload after successful builds
   #|
   #|The native CLI requires MoonBit; Node and Vite are optional integrations.
 
@@ -17,9 +19,9 @@ pub fn parse(args : Array[String]) -> (String, Map[String, String]) raise {
   if ["--help", "-h", "--version"].contains(command) {
     return (command, Map([]))
   }
-  guard ["init", "doctor", "upgrade", "generate", "check", "watch"].contains(
-    command,
-  ) else {
+  guard [
+    "init", "doctor", "upgrade", "generate", "check", "watch", "build", "dev",
+  ].contains(command) else {
     @support.reject("STYLE_USAGE", "Unknown command: " + command)
   }
   let options = Map([])
@@ -32,6 +34,9 @@ pub fn parse(args : Array[String]) -> (String, Map[String, String]) raise {
     let parts = argument.split("=").map(part => part.to_owned()).collect()
     let flag = parts[0]
     let valued = ["--root"].contains(flag) ||
+      (["build", "dev"].contains(command) && flag == "--main-package") ||
+      (command == "build" && flag == "--out-dir") ||
+      (command == "dev" && ["--port", "--host"].contains(flag)) ||
       (
         command == "init" &&
         ["--styles-package", "--extractor-package"].contains(flag)
@@ -106,6 +111,24 @@ pub async fn run(args : Array[String]) -> Int32 {
       "doctor" => @project.doctor(root, strict=options.contains("--strict"))
       "generate" => @project.extract(root)
       "check" => @project.extract(root, check=true)
+      "build" =>
+        @devserver.build(
+          root,
+          main_package=options.get("--main-package").unwrap_or("src/demo"),
+          out_dir=options.get("--out-dir").unwrap_or("dist"),
+        )
+      "dev" => {
+        let port = @string.parse_int(options.get("--port").unwrap_or("5173")[:]) catch {
+          _ => @support.reject("STYLE_USAGE", "Invalid port")
+        }
+        @devserver.serve(
+          root,
+          main_package=options.get("--main-package").unwrap_or("src/demo"),
+          port~,
+          host=options.get("--host").unwrap_or("127.0.0.1"),
+        )
+        @project.report(command, [])
+      }
       "watch" => {
         @project.watch(root, event => {
           if json {

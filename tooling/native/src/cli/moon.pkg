@@ -1,6 +1,8 @@
 import {
   "lampclaw/moonstyle-tooling/project",
   "lampclaw/moonstyle-tooling/support",
+  "lampclaw/moonstyle-tooling/devserver",
+  "moonbitlang/core/string",
   "moonbitlang/async/fs",
   "moonbitlang/async",
 }

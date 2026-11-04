@@ -1,0 +1,384 @@
+///|
+#external
+type Element
+
+///|
+extern "js" fn create_host() -> Element =
+  #| () => { document.querySelector('[data-moonstyle-inspector]')?.remove(); const host = document.createElement('div'); host.dataset.moonstyleInspector = ''; document.documentElement.append(host); return host.attachShadow({mode:'open'}); }
+
+///|
+extern "js" fn element(
+  tag : String,
+  class_name : String,
+  text : String,
+) -> Element =
+  #| (tag, cls, text) => { const node = document.createElement(tag); node.className = cls; node.textContent = text; return node; }
+
+///|
+extern "js" fn append(parent : Element, child : Element) -> Unit = "(parent,child) => parent.append(child)"
+
+///|
+extern "js" fn clear(node : Element) -> Unit = "node => node.replaceChildren()"
+
+///|
+extern "js" fn set_text(node : Element, text : String) -> Unit = "(node,text) => { node.textContent = text; }"
+
+///|
+extern "js" fn set_html(node : Element, html : String) -> Unit = "(node,html) => { node.innerHTML = html; }"
+
+///|
+extern "js" fn host_status(shadow : Element, state : String) -> Unit = "(shadow,state) => { shadow.host.dataset.status = state; }"
+
+///|
+extern "js" fn hover(callback : (Element) -> Unit) -> Unit = "callback => document.addEventListener('mousemove',event => { if (event.target instanceof Element) callback(event.target); },true)"
+
+///|
+extern "js" fn highlight(overlay : Element, node : Element) -> Unit =
+  #| (overlay,node) => { const r = node.getBoundingClientRect(); Object.assign(overlay.style,{display:'block',left:r.x+'px',top:r.y+'px',width:r.width+'px',height:r.height+'px'}); }
+
+///|
+extern "js" fn query(node : Element, selector : String) -> Element = "(node,selector) => node.querySelector(selector)"
+
+///|
+extern "js" fn attribute(node : Element, name : String, value : String) -> Unit = "(node,name,value) => node.setAttribute(name,value)"
+
+///|
+extern "js" fn hide(node : Element, hidden : Bool) -> Unit = "(node,hidden) => { node.hidden = hidden; }"
+
+///|
+extern "js" fn click(node : Element, callback : () -> Unit) -> Unit = "(node,callback) => node.addEventListener('click',callback)"
+
+///|
+extern "js" fn on_key(callback : (Bool, Bool, String) -> Unit) -> Unit =
+  #| callback => document.addEventListener('keydown',event => callback(event.altKey,event.shiftKey,event.key))
+
+///|
+extern "js" fn on_pick(callback : (Element) -> Bool) -> Unit =
+  #| callback => document.addEventListener('click',event => { if (event.target instanceof Element && callback(event.target)) { event.preventDefault(); event.stopImmediatePropagation(); } },true)
+
+///|
+extern "js" fn outside_inspector(node : Element) -> Bool = "node => !node.closest('[data-moonstyle-inspector]')"
+
+///|
+extern "js" fn connected(node : Element) -> Bool = "node => node.isConnected"
+
+///|
+extern "js" fn classes(node : Element) -> FixedArray[String] = "node => [...node.classList]"
+
+///|
+extern "js" fn element_label(node : Element) -> String = "node => node.tagName.toLowerCase() + (node.id ? '#' + node.id : '')"
+
+///|
+extern "js" fn computed(node : Element, property : String) -> String = "(node,property) => getComputedStyle(node).getPropertyValue(property).trim()"
+
+///|
+extern "js" fn fetch_text(url : String, callback : (String) -> Unit) -> Unit =
+  #| (url,callback) => fetch(url,{cache:'no-store'}).then(response => { if (!response.ok) throw Error(response.status); return response.text(); }).then(callback).catch(() => callback(''))
+
+///|
+extern "js" fn every(milliseconds : Int32, callback : () -> Unit) -> Unit = "(milliseconds,callback) => { setInterval(callback,milliseconds); }"
+
+///|
+extern "js" fn reload() -> Unit = "() => location.reload()"
+
+///|
+extern "js" fn stored_open() -> Bool = "() => { try { return sessionStorage.getItem('moonstyle-inspector-open') === 'true'; } catch { return false; } }"
+
+///|
+extern "js" fn store_open(value : Bool) -> Unit = "value => { try { sessionStorage.setItem('moonstyle-inspector-open',String(value)); } catch {} }"
+
+///|
+fn field(value : Json, key : String) -> Json {
+  match value {
+    Object(fields) => fields.get(key).unwrap_or(Json::null())
+    _ => Json::null()
+  }
+}
+
+///|
+fn text(value : Json, key : String) -> String {
+  match field(value, key) {
+    String(value) => value
+    value => if value is Null { "" } else { value.stringify() }
+  }
+}
+
+///|
+fn array(value : Json) -> Array[Json] {
+  match value {
+    Array(values) => values
+    _ => []
+  }
+}
+
+///|
+fn css_property(value : String) -> String {
+  if value.has_prefix("--") {
+    return value
+  }
+  let output = StringBuilder()
+  for letter in value {
+    let letter = letter.to_string()
+    output.write_string(
+      if letter != letter.to_lower() {
+        "-" + letter.to_lower()
+      } else {
+        letter
+      },
+    )
+  }
+  output.to_string()
+}
+
+///|
+fn main {
+  let shadow = create_host()
+  let template =
+    #|<style>
+    #|:host{all:initial}*{box-sizing:border-box}button{font:inherit;cursor:pointer;color:inherit;background:#25304a;border:1px solid #71809f;border-radius:6px;padding:5px 8px}.badge,.panel,.errors{position:fixed;z-index:2147483647;background:#111827;color:#eef2ff;font:12px/1.5 system-ui;box-shadow:0 8px 30px #0007}.badge{right:16px;bottom:16px;border-radius:20px}.panel{right:16px;bottom:58px;width:min(440px,calc(100vw - 32px));max-height:75vh;border:1px solid #66738d;border-radius:10px;padding:12px;overflow:auto}.header,.toolbar{display:flex;gap:8px;align-items:center;margin-bottom:10px}.header strong{flex:1}.status,.origin,.unknown{color:#aab7d1}.rule{margin-top:8px;padding:10px;border:1px solid #39455e;border-radius:8px}.class{color:#91b5ff}.computed{color:#89dfb1}pre{white-space:pre-wrap;overflow-wrap:anywhere}.errors{inset:10px 10px auto;padding:14px;max-height:40vh;overflow:auto;border:2px solid #f87171}[hidden]{display:none!important}a{color:#a9c5ff}
+    #|.highlight{display:none;pointer-events:none;position:fixed;z-index:2147483646;background:#60a5fa30;border:2px solid #60a5fa}
+    #|</style><div class="highlight"></div><button class="badge" aria-label="Toggle MoonStyle Inspector">MoonStyle</button>
+    #|<section class="panel" aria-label="MoonStyle Inspector" hidden><div class="header"><strong>MoonStyle Inspector</strong><span class="status">starting</span><button class="close" aria-label="Close">×</button></div><div class="toolbar"><button class="pick" aria-pressed="false">Pick element</button><span class="selection">No element selected</span></div><div class="body"></div></section><pre class="errors" hidden></pre>
+  set_html(shadow, template)
+  let panel = query(shadow, ".panel")
+  let badge = query(shadow, ".badge")
+  let pick = query(shadow, ".pick")
+  let body = query(shadow, ".body")
+  let status = query(shadow, ".status")
+  let errors = query(shadow, ".errors")
+  let selection = query(shadow, ".selection")
+  let overlay = query(shadow, ".highlight")
+  let mut open = stored_open()
+  let mut picking = false
+  let mut selected : Element? = None
+  let mut manifest = Json::null()
+  let set_open = fn(value : Bool) {
+    open = value
+    if !value {
+      picking = false
+      attribute(pick, "aria-pressed", "false")
+      hide(overlay, true)
+      set_text(pick, "Pick element")
+    }
+    hide(panel, !value)
+    attribute(badge, "aria-expanded", value.to_string())
+    store_open(value)
+  }
+  let render = fn() {
+    clear(body)
+    guard selected is Some(node) && connected(node) else {
+      set_text(selection, "No element selected")
+      append(
+        body,
+        element(
+          "p", "empty", "Pick an element to inspect its applied atomic rules.",
+        ),
+      )
+      return
+    }
+    set_text(selection, element_label(node))
+    let applied = Array::from_fixed_array(classes(node))
+    let rules = array(field(manifest, "rules")).filter(rule => {
+      applied.contains(text(rule, "className"))
+    })
+    rules.sort_by((a, b) => {
+      let number = fn(value : Json, key : String) {
+        match field(value, key) {
+          Number(value, ..) => value.to_int()
+          _ => 0
+        }
+      }
+      let priority = number(a, "priority100").compare(number(b, "priority100"))
+      if priority == 0 {
+        number(a, "order").compare(number(b, "order"))
+      } else {
+        priority
+      }
+    })
+    for rule in rules {
+      let card = element("article", "rule", "")
+      append(
+        card,
+        element(
+          "strong",
+          "class",
+          "." + text(rule, "className") + " · " + text(rule, "property"),
+        ),
+      )
+      append(
+        card,
+        element(
+          "div",
+          "computed",
+          "computed: " + computed(node, css_property(text(rule, "property"))),
+        ),
+      )
+      append(card, element("pre", "", text(rule, "css")))
+      append(
+        card,
+        element(
+          "div",
+          "meta",
+          "priority100 " +
+          text(rule, "priority100") +
+          " · render order " +
+          text(rule, "order"),
+        ),
+      )
+      let origins = array(field(rule, "origins"))
+      if origins.is_empty() {
+        append(
+          card,
+          element(
+            "div", "origin", "Source unavailable in the dependency bundle.",
+          ),
+        )
+      }
+      for origin in origins {
+        append(
+          card,
+          element(
+            "div",
+            "origin",
+            [
+              text(origin, "module"),
+              text(origin, "exportName"),
+              text(origin, "namespace"),
+            ]
+            .filter(value => value != "")
+            .join(" · "),
+          ),
+        )
+        let source = field(origin, "source")
+        if !(source is Null) {
+          let location = text(source, "file") +
+            ":" +
+            text(source, "line") +
+            ":" +
+            text(source, "column")
+          let link = element("a", "source", location)
+          if text(source, "absoluteFile") != "" {
+            attribute(
+              link,
+              "href",
+              "vscode://file/" +
+              text(source, "absoluteFile") +
+              ":" +
+              text(source, "line") +
+              ":" +
+              text(source, "column"),
+            )
+          }
+          append(card, link)
+        }
+      }
+      append(body, card)
+    }
+    if rules.is_empty() {
+      append(
+        body,
+        element(
+          "p", "empty", "No MoonStyle atomic classes found on this element.",
+        ),
+      )
+    }
+    let unknown = applied.filter(name => {
+      !rules.any(rule => text(rule, "className") == name)
+    })
+    if !unknown.is_empty() {
+      append(
+        body,
+        element("div", "unknown", "Other classes: " + unknown.join(" ")),
+      )
+    }
+  }
+  click(badge, () => set_open(!open))
+  click(query(shadow, ".close"), () => set_open(false))
+  click(pick, () => {
+    picking = !picking
+    attribute(pick, "aria-pressed", picking.to_string())
+    set_text(pick, if picking { "Picking…" } else { "Pick element" })
+  })
+  on_key((alt, shift, key) => {
+    if alt && shift && key.to_lower() == "s" {
+      set_open(!open)
+    } else if key == "Escape" {
+      if picking {
+        picking = false
+        attribute(pick, "aria-pressed", "false")
+      } else {
+        set_open(false)
+      }
+    }
+  })
+  on_pick(node => {
+    if !picking || !outside_inspector(node) {
+      return false
+    }
+    selected = Some(node)
+    picking = false
+    hide(overlay, true)
+    attribute(pick, "aria-pressed", "false")
+    set_text(pick, "Pick element")
+    render()
+    true
+  })
+  hover(node => {
+    if picking && outside_inspector(node) {
+      hide(overlay, false)
+      highlight(overlay, node)
+    } else {
+      hide(overlay, true)
+    }
+  })
+  set_open(open)
+  render()
+  let mut revision : String? = None
+  let mut busy = false
+  let poll = fn() {
+    if busy {
+      return
+    }
+    busy = true
+    fetch_text("/__moonstyle/status", response => {
+      busy = false
+      let value = @json.parse(response) catch { _ => Json::null() }
+      if value is Null {
+        set_text(status, "unavailable")
+        return
+      }
+      let state = text(value, "state")
+      host_status(shadow, state)
+      let next_revision = text(value, "revision")
+      set_text(status, state)
+      attribute(
+        badge,
+        "title",
+        "MoonStyle Inspector: " + state + " (Alt/Option+Shift+S)",
+      )
+      let diagnostics = array(field(value, "diagnostics"))
+      hide(errors, diagnostics.is_empty())
+      set_text(
+        errors,
+        diagnostics
+        .map(item => text(item, "code") + ": " + text(item, "message"))
+        .join("\n"),
+      )
+      if revision is Some(previous) &&
+        previous != next_revision &&
+        state == "ready" {
+        reload()
+        return
+      }
+      if revision is None {
+        revision = Some(next_revision)
+        fetch_text("/__moonstyle/manifest", response => {
+          manifest = @json.parse(response) catch { _ => Json::null() }
+          render()
+        })
+      }
+    })
+  }
+  every(600, poll)
+  poll()
+}

@@ -145,10 +145,11 @@ pub async fn watch(root : String, emit : (Json) -> Unit raise) -> Unit {
       fields["sequence"] = Json(sequence)
       emit(Json::object(fields))
       config = style_config(root) catch { _ => config }
-      // Generation must not feed its own output back into the next cycle.
-      last_identity = input_identity(root, config) catch { _ => last_identity }
+      // Retain the pre-build identity so edits made during compilation trigger
+      // another cycle. Generated outputs are already excluded by relevant().
       initial = false
       sync_watchers()
+      continue
     }
     let waits = watchers.map(watcher => async fn() { watcher.wait_any() })
     ignore(@async.any(waits[:]))

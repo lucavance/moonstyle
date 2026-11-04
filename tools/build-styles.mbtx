@@ -1,0 +1,11 @@
+----
+import { "moonbitlang/async@0.22.5", "moonbitlang/async@0.22.5/shell", "moonbitlang/core/env" }
+----
+async fn main {
+  if !@env.args().contains("--styles-only") {
+    for script in ["generate-expressions", "generate-properties", "generate-application-order"] {
+      @shell.Cmd("moon", ["run", "tools/" + script + ".mbtx"]).run()
+    }
+  }
+  @shell.Cmd("moon", ["run", "tools/moonstyle.mbtx", "--", "generate", "--root", "validation"]).run()
+}

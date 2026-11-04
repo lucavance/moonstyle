@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-tooling/devserver"
+
+// Values
+pub async fn build(String, main_package? : String, out_dir? : String, development? : Bool) -> Json
+
+pub async fn debug_manifest(String, String) -> Json
+
+pub fn request_path(String) -> String?
+
+pub async fn serve(String, main_package? : String, port? : Int32, host? : String) -> Unit
+
+pub fn source_map(String, Json) -> Json raise
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

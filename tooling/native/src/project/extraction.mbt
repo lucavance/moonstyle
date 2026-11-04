@@ -88,6 +88,15 @@ pub async fn extract(
   for bundle in bundles {
     args.append(["--dependency-bundle", bundle])
   }
+  if !check {
+    for kind in output_kinds {
+      @fs.mkdir(
+        @support.parent(root + "/" + @support.text(outputs, kind)),
+        recursive=true,
+        allow_exist=true,
+      )
+    }
+  }
   if check {
     args.push("--check")
   }
