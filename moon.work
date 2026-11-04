@@ -2,4 +2,5 @@ members = [
   ".",
   "validation",
   "packages/moonstyle-luna",
+  "tooling/native",
 ]
