@@ -1,0 +1,99 @@
+{
+  "block-size": {
+    "digest": "sha256:a9aeb9ff9cf383af729217a9a08b871d513a262d28d311877867096dda8632ad",
+    "excludedSyntax": [
+      "stretch",
+      "stretch()",
+      "contain",
+      "calc-size()",
+      "anchor-size()"
+    ]
+  },
+  "inline-size": {
+    "digest": "sha256:a9aeb9ff9cf383af729217a9a08b871d513a262d28d311877867096dda8632ad",
+    "excludedSyntax": [
+      "stretch",
+      "stretch()",
+      "contain",
+      "calc-size()",
+      "anchor-size()"
+    ]
+  },
+  "max-block-size": {
+    "digest": "sha256:7ef2c966bafcb45df9354674c22ccff25b4646e57ea3b73779b23d05bf9aa768",
+    "excludedSyntax": [
+      "stretch",
+      "stretch()",
+      "contain",
+      "calc-size()",
+      "anchor-size()"
+    ]
+  },
+  "max-inline-size": {
+    "digest": "sha256:7ef2c966bafcb45df9354674c22ccff25b4646e57ea3b73779b23d05bf9aa768",
+    "excludedSyntax": [
+      "stretch",
+      "stretch()",
+      "contain",
+      "calc-size()",
+      "anchor-size()"
+    ]
+  },
+  "min-block-size": {
+    "digest": "sha256:a9aeb9ff9cf383af729217a9a08b871d513a262d28d311877867096dda8632ad",
+    "excludedSyntax": [
+      "stretch",
+      "stretch()",
+      "contain",
+      "calc-size()",
+      "anchor-size()"
+    ]
+  },
+  "min-inline-size": {
+    "digest": "sha256:a9aeb9ff9cf383af729217a9a08b871d513a262d28d311877867096dda8632ad",
+    "excludedSyntax": [
+      "stretch",
+      "stretch()",
+      "contain",
+      "calc-size()",
+      "anchor-size()"
+    ]
+  },
+  "isolation": {
+    "digest": "sha256:3f6d8b8e16c9e11b024f74989d003e62e935c12235bb7c8d8ab9fd5f40af9e72",
+    "excludedSyntax": []
+  },
+  "white-space": {
+    "digest": "sha256:1fac77265f7a3f8a83b23d6f9fa1288797ac4f03c9f283cd42a7ea516e970fa3",
+    "excludedSyntax": [
+      "multi-keyword combinations",
+      "white-space-trim"
+    ]
+  },
+  "text-wrap": {
+    "digest": "sha256:dd617c56a74db103963f2e88987fcae05b166934651ea221e236f4e21ee4eac9",
+    "excludedSyntax": [
+      "mode/style combinations"
+    ]
+  },
+  "vertical-align": {
+    "digest": "sha256:53b548efa7819a46ceeeddb1383d72ab62eff780625bd5251eb38c75843051fe",
+    "excludedSyntax": [
+      "first/last",
+      "extended baseline keywords",
+      "dynamic offsets"
+    ]
+  },
+  "will-change": {
+    "digest": "sha256:3d4e455f280764fb8189cb83ba0b9e7c257766b1a06a1be24897e5a2df3087a2",
+    "excludedSyntax": [
+      "unreviewed property names"
+    ]
+  },
+  "font-variation-settings": {
+    "digest": "sha256:22e34eebaac7d230cd1a5c0d81767e6f4240fc5696314340b3ccc8570949c1d8",
+    "excludedSyntax": [
+      "dynamic axes"
+    ]
+  }
+}

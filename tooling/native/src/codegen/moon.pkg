@@ -1,0 +1,5 @@
+import {
+  "lampclaw/moonstyle-tooling/support",
+}
+
+supported_targets = "native"

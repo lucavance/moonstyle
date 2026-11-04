@@ -1,0 +1,11 @@
+import {
+  "lampclaw/moonstyle-tooling/codegen" @generator,
+  "lampclaw/moonstyle-tooling/support",
+  "moonbitlang/async/fs",
+  "moonbitlang/async",
+  "moonbitlang/core/env",
+}
+
+pkgtype(kind: "executable")
+
+supported_targets = "native"

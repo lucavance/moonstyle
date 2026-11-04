@@ -1,0 +1,13 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-tooling/codegen"
+
+// Values
+pub async fn generate(String) -> Unit
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

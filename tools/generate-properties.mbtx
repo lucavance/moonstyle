@@ -1,0 +1,6 @@
+----
+import { "moonbitlang/async@0.22.5", "moonbitlang/async@0.22.5/shell" }
+----
+async fn main {
+  @shell.Cmd("moon", ["-C", "tooling/native", "run", "src/cmd/codegen", "--target", "native"]).run()
+}

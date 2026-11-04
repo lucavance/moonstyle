@@ -70,7 +70,7 @@ pub fn hash(value : String) -> String {
 
 ///|
 pub fn quote(value : String) -> String {
-  Json::string(value).stringify()
+  Json::string(value).stringify(escape_slash=false)
 }
 
 ///|
@@ -79,12 +79,12 @@ pub fn canonical(value : Json) -> String {
   match value {
     Object(fields) => {
       let keys = fields.keys().collect()
-      keys.sort()
+      keys.sort_by((a, b) => a[:].lexical_compare(b[:]))
       "{" +
       keys.map(key => quote(key) + ":" + canonical(fields[key])).join(",") +
       "}"
     }
     Array(items) => "[" + items.map(canonical).join(",") + "]"
-    _ => value.stringify()
+    _ => value.stringify(escape_slash=false)
   }
 }
