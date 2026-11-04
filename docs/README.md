@@ -1,6 +1,6 @@
 # MoonStyle documentation
 
-These guides describe source version 0.3.0. Mooncakes currently provides 0.2.0.
+These guides describe source version 0.3.0, also published on Mooncakes.
 Module manifests, generated interfaces,
 reviewed metadata and versioned artifacts define the implemented contracts.
 
@@ -33,6 +33,7 @@ reviewed metadata and versioned artifacts define the implemented contracts.
 
 ## Maintain and release
 
+- [0.3.0 release notes](releases/0.3.0.md)
 - [Current status](current-status.md)
 - [Pinned toolchain](../toolchain.json)
 - [CSS data sources](data-sources.md)

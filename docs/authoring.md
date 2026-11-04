@@ -14,7 +14,7 @@ authoring APIs are unsupported.
 Atomic CSS remains supported, but the `@stylexjs/atoms` authoring form is not a
 compatibility target.
 
-Mooncakes provides `lampclaw/moonstyle@0.2.0`. A pinned Git commit or local path
+Mooncakes provides `lampclaw/moonstyle@0.3.0`. A pinned Git commit or local path
 dependency is also supported; see
 [distribution](distribution.md). Source 0.3.0 provides a native CLI installed
 with `moon install` from a reviewed source checkout. Ordinary development

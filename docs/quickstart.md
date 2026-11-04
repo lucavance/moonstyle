@@ -2,8 +2,9 @@
 
 This complete component and Rabbita application consume source 0.3.0 from a
 reviewed commit. The workflow uses MoonBit, a native C toolchain and Git.
-Node and Vite are not required. The published Mooncakes library is still 0.2.0;
-the 0.3.0 imports below resolve to the checked-out workspace source.
+Node and Vite are not required. Mooncakes also provides the 0.3.0 library;
+the imports below intentionally resolve to the checked-out workspace source
+so the CLI and library are verified from the same revision.
 
 Install the compiler/core pinned in [toolchain.json](../toolchain.json), then:
 

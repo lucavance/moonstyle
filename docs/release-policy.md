@@ -1,7 +1,7 @@
 # Release policy
 
-The published Mooncakes module is `lampclaw/moonstyle@0.2.0`. Current source
-version 0.3.0 prepares native tooling and has not been published. The root
+The published Mooncakes module is `lampclaw/moonstyle@0.3.0`. Current source
+version 0.3.0 provides matching native tooling. The root
 library, validation consumer, Luna adapter and source tooling share the source
 version; artifact, metadata and protocol schemas have independent versions.
 See [API stability](api-stability.md) and [release status](../release-status.json).

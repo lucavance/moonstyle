@@ -8,7 +8,8 @@ also includes project tooling, generated mappings and a Rabbita browser example.
 
 | Contract | Current value |
 | --- | --- |
-| Library, optional Luna module, native tools | 0.3.0 (prepared for release) |
+| Library, optional Luna module, native tools (source) | 0.3.0 |
+| Published Mooncakes library | 0.3.0 |
 | Reviewed typed properties | 392 |
 | Artifact schema | v14 |
 | Property generator schema | v18 |
@@ -66,8 +67,8 @@ MoonBit. The inspector's MoonBit source compiles to browser JavaScript through
 small DOM FFI bindings. Production application compilation also uses Moon's JS
 backend. Full-page reload is used after successful development builds.
 
-Mooncakes provides `lampclaw/moonstyle@0.2.0`. Source 0.3.0 is prepared for release
-and available through a reviewed Git commit. The native CLI is installed with
+Mooncakes provides `lampclaw/moonstyle@0.3.0`. Matching source is available
+through the 0.3.0 release and reviewed Git commits. The native CLI is installed with
 `moon install` from the same source. The optional private Vite adapter lives in
 `tooling/vite/`; Node test dependencies live in `verification/` and the separate
 StyleX oracle. They are outside the default dependency graph.

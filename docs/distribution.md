@@ -2,15 +2,16 @@
 
 ## Published library
 
-Mooncakes provides `lampclaw/moonstyle@0.2.0`, including typed authoring,
+Mooncakes provides `lampclaw/moonstyle@0.3.0`, including typed authoring,
 composition/runtime, native extraction and the Rabbita adapter:
 
 ```moonbit
-import { "lampclaw/moonstyle@0.2.0" }
+import { "lampclaw/moonstyle@0.3.0" }
 ```
 
-Source 0.3.0 is prepared for release. Its public library API is checked against
-the published 0.2.0 baseline. The optional Luna module remains experimental.
+Release 0.3.0 provides native project tooling while preserving the public
+library API checked against the published 0.2.0 baseline. The optional Luna
+module remains experimental and source-distributed.
 
 ## Reviewed Git source
 
@@ -24,7 +25,8 @@ moon install ./source/tooling/native/src/cmd/moonstyle
 Use the same reviewed revision for the CLI and library. In the consumer workspace,
 list `source` and your application in `moon.work`. A module with source-version
 imports such as `lampclaw/moonstyle@0.3.0` then resolves to that local workspace
-member. This source workflow does not imply that 0.3.0 is published to Mooncakes.
+member. Git source includes the native CLI and examples in addition to the
+published library.
 The [executable quickstart](quickstart.md) validates the complete setup.
 
 The root `moon.mod` owns `lampclaw/moonstyle`, with library packages under `src/`.

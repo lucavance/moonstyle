@@ -75,9 +75,9 @@ themes and registered globals. [Tested value examples](src/expressions.mbt.md),
 
 ## Distribution and verification
 
-The source version is **0.3.0**, prepared for release. The published Mooncakes
-library remains [`lampclaw/moonstyle@0.2.0`](https://mooncakes.io/docs/lampclaw/moonstyle).
-Consume 0.3.0 from a reviewed Git commit, and install the CLI from that same source:
+The source and published Mooncakes library version is **0.3.0**:
+[`lampclaw/moonstyle@0.3.0`](https://mooncakes.io/docs/lampclaw/moonstyle).
+Install the CLI from the matching reviewed source revision:
 
 ```bash
 moon install ./tooling/native/src/cmd/moonstyle
@@ -93,7 +93,8 @@ fixtures are in this repository.
 for Playwright, css-tree and the live StyleX oracle. The optional
 [`@lampclaw/moonstyle-tooling/vite`](tooling/vite/README.md) export calls the native CLI.
 Strict CI requires these checks in addition to the native validation job.
-See [CI and validation](docs/ci-and-validation.md), [current status](docs/current-status.md),
+See [0.3.0 release notes](docs/releases/0.3.0.md),
+[CI and validation](docs/ci-and-validation.md), [current status](docs/current-status.md),
 [distribution](docs/distribution.md) and [documentation index](docs/README.md).
 
 StyleX is a pinned test-only semantic oracle; JavaScript authoring and

@@ -1,7 +1,7 @@
 # API Stability
 
-Source version is 0.3.0; the published library is `lampclaw/moonstyle@0.2.0`.
-The current public library interfaces match that published baseline.
+Source version is 0.3.0; the published library is `lampclaw/moonstyle@0.3.0`.
+The public library interfaces remain compatible with the published 0.2.0 baseline.
 
 The public module is `lampclaw/moonstyle`. Pin the library version or a reviewed
 source commit, keep tooling aligned, and regenerate component and application
