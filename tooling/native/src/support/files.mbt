@@ -45,6 +45,12 @@ pub async fn read(path : String) -> String {
 }
 
 ///|
+pub async fn file_hash(path : String) -> String {
+  "sha256:" +
+  @crypto.bytes_to_hex_string(@crypto.sha256(@fs.read_file(path).binary()))
+}
+
+///|
 pub async fn json(path : String) -> Json {
   @json.parse(read(path))
 }

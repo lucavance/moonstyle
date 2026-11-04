@@ -3,6 +3,6 @@ import {
   "lampclaw/moonstyle/extract/cli",
 }
 
-supported_targets = "native"
-
 pkgtype(kind: "executable")
+
+supported_targets = "native"

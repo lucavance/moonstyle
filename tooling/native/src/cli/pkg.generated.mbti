@@ -1,0 +1,17 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-tooling/cli"
+
+// Values
+pub fn parse(Array[String]) -> (String, Map[String, String]) raise
+
+pub async fn run(Array[String]) -> Int32
+
+pub let usage : String
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

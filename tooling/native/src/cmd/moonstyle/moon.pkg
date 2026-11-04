@@ -1,0 +1,11 @@
+import {
+  "lampclaw/moonstyle-tooling/cli",
+  "moonbitlang/async",
+  "moonbitlang/async/signal",
+  "moonbitlang/core/env",
+  "moonbitlang/x/sys",
+}
+
+pkgtype(kind: "executable")
+
+supported_targets = "native"

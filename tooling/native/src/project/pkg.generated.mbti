@@ -1,0 +1,57 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-tooling/project"
+
+// Values
+pub async fn build(String, String, target? : String, release? : Bool) -> (Array[String], Array[Json])
+
+pub fn build_records(String, String) -> (Array[String], Array[Json])
+
+pub fn configuration(String) -> String
+
+pub async fn dependency_bundles(String, Json) -> Array[String]
+
+pub fn diagnostic(String, String, severity? : String, file? : Json) -> Json
+
+pub async fn doctor(String, strict? : Bool) -> Json
+
+pub async fn extract(String, check? : Bool, debug? : Bool, profile? : String) -> Json
+
+pub fn failed_report(String, Error) -> Json
+
+pub async fn initialize(String, styles? : String?, extractor? : String?, upgrade? : Bool, dry_run? : Bool) -> Json
+
+pub async fn input_identity(String, Json) -> String
+
+pub async fn manifest(String, allow_v1? : Bool) -> Json
+
+pub async fn module_info(String) -> Json
+
+pub let output_kinds : Array[String]
+
+pub fn package_name(String) -> Bool
+
+pub fn relevant(String, String, Json) -> Bool
+
+pub fn render(Json, json? : Bool, verbose? : Bool) -> String raise
+
+pub fn report(String, Array[Json], changed? : Array[String], dry_run? : Bool, extraction? : Json) -> Json
+
+pub async fn style_config(String) -> Json
+
+pub async fn transact(String, Map[String, String], dry_run? : Bool) -> Array[String]
+
+pub let version : String
+
+pub async fn watch(String, (Json) -> Unit raise) -> Unit
+
+pub async fn watch_roots(String) -> Array[String]
+
+pub async fn workspace_paths(String) -> Array[String]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

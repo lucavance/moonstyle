@@ -1,0 +1,12 @@
+----
+import { "moonbitlang/async@0.22.5", "moonbitlang/async@0.22.5/fs", "moonbitlang/async@0.22.5/shell", "moonbitlang/core/env" }
+----
+async fn main {
+  let args = @env.args()[1:].to_owned()
+  let root = @fs.realpath(".")
+  for index = 0; index < args.length(); index = index + 1 {
+    if args[index] == "--root" && index + 1 < args.length() { args[index + 1] = @fs.realpath(args[index + 1]) }
+    else if args[index].has_prefix("--root=") { args[index] = "--root=" + @fs.realpath(args[index][7:]) }
+  }
+  @shell.Cmd("moon", ["-C", "tooling/native", "run", "src/cmd/moonstyle", "--target", "native", "--"] + (if args.is_empty() { ["--help"] } else { args + (if args.contains("--root") || args.any(arg => arg.has_prefix("--root=")) || args[0].has_prefix("--") { [] } else { ["--root", root] }) })).run()
+}

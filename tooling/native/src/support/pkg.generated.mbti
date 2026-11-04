@@ -16,6 +16,8 @@ pub fn exact(Json, Array[String], String) -> Unit raise
 
 pub fn fields(Json) -> Map[String, Json] raise
 
+pub async fn file_hash(String) -> String
+
 pub async fn files(String) -> Array[String]
 
 pub fn flag(Json, String) -> Bool
