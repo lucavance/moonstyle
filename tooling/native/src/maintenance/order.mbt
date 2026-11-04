@@ -1,0 +1,260 @@
+///|
+fn int(value : Json) -> Int32 raise {
+  guard value is Number(number, ..) &&
+    !number.is_inf() &&
+    !number.is_nan() &&
+    number == number.to_int().to_double() else {
+    @support.reject("STYLE_SCHEMA", "Expected an integer")
+  }
+  number.to_int()
+}
+
+///|
+fn sorted_keys(value : Json) -> Array[String] raise {
+  let keys = @support.fields(value).keys().collect()
+  keys.sort_by((a, b) => a.lexical_compare(b))
+  keys
+}
+
+///|
+pub async fn application_order(root : String) -> Unit {
+  let lock = @support.json(root + "/src/core/application-order.lock.json")
+  let metadata = @support.json(root + "/src/properties/property-metadata.json")
+  let semantic = @support.copy(lock)
+  ignore(semantic.remove("schemaVersion"))
+  ignore(semantic.remove("semanticsDigest"))
+  let typed = @support.array(@support.get(lock, "properties"))
+  let supplement = @support.array(@support.get(lock, "supplementalProperties"))
+  let source_names = @support.array(@support.get(metadata, "properties")).map(item => {
+    @support.get(item, "irName")
+  })
+  let input : Json = {
+    "metadataSources": @support.get(metadata, "sources"),
+    "properties": source_names,
+    "value": "inherit",
+  }
+  guard int(@support.get(lock, "schemaVersion")) == 4 &&
+    int(@support.get(lock, "priorityScale")) == 100 &&
+    @support.text(lock, "semanticsDigest") ==
+    @support.hash(Json::object(semantic).stringify()) &&
+    @support.text(lock, "inputDigest") == @support.hash(input.stringify()) &&
+    typed.map(item => @support.get(item, "property")) == source_names &&
+    source_names.length() == 392 &&
+    supplement.map(item => @support.get(item, "property")) ==
+    [Json::string("font")] else {
+    @support.reject(
+      "STYLE_SEMANTICS", "Application-order lock is stale or invalid; refresh the isolated StyleX oracle",
+    )
+  }
+  let records = typed + supplement
+  let aliases = @support.fields(
+    @support.get(@support.get(lock, "localExtensions"), "conflictSlotAliases"),
+  )
+  let slots : Map[String, String] = Map([])
+  for alias_name, canonical in aliases {
+    let find_slot = fn(name : String) -> String raise {
+      let mut found = []
+      for record in records {
+        if @support.text(record, "property") == name {
+          found = @support.array(@support.get(record, "entries")).filter(entry => {
+            @support.get(entry, "role") == Json::string("class")
+          })
+        }
+      }
+      guard found is [entry] else {
+        @support.reject(
+          "STYLE_SEMANTICS",
+          "Conflict alias requires one live slot: " + name,
+        )
+      }
+      @support.text(entry, "slot")
+    }
+    slots[find_slot(alias_name)] = find_slot(@support.string(canonical))
+  }
+  let priorities : Map[Int32, Array[String]] = Map([])
+  let arms = []
+  let emitted = []
+  let migration_unsafe = []
+  for record in records {
+    let name = @support.text(record, "property")
+    let priority = int(@support.get(record, "priority100"))
+    let names = priorities.get_or_init(priority, () => [])
+    names.push(@support.quote(name))
+    let entries = @support.array(@support.get(record, "entries"))
+    let rendered = entries.map(entry => {
+      let slot = @support.text(entry, "slot")
+      let role = @support.text(entry, "role")
+      guard ["class", "tombstone"].contains(role) else {
+        @support.reject("STYLE_SEMANTICS", "Invalid slot role")
+      }
+      "(" +
+      @support.quote(slots.get(slot).unwrap_or(slot)) +
+      ", " +
+      (role == "class").to_string() +
+      ")"
+    })
+    arms.push(
+      "    " + @support.quote(name) + " => [" + rendered.join(", ") + "]",
+    )
+    let css = @support.text(@support.get(record, "css"), "ltr")
+    let mut dashed = ""
+    for letter in name {
+      let text = letter.to_string()
+      dashed += if text != text.to_lower() {
+        "-" + text.to_lower()
+      } else {
+        text
+      }
+    }
+    if aliases.contains(name) ||
+      entries.length() != 1 ||
+      css != ".<CLASS>{" + dashed + ":inherit}" {
+      migration_unsafe.push(@support.quote(name))
+    }
+    guard css.has_prefix(".<CLASS>{") && css.has_suffix(":inherit}") else {
+      @support.reject("STYLE_SEMANTICS", "Non-scalar oracle rule: " + name)
+    }
+    let property = css[9:css.length() - 9].to_owned()
+    let parts = property.split("-").map(item => item.to_owned()).collect()
+    let mut camel = ""
+    for index, part in parts {
+      camel += if index == 0 || part.is_empty() {
+        part
+      } else {
+        part[0:1].to_owned().to_upper() + part[1:].to_owned()
+      }
+    }
+    if name != camel {
+      emitted.push(
+        "    " + @support.quote(name) + " => " + @support.quote(camel),
+      )
+    }
+  }
+  let priority_keys = priorities.keys().collect()
+  priority_keys.sort()
+  let profile = @support.text(@support.get(lock, "profile"), "name")
+  let digest = @support.text(lock, "semanticsDigest")
+  let lines = [
+    "// Generated by tools/generate-application-order.mbtx. Do not edit.",
+    "",
+    "///|",
+    "pub let application_order_profile = " + @support.quote(profile),
+    "",
+    "///|",
+    "pub let application_order_digest = " + @support.quote(digest),
+    "",
+    "///|",
+    "pub let application_order_priority_scale = 100",
+    "",
+    "///|",
+    "pub fn application_order_priority100(property : String) -> Int {",
+    "  if property.has_prefix(\"--\") {",
+    "    return 100",
+    "  }",
+    "  match property {",
+  ]
+  for priority in priority_keys {
+    lines.push(
+      "    " + priorities[priority].join(" | ") + " => " + priority.to_string(),
+    )
+  }
+  lines.append([
+    "    _ => 300000",
+    "  }",
+    "}",
+    "",
+    "///|",
+    "pub fn application_order_properties() -> Array[String] {",
+    "  [" +
+    typed
+    .map(item => @support.quote(@support.text(item, "property")))
+    .join(", ") +
+    "]",
+    "}",
+    "",
+    "///|",
+    "pub fn application_order_emitted_property(property : String) -> String {",
+    "  match property {",
+  ])
+  lines.append(emitted)
+  lines.append([
+    "    _ => property", "  }", "}", "", "///|", "pub fn application_order_entries(property : String) -> Array[(String, Bool)] {",
+    "  match property {",
+  ])
+  lines.append(arms)
+  lines.append([
+    "    _ => [(property, true)]",
+    "  }",
+    "}",
+    "",
+    "///|",
+    "pub fn application_order_migration_safe(property : String) -> Bool {",
+    "  match property {",
+    "    " + migration_unsafe.join(" | ") + " => false",
+    "    _ => true",
+    "  }",
+    "}",
+  ])
+  let conditions = @support.get(lock, "conditionPriorities")
+  for
+    (function_name, values, scale, fallback) in [
+      ("pseudo", @support.get(conditions, "pseudoClasses"), 100, 4000),
+      (
+        "relational",
+        @support.get(conditions, "relationalSelectors100"),
+        1,
+        int(@support.get(conditions, "relationalFallback100")),
+      ),
+    ] {
+    lines.append([
+      "",
+      "///|",
+      "pub fn application_order_" +
+      function_name +
+      "_priority100(value : String) -> Int {",
+      "  match value {",
+    ])
+    for key in sorted_keys(values) {
+      lines.push(
+        "    " +
+        @support.quote(key) +
+        " => " +
+        (int(@support.get(values, key)) * scale).to_string(),
+      )
+    }
+    lines.append(["    _ => " + fallback.to_string(), "  }", "}"])
+    if function_name == "pseudo" {
+      lines.append([
+        "", "///|", "pub fn application_order_at_rule_priority100(value : String) -> Int {",
+      ])
+      let rules = @support.get(conditions, "atRules")
+      for index, key in sorted_keys(rules) {
+        lines.append([
+          "  " +
+          (if index == 0 { "if" } else { "} else if" }) +
+          " value.has_prefix(" +
+          @support.quote(key) +
+          ") {",
+          "    " + (int(@support.get(rules, key)) * 100).to_string(),
+        ])
+      }
+      lines.append(["  } else {", "    300000", "  }", "}"])
+    }
+  }
+  lines.append([
+    "",
+    "///|",
+    "pub let application_order_relational_fallback_priority100 = " +
+    @support.get(conditions, "relationalFallback100").stringify(),
+    "",
+    "///|",
+    "pub let application_order_pseudo_element_priority100 = " +
+    (int(@support.get(conditions, "pseudoElement")) * 100).to_string(),
+    "",
+  ])
+  @support.write(
+    root + "/src/core/application_order.generated.mbt",
+    lines.join("\n"),
+  )
+  ignore(@support.command("moon", ["fmt"], root))
+}

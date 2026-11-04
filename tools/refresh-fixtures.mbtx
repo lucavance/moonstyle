@@ -1,0 +1,4 @@
+----
+import { "moonbitlang/async@0.22.5", "moonbitlang/async@0.22.5/shell", "moonbitlang/core/env" }
+----
+async fn main { @shell.Cmd("moon", ["run", "tools/maint.mbtx", "fixtures"] + @env.args()[1:].to_owned()).run() }

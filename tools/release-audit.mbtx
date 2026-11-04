@@ -1,0 +1,4 @@
+----
+import { "moonbitlang/async@0.22.5", "moonbitlang/async@0.22.5/shell" }
+----
+async fn main { @shell.Cmd("moon", ["run", "tools/maint.mbtx", "release"]).run() }

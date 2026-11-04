@@ -1,0 +1,8 @@
+----
+import { "moonbitlang/async@0.22.5", "moonbitlang/async@0.22.5/fs", "moonbitlang/async@0.22.5/shell", "moonbitlang/core/env" }
+----
+async fn main {
+  let args = @env.args()
+  guard args.length() > 1 else { fail("Usage: moon run tools/maint.mbtx <task> [--write]") }
+  @shell.Cmd("moon", ["-C", "tooling/native", "run", "src/cmd/maint", "--target", "native", "--", args[1], @fs.realpath(".")] + args[2:].to_owned()).run()
+}

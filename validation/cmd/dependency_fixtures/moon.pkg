@@ -1,0 +1,10 @@
+import {
+  "lampclaw/moonstyle",
+  "lampclaw/moonstyle/extract",
+  "lampclaw/moonstyle/core",
+  "moonbitlang/core/json",
+}
+
+pkgtype(kind: "executable")
+
+supported_targets = "native"

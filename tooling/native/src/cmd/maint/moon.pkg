@@ -1,0 +1,12 @@
+import {
+  "lampclaw/moonstyle-tooling/maintenance",
+  "lampclaw/moonstyle-tooling/support",
+  "moonbitlang/async",
+  "moonbitlang/async/fs",
+  "moonbitlang/core/env",
+  "moonbitlang/x/sys",
+}
+
+pkgtype(kind: "executable")
+
+supported_targets = "native"
