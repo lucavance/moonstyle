@@ -59,7 +59,7 @@ files; exact recognized legacy copies can migrate automatically. Use the
 Dependency roots are discovered recursively in stable order and passed to the
 native extractor. Component authors commit all four outputs. Consumers do not
 run dependency build scripts; re-extract dependencies leaf-first on an upgrade.
-The [artifact contract](../docs/artifact-schema-v13.md) defines graph validation,
+The [artifact contract](../docs/artifact-schema-v14.md) defines graph validation,
 semantic digests and failure-before-replacement behavior.
 
 ## Vite and diagnostics

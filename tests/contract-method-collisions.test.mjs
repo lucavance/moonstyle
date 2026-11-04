@@ -23,7 +23,7 @@ test('same-named contracts preserve every implementation in generated consumers'
   try {
     write(
       'moon.mod',
-      'name = "local/contract-methods"\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.1.0" }\n',
+      'name = "local/contract-methods"\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.2.0" }\n',
     );
     write('moon.work', `members = [".", ${JSON.stringify(root)}]\n`);
     write(

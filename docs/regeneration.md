@@ -21,11 +21,11 @@ Generated source is not a hand-maintained compatibility surface.
 
 Dependency build scripts are never assumed to run inside a consumer build.
 See the [executable quickstart](quickstart.md), [distribution guide](distribution.md),
-and [artifact contract](artifact-schema-v13.md).
+and [artifact contract](artifact-schema-v14.md).
 
 ## Version and cache identity
 
-The 0.1.0 source uses artifact schema v13, property generator schema v17,
+The 0.2.0 source uses artifact schema v14, property generator schema v18,
 semantic-lock schema v4 and extraction cache pack v4. These version numbers
 describe different contracts. Matching package versions alone does not make
 an incompatible bundle valid.

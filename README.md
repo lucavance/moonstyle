@@ -15,7 +15,7 @@ builds and tests; they do not implement CSS semantics or provide a JavaScript
 authoring API. StyleX is a pinned test-only semantic oracle; its API shape and
 `@stylexjs/atoms` authoring form are outside the compatibility target.
 
-Rabbita is the only Tier-1 framework integration for 0.1.0. The optional
+Rabbita is the only Tier-1 framework integration for 0.2.0. The optional
 [Luna adapter](packages/moonstyle-luna/README.md) is experimental and carries no
 compatibility promise. The semantic core and runtime remain framework-neutral.
 
@@ -31,6 +31,8 @@ compatibility promise. The semantic core and runtime remain framework-neutral.
   development inspection.
 - [Documentation index](docs/README.md): architecture, contracts, maintenance,
   release gates and validation.
+- [StyleX compatibility](docs/stylex-compatibility.md): supported semantics,
+  deliberate differences and the next development priorities.
 - [Regeneration](docs/regeneration.md): dependency-first extraction and artifact validation.
 
 ## Author and apply styles
@@ -81,8 +83,9 @@ gradients, background layers, and Grid. Additional examples cover
 
 The public MoonBit library is available on
 [Mooncakes](https://mooncakes.io/docs/lampclaw/moonstyle) as
-`lampclaw/moonstyle@0.1.0`. Consumers can also use local paths or exact Git
-commits. The private `@lampclaw/moonstyle-tooling` package supplies the CLI and
+`lampclaw/moonstyle@0.2.0`, including six additional typed properties and explicit
+CSS `@property` registration. Git and local-path consumption are also supported.
+The private `@lampclaw/moonstyle-tooling` package supplies the CLI and
 Vite adapter and is installed from packed source. Source is hosted at
 [lucavance/moonstyle](https://github.com/lucavance/moonstyle).
 

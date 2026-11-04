@@ -53,6 +53,7 @@ pub struct CssVar[T] {
   name : String
   default_css : String
   category : ValueCategory
+  registration : PropertyRegistration?
   marker : T?
 }
 
@@ -61,6 +62,7 @@ pub(all) struct VarDefinition {
   name : String
   default_css : String
   category : ValueCategory
+  registration : PropertyRegistration?
 } derive(Eq, Debug)
 
 ///|
@@ -78,9 +80,7 @@ pub(all) enum VariableRole {
 } derive(Eq, Debug)
 
 ///|
-/// Erased variable metadata carried by the authoring builder. It never appears
-/// in schema-v5 artifacts; the registry lowers it to the existing VariableSet
-/// representation before extraction.
+/// Erased variable metadata lowered to VariableSet before extraction.
 pub(all) struct VariableUse {
   scope : String
   local_name : String
@@ -1448,7 +1448,13 @@ fn[T] scoped_var(
   if !valid_name_part(scope) || !valid_name_part(name) {
     raise InvalidCustomPropertyName(scope + ":" + name)
   }
-  { name: "--" + scope + "-" + name, default_css, category, marker: None, }
+  {
+    name: "--" + scope + "-" + name,
+    default_css,
+    category,
+    registration: None,
+    marker: None,
+  }
 }
 
 ///|
@@ -1489,7 +1495,12 @@ pub fn percentage_var(
 
 ///|
 pub fn[T] CssVar::definition(self : CssVar[T]) -> VarDefinition {
-  { name: self.name, default_css: self.default_css, category: self.category, }
+  {
+    name: self.name,
+    default_css: self.default_css,
+    category: self.category,
+    registration: self.registration,
+  }
 }
 
 ///|
@@ -1699,6 +1710,7 @@ fn[T] authored_scoped_var(
         name: "--invalid-variable",
         default_css: error_css(error),
         category,
+        registration: None,
         marker: None,
       }
   }

@@ -12,6 +12,45 @@ const builderPackage = path.join(styleModule, 'builder');
 const require = createRequire(import.meta.url);
 const coverageApi = readJson(path.join(styleModule, 'properties', 'css-coverage-api.json'));
 
+export const DAILY_CSS_PROFILE = 'daily-css-v1';
+const dailyCssGrammar = {
+  isolation: ['sha256:3f6d8b8e16c9e11b024f74989d003e62e935c12235bb7c8d8ab9fd5f40af9e72', []],
+  'white-space': [
+    'sha256:1fac77265f7a3f8a83b23d6f9fa1288797ac4f03c9f283cd42a7ea516e970fa3',
+    ['multi-keyword combinations', 'white-space-trim'],
+  ],
+  'text-wrap': [
+    'sha256:dd617c56a74db103963f2e88987fcae05b166934651ea221e236f4e21ee4eac9',
+    ['mode/style combinations'],
+  ],
+  'vertical-align': [
+    'sha256:53b548efa7819a46ceeeddb1383d72ab62eff780625bd5251eb38c75843051fe',
+    ['first/last', 'extended baseline keywords', 'dynamic offsets'],
+  ],
+  'will-change': [
+    'sha256:3d4e455f280764fb8189cb83ba0b9e7c257766b1a06a1be24897e5a2df3087a2',
+    ['unreviewed property names'],
+  ],
+  'font-variation-settings': [
+    'sha256:22e34eebaac7d230cd1a5c0d81767e6f4240fc5696314340b3ccc8570949c1d8',
+    ['dynamic axes'],
+  ],
+};
+
+export function reviewDailyCssGrammar(cssName, syntax) {
+  const reviewed = dailyCssGrammar[cssName];
+  if (!reviewed) return {};
+  const grammar = analyzeDefinitionSyntax(syntax);
+  if (grammar.digest !== reviewed[0]) {
+    fail(`${cssName} grammar changed; review ${DAILY_CSS_PROFILE} before regeneration`);
+  }
+  return {
+    authoredValueProfile: DAILY_CSS_PROFILE,
+    grammarReviewDigest: grammar.digest,
+    excludedSyntax: reviewed[1],
+  };
+}
+
 function readJson(filename) {
   return JSON.parse(fs.readFileSync(filename, 'utf8'));
 }
@@ -1365,7 +1404,7 @@ export function resolveAtomicProperties(property, webrefProperties, bcdPropertie
 
 export function generateProperties() {
   const config = readJson(path.join(styleModule, 'properties', 'property-api.json'));
-  if (config.schemaVersion !== 17) fail('property-api schemaVersion must be 17');
+  if (config.schemaVersion !== 18) fail('property-api schemaVersion must be 18');
   const groupEnums = (config.propertyGroups ?? [])
     .filter((group) => group.keywords)
     .map((group) => {
@@ -1514,6 +1553,7 @@ export function generateProperties() {
       irName,
       valueType: property.valueType,
       family: property.family,
+      ...reviewDailyCssGrammar(property.cssName, definition.syntax ?? ''),
       ...(property.valueStrategy
         ? {
             valueStrategy: property.valueStrategy,
@@ -1627,7 +1667,7 @@ export function generateProperties() {
     '',
   ].join('\n');
   const metadataDocument = {
-    schemaVersion: 17,
+    schemaVersion: 18,
     sources: {
       '@webref/css': webrefPackage.manifest.version,
       '@mdn/browser-compat-data': bcdPackage.manifest.version,

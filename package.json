@@ -1,6 +1,6 @@
 {
   "name": "@lampclaw/moonstyle-tooling",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "MoonStyle project tooling and Vite integration for typed atomic CSS in MoonBit",
   "license": "MIT",

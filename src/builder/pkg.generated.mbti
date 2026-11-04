@@ -848,6 +848,14 @@ pub fn FontVariantPositionValueFallbacks::fallback_inputs(Self) -> Array[Propert
 pub fn FontVariantPositionValueFallbacks::new() -> Self
 pub impl FontVariantPositionValueInputFallbacks for FontVariantPositionValueFallbacks
 
+pub struct FontVariationSettingsFallbacks {
+  inputs : Array[PropertyInput]
+}
+pub fn[T : FontVariationSettingsInput] FontVariationSettingsFallbacks::add(Self, T) -> Self
+pub fn FontVariationSettingsFallbacks::fallback_inputs(Self) -> Array[PropertyInput]
+pub fn FontVariationSettingsFallbacks::new() -> Self
+pub impl FontVariationSettingsInputFallbacks for FontVariationSettingsFallbacks
+
 pub struct ForcedColorAdjustValueFallbacks {
   inputs : Array[PropertyInput]
 }
@@ -1475,6 +1483,10 @@ pub fn[T : FontVariantPositionValueInput] Frame::font_variant_position(Self, T, 
 #callsite(autofill(location))
 pub fn[T : FontVariantPositionValueInputFallbacks] Frame::font_variant_position_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn[T : FontVariationSettingsInput] Frame::font_variation_settings(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : FontVariationSettingsInputFallbacks] Frame::font_variation_settings_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn[T : IntInput] Frame::font_weight(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : IntInputFallbacks] Frame::font_weight_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
@@ -1598,6 +1610,10 @@ pub fn[T : LengthInputFallbacks] Frame::inset_inline_fallbacks(Self, T, when? : 
 pub fn[T : LengthInput] Frame::inset_inline_start(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : LengthInputFallbacks] Frame::inset_inline_start_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : IsolationInput] Frame::isolation(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : IsolationInputFallbacks] Frame::isolation_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : AlignmentInput] Frame::justify_content(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
@@ -2267,6 +2283,10 @@ pub fn[T : TextUnderlinePositionInput] Frame::text_underline_position(Self, T, w
 #callsite(autofill(location))
 pub fn[T : TextUnderlinePositionInputFallbacks] Frame::text_underline_position_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn[T : TextWrapInput] Frame::text_wrap(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : TextWrapInputFallbacks] Frame::text_wrap_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn[T : TextWrapModeInput] Frame::text_wrap_mode(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : TextWrapModeInputFallbacks] Frame::text_wrap_mode_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
@@ -2339,6 +2359,10 @@ pub fn[T : VectorEffectValueInput] Frame::vector_effect(Self, T, when? : When, s
 #callsite(autofill(location))
 pub fn[T : VectorEffectValueInputFallbacks] Frame::vector_effect_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn[T : VerticalAlignInput] Frame::vertical_align(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : VerticalAlignInputFallbacks] Frame::vertical_align_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn[T : ViewTimelineAxisValueInput] Frame::view_timeline_axis(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : ViewTimelineAxisValueInputFallbacks] Frame::view_timeline_axis_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
@@ -2363,9 +2387,13 @@ pub fn[T : VisibilityInput] Frame::visibility(Self, T, when? : When, source? : @
 #callsite(autofill(location))
 pub fn[T : VisibilityInputFallbacks] Frame::visibility_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn[T : WhiteSpaceInput] Frame::white_space(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn[T : WhiteSpaceCollapseInput] Frame::white_space_collapse(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : WhiteSpaceCollapseInputFallbacks] Frame::white_space_collapse_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : WhiteSpaceInputFallbacks] Frame::white_space_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : IntegerInput] Frame::widows(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
@@ -2374,6 +2402,10 @@ pub fn[T : IntegerInputFallbacks] Frame::widows_fallbacks(Self, T, when? : When,
 pub fn[T : BoxSizeInput] Frame::width(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : BoxSizeInputFallbacks] Frame::width_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : WillChangeInput] Frame::will_change(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : WillChangeInputFallbacks] Frame::will_change_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : WordBreakInput] Frame::word_break(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
@@ -2478,6 +2510,14 @@ pub fn[T : IntegerInput] IntegerFallbacks::add(Self, T) -> Self
 pub fn IntegerFallbacks::fallback_inputs(Self) -> Array[PropertyInput]
 pub fn IntegerFallbacks::new() -> Self
 pub impl IntegerInputFallbacks for IntegerFallbacks
+
+pub struct IsolationFallbacks {
+  inputs : Array[PropertyInput]
+}
+pub fn[T : IsolationInput] IsolationFallbacks::add(Self, T) -> Self
+pub fn IsolationFallbacks::fallback_inputs(Self) -> Array[PropertyInput]
+pub fn IsolationFallbacks::new() -> Self
+pub impl IsolationInputFallbacks for IsolationFallbacks
 
 pub struct LengthFallbacks {
   inputs : Array[PropertyInput]
@@ -3723,6 +3763,8 @@ pub fn Rule::clear_font_variant_numeric(Self, source? : @ir.SourceSpan?, locatio
 #callsite(autofill(location))
 pub fn Rule::clear_font_variant_position(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn Rule::clear_font_variation_settings(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn Rule::clear_font_weight(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn Rule::clear_font_width(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
@@ -3784,6 +3826,8 @@ pub fn Rule::clear_inset_inline(Self, source? : @ir.SourceSpan?, location~ : Sou
 pub fn Rule::clear_inset_inline_end(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn Rule::clear_inset_inline_start(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn Rule::clear_isolation(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn Rule::clear_justify_content(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
@@ -4119,6 +4163,8 @@ pub fn Rule::clear_text_underline_offset(Self, source? : @ir.SourceSpan?, locati
 #callsite(autofill(location))
 pub fn Rule::clear_text_underline_position(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn Rule::clear_text_wrap(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn Rule::clear_text_wrap_mode(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn Rule::clear_text_wrap_style(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
@@ -4155,6 +4201,8 @@ pub fn Rule::clear_user_select(Self, source? : @ir.SourceSpan?, location~ : Sour
 #callsite(autofill(location))
 pub fn Rule::clear_vector_effect(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn Rule::clear_vertical_align(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn Rule::clear_view_timeline_axis(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn Rule::clear_view_timeline_inset(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
@@ -4167,11 +4215,15 @@ pub fn Rule::clear_view_transition_name(Self, source? : @ir.SourceSpan?, locatio
 #callsite(autofill(location))
 pub fn Rule::clear_visibility(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn Rule::clear_white_space(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn Rule::clear_white_space_collapse(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn Rule::clear_widows(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn Rule::clear_width(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn Rule::clear_will_change(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn Rule::clear_word_break(Self, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
@@ -4409,6 +4461,10 @@ pub fn[T : FontVariantPositionValueInput] Rule::font_variant_position(Self, T, w
 #callsite(autofill(location))
 pub fn[T : FontVariantPositionValueInputFallbacks] Rule::font_variant_position_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn[T : FontVariationSettingsInput] Rule::font_variation_settings(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : FontVariationSettingsInputFallbacks] Rule::font_variation_settings_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn[T : IntInput] Rule::font_weight(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : IntInputFallbacks] Rule::font_weight_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
@@ -4532,6 +4588,10 @@ pub fn[T : LengthInputFallbacks] Rule::inset_inline_fallbacks(Self, T, when? : W
 pub fn[T : LengthInput] Rule::inset_inline_start(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : LengthInputFallbacks] Rule::inset_inline_start_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : IsolationInput] Rule::isolation(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : IsolationInputFallbacks] Rule::isolation_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : AlignmentInput] Rule::justify_content(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
@@ -5201,6 +5261,10 @@ pub fn[T : TextUnderlinePositionInput] Rule::text_underline_position(Self, T, wh
 #callsite(autofill(location))
 pub fn[T : TextUnderlinePositionInputFallbacks] Rule::text_underline_position_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn[T : TextWrapInput] Rule::text_wrap(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : TextWrapInputFallbacks] Rule::text_wrap_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn[T : TextWrapModeInput] Rule::text_wrap_mode(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : TextWrapModeInputFallbacks] Rule::text_wrap_mode_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
@@ -5277,6 +5341,10 @@ pub fn[T : VectorEffectValueInput] Rule::vector_effect(Self, T, when? : When, so
 #callsite(autofill(location))
 pub fn[T : VectorEffectValueInputFallbacks] Rule::vector_effect_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn[T : VerticalAlignInput] Rule::vertical_align(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : VerticalAlignInputFallbacks] Rule::vertical_align_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn[T : ViewTimelineAxisValueInput] Rule::view_timeline_axis(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : ViewTimelineAxisValueInputFallbacks] Rule::view_timeline_axis_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
@@ -5301,9 +5369,13 @@ pub fn[T : VisibilityInput] Rule::visibility(Self, T, when? : When, source? : @i
 #callsite(autofill(location))
 pub fn[T : VisibilityInputFallbacks] Rule::visibility_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
+pub fn[T : WhiteSpaceInput] Rule::white_space(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
 pub fn[T : WhiteSpaceCollapseInput] Rule::white_space_collapse(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : WhiteSpaceCollapseInputFallbacks] Rule::white_space_collapse_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : WhiteSpaceInputFallbacks] Rule::white_space_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : IntegerInput] Rule::widows(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
@@ -5312,6 +5384,10 @@ pub fn[T : IntegerInputFallbacks] Rule::widows_fallbacks(Self, T, when? : When, 
 pub fn[T : BoxSizeInput] Rule::width(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : BoxSizeInputFallbacks] Rule::width_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : WillChangeInput] Rule::will_change(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
+#callsite(autofill(location))
+pub fn[T : WillChangeInputFallbacks] Rule::will_change_fallbacks(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
 pub fn[T : WordBreakInput] Rule::word_break(Self, T, when? : When, source? : @ir.SourceSpan?, location~ : SourceLoc) -> Self
 #callsite(autofill(location))
@@ -5593,6 +5669,7 @@ pub fn StyleContract::allow_font_variant_caps(Self, keywords? : Array[@values.Cs
 pub fn StyleContract::allow_font_variant_emoji(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.FontVariantEmojiValue]) -> Self
 pub fn StyleContract::allow_font_variant_numeric(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.FontVariantNumeric]) -> Self
 pub fn StyleContract::allow_font_variant_position(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.FontVariantPositionValue]) -> Self
+pub fn StyleContract::allow_font_variation_settings(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.FontVariationSettings]) -> Self
 pub fn StyleContract::allow_font_weight(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[Int32]) -> Self
 pub fn StyleContract::allow_font_width(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.Percentage], expressions? : Array[@values.MathExpr[@values.Percentage]], tokens? : Array[@values.Token[@values.Percentage]], slots? : Array[@values.DynamicSlot[@values.Percentage]]) -> Self
 pub fn StyleContract::allow_forced_color_adjust(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.ForcedColorAdjustValue]) -> Self
@@ -5624,6 +5701,7 @@ pub fn StyleContract::allow_inset_block_start(Self, keywords? : Array[@values.Cs
 pub fn StyleContract::allow_inset_inline(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.Length], expressions? : Array[&@values.LengthContractExpression], tokens? : Array[@values.Token[@values.Length]], slots? : Array[@values.DynamicSlot[@values.Length]]) -> Self
 pub fn StyleContract::allow_inset_inline_end(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.Length], expressions? : Array[&@values.LengthContractExpression], tokens? : Array[@values.Token[@values.Length]], slots? : Array[@values.DynamicSlot[@values.Length]]) -> Self
 pub fn StyleContract::allow_inset_inline_start(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.Length], expressions? : Array[&@values.LengthContractExpression], tokens? : Array[@values.Token[@values.Length]], slots? : Array[@values.DynamicSlot[@values.Length]]) -> Self
+pub fn StyleContract::allow_isolation(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.Isolation]) -> Self
 pub fn StyleContract::allow_justify_content(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.Alignment]) -> Self
 pub fn StyleContract::allow_justify_items(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.Alignment]) -> Self
 pub fn StyleContract::allow_justify_self(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.Alignment]) -> Self
@@ -5792,6 +5870,7 @@ pub fn StyleContract::allow_text_shadow(Self, keywords? : Array[@values.CssWideK
 pub fn StyleContract::allow_text_transform(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.TextTransform]) -> Self
 pub fn StyleContract::allow_text_underline_offset(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.Length], expressions? : Array[&@values.LengthContractExpression], tokens? : Array[@values.Token[@values.Length]], slots? : Array[@values.DynamicSlot[@values.Length]]) -> Self
 pub fn StyleContract::allow_text_underline_position(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.TextUnderlinePosition]) -> Self
+pub fn StyleContract::allow_text_wrap(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.TextWrap]) -> Self
 pub fn StyleContract::allow_text_wrap_mode(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.TextWrapMode]) -> Self
 pub fn StyleContract::allow_text_wrap_style(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.TextWrapStyle]) -> Self
 pub fn StyleContract::allow_timeline_scope(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.TimelineScope]) -> Self
@@ -5810,15 +5889,18 @@ pub fn StyleContract::allow_translate(Self, keywords? : Array[@values.CssWideKey
 pub fn StyleContract::allow_unicode_bidi(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.UnicodeBidiValue]) -> Self
 pub fn StyleContract::allow_user_select(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.UserSelect]) -> Self
 pub fn StyleContract::allow_vector_effect(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.VectorEffectValue]) -> Self
+pub fn StyleContract::allow_vertical_align(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.VerticalAlign]) -> Self
 pub fn StyleContract::allow_view_timeline_axis(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.ViewTimelineAxisValue]) -> Self
 pub fn StyleContract::allow_view_timeline_inset(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.LengthPercentage], expressions? : Array[@values.MathExpr[@values.LengthPercentage]], tokens? : Array[@values.Token[@values.LengthPercentage]], slots? : Array[@values.DynamicSlot[@values.LengthPercentage]]) -> Self
 pub fn StyleContract::allow_view_timeline_name(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.TimelineNames]) -> Self
 pub fn StyleContract::allow_view_transition_class(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.ViewTransitionClass]) -> Self
 pub fn StyleContract::allow_view_transition_name(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.ViewTransitionName]) -> Self
 pub fn StyleContract::allow_visibility(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.Visibility]) -> Self
+pub fn StyleContract::allow_white_space(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.WhiteSpace]) -> Self
 pub fn StyleContract::allow_white_space_collapse(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.WhiteSpaceCollapse]) -> Self
 pub fn StyleContract::allow_widows(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.Integer], tokens? : Array[@values.Token[@values.Integer]], slots? : Array[@values.DynamicSlot[@values.Integer]]) -> Self
 pub fn StyleContract::allow_width(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.Length], expressions? : Array[&@values.BoxSizeContractExpression], tokens? : Array[@values.Token[@values.Length]], slots? : Array[@values.DynamicSlot[@values.Length]]) -> Self
+pub fn StyleContract::allow_will_change(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.WillChange]) -> Self
 pub fn StyleContract::allow_word_break(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.WordBreak]) -> Self
 pub fn StyleContract::allow_word_spacing(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@values.Length], expressions? : Array[&@values.LengthContractExpression], tokens? : Array[@values.Token[@values.Length]], slots? : Array[@values.DynamicSlot[@values.Length]]) -> Self
 pub fn StyleContract::allow_writing_mode(Self, keywords? : Array[@values.CssWideKeyword], values? : Array[@properties.WritingModeValue]) -> Self
@@ -5954,6 +6036,14 @@ pub fn[T : TextUnderlinePositionInput] TextUnderlinePositionFallbacks::add(Self,
 pub fn TextUnderlinePositionFallbacks::fallback_inputs(Self) -> Array[PropertyInput]
 pub fn TextUnderlinePositionFallbacks::new() -> Self
 pub impl TextUnderlinePositionInputFallbacks for TextUnderlinePositionFallbacks
+
+pub struct TextWrapFallbacks {
+  inputs : Array[PropertyInput]
+}
+pub fn[T : TextWrapInput] TextWrapFallbacks::add(Self, T) -> Self
+pub fn TextWrapFallbacks::fallback_inputs(Self) -> Array[PropertyInput]
+pub fn TextWrapFallbacks::new() -> Self
+pub impl TextWrapInputFallbacks for TextWrapFallbacks
 
 pub struct TextWrapModeFallbacks {
   inputs : Array[PropertyInput]
@@ -6102,6 +6192,14 @@ pub fn VectorEffectValueFallbacks::fallback_inputs(Self) -> Array[PropertyInput]
 pub fn VectorEffectValueFallbacks::new() -> Self
 pub impl VectorEffectValueInputFallbacks for VectorEffectValueFallbacks
 
+pub struct VerticalAlignFallbacks {
+  inputs : Array[PropertyInput]
+}
+pub fn[T : VerticalAlignInput] VerticalAlignFallbacks::add(Self, T) -> Self
+pub fn VerticalAlignFallbacks::fallback_inputs(Self) -> Array[PropertyInput]
+pub fn VerticalAlignFallbacks::new() -> Self
+pub impl VerticalAlignInputFallbacks for VerticalAlignFallbacks
+
 pub struct ViewTimelineAxisValueFallbacks {
   inputs : Array[PropertyInput]
 }
@@ -6166,6 +6264,22 @@ pub fn[T : WhiteSpaceCollapseInput] WhiteSpaceCollapseFallbacks::add(Self, T) ->
 pub fn WhiteSpaceCollapseFallbacks::fallback_inputs(Self) -> Array[PropertyInput]
 pub fn WhiteSpaceCollapseFallbacks::new() -> Self
 pub impl WhiteSpaceCollapseInputFallbacks for WhiteSpaceCollapseFallbacks
+
+pub struct WhiteSpaceFallbacks {
+  inputs : Array[PropertyInput]
+}
+pub fn[T : WhiteSpaceInput] WhiteSpaceFallbacks::add(Self, T) -> Self
+pub fn WhiteSpaceFallbacks::fallback_inputs(Self) -> Array[PropertyInput]
+pub fn WhiteSpaceFallbacks::new() -> Self
+pub impl WhiteSpaceInputFallbacks for WhiteSpaceFallbacks
+
+pub struct WillChangeFallbacks {
+  inputs : Array[PropertyInput]
+}
+pub fn[T : WillChangeInput] WillChangeFallbacks::add(Self, T) -> Self
+pub fn WillChangeFallbacks::fallback_inputs(Self) -> Array[PropertyInput]
+pub fn WillChangeFallbacks::new() -> Self
+pub impl WillChangeInputFallbacks for WillChangeFallbacks
 
 pub struct WordBreakFallbacks {
   inputs : Array[PropertyInput]
@@ -7093,6 +7207,18 @@ pub trait FontVariantPositionValueInputFallbacks {
 #deprecated
 pub impl FontVariantPositionValueInputFallbacks for Array[@properties.FontVariantPositionValue]
 
+pub trait FontVariationSettingsInput {
+  fn property_input(Self) -> PropertyInput
+}
+pub impl FontVariationSettingsInput for @values.CssWideKeyword
+pub impl FontVariationSettingsInput for @values.FontVariationSettings
+
+pub trait FontVariationSettingsInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+#deprecated
+pub impl FontVariationSettingsInputFallbacks for Array[@values.FontVariationSettings]
+
 pub trait ForcedColorAdjustValueInput {
   fn property_input(Self) -> PropertyInput
 }
@@ -7229,6 +7355,18 @@ pub trait IntegerInputFallbacks {
 }
 #deprecated
 pub impl IntegerInputFallbacks for Array[@values.Integer]
+
+pub trait IsolationInput {
+  fn property_input(Self) -> PropertyInput
+}
+pub impl IsolationInput for @properties.Isolation
+pub impl IsolationInput for @values.CssWideKeyword
+
+pub trait IsolationInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+#deprecated
+pub impl IsolationInputFallbacks for Array[@properties.Isolation]
 
 pub trait LengthInput {
   fn length_input(Self) -> PropertyInput
@@ -8203,6 +8341,18 @@ pub trait TextUnderlinePositionInputFallbacks {
 #deprecated
 pub impl TextUnderlinePositionInputFallbacks for Array[@properties.TextUnderlinePosition]
 
+pub trait TextWrapInput {
+  fn property_input(Self) -> PropertyInput
+}
+pub impl TextWrapInput for @properties.TextWrap
+pub impl TextWrapInput for @values.CssWideKeyword
+
+pub trait TextWrapInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+#deprecated
+pub impl TextWrapInputFallbacks for Array[@properties.TextWrap]
+
 pub trait TextWrapModeInput {
   fn property_input(Self) -> PropertyInput
 }
@@ -8394,6 +8544,18 @@ pub trait VectorEffectValueInputFallbacks {
 #deprecated
 pub impl VectorEffectValueInputFallbacks for Array[@properties.VectorEffectValue]
 
+pub trait VerticalAlignInput {
+  fn property_input(Self) -> PropertyInput
+}
+pub impl VerticalAlignInput for @values.CssWideKeyword
+pub impl VerticalAlignInput for @values.VerticalAlign
+
+pub trait VerticalAlignInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+#deprecated
+pub impl VerticalAlignInputFallbacks for Array[@values.VerticalAlign]
+
 pub trait ViewTimelineAxisValueInput {
   fn property_input(Self) -> PropertyInput
 }
@@ -8453,6 +8615,30 @@ pub trait WhiteSpaceCollapseInputFallbacks {
 }
 #deprecated
 pub impl WhiteSpaceCollapseInputFallbacks for Array[@properties.WhiteSpaceCollapse]
+
+pub trait WhiteSpaceInput {
+  fn property_input(Self) -> PropertyInput
+}
+pub impl WhiteSpaceInput for @properties.WhiteSpace
+pub impl WhiteSpaceInput for @values.CssWideKeyword
+
+pub trait WhiteSpaceInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+#deprecated
+pub impl WhiteSpaceInputFallbacks for Array[@properties.WhiteSpace]
+
+pub trait WillChangeInput {
+  fn property_input(Self) -> PropertyInput
+}
+pub impl WillChangeInput for @values.CssWideKeyword
+pub impl WillChangeInput for @values.WillChange
+
+pub trait WillChangeInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+#deprecated
+pub impl WillChangeInputFallbacks for Array[@values.WillChange]
 
 pub trait WordBreakInput {
   fn property_input(Self) -> PropertyInput

@@ -7,7 +7,7 @@ const modules = [
   { name: 'lampclaw/moonstyle', directory: path.join(root, 'src') },
   { name: 'lampclaw/moonstyle-luna', directory: path.join(root, 'packages', 'moonstyle-luna') },
 ];
-const output = path.join(root, 'docs', 'api-baseline-0.1.0.json');
+const output = path.join(root, 'docs', 'api-baseline-0.2.0.json');
 
 function interfaces(moduleDirectory, directory = moduleDirectory) {
   const files = [];
@@ -27,7 +27,7 @@ function interfaces(moduleDirectory, directory = moduleDirectory) {
 
 const baseline = {
   schemaVersion: 2,
-  version: '0.1.0',
+  version: '0.2.0',
   modules: Object.fromEntries(
     modules.map((module) => [
       module.name,

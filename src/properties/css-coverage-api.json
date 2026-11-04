@@ -1,5 +1,8 @@
 {
   "structuredTypes": {
+    "vertical-align": "VerticalAlign",
+    "will-change": "WillChange",
+    "font-variation-settings": "FontVariationSettings",
     "page-value": "PageValue",
     "mask-box": "MaskBox",
     "mask-clip": "MaskClip",
@@ -24,6 +27,12 @@
     "animation-iteration-count": "animation-iterations"
   },
   "properties": [
+    {"cssName": "isolation", "family": "visual", "valueType": "enum:Isolation", "conditions": true},
+    {"cssName": "white-space", "family": "typography", "valueType": "enum:WhiteSpace", "conditions": true},
+    {"cssName": "text-wrap", "family": "typography", "valueType": "enum:TextWrap", "conditions": true},
+    {"cssName": "vertical-align", "family": "typography", "valueType": "vertical-align", "conditions": true},
+    {"cssName": "will-change", "family": "interaction", "valueType": "will-change", "conditions": true},
+    {"cssName": "font-variation-settings", "family": "typography", "valueType": "font-variation-settings", "conditions": true},
     {"cssName": "page", "family": "layout", "valueType": "page-value", "conditions": true},
     {"cssName": "mask-origin", "family": "visual", "valueType": "mask-box", "conditions": true},
     {"cssName": "mask-clip", "family": "visual", "valueType": "mask-clip", "conditions": true},

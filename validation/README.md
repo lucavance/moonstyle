@@ -25,6 +25,7 @@ edit reports a diagnostic; fixing the source resumes generation.
 | [styles.mbt](examples/styles/styles.mbt) | Rules, themes, dynamic slots and composition fixtures |
 | [expressions.mbt](examples/styles/expressions.mbt) | Typed math, images and Grid |
 | [coverage.mbt](examples/styles/coverage.mbt) | Conditions and additional CSS values |
+| [daily.mbt](examples/styles/daily.mbt) | Text, font axes, typed property registration and browser acceptance fixtures |
 | [main.mbt](src/demo/main.mbt) | Runnable Rabbita application |
 | [Extractor](cmd/style_extract/main.mbt) | Native extraction entry point |
 | [style.config.json](style.config.json) | Generated outputs, dependencies and cache configuration |
@@ -47,6 +48,8 @@ vp run validate
 The production output is `validation/dist/`. The validation suite checks the
 example and creates a separate component/application pair from the complete
 source examples in the [quickstart](../docs/quickstart.md).
+Browser fixtures also verify the six daily CSS properties and registered
+custom-property inheritance, invalid-value fallback and animation interpolation.
 
 Use `vp run validate` for development and `vp run validate-ci` for the clean
 committed source. See the [documentation index](../docs/README.md),

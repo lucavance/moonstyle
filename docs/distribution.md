@@ -4,18 +4,23 @@
 
 The public MoonBit module is available on
 [Mooncakes](https://mooncakes.io/docs/lampclaw/moonstyle) as
-`lampclaw/moonstyle@0.1.0`. It includes the typed authoring API, runtime,
+`lampclaw/moonstyle@0.2.0`. It includes the typed authoring API, runtime,
 Rabbita adapter and native extractor. Add the module to the consumer's
 `moon.mod`:
 
 ```moonbit
 name = "example/app"
 version = "0.0.0"
-import { "lampclaw/moonstyle@0.1.0" }
+import { "lampclaw/moonstyle@0.2.0" }
 ```
 
 Run `moon update` to resolve the registry dependency. Registry consumption
 does not require a MoonStyle source checkout in `moon.work`.
+
+Version 0.2.0 includes the additional typed properties and CSS `@property`
+registration APIs. Use tooling from the source revision matching the library
+release. Regenerate all dependencies before the application when upgrading
+from 0.1.x because 0.2.0 uses artifact schema v14.
 
 The CLI and Vite adapter are provided by the private
 `@lampclaw/moonstyle-tooling` Node package, packed from a reviewed Git checkout.
@@ -44,7 +49,7 @@ Consumer `moon.mod`:
 ```moonbit
 name = "example/app"
 version = "0.0.0"
-import { "lampclaw/moonstyle@0.1.0" }
+import { "lampclaw/moonstyle@0.2.0" }
 ```
 
 Consumer `moon.work`:

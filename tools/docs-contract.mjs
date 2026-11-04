@@ -10,7 +10,7 @@ export const activeDocumentationFiles = [
   'docs/architecture.md',
   'docs/api-stability.md',
   'docs/application-order-semantics.md',
-  'docs/artifact-schema-v13.md',
+  'docs/artifact-schema-v14.md',
   'docs/current-status.md',
   'docs/data-sources.md',
   'docs/dependency-license-audit.md',
@@ -20,12 +20,14 @@ export const activeDocumentationFiles = [
   'docs/release-policy.md',
   'docs/ci-and-validation.md',
   'docs/roadmap.md',
+  'docs/stylex-compatibility.md',
   'docs/tailwindcss-vs-stylex.md',
   'docs/authoring.md',
   'src/expressions.mbt.md',
   'src/common_values.mbt.md',
   'src/css_coverage.mbt.md',
   'src/theme_paint.mbt.md',
+  'src/daily_css.mbt.md',
   'packages/moonstyle-luna/README.md',
   'tooling/README.md',
   'tools/stylex-oracle/README.md',
@@ -205,6 +207,7 @@ export function docsContractIssues(directory = root) {
     const json = (filename) => JSON.parse(read(filename, directory));
     facts = {
       tools: json('toolchain.json'),
+      release: json('release-status.json'),
       tooling: json('package.json'),
       oracle: json('tools/stylex-oracle/package.json'),
       api: json('src/properties/property-api.json'),
@@ -222,6 +225,29 @@ export function docsContractIssues(directory = root) {
   }
 
   const repository = 'https://github.com/lucavance/moonstyle';
+  const publishedLibraryDocs = new Set([
+    'README.md',
+    'docs/authoring.md',
+    'docs/current-status.md',
+    'docs/distribution.md',
+    'docs/release-policy.md',
+  ]);
+  if (
+    facts.release.schemaVersion !== 1 ||
+    facts.release.developmentVersion !== facts.tooling.version ||
+    !/^\d+\.\d+\.\d+$/.test(facts.release.publishedLibraryVersion)
+  ) {
+    issues.push(
+      'release-status.json must distinguish the current development version and published library version',
+    );
+  }
+  for (const filename of publishedLibraryDocs) {
+    requireText(
+      filename,
+      `lampclaw/moonstyle@${facts.release.publishedLibraryVersion}`,
+      'record the published library version',
+    );
+  }
   const upstream = 'https://github.com/meta/stylex';
   for (const prefix of ['', 'packages/moonstyle-luna/']) {
     for (const name of ['LICENSE', 'NOTICE']) {
@@ -394,6 +420,12 @@ export function docsContractIssues(directory = root) {
       }
     }
     for (const match of source.matchAll(/`([^`\s]+)@(\d[^`\s]*)`/g)) {
+      if (
+        match[1] === 'lampclaw/moonstyle' &&
+        match[2] === facts.release.publishedLibraryVersion &&
+        publishedLibraryDocs.has(filename)
+      )
+        continue;
       if (versions.has(match[1]) && versions.get(match[1]) !== match[2]) {
         issues.push(
           `${filename} has stale ${match[1]}@${match[2]}; expected ${versions.get(match[1])}`,

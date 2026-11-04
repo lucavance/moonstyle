@@ -1,7 +1,7 @@
 ## Candidate self-review
 
 - [ ] The change preserves or explicitly updates the public API baseline.
-- [ ] Artifact schema v13, property schema v17, cache pack v4, generated files, and documentation agree.
+- [ ] Artifact schema v14, property schema v17, cache pack v4, generated files, and documentation agree.
 - [ ] MoonBit remains the only authoring language; no JavaScript, TypeScript, TSX, JSX, or React API was introduced.
 - [ ] `vp run validate-ci` passes on Ubuntu 26.04 with Chromium, Firefox, and WebKit and no skips.
 - [ ] Both candidate benchmark reports pass their frozen budgets.

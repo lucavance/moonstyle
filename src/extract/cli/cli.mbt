@@ -547,13 +547,13 @@ pub fn run(registry : @ir.Registry) -> Unit {
                   abort_diagnostics(diagnostics)
                 }
                 println(
-                  "Verified lampclaw/moonstyle artifact schema v13 (outputs current)",
+                  "Verified lampclaw/moonstyle artifact schema v14 (outputs current)",
                 )
                 return
               }
               let changed = write_artifacts_if_changed(artifacts)
               println(
-                "Cache hit for lampclaw/moonstyle artifact schema v13" +
+                "Cache hit for lampclaw/moonstyle artifact schema v14" +
                 (if changed { "" } else { " (outputs unchanged)" }),
               )
               return

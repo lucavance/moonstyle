@@ -1,11 +1,11 @@
 {
-  "schemaVersion": 13,
+  "schemaVersion": 14,
   "module": "fixture/component-a",
   "mappingsPackage": "lampclaw/moonstyle-validation/tests/component_a_generated",
-  "semanticDigest": "sha256:766a10ad2443fc3ade680eed97c6145e6a17b7824aede5b4879b86d949b911f5",
+  "semanticDigest": "sha256:965fd081fac3ca2994ad3e7e3fc4aaeaf3b5337a12ae8b273c9c76ad6de15339",
   "semantics": {
     "profile": "stylex-0.19.1-application-order+font-aliases-v1",
-    "digest": "sha256:c1499c3696fe74b407416dfa6cfa9031ecaba2cebccae05c1ea08fab2332af08"
+    "digest": "sha256:797d7d12c376d41210208bbe5431214379f9a10f4fcdacefc2f0bb0682d9b473"
   },
   "directDependencies": [],
   "dependencyClosure": [],

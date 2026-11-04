@@ -13,7 +13,7 @@ dataset downloads, Babel, or network access for generation.
 
 ## Reviewed surface
 
-`src/properties/property-api.json` schema v17 is the classification
+`src/properties/property-api.json` schema v18 is the classification
 layer. The generator derives IR spellings from WebRef `styleDeclaration`, rejects
 non-standard/deprecated sources or atomic properties, and generates declarations,
 fluent Rule/Frame methods, source-aware Clear methods, root value exports,
@@ -22,8 +22,8 @@ exact contract methods, metadata and exhaustive coverage.
 | Coverage | Count |
 | --- | --- |
 | WebRef properties | 822 |
-| Typed properties | 386 |
-| Unsupported grammar | 196 |
+| Typed properties | 392 |
+| Unsupported grammar | 190 |
 | Unsafe-only | 233 |
 | Deprecated | 7 |
 
@@ -45,6 +45,14 @@ slash-separated single-corner radii and `image-1D`. Full shorthand radius lists
 have their own reviewed API. Other modern opaque adapters keep their separate
 review boundary. A standards grammar or browser annotation alone does not create
 a safe MoonBit API.
+
+`daily-css-v1` adds six common property adapters. Each freezes the reviewed
+WebRef top-level syntax AST digest and records excluded grammar in metadata;
+regeneration fails if that syntax changes. Named definitions still require review
+when updating the pinned dataset. Tests also check representative values against
+css-tree's independent property grammar. Static font-axis tags require four
+printable ASCII characters and finite numbers; empty axes and hint lists fail
+extraction. This profile does not expand the scalar or border allowlists.
 
 ## Generation and oracle isolation
 

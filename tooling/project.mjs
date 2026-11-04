@@ -985,10 +985,10 @@ function checkGeneratedOutputs(report, root, styleConfig) {
   if (fs.existsSync(bundleFilename)) {
     try {
       const bundle = readJson(bundleFilename, 'STYLE_PROJECT_OUTPUT_SCHEMA');
-      if (bundle.schemaVersion !== 13) {
+      if (bundle.schemaVersion !== 14) {
         throw new ProjectError(
           'STYLE_PROJECT_OUTPUT_SCHEMA',
-          'Generated style bundle schemaVersion must be 13; re-extract dependencies from source before the application',
+          'Generated style bundle schemaVersion must be 14; re-extract dependencies from source before the application',
           { file: styleConfig.outputs.bundle },
         );
       }

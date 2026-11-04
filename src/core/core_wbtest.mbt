@@ -105,7 +105,7 @@ test "font width aliases replace and clear one another without changing CSS hash
 
 ///|
 test "the internal font shorthand clears both aliases while raw font stays serialization only" {
-  assert_eq(application_order_properties().length(), 386)
+  assert_eq(application_order_properties().length(), 392)
   assert_false(application_order_properties().contains("font"))
   assert_false(application_order_migration_safe("font"))
   for property in ["fontStretch", "fontWidth"] {

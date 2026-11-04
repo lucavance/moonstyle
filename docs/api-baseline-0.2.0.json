@@ -1,18 +1,18 @@
 {
   "schemaVersion": 2,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "modules": {
     "lampclaw/moonstyle": {
-      "builder/pkg.generated.mbti": "sha256:e3a656dd04c30ef3e1993946d3ae05135e5be255c9855b3287e22d990c7002f2",
-      "core/pkg.generated.mbti": "sha256:eb9c9ff43cca9ab91b2045a69508aa7526c96e6e3c3bb32feb93bac420a5a3bd",
+      "builder/pkg.generated.mbti": "sha256:c9d79834bf379f568a951a6dd71c95c2d3ed918801c507c85c412bf32f216275",
+      "core/pkg.generated.mbti": "sha256:8f6e72a0d9048a77a18e86724e755ba9f9af91d2f8a2a762046e8e49a7d34388",
       "extract/cli/pkg.generated.mbti": "sha256:e85196bd51095349bcb970a35bb486c9e8901d4535f7c1b031ec0d5d51234143",
       "extract/pkg.generated.mbti": "sha256:e7e6f79b64f34ca93561e8f43fd80753ab3b9d9d93dbab9df3531675f9f0444a",
       "ir/pkg.generated.mbti": "sha256:c26c7025fee25ccffe78eb3db64c2099635c0ffbb56b13c24596a8a898399a36",
-      "pkg.generated.mbti": "sha256:6acac049e0102fcbb69d2796fb3333f5152cca28858439b260f5ad828f90d6ed",
-      "properties/pkg.generated.mbti": "sha256:55212dddf50573869b8322dd9eefa8f1b6b91fb85eb0cba3318722991314caed",
+      "pkg.generated.mbti": "sha256:6531c41ef995e06aa268f57de9614fb9dceda4f465d91dd38acd1aba48e4a5c3",
+      "properties/pkg.generated.mbti": "sha256:f80eed0ec2028895622cd3aeeab30628cf1a654a76e3be38160d69afcb7de92a",
       "rabbita/pkg.generated.mbti": "sha256:1a62640acc64f1f5fb49b9f49101c070d1a728fee00cbff734b0c7229d86eb25",
       "runtime/pkg.generated.mbti": "sha256:b0383e1128becf6dd73872022037a0fb4208a3075f237b985a47dedb2657e13b",
-      "values/pkg.generated.mbti": "sha256:208da6809124bb61eda999118e66b84795a0c6db6f16416f1c46dc6215f9e20f"
+      "values/pkg.generated.mbti": "sha256:0d6b52597aa6db49e9c45b67e73f06c22e8f30615daf833b44be25c9013181ac"
     },
     "lampclaw/moonstyle-luna": {
       "pkg.generated.mbti": "sha256:c276bcaa822d5921b7d36a9379eb7cf3eac83369c1a70c1f9230b2c6df60a2d6"

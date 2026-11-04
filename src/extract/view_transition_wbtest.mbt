@@ -134,7 +134,7 @@ test "view transition decoder rejects unknown groups malformed blocks and legacy
         new="\"extra\":true,\"group\":\"old\"",
       ),
       output.manifest.replace_all(
-        old="\"schemaVersion\":13",
+        old="\"schemaVersion\":14",
         new="\"schemaVersion\":12",
       ),
     ] {

@@ -1046,11 +1046,12 @@ pub fn sort_and_dedupe_globals(
   unique.sort_by((left, right) => {
     let kind_rank = fn(kind : String) {
       match kind {
-        "variables" => 0
-        "theme" => 1
-        "keyframes" => 2
-        "position-try" => 3
-        _ => 4
+        "property" => 0
+        "variables" => 1
+        "theme" => 2
+        "keyframes" => 3
+        "position-try" => 4
+        _ => 5
       }
     }
     let kind_order = kind_rank(left.kind) - kind_rank(right.kind)
@@ -1337,6 +1338,7 @@ pub fn compile_registry_globals(
 ) -> (Array[GlobalRule], Array[Diagnostic]) {
   let globals : Array[GlobalRule] = []
   let diagnostics : Array[Diagnostic] = []
+  let registrations : Map[String, String] = Map([])
   for variable_set in variable_sets {
     let value_diagnostics : Array[Diagnostic] = []
     for definition in variable_set.definitions {
@@ -1347,11 +1349,46 @@ pub fn compile_registry_globals(
         ) {
         value_diagnostics.push(diagnostic)
       }
+      if definition.registration_issue() is Some(issue) {
+        value_diagnostics.push(error_diagnostic(issue.code, issue.label))
+      }
+      if definition.registration is Some(_) &&
+        (
+          !definition.name.has_prefix("--") ||
+          !valid_kebab_name(definition.name[2:].to_owned())
+        ) {
+        value_diagnostics.push(
+          error_diagnostic(
+            "STYLE_PROPERTY_NAME", "Registered property names must be scoped kebab-case identifiers",
+          ),
+        )
+      }
     }
     if value_diagnostics.is_empty() {
       match validate_variable_set(variable_set) {
         Some(diagnostic) => diagnostics.push(diagnostic)
-        None => globals.push(variable_global(module_name, variable_set))
+        None => {
+          for definition in variable_set.definitions {
+            if definition.registration is Some(_) {
+              let global = property_global(definition)
+              let css = global.css
+              match registrations.get(definition.name) {
+                Some(existing) if existing != css =>
+                  diagnostics.push(
+                    error_diagnostic(
+                      "STYLE_PROPERTY_CONFLICT",
+                      "Conflicting registration for " + definition.name,
+                    ),
+                  )
+                _ => {
+                  registrations[definition.name] = css
+                  globals.push(global)
+                }
+              }
+            }
+          }
+          globals.push(variable_global(module_name, variable_set))
+        }
       }
     } else {
       for diagnostic in value_diagnostics {

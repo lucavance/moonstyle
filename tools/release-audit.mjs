@@ -21,6 +21,9 @@ const productManifests = [manifest, lunaManifest];
 const rootManifest = fs.readFileSync(path.join(root, 'moon.mod'), 'utf8');
 const field = (source, name) => source.match(new RegExp(`^${name} = "([^"]*)"$`, 'm'))?.[1] ?? '';
 const canonicalRepository = field(rootManifest, 'repository');
+const releaseStatus = JSON.parse(fs.readFileSync(path.join(root, 'release-status.json'), 'utf8'));
+const currentVersionPublished =
+  releaseStatus.publishedLibraryVersion === field(manifest, 'version');
 const checks = [];
 const check = (name, passed, detail) => checks.push({ name, passed, detail });
 const oracleRoot = path.join(root, 'tools', 'stylex-oracle');
@@ -186,11 +189,11 @@ const performanceIssues = [
     : []),
 ];
 
-check('version', field(manifest, 'version') === '0.1.0', field(manifest, 'version'));
+check('version', field(manifest, 'version') === '0.2.0', field(manifest, 'version'));
 check('license', field(manifest, 'license') === 'MIT', field(manifest, 'license'));
 check(
   'luna-adapter-version',
-  field(lunaManifest, 'version') === '0.1.0',
+  field(lunaManifest, 'version') === '0.2.0',
   field(lunaManifest, 'version'),
 );
 check(
@@ -215,7 +218,7 @@ check('notice-file', fs.existsSync(path.join(root, 'NOTICE')), 'NOTICE');
 check(
   'javascript-tooling-package',
   packageManifest.name === '@lampclaw/moonstyle-tooling' &&
-    packageManifest.version === '0.1.0' &&
+    packageManifest.version === '0.2.0' &&
     packageManifest.private === true &&
     packageManifest.license === 'MIT' &&
     packageManifest.exports?.['./vite'] === './tooling/vite-plugin-moonstyle.mjs' &&
@@ -321,14 +324,15 @@ check(
 const report = {
   version: field(manifest, 'version'),
   repository: canonicalRepository || null,
-  distribution: ['git-commit', 'local-path'],
+  distribution: [...(currentVersionPublished ? ['mooncakes'] : []), 'git-commit', 'local-path'],
   javascriptTooling: {
     name: packageManifest.name,
     version: packageManifest.version,
     private: packageManifest.private,
     protocolVersion: 1,
   },
-  mooncakes: false,
+  mooncakes: currentVersionPublished,
+  publishedLibraryVersion: releaseStatus.publishedLibraryVersion,
   checks,
   dependencyLicenses,
   oracleDependencyLicenses,

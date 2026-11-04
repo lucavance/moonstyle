@@ -3,7 +3,7 @@
 Check out a reviewed commit into `source/`. Use `moon.mod` imports and a
 `moon.work` containing relative module paths. Install the tooling packed from
 that same checkout into the application. This example uses Rabbita 0.17.0,
-Vite+ 1.4.0, Bun 1.4.4, Node 26.12.1, and artifact schema v13.
+Vite+ 1.4.0, Bun 1.4.4, Node 26.12.1, and artifact schema v14.
 
 Install the exact MoonBit environment from [toolchain.json](../toolchain.json),
 then prepare the source checkout and registry:
@@ -35,7 +35,7 @@ members = ["app", "components", "source"]
 ```moonbit
 name = "consumer/components"
 version = "0.0.0"
-import { "lampclaw/moonstyle@0.1.0" }
+import { "lampclaw/moonstyle@0.2.0" }
 preferred_target = "js"
 ```
 
@@ -89,7 +89,7 @@ pub fn registry() -> @moonstyle.Registry {
 name = "consumer/app"
 version = "0.0.0"
 import {
-  "lampclaw/moonstyle@0.1.0",
+  "lampclaw/moonstyle@0.2.0",
   "consumer/components@0.0.0",
   "moonbit-community/rabbita@0.17.0",
 }
@@ -190,7 +190,7 @@ its generated mappings and bundle. Copy its bundle to the application's
 
 For any outdated bundle, retain the component source and re-extract it with
 tooling from the current reviewed revision before re-extracting the app. This
-includes earlier v13 bundles with an old semantic digest. Older bundles are
+includes schema v13 dependencies and bundles with an old semantic digest. They are
 rejected before any output changes. See the [regeneration guide](regeneration.md).
 The CLI does not rewrite dependency manifests or guess Git dependency syntax.
 

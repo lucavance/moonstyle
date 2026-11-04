@@ -7,8 +7,8 @@
   },
   "summary": {
     "unsafe-only": 233,
-    "unsupported-grammar": 196,
-    "typed": 386,
+    "unsupported-grammar": 190,
+    "typed": 392,
     "deprecated": 7
   },
   "properties": [
@@ -3072,9 +3072,9 @@
       "cssName": "font-variation-settings",
       "syntax": "normal | [ <opentype-tag> <number> ]#",
       "syntaxAstDigest": "sha256:22e34eebaac7d230cd1a5c0d81767e6f4240fc5696314340b3ccc8570949c1d8",
-      "grammarTier": "tier-c",
-      "classification": "unsupported-grammar",
-      "reason": "unsupported-type-opentype-tag"
+      "grammarTier": "tier-b",
+      "classification": "typed",
+      "reason": "reviewed-adapter:unsupported-type-opentype-tag"
     },
     {
       "cssName": "font-weight",
@@ -3528,9 +3528,9 @@
       "cssName": "isolation",
       "syntax": "<isolation-mode>",
       "syntaxAstDigest": "sha256:3f6d8b8e16c9e11b024f74989d003e62e935c12235bb7c8d8ab9fd5f40af9e72",
-      "grammarTier": "tier-c",
-      "classification": "unsupported-grammar",
-      "reason": "unsupported-type-isolation-mode"
+      "grammarTier": "tier-b",
+      "classification": "typed",
+      "reason": "reviewed-adapter:unsupported-type-isolation-mode"
     },
     {
       "cssName": "justify-content",
@@ -6032,9 +6032,9 @@
       "cssName": "text-wrap",
       "syntax": "<'text-wrap-mode'> || <'text-wrap-style'>",
       "syntaxAstDigest": "sha256:dd617c56a74db103963f2e88987fcae05b166934651ea221e236f4e21ee4eac9",
-      "grammarTier": "tier-c",
-      "classification": "unsupported-grammar",
-      "reason": "not-yet-mapped-to-a-safe-value-type:missing-reviewed-capability-family"
+      "grammarTier": "tier-a",
+      "classification": "typed",
+      "reason": "supported-definition-syntax"
     },
     {
       "cssName": "text-wrap-mode",
@@ -6280,9 +6280,9 @@
       "cssName": "vertical-align",
       "syntax": "[ first | last] || <'alignment-baseline'> || <'baseline-shift'>",
       "syntaxAstDigest": "sha256:53b548efa7819a46ceeeddb1383d72ab62eff780625bd5251eb38c75843051fe",
-      "grammarTier": "tier-c",
-      "classification": "unsupported-grammar",
-      "reason": "not-yet-mapped-to-a-safe-value-type:missing-reviewed-capability-family"
+      "grammarTier": "tier-a",
+      "classification": "typed",
+      "reason": "supported-definition-syntax"
     },
     {
       "cssName": "view-timeline",
@@ -6424,9 +6424,9 @@
       "cssName": "white-space",
       "syntax": "normal | pre | pre-wrap | pre-line | <'white-space-collapse'> || <'text-wrap-mode'> || <'white-space-trim'>",
       "syntaxAstDigest": "sha256:1fac77265f7a3f8a83b23d6f9fa1288797ac4f03c9f283cd42a7ea516e970fa3",
-      "grammarTier": "tier-c",
-      "classification": "unsupported-grammar",
-      "reason": "not-yet-mapped-to-a-safe-value-type:missing-reviewed-capability-family"
+      "grammarTier": "tier-a",
+      "classification": "typed",
+      "reason": "supported-definition-syntax"
     },
     {
       "cssName": "white-space-collapse",
@@ -6464,9 +6464,9 @@
       "cssName": "will-change",
       "syntax": "auto | <animateable-feature>#",
       "syntaxAstDigest": "sha256:3d4e455f280764fb8189cb83ba0b9e7c257766b1a06a1be24897e5a2df3087a2",
-      "grammarTier": "tier-c",
-      "classification": "unsupported-grammar",
-      "reason": "unsupported-type-animateable-feature"
+      "grammarTier": "tier-b",
+      "classification": "typed",
+      "reason": "reviewed-adapter:unsupported-type-animateable-feature"
     },
     {
       "cssName": "window-drag",

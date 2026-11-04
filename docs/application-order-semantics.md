@@ -16,7 +16,7 @@ these exact options:
 ```
 
 `vp run refresh-oracle` compiles one representative declaration
-for every one of the 386 typed IR properties. It records the property priority,
+for every one of the 392 typed IR properties. It records the property priority,
 live composition slot, conflict tombstones, and normalized LTR/RTL rule in
 `src/core/application-order.lock.json`. The complete semantic content
 is addressed by the lock's `semanticsDigest`. Lock schema v4 uses
@@ -107,7 +107,7 @@ which names known live owners of that slot and makes tombstone edges readable.
 
 The default application-order tests validate the committed lock, local alias,
 and generated MoonBit entries without importing Babel. `vp run test-oracle`
-recompiles all 386 properties, the supplemental font shorthand, and the
+recompiles all 392 properties, the supplemental font shorthand, and the
 condition fixtures. It compares raw upstream priorities,
 slots, and normalized rules, then checks the versioned local alias separately
 from upstream parity. Conflict tests cover both application orders, conditional

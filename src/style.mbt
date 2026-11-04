@@ -861,8 +861,7 @@ fn add_variable_use(
       value.scope == candidate.scope &&
       value.local_name == candidate.local_name &&
       value.role == candidate.role &&
-      value.definition.default_css == candidate.definition.default_css &&
-      value.definition.category == candidate.definition.category
+      value.definition == candidate.definition
     }) {
     Some(_) => ()
     None => variables.push(candidate)

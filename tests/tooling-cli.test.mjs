@@ -35,7 +35,7 @@ test('modern Moon preflight rejects legacy ambiguity and missing imports before 
     fs.unlinkSync(path.join(directory, 'moon.mod.json'));
     fs.writeFileSync(
       path.join(directory, 'moon.mod'),
-      'name = "modern/app"\n// import { "lampclaw/moonstyle@0.1.0" }\n',
+      'name = "modern/app"\n// import { "lampclaw/moonstyle@0.2.0" }\n',
     );
     assert.equal(
       initProject({ root: directory }).diagnostics[0].code,
@@ -54,7 +54,7 @@ test('modern Moon resolves nearest ancestor workspace and relative paths contain
     fs.mkdirSync(member, { recursive: true });
     fs.writeFileSync(
       path.join(member, 'moon.mod'),
-      'name = "modern/app"\nimport { "lampclaw/moonstyle@0.1.0" }\n',
+      'name = "modern/app"\nimport { "lampclaw/moonstyle@0.2.0" }\n',
     );
     fs.writeFileSync(path.join(directory, 'moon.work'), 'members = ["apps/my app"]\n');
     assert.deepEqual(moonProject(member).workspace.members, [member]);
@@ -76,7 +76,7 @@ function temporaryProject(name = 'local/tooling-app') {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'lampclaw-tooling-'));
   fs.writeFileSync(
     path.join(directory, 'moon.mod'),
-    `name = ${JSON.stringify(name)}\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.1.0" }\n`,
+    `name = ${JSON.stringify(name)}\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.2.0" }\n`,
   );
   fs.writeFileSync(path.join(directory, 'moon.work'), `members = [".", ${JSON.stringify(root)}]\n`);
   fs.mkdirSync(path.join(directory, 'styles'));
@@ -179,7 +179,7 @@ test('watch follows a parent module source directory and recovers from its compi
     );
     fs.writeFileSync(
       path.join(parent, 'moon.mod'),
-      'name = "local/parent-theme"\nversion = "0.0.0"\nsource = "src"\nimport { "lampclaw/moonstyle@0.1.0" }\n',
+      'name = "local/parent-theme"\nversion = "0.0.0"\nsource = "src"\nimport { "lampclaw/moonstyle@0.2.0" }\n',
     );
     fs.mkdirSync(path.join(parent, 'src'));
     fs.writeFileSync(path.join(parent, 'src/moon.pkg'), 'import { "lampclaw/moonstyle" }\n');
@@ -273,7 +273,7 @@ test('init is idempotent, preserves custom integration files, and reports stable
     const report = JSON.parse(result.stdout);
     assert.equal(report.schemaVersion, 1);
     assert.equal(report.command, 'init');
-    assert.equal(report.toolingVersion, '0.1.0');
+    assert.equal(report.toolingVersion, '0.2.0');
     assert.equal(report.passed, true);
     assert.deepEqual(
       report.diagnostics.map((item) => item.code),
@@ -342,7 +342,7 @@ test('init derives moon.mod projects and honors contained custom paths', () => {
       [
         'name = "local/legacy-manifest"',
         'version = "0.0.0"',
-        'import { "lampclaw/moonstyle@0.1.0" }',
+        'import { "lampclaw/moonstyle@0.2.0" }',
         '',
       ].join('\n'),
     );
@@ -735,7 +735,7 @@ test('packed Git/path tooling exposes Vite and the complete CLI extraction loop'
     fs.mkdirSync(project);
     fs.writeFileSync(
       path.join(project, 'moon.mod'),
-      'name = "local/packed-project"\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.1.0" }\n',
+      'name = "local/packed-project"\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.2.0" }\n',
     );
     fs.writeFileSync(path.join(project, 'moon.work'), `members = [".", ${JSON.stringify(root)}]\n`);
     fs.mkdirSync(path.join(project, 'styles'));

@@ -272,6 +272,8 @@ pub fn[T : BoxSizeValueInput] fit_content_size(T) -> BoxSize
 
 pub fn[T : FlexBasisValueInput] flex_basis_value(T) -> FlexBasis
 
+pub fn font_axis(String, Double) -> FontVariationAxis
+
 pub fn font_size_keyword(FontSizeKeyword) -> FontSize
 
 pub fn[T : FontSizeValueInput] font_size_value(T) -> FontSize
@@ -279,6 +281,8 @@ pub fn[T : FontSizeValueInput] font_size_value(T) -> FontSize
 pub fn font_variant_numeric(Array[FontVariantNumericPart]) -> FontVariantNumeric raise ValueError
 
 pub fn font_variant_numeric_normal() -> FontVariantNumeric
+
+pub fn font_variations(Array[FontVariationAxis]) -> FontVariationSettings
 
 pub fn fr(Double) -> GridTrack raise ValueError
 
@@ -411,6 +415,8 @@ pub fn named_lines(Array[String]) -> GridTrack
 pub fn named_timeline(TimelineName) -> AnimationTimeline
 
 pub fn normal_color_scheme() -> ColorScheme
+
+pub fn normal_font_variations() -> FontVariationSettings
 
 pub fn number(Double) -> Number raise ValueError
 
@@ -634,6 +640,10 @@ pub fn var_length(CssVar[Length]) -> Length
 
 pub fn variable_scope(String) -> VariableScope
 
+pub fn vertical_align(VerticalAlignKeyword) -> VerticalAlign
+
+pub fn vertical_align_offset(LengthPercentage) -> VerticalAlign
+
 pub fn vh(Int32) -> Length
 
 pub fn view_timeline(axis? : TimelineAxis, inset? : MathExpr[LengthPercentage], end_inset? : MathExpr[LengthPercentage]) -> AnimationTimeline
@@ -643,6 +653,10 @@ pub fn vmax(Double) -> Length raise ValueError
 pub fn vmin(Double) -> Length raise ValueError
 
 pub fn vw(Int32) -> Length
+
+pub fn will_change(Array[WillChangeFeature]) -> WillChange
+
+pub fn will_change_auto() -> WillChange
 
 pub fn zero() -> Length
 
@@ -852,6 +866,7 @@ pub fn Color::to_repr(Self) -> @debug.Repr
 pub fn Color::value_category(Self) -> ValueCategory
 pub impl CssValue for Color
 pub impl GradientColorInput for Color
+pub impl RegisterableValue for Color
 
 pub struct ColorExpr {
   expression : Expression
@@ -987,6 +1002,7 @@ pub struct CssVar[T] {
   name : String
   default_css : String
   category : ValueCategory
+  registration : PropertyRegistration?
   marker : T?
 }
 pub fn[T] CssVar::default_css(Self[T]) -> String
@@ -1029,6 +1045,7 @@ pub fn[T : LineHeightDimension] DynamicSlot::line_height_contract_expression(Sel
 pub fn[T : LineHeightDimension] DynamicSlot::line_height_value_expression(Self[T]) -> Expression
 pub fn DynamicSlot::number_math(Self[Number]) -> MathExpr[Number]
 pub fn DynamicSlot::percentage_math(Self[Percentage]) -> MathExpr[Percentage]
+pub fn[T : RegisterableValue] DynamicSlot::registered(Self[T], inherits? : Bool) -> Self[T]
 pub fn DynamicSlot::resolution_math(Self[Resolution]) -> MathExpr[Resolution]
 pub fn DynamicSlot::time_math(Self[Time]) -> MathExpr[Time]
 #deprecated
@@ -1194,6 +1211,18 @@ pub(all) enum FontVariantNumericPart {
 pub fn FontVariantNumericPart::equal(Self, Self) -> Bool
 pub fn FontVariantNumericPart::not_equal(Self, Self) -> Bool
 pub fn FontVariantNumericPart::to_repr(Self) -> @debug.Repr
+
+pub struct FontVariationAxis {
+  css : String
+}
+
+pub struct FontVariationSettings {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn FontVariationSettings::equal(Self, Self) -> Bool
+pub fn FontVariationSettings::not_equal(Self, Self) -> Bool
+pub fn FontVariationSettings::to_css(Self) -> String
+pub fn FontVariationSettings::to_repr(Self) -> @debug.Repr
 
 pub(all) enum GeometryBox {
   BorderBox
@@ -1385,6 +1414,7 @@ pub impl LengthMathInput for Length
 pub impl LineHeightContractExpression for Length
 pub impl LineHeightDimension for Length
 pub impl LineHeightValueInput for Length
+pub impl RegisterableValue for Length
 
 pub struct LengthPercentage {
   css : String
@@ -1684,6 +1714,7 @@ pub impl LineHeightContractExpression for Number
 pub impl LineHeightDimension for Number
 pub impl LineHeightValueInput for Number
 pub impl NumberMathInput for Number
+pub impl RegisterableValue for Number
 
 pub struct OffsetAnchor {
   expression : Expression
@@ -1888,6 +1919,13 @@ pub fn PositionTryValue::equal(Self, Self) -> Bool
 pub fn PositionTryValue::not_equal(Self, Self) -> Bool
 pub fn PositionTryValue::to_css(Self) -> String
 pub fn PositionTryValue::to_repr(Self) -> @debug.Repr
+
+pub(all) struct PropertyRegistration {
+  inherits : Bool
+} derive(Eq, @debug.Debug)
+pub fn PropertyRegistration::equal(Self, Self) -> Bool
+pub fn PropertyRegistration::not_equal(Self, Self) -> Bool
+pub fn PropertyRegistration::to_repr(Self) -> @debug.Repr
 
 pub(all) enum RadialExtent {
   ClosestSide
@@ -2112,6 +2150,7 @@ pub fn[T : LineHeightDimension] Token::line_height_value_expression(Self[T]) -> 
 pub fn Token::number_math(Self[Number]) -> MathExpr[Number]
 pub fn Token::percentage_math(Self[Percentage]) -> MathExpr[Percentage]
 pub fn[T] Token::reference_css(Self[T]) -> String
+pub fn[T : RegisterableValue] Token::registered(Self[T], inherits? : Bool) -> Self[T]
 pub fn Token::resolution_math(Self[Resolution]) -> MathExpr[Resolution]
 pub fn Token::time_math(Self[Time]) -> MathExpr[Time]
 #deprecated
@@ -2239,9 +2278,11 @@ pub(all) struct VarDefinition {
   name : String
   default_css : String
   category : ValueCategory
+  registration : PropertyRegistration?
 } derive(Eq, @debug.Debug)
 pub fn VarDefinition::equal(Self, Self) -> Bool
 pub fn VarDefinition::not_equal(Self, Self) -> Bool
+pub fn VarDefinition::registration_issue(Self) -> ValueIssue?
 pub fn VarDefinition::to_repr(Self) -> @debug.Repr
 
 pub(all) struct VarOverride {
@@ -2295,6 +2336,28 @@ pub fn VariableUse::equal(Self, Self) -> Bool
 pub fn VariableUse::not_equal(Self, Self) -> Bool
 pub fn VariableUse::to_repr(Self) -> @debug.Repr
 
+pub struct VerticalAlign {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn VerticalAlign::equal(Self, Self) -> Bool
+pub fn VerticalAlign::not_equal(Self, Self) -> Bool
+pub fn VerticalAlign::to_css(Self) -> String
+pub fn VerticalAlign::to_repr(Self) -> @debug.Repr
+
+pub(all) enum VerticalAlignKeyword {
+  AlignBaseline
+  AlignSub
+  AlignSuper
+  AlignTextTop
+  AlignTextBottom
+  AlignMiddle
+  AlignTop
+  AlignBottom
+} derive(Eq, @debug.Debug)
+pub fn VerticalAlignKeyword::equal(Self, Self) -> Bool
+pub fn VerticalAlignKeyword::not_equal(Self, Self) -> Bool
+pub fn VerticalAlignKeyword::to_repr(Self) -> @debug.Repr
+
 pub struct ViewTransitionClass {
   css : String
 } derive(Eq, @debug.Debug)
@@ -2310,6 +2373,31 @@ pub fn ViewTransitionName::equal(Self, Self) -> Bool
 pub fn ViewTransitionName::not_equal(Self, Self) -> Bool
 pub fn ViewTransitionName::to_css(Self) -> String
 pub fn ViewTransitionName::to_repr(Self) -> @debug.Repr
+
+pub struct WillChange {
+  css : String
+} derive(Eq, @debug.Debug)
+pub fn WillChange::equal(Self, Self) -> Bool
+pub fn WillChange::not_equal(Self, Self) -> Bool
+pub fn WillChange::to_css(Self) -> String
+pub fn WillChange::to_repr(Self) -> @debug.Repr
+
+pub(all) enum WillChangeFeature {
+  ChangeScrollPosition
+  ChangeContents
+  ChangeTransform
+  ChangeOpacity
+  ChangeFilter
+  ChangeBackgroundColor
+  ChangeColor
+  ChangeWidth
+  ChangeHeight
+  ChangeLeft
+  ChangeTop
+} derive(Eq, @debug.Debug)
+pub fn WillChangeFeature::equal(Self, Self) -> Bool
+pub fn WillChangeFeature::not_equal(Self, Self) -> Bool
+pub fn WillChangeFeature::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 pub type AngleSlot = DynamicSlot[Angle]
@@ -2443,6 +2531,9 @@ pub trait NumberMathInput {
 
 pub trait PercentageMathInput {
   fn percentage_math(Self) -> MathExpr[Percentage]
+}
+
+pub trait RegisterableValue {
 }
 
 pub trait ResolutionMathInput {

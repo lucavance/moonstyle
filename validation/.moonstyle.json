@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "toolingVersion": "0.1.0",
+  "toolingVersion": "0.2.0",
   "stylesPackage": "lampclaw/moonstyle-validation/examples/styles",
   "extractorPackage": "cmd/style_extract",
   "viteConfig": "vite.config.mjs",

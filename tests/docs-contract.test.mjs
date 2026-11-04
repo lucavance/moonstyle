@@ -41,6 +41,51 @@ test('active documentation matches implemented contracts and local links resolve
   assert.deepEqual(docsContractIssues(), []);
 });
 
+test('published library facts remain distinct from development consumption', (t) => {
+  const directory = fixture(t);
+  const release = JSON.parse(fs.readFileSync(path.join(directory, 'release-status.json'), 'utf8'));
+  const earlierPublishedVersion = '0.0.1';
+  updateJson(directory, 'release-status.json', (value) => {
+    value.publishedLibraryVersion = earlierPublishedVersion;
+  });
+  for (const filename of [
+    'README.md',
+    'docs/authoring.md',
+    'docs/current-status.md',
+    'docs/distribution.md',
+    'docs/release-policy.md',
+  ]) {
+    const absolute = path.join(directory, filename);
+    fs.writeFileSync(
+      absolute,
+      fs
+        .readFileSync(absolute, 'utf8')
+        .replaceAll(
+          `\`lampclaw/moonstyle@${release.publishedLibraryVersion}\``,
+          `\`lampclaw/moonstyle@${earlierPublishedVersion}\``,
+        ),
+    );
+  }
+  assert.deepEqual(docsContractIssues(directory), []);
+  fs.appendFileSync(
+    path.join(directory, 'docs/quickstart.md'),
+    `\nUse \`lampclaw/moonstyle@${earlierPublishedVersion}\`.\n`,
+  );
+  assert.ok(
+    docsContractIssues(directory).some((issue) =>
+      issue.startsWith('docs/quickstart.md has stale lampclaw/moonstyle@'),
+    ),
+  );
+  updateJson(directory, 'release-status.json', (value) => {
+    value.developmentVersion = '9.9.9';
+  });
+  assert.ok(
+    docsContractIssues(directory).some((issue) =>
+      issue.includes('release-status.json must distinguish'),
+    ),
+  );
+});
+
 test('missing active documents, local targets and anchors are actionable failures', (t) => {
   const directory = fixture(t);
   fs.unlinkSync(path.join(directory, 'docs/roadmap.md'));

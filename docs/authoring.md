@@ -8,14 +8,15 @@ MoonBit module: `lampclaw/moonstyle`.
 
 MoonBit-native typed atomic CSS authoring, extraction, runtime composition, and
 framework adapters. MoonBit is the only supported authoring language; Rabbita
-is the only Tier-1 framework integration for 0.1.0. The semantic core is
+is the only Tier-1 framework integration for 0.2.0. The semantic core is
 framework-neutral. JavaScript, TypeScript, TSX, JSX, React, and StyleX drop-in
 authoring APIs are unsupported.
 Atomic CSS remains supported, but the `@stylexjs/atoms` authoring form is not a
 compatibility target.
 
-Install `lampclaw/moonstyle@0.1.0` from Mooncakes, or use a pinned Git commit
-or local path dependency. The CLI and Vite tooling is packed from a reviewed
+Mooncakes provides `lampclaw/moonstyle@0.2.0`. A pinned Git commit or local path
+dependency is also supported; see
+[distribution](distribution.md). The CLI and Vite tooling is packed from a reviewed
 [lucavance/moonstyle](https://github.com/lucavance/moonstyle) source checkout.
 See the [distribution guide](distribution.md),
 [documentation index](README.md),
@@ -147,11 +148,16 @@ and stroke width/dash APIs remain outside that grammar.
 
 ## Artifacts and supported values
 
-Artifact schema v13 and property API schema v17 are independent: the former
+See [daily CSS and typed registration](../src/daily_css.mbt.md) for common text
+properties, variable-font axes, rendering hints and explicit Token/Slot
+`@property` registration. Registration is optional and supports Color, Length
+and Number with independent initial values.
+
+Artifact schema v14 and property API schema v18 are independent: the former
 describes mapping packages, structured component policies, recipes, selector
 markers, view-transition classes, fixed-point `priority100` rules, and
 extracted bundles, while the latter
-controls the generated 386-property authoring, Clear, and contract surface. Extraction
+controls the generated 392-property authoring, Clear, and contract surface. Extraction
 atomically manages CSS, nominal mappings, their generated `moon.pkg`, and the
 bundle.
 
@@ -168,7 +174,7 @@ Typed math, gradient families, background layers, and advanced Grid are covered
 by [executable examples](../src/expressions.mbt.md). The [consumer quickstart](quickstart.md)
 also compiles the same exact expression contracts across an independent component
 and Rabbita application. Re-extract outdated dependencies before their consumers;
-see the [artifact contract](artifact-schema-v13.md).
+see the [artifact contract](artifact-schema-v14.md).
 
 Scalar profile `stable-scalar-v2` uses Length inputs for the six logical-size
 methods and Percentage inputs for `font_width`, with typed fallbacks, Clear,

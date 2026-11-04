@@ -1,4 +1,4 @@
-# Artifact schema v13
+# Artifact schema v14
 
 This is the complete current dependency and application bundle contract.
 The [native encoder/decoder](../src/extract/bundle.mbt) and
@@ -29,7 +29,7 @@ The complete top-level field set, in encoder order, is:
 
 ```json
 {
-  "schemaVersion": 13,
+  "schemaVersion": 14,
   "module": "example/app",
   "mappingsPackage": "example/app/generated",
   "semanticDigest": "sha256:<lowercase-hex>",
@@ -54,7 +54,7 @@ generated traits. `semanticDigest` is SHA-256 over the canonical compact UTF-8
 JSON representation with only that field omitted. Each hash uses the
 `sha256:` prefix. `semantics` must match the committed application-order profile
 and digest. Property schema and data-source changes can change that digest
-without changing artifact schema v13.
+without changing artifact schema v14.
 
 `directDependencies` preserves declared root order as `{module, semanticDigest}`
 records. `dependencyClosure` is the deterministic dependency-first transitive
@@ -79,11 +79,20 @@ by fixed-point priority and stable selector tie-breaks; specificity padding
 uses that same priority contract. See [application order](application-order-semantics.md).
 
 Globals contain `kind`, `name`, `css`, and `digest`; the digest covers the CSS.
-They carry variable definitions, themes, keyframes, position fallbacks and
+They carry CSS property registrations, variable definitions, themes, keyframes, position fallbacks and
 view-transition pseudo styles. Identical shared records deduplicate. Class,
 global, owner/package, contract and stable-identifier collisions fail validation.
 Cascade-sensitive namespace entries, declarations, fallbacks, recipe rule
 lists and dependency order must never be sorted as unordered sets.
+
+`property` globals are sorted before variable definitions. Their name is the
+custom-property identifier and their CSS has canonical descriptor order:
+`@property --scope-name{syntax:"<length>";inherits:false;initial-value:12px}`.
+Only `<color>`, `<length>` and `<number>` are accepted, with explicit inheritance
+and a validated independent initial value. The decoder validates canonical
+descriptor text as well as its digest. Different registrations for the same
+name fail cross-module merging, regardless of dependency root order.
+Unregistered variables emit no `property` global.
 
 ## Component contracts and expression identity
 
@@ -154,7 +163,7 @@ of all four outputs. Missing, stale or corrupt packs miss safely and regenerate.
 Cache validity never permits a mismatched dependency schema or semantic profile.
 Tooling protocol v1 is independent of both the bundle and property schemas.
 
-The active property generator is schema v17. Current coverage is maintained in
+The active property generator is schema v18. Current coverage is maintained in
 [data sources](data-sources.md). Property and data-source inputs participate in
 the semantic digest; matching schema versions alone do not establish compatibility.
 Generator identity includes transition styles, properties, named pages,

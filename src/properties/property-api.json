@@ -1,6 +1,32 @@
 {
-  "schemaVersion": 17,
+  "schemaVersion": 18,
   "enums": [
+    {
+      "name": "Isolation",
+      "values": { "IsolationAuto": "auto", "IsolationIsolate": "isolate" }
+    },
+    {
+      "name": "WhiteSpace",
+      "values": {
+        "WhiteSpaceNormal": "normal",
+        "WhiteSpacePre": "pre",
+        "WhiteSpaceNowrap": "nowrap",
+        "WhiteSpacePreWrap": "pre-wrap",
+        "WhiteSpacePreLine": "pre-line",
+        "WhiteSpaceBreakSpaces": "break-spaces"
+      }
+    },
+    {
+      "name": "TextWrap",
+      "values": {
+        "TextWrapWrap": "wrap",
+        "TextWrapNowrap": "nowrap",
+        "TextWrapAuto": "auto",
+        "TextWrapBalance": "balance",
+        "TextWrapStable": "stable",
+        "TextWrapPretty": "pretty"
+      }
+    },
     {
       "name": "Display",
       "values": {

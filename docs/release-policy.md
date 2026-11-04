@@ -1,8 +1,9 @@
 # Release policy
 
-MoonStyle 0.1.0 is distributed through Mooncakes, exact Git commits and local paths.
+MoonStyle 0.2.0 is available on Mooncakes and can also be consumed through
+reviewed Git commits or local paths.
 The library, validation workspace, optional Luna module and private tooling
-share version 0.1.0. Artifact, metadata and tooling schemas have independent
+share version 0.2.0. Artifact, metadata and tooling schemas have independent
 versions; see [API stability](api-stability.md).
 
 A source-version tag identifies a reviewed commit. Consumers should resolve
@@ -22,7 +23,9 @@ example and creates an independent component/application pair from the
 quickstart, consuming the exact tested commit and packed tooling. See
 [CI and validation](ci-and-validation.md) for setup, checks and reports.
 
-The Mooncakes module is `lampclaw/moonstyle@0.1.0`. Registry publication records
+The published Mooncakes module is `lampclaw/moonstyle@0.2.0`. Each new release
+requires the release gates and maintainer approval before publication.
+Registry publication records
 the library version; a published package does not replace validation of a changed
 source commit.
 The tooling package is

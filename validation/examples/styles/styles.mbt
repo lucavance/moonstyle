@@ -362,6 +362,7 @@ pub fn registry() -> @moonstyle.Registry {
   .rules(expression_rules())
   .rules(coverage_rules())
   .rules(upstream_rules())
+  .rules(daily_rules())
   .theme(dark_theme)
   .recipe(badge_recipe)
   .marker(demo_group_marker)
@@ -369,12 +370,12 @@ pub fn registry() -> @moonstyle.Registry {
   .view_transition_class(demo_transition)
   .dependency(
     @moonstyle.dependency_ref(
-      "fixture/component-a", "sha256:766a10ad2443fc3ade680eed97c6145e6a17b7824aede5b4879b86d949b911f5",
+      "fixture/component-a", "sha256:965fd081fac3ca2994ad3e7e3fc4aaeaf3b5337a12ae8b273c9c76ad6de15339",
     ),
   )
   .dependency(
     @moonstyle.dependency_ref(
-      "fixture/component-b", "sha256:374fc083d9feb987de96c663afb0e30289bdd6fa7709f7e395030e9fffe0942e",
+      "fixture/component-b", "sha256:0aa981f900208f94599ad3511f815a97136b714a871195d64a51cc5b665e342e",
     ),
   )
   .build()

@@ -1,6 +1,6 @@
 # API Stability
 
-The library version is 0.1.0.
+The source and Mooncakes library version is 0.2.0.
 
 The public module is `lampclaw/moonstyle`. Pin the library version or a reviewed
 source commit, keep tooling aligned, and regenerate component and application
@@ -15,13 +15,13 @@ The `@stylexjs/atoms` authoring syntax is likewise outside the compatibility
 surface. Atomic CSS and StyleX application-order behavior remain supported
 semantics; they do not imply an atoms-shaped MoonBit API.
 
-Rabbita is the only Tier-1 framework integration for 0.1.0. Its adapter behavior
+Rabbita is the only Tier-1 framework integration for 0.2.0. Its adapter behavior
 is part of the compatibility and release boundary. The separate Luna module is
 experimental: its checked-in interface snapshot detects accidental changes but
 does not create a deprecation window, migration promise, or supported
 application target.
 
-The current implemented artifact boundary is schema v13. Typed math expressions,
+The current implemented artifact boundary is schema v14. Typed math expressions,
 gradients, background layers, extended Grid, exact expression contracts, typed conditions,
 ordered fallbacks, keyframes, semantic digests, typed themes, multi-value
 dynamic mappings, exact component contracts, recipes, selector markers,
@@ -37,7 +37,7 @@ re-extracted, dependency-first. Typed expression APIs are documented in
 [regeneration guide](regeneration.md) and
 [CSS coverage examples](../src/css_coverage.mbt.md).
 
-View-transition styles use [artifact v13](artifact-schema-v13.md). The four
+View-transition styles use [artifact v14](artifact-schema-v14.md). The four
 group setters define pseudo styles, while identifier-only definitions retain
 stable CSS names with no pseudo styles.
 
@@ -49,7 +49,7 @@ stable CSS names with no pseudo styles.
 - Raw property names are accepted only by root `unsafe_raw`. The escape hatch
   guarantees serialization only; conflict parsing, RTL interpretation, value
   validation, and type guarantees are explicitly unsupported.
-- `core` application-order behavior is frozen for all 386 typed properties by
+- `core` application-order behavior is frozen for all 392 typed properties by
   the StyleX 0.19.1 semantic lock with the versioned local font-alias extension. Unsupported properties and extensions
   remain outside that compatibility statement.
 - `runtime.CompiledStyle` is opaque authoring data. Generated code constructs
@@ -58,9 +58,9 @@ stable CSS names with no pseudo styles.
   constructors. The constructor name records the mapping encoding where it was
   introduced, not the active bundle schema. Application code should use
   generated nominal values.
-- Artifact schema v13 is version checked. An incompatible artifact change must
+- Artifact schema v14 is version checked. An incompatible artifact change must
   use a new schema version even before stable release.
-- Reviewed property API and generated property metadata use schema v17. This is
+- Reviewed property API and generated property metadata use schema v18. This is
   an internal generation contract and is versioned independently from bundles.
 - Scalar profile `stable-scalar-v2` preserves the six logical-size Length
   signatures and includes `font_width` with the Percentage category.
@@ -73,13 +73,21 @@ stable CSS names with no pseudo styles.
 - `.moonstyle.json` schema v1 is the project ownership contract for the
   private Git/path `@lampclaw/moonstyle-tooling` package. The package-owned Vite
   adapter uses tooling protocol v1. Missing protocol is accepted with a
-  deprecation warning only for the 0.1.x compatibility window and may fail from
+  deprecation warning through the 0.2.x compatibility window and may fail from
   the next minor release; an explicit incompatible version already fails before output mutation.
 - The supported authoring entry point is the root `lampclaw/moonstyle` package:
   immutable `Rule`/`Frame` chains, generated `Rule::clear_*` methods, typed
   condition shortcuts, `Token[T]`, `DynamicSlot[T]`, `VariableScope`, concrete
   Token/Slot aliases, `Theme`, `RegistryBuilder`, and the application-facing
   runtime composition facade.
+- `registered(inherits=...)` is opt-in for Color, Length and Number Tokens/Slots.
+  Existing unregistered variables keep their behavior. Initial values must be
+  static colors, absolute lengths or finite numbers; relative defaults and
+  derived/conditional theme values are outside this registration profile.
+  Artifact v14 adds canonical `property` globals; re-extract v13 dependencies.
+  Low-level `VarDefinition` construction now supplies `registration: None`
+  for ordinary variables. Application authoring through Token/Slot constructors
+  needs no change.
   The `properties`, `values`, `builder`, and `ir` packages support generated or
   internal implementation paths; consumers should not assemble declaration
   capability arrays from them.
@@ -128,11 +136,11 @@ stable CSS names with no pseudo styles.
 - Recipes generate typed axes but return the existing immutable runtime list.
   Their declaration set is static/token-only, and their base, selected axes,
   and compounds compose in that fixed order. Generated recipe source is tied to
-  the owning v13 artifact and is regenerated on upgrade.
+  the owning v14 artifact and is regenerated on upgrade.
 - Selector markers and view-transition class definitions are opaque generated
   identities. Their stable CSS names are validated against module/name content;
   handcrafted substitutes are outside the supported artifact contract.
-- StyleX application-order compatibility covers the 386-property semantic lock
+- StyleX application-order compatibility covers the 392-property semantic lock
   and its conflict edges. Lock schema v4 separates upstream oracle observations
   from `font-aliases-v1`, which makes `fontWidth` and `fontStretch` share a
   conflict slot and makes font shorthand clearing cover both spellings. It does not cover unsupported StyleX extensions or
@@ -172,4 +180,4 @@ They also reject Clear in keyframes and invalid type-local value lifts.
 
 Public API replacements must follow the deprecation policy and include a
 migration note and compile-fail coverage. No compatibility shim may
-silently reinterpret an older artifact as schema v13.
+silently reinterpret an older artifact as schema v14.

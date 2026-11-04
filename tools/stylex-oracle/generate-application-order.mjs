@@ -93,8 +93,8 @@ export async function generateApplicationOrder({ write = true } = {}) {
   const { compileStylexSource } = await import('./stylex-compiler.mjs');
   const metadata = readApplicationOrderJson(APPLICATION_ORDER_METADATA_FILE);
   const properties = metadata.properties.map((property) => property.irName);
-  if (properties.length !== 386 || new Set(properties).size !== properties.length) {
-    throw new Error('application-order oracle requires exactly 386 unique IR properties');
+  if (properties.length !== 392 || new Set(properties).size !== properties.length) {
+    throw new Error('application-order oracle requires exactly 392 unique IR properties');
   }
   if (APPLICATION_ORDER_SUPPLEMENTAL_PROPERTIES.some((property) => properties.includes(property))) {
     throw new Error('supplemental oracle properties must be outside the typed property surface');

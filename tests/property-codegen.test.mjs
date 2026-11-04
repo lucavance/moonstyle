@@ -7,6 +7,7 @@ import { lexer } from 'css-tree';
 import { test } from 'vite-plus/test';
 import {
   BORDER_COMPOSITE_PROFILE,
+  DAILY_CSS_PROFILE,
   SCALAR_EXPANSION_PROFILE,
   analyzeDefinitionSyntax,
   borderCompositeAtomicProperties,
@@ -15,6 +16,7 @@ import {
   generateProperties,
   resolveDefinitionClosure,
   resolveAtomicProperties,
+  reviewDailyCssGrammar,
 } from '../tools/generate-properties.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
@@ -31,6 +33,38 @@ const propertySource = outputs[0];
 const propertyMetadata = outputs[3];
 const propertyCoverage = outputs[4];
 
+test('daily CSS uses an explicit reviewed subset and fails on grammar drift', () => {
+  const metadata = JSON.parse(fs.readFileSync(propertyMetadata, 'utf8'));
+  const samples = {
+    isolation: ['auto', 'isolate'],
+    'white-space': ['normal', 'pre', 'nowrap', 'pre-wrap', 'pre-line', 'break-spaces'],
+    'text-wrap': ['wrap', 'nowrap', 'auto', 'balance', 'stable', 'pretty'],
+    'vertical-align': [
+      'baseline',
+      'sub',
+      'super',
+      'text-top',
+      'text-bottom',
+      'middle',
+      'top',
+      'bottom',
+      '-2px',
+      '15%',
+    ],
+    'will-change': ['auto', 'scroll-position', 'contents', 'transform, opacity'],
+    'font-variation-settings': ['normal', '"wght" 650, "wdth" 95.5', '"XTRA" -1'],
+  };
+  for (const [name, values] of Object.entries(samples)) {
+    const property = metadata.properties.find((entry) => entry.cssName === name);
+    assert.equal(property.authoredValueProfile, DAILY_CSS_PROFILE);
+    assert.equal(property.grammarReviewDigest, property.syntaxAstDigest);
+    for (const value of values)
+      assert.ok(lexer.matchProperty(name, value).matched, `${name}: ${value}`);
+    assert.throws(() => reviewDailyCssGrammar(name, 'new-keyword'), /grammar changed/);
+  }
+  assert.deepEqual(reviewDailyCssGrammar('color', '<color>'), {});
+});
+
 function digest(filename) {
   return createHash('sha256').update(fs.readFileSync(filename)).digest('hex');
 }
@@ -46,8 +80,8 @@ test('property generation is deterministic and uses pinned structured data', () 
     '@mdn/browser-compat-data': '8.1.7',
     'css-tree': '3.2.1',
   });
-  assert.equal(first.schemaVersion, 17);
-  assert.equal(first.properties.length, 386);
+  assert.equal(first.schemaVersion, 18);
+  assert.equal(first.properties.length, 392);
   const page = first.properties.find((property) => property.cssName === 'page');
   assert.equal(page.valueType, 'page-value');
   assert.equal(page.family, 'layout');
@@ -95,8 +129,8 @@ test('property generation is deterministic and uses pinned structured data', () 
   assert.equal(first.coverage.typed, first.properties.length);
   assert.deepEqual(first.coverage, {
     'unsafe-only': 233,
-    'unsupported-grammar': 196,
-    typed: 386,
+    'unsupported-grammar': 190,
+    typed: 392,
     deprecated: 7,
   });
   assert.equal(
@@ -131,8 +165,8 @@ test('every reviewed property generates a Rule-only clear method', () => {
     ),
   );
   const clearMethods = methods.filter((method) => expected.has(method));
-  assert.equal(clearMethods.length, 386);
-  assert.equal(new Set(clearMethods).size, 386);
+  assert.equal(clearMethods.length, 392);
+  assert.equal(new Set(clearMethods).size, 392);
   assert.ok(clearMethods.includes('color'));
   assert.ok(clearMethods.includes('margin'));
   assert.ok(clearMethods.includes('clear'));
@@ -156,7 +190,7 @@ test('stable scalar allowlist exactly matches the pinned structured-data derivat
     bcdProperties: bcd.css.properties,
     baseProperties,
   });
-  assert.equal(baseProperties.length, 217);
+  assert.equal(baseProperties.length, 223);
   assert.equal(derived.length, 129);
   for (const [family, cssNames] of Object.entries(propertyApi.scalarExpansion.families)) {
     assert.deepEqual(
@@ -186,7 +220,7 @@ test('stable scalar allowlist exactly matches the pinned structured-data derivat
         property.valueType !== 'string',
     ),
   );
-  for (const excluded of ['all', 'line-clamp', 'white-space', 'ruby-overhang']) {
+  for (const excluded of ['all', 'line-clamp', 'ruby-overhang']) {
     assert.ok(!metadata.properties.some((property) => property.cssName === excluded), excluded);
   }
 });
@@ -522,7 +556,7 @@ test('every typed property generates an exact component-contract allow method', 
       property.functionName,
     );
   }
-  assert.equal([...source.matchAll(/pub fn StyleContract::allow_[a-z0-9_]+\(/g)].length, 386);
+  assert.equal([...source.matchAll(/pub fn StyleContract::allow_[a-z0-9_]+\(/g)].length, 392);
   assert.match(
     source,
     /pub fn StyleContract::allow_color\([\s\S]*values\? : Array\[@values\.Color\] = \[\],[\s\S]*tokens\? : Array\[@values\.ColorToken\] = \[\],[\s\S]*slots\? : Array\[@values\.ColorSlot\] = \[\],[\s\S]*\) -> StyleContract/,

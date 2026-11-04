@@ -1916,6 +1916,74 @@ pub impl OutlineInputFallbacks for Array[@values.Outline] with fn fallback_input
 }
 
 ///|
+#deprecated("Use IsolationFallbacks::new().add(...) for ordered fallbacks", skip_current_package=true)
+pub impl IsolationInputFallbacks for Array[@properties.Isolation]
+
+///|
+pub impl IsolationInputFallbacks for Array[@properties.Isolation] with fn fallback_inputs(
+  self,
+) {
+  self.map(value => IsolationInput::property_input(value))
+}
+
+///|
+#deprecated("Use WhiteSpaceFallbacks::new().add(...) for ordered fallbacks", skip_current_package=true)
+pub impl WhiteSpaceInputFallbacks for Array[@properties.WhiteSpace]
+
+///|
+pub impl WhiteSpaceInputFallbacks for Array[@properties.WhiteSpace] with fn fallback_inputs(
+  self,
+) {
+  self.map(value => WhiteSpaceInput::property_input(value))
+}
+
+///|
+#deprecated("Use TextWrapFallbacks::new().add(...) for ordered fallbacks", skip_current_package=true)
+pub impl TextWrapInputFallbacks for Array[@properties.TextWrap]
+
+///|
+pub impl TextWrapInputFallbacks for Array[@properties.TextWrap] with fn fallback_inputs(
+  self,
+) {
+  self.map(value => TextWrapInput::property_input(value))
+}
+
+///|
+#deprecated("Use VerticalAlignFallbacks::new().add(...) for ordered fallbacks", skip_current_package=true)
+pub impl VerticalAlignInputFallbacks for Array[@values.VerticalAlign]
+
+///|
+pub impl VerticalAlignInputFallbacks for Array[@values.VerticalAlign] with fn fallback_inputs(
+  self,
+) {
+  self.map(value => VerticalAlignInput::property_input(value))
+}
+
+///|
+#deprecated("Use WillChangeFallbacks::new().add(...) for ordered fallbacks", skip_current_package=true)
+pub impl WillChangeInputFallbacks for Array[@values.WillChange]
+
+///|
+pub impl WillChangeInputFallbacks for Array[@values.WillChange] with fn fallback_inputs(
+  self,
+) {
+  self.map(value => WillChangeInput::property_input(value))
+}
+
+///|
+#deprecated("Use FontVariationSettingsFallbacks::new().add(...) for ordered fallbacks", skip_current_package=true)
+pub impl FontVariationSettingsInputFallbacks for Array[
+  @values.FontVariationSettings,
+]
+
+///|
+pub impl FontVariationSettingsInputFallbacks for Array[
+  @values.FontVariationSettings,
+] with fn fallback_inputs(self) {
+  self.map(value => FontVariationSettingsInput::property_input(value))
+}
+
+///|
 #deprecated("Use PageValueFallbacks::new().add(...) for ordered fallbacks", skip_current_package=true)
 pub impl PageValueInputFallbacks for Array[@values.PageValue]
 
@@ -10944,6 +11012,312 @@ pub impl OutlineInputFallbacks for OutlineFallbacks with fn fallback_inputs(
 
 ///|
 pub extend OutlineFallbacks with OutlineInputFallbacks::{fallback_inputs}
+
+///|
+pub trait IsolationInput {
+  fn property_input(Self) -> PropertyInput
+}
+
+///|
+pub impl IsolationInput for @properties.Isolation with fn property_input(self) {
+  let value = self
+  static_input(value.to_css())
+}
+
+///|
+pub impl IsolationInput for @values.CssWideKeyword with fn property_input(self) {
+  static_input(self.to_css())
+}
+
+///|
+pub trait IsolationInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+
+///|
+pub struct IsolationFallbacks {
+  inputs : Array[PropertyInput]
+}
+
+///|
+pub fn IsolationFallbacks::new() -> IsolationFallbacks {
+  { inputs: [], }
+}
+
+///|
+pub fn[T : IsolationInput] IsolationFallbacks::add(
+  self : IsolationFallbacks,
+  value : T,
+) -> IsolationFallbacks {
+  { inputs: [..self.inputs, value.property_input()], }
+}
+
+///|
+pub impl IsolationInputFallbacks for IsolationFallbacks with fn fallback_inputs(
+  self,
+) {
+  self.inputs.copy()
+}
+
+///|
+pub extend IsolationFallbacks with IsolationInputFallbacks::{fallback_inputs}
+
+///|
+pub trait WhiteSpaceInput {
+  fn property_input(Self) -> PropertyInput
+}
+
+///|
+pub impl WhiteSpaceInput for @properties.WhiteSpace with fn property_input(self) {
+  let value = self
+  static_input(value.to_css())
+}
+
+///|
+pub impl WhiteSpaceInput for @values.CssWideKeyword with fn property_input(self) {
+  static_input(self.to_css())
+}
+
+///|
+pub trait WhiteSpaceInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+
+///|
+pub struct WhiteSpaceFallbacks {
+  inputs : Array[PropertyInput]
+}
+
+///|
+pub fn WhiteSpaceFallbacks::new() -> WhiteSpaceFallbacks {
+  { inputs: [], }
+}
+
+///|
+pub fn[T : WhiteSpaceInput] WhiteSpaceFallbacks::add(
+  self : WhiteSpaceFallbacks,
+  value : T,
+) -> WhiteSpaceFallbacks {
+  { inputs: [..self.inputs, value.property_input()], }
+}
+
+///|
+pub impl WhiteSpaceInputFallbacks for WhiteSpaceFallbacks with fn fallback_inputs(
+  self,
+) {
+  self.inputs.copy()
+}
+
+///|
+pub extend WhiteSpaceFallbacks with WhiteSpaceInputFallbacks::{fallback_inputs}
+
+///|
+pub trait TextWrapInput {
+  fn property_input(Self) -> PropertyInput
+}
+
+///|
+pub impl TextWrapInput for @properties.TextWrap with fn property_input(self) {
+  let value = self
+  static_input(value.to_css())
+}
+
+///|
+pub impl TextWrapInput for @values.CssWideKeyword with fn property_input(self) {
+  static_input(self.to_css())
+}
+
+///|
+pub trait TextWrapInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+
+///|
+pub struct TextWrapFallbacks {
+  inputs : Array[PropertyInput]
+}
+
+///|
+pub fn TextWrapFallbacks::new() -> TextWrapFallbacks {
+  { inputs: [], }
+}
+
+///|
+pub fn[T : TextWrapInput] TextWrapFallbacks::add(
+  self : TextWrapFallbacks,
+  value : T,
+) -> TextWrapFallbacks {
+  { inputs: [..self.inputs, value.property_input()], }
+}
+
+///|
+pub impl TextWrapInputFallbacks for TextWrapFallbacks with fn fallback_inputs(
+  self,
+) {
+  self.inputs.copy()
+}
+
+///|
+pub extend TextWrapFallbacks with TextWrapInputFallbacks::{fallback_inputs}
+
+///|
+pub trait VerticalAlignInput {
+  fn property_input(Self) -> PropertyInput
+}
+
+///|
+pub impl VerticalAlignInput for @values.VerticalAlign with fn property_input(
+  self,
+) {
+  let value = self
+  static_input(value.to_css())
+}
+
+///|
+pub impl VerticalAlignInput for @values.CssWideKeyword with fn property_input(
+  self,
+) {
+  static_input(self.to_css())
+}
+
+///|
+pub trait VerticalAlignInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+
+///|
+pub struct VerticalAlignFallbacks {
+  inputs : Array[PropertyInput]
+}
+
+///|
+pub fn VerticalAlignFallbacks::new() -> VerticalAlignFallbacks {
+  { inputs: [], }
+}
+
+///|
+pub fn[T : VerticalAlignInput] VerticalAlignFallbacks::add(
+  self : VerticalAlignFallbacks,
+  value : T,
+) -> VerticalAlignFallbacks {
+  { inputs: [..self.inputs, value.property_input()], }
+}
+
+///|
+pub impl VerticalAlignInputFallbacks for VerticalAlignFallbacks with fn fallback_inputs(
+  self,
+) {
+  self.inputs.copy()
+}
+
+///|
+pub extend VerticalAlignFallbacks with VerticalAlignInputFallbacks::{
+  fallback_inputs,
+}
+
+///|
+pub trait WillChangeInput {
+  fn property_input(Self) -> PropertyInput
+}
+
+///|
+pub impl WillChangeInput for @values.WillChange with fn property_input(self) {
+  let value = self
+  static_input(value.to_css())
+}
+
+///|
+pub impl WillChangeInput for @values.CssWideKeyword with fn property_input(self) {
+  static_input(self.to_css())
+}
+
+///|
+pub trait WillChangeInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+
+///|
+pub struct WillChangeFallbacks {
+  inputs : Array[PropertyInput]
+}
+
+///|
+pub fn WillChangeFallbacks::new() -> WillChangeFallbacks {
+  { inputs: [], }
+}
+
+///|
+pub fn[T : WillChangeInput] WillChangeFallbacks::add(
+  self : WillChangeFallbacks,
+  value : T,
+) -> WillChangeFallbacks {
+  { inputs: [..self.inputs, value.property_input()], }
+}
+
+///|
+pub impl WillChangeInputFallbacks for WillChangeFallbacks with fn fallback_inputs(
+  self,
+) {
+  self.inputs.copy()
+}
+
+///|
+pub extend WillChangeFallbacks with WillChangeInputFallbacks::{fallback_inputs}
+
+///|
+pub trait FontVariationSettingsInput {
+  fn property_input(Self) -> PropertyInput
+}
+
+///|
+pub impl FontVariationSettingsInput for @values.FontVariationSettings with fn property_input(
+  self,
+) {
+  let value = self
+  static_input(value.to_css())
+}
+
+///|
+pub impl FontVariationSettingsInput for @values.CssWideKeyword with fn property_input(
+  self,
+) {
+  static_input(self.to_css())
+}
+
+///|
+pub trait FontVariationSettingsInputFallbacks {
+  fn fallback_inputs(Self) -> Array[PropertyInput]
+}
+
+///|
+pub struct FontVariationSettingsFallbacks {
+  inputs : Array[PropertyInput]
+}
+
+///|
+pub fn FontVariationSettingsFallbacks::new() -> FontVariationSettingsFallbacks {
+  { inputs: [], }
+}
+
+///|
+pub fn[T : FontVariationSettingsInput] FontVariationSettingsFallbacks::add(
+  self : FontVariationSettingsFallbacks,
+  value : T,
+) -> FontVariationSettingsFallbacks {
+  { inputs: [..self.inputs, value.property_input()], }
+}
+
+///|
+pub impl FontVariationSettingsInputFallbacks for FontVariationSettingsFallbacks with fn fallback_inputs(
+  self,
+) {
+  self.inputs.copy()
+}
+
+///|
+pub extend FontVariationSettingsFallbacks with FontVariationSettingsInputFallbacks::{
+  fallback_inputs,
+}
 
 ///|
 pub trait PageValueInput {

@@ -15,7 +15,7 @@
       "useLayers": false
     }
   },
-  "inputDigest": "sha256:42c639dec0331f0b77b666be5a7f664ae4a7801139eeb1efbad3c78b84c14f3b",
+  "inputDigest": "sha256:a04e835fff156cd39777b2bc8e3f3eb80f3ccacfd441064c8ee3f468ddefca85",
   "conditionPriorities": {
     "pseudoClasses": {
       ":is": 40,
@@ -9946,6 +9946,108 @@
       }
     },
     {
+      "property": "isolation",
+      "priority100": 300000,
+      "entries": [
+        {
+          "slot": "kHBbk8",
+          "role": "class",
+          "slotProperties": [
+            "isolation"
+          ]
+        }
+      ],
+      "css": {
+        "ltr": ".<CLASS>{isolation:inherit}",
+        "rtl": null
+      }
+    },
+    {
+      "property": "whiteSpace",
+      "priority100": 300000,
+      "entries": [
+        {
+          "slot": "khDVqt",
+          "role": "class",
+          "slotProperties": [
+            "whiteSpace"
+          ]
+        }
+      ],
+      "css": {
+        "ltr": ".<CLASS>{white-space:inherit}",
+        "rtl": null
+      }
+    },
+    {
+      "property": "textWrap",
+      "priority100": 300000,
+      "entries": [
+        {
+          "slot": "kN2L0X",
+          "role": "class",
+          "slotProperties": [
+            "textWrap"
+          ]
+        }
+      ],
+      "css": {
+        "ltr": ".<CLASS>{text-wrap:inherit}",
+        "rtl": null
+      }
+    },
+    {
+      "property": "verticalAlign",
+      "priority100": 300000,
+      "entries": [
+        {
+          "slot": "kXLuUW",
+          "role": "class",
+          "slotProperties": [
+            "verticalAlign"
+          ]
+        }
+      ],
+      "css": {
+        "ltr": ".<CLASS>{vertical-align:inherit}",
+        "rtl": null
+      }
+    },
+    {
+      "property": "willChange",
+      "priority100": 300000,
+      "entries": [
+        {
+          "slot": "k6sLGO",
+          "role": "class",
+          "slotProperties": [
+            "willChange"
+          ]
+        }
+      ],
+      "css": {
+        "ltr": ".<CLASS>{will-change:inherit}",
+        "rtl": null
+      }
+    },
+    {
+      "property": "fontVariationSettings",
+      "priority100": 300000,
+      "entries": [
+        {
+          "slot": "ka26j",
+          "role": "class",
+          "slotProperties": [
+            "fontVariationSettings"
+          ]
+        }
+      ],
+      "css": {
+        "ltr": ".<CLASS>{font-variation-settings:inherit}",
+        "rtl": null
+      }
+    },
+    {
       "property": "page",
       "priority100": 300000,
       "entries": [
@@ -10417,5 +10519,5 @@
       "fontWidth": "fontStretch"
     }
   },
-  "semanticsDigest": "sha256:c1499c3696fe74b407416dfa6cfa9031ecaba2cebccae05c1ea08fab2332af08"
+  "semanticsDigest": "sha256:797d7d12c376d41210208bbe5431214379f9a10f4fcdacefc2f0bb0682d9b473"
 }

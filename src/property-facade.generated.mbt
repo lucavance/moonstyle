@@ -2,6 +2,9 @@
 
 ///|
 pub using @properties {
+  type Isolation,
+  type WhiteSpace,
+  type TextWrap,
   type Display,
   type Overflow,
   type Cursor,

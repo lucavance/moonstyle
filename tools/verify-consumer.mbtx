@@ -230,7 +230,7 @@ async fn main {
   ignore(
     command(component, "git", [
       "-c", "user.name=Consumer validation", "-c", "user.email=validation@localhost",
-      "commit", "-qm", "Component source and exact v13 contracts",
+      "commit", "-qm", "Component source and exact v14 contracts",
     ]),
   )
   ignore(cli(cli_path, app, ["init"]))
@@ -257,11 +257,11 @@ async fn main {
     fail("init must be idempotent")
   }
   let before = formal_outputs(app)
-  for old_schema in [9, 10, 11, 12] {
+  for old_schema in [9, 10, 11, 12, 13] {
     @fs.write_file(
       app + "/dependencies/component.bundle.json",
       bundle_text.replace_all(
-        old="\"schemaVersion\":13",
+        old="\"schemaVersion\":14",
         new="\"schemaVersion\":" + old_schema.to_string(),
       ),
     )
@@ -300,7 +300,7 @@ async fn main {
       "git-clone-exact-revision", "executable-quickstart", "packed-tooling", "component-committed-contract",
       "init-idempotence", "strict-resolution", "generate-check", "v9-rejected-without-writes",
       "v10-rejected-without-writes", "v11-rejected-without-writes", "v12-rejected-without-writes",
-      "modern-colors-3d-exact-contract", "bottom-up-reextraction", "watch-recovery",
+      "v13-rejected-without-writes", "modern-colors-3d-exact-contract", "bottom-up-reextraction", "watch-recovery",
       "rabbita-production-build",
     ],
   }

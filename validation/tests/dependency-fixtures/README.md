@@ -29,4 +29,4 @@ regenerate the application. The CLI watch fixture reads module/digest identities
 from the committed bundle dynamically. It needs no separately copied digest.
 See [data maintenance](../../../docs/data-sources.md#updating-inputs) for the full
 property/oracle/component/application sequence and
-[artifact v13](../../../docs/artifact-schema-v13.md) for current validation rules.
+[artifact v14](../../../docs/artifact-schema-v14.md) for current validation rules.

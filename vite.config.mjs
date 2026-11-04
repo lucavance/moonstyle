@@ -139,8 +139,8 @@ export default defineConfig(({ mode }) => ({
       },
       'benchmark-candidate': {
         command: [
-          'node tools/benchmark.mjs --output benchmarks/0.1.0-candidate-1.json',
-          'node tools/benchmark.mjs --output benchmarks/0.1.0-candidate-2.json',
+          'node tools/benchmark.mjs --output benchmarks/0.2.0-candidate-1.json',
+          'node tools/benchmark.mjs --output benchmarks/0.2.0-candidate-2.json',
         ],
         cache: false,
       },

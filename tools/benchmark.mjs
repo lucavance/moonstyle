@@ -126,7 +126,7 @@ function createScenario(parent, name, configuration) {
   fs.mkdirSync(path.join(directory, 'src', 'generated'), { recursive: true });
   fs.writeFileSync(
     path.join(directory, 'moon.mod'),
-    `name = ${JSON.stringify(`benchmark/${name}`)}\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.1.0" }\n`,
+    `name = ${JSON.stringify(`benchmark/${name}`)}\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.2.0" }\n`,
   );
   fs.writeFileSync(
     path.join(directory, 'moon.work'),

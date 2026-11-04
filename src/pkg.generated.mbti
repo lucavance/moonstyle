@@ -232,6 +232,8 @@ pub let focus_visible : @builder.When
 
 pub let focus_within : @builder.When
 
+pub fn font_axis(String, Double) -> @values.FontVariationAxis
+
 pub fn font_size_keyword(@values.FontSizeKeyword) -> @values.FontSize
 
 pub fn[T : @values.FontSizeValueInput] font_size_value(T) -> @values.FontSize
@@ -239,6 +241,8 @@ pub fn[T : @values.FontSizeValueInput] font_size_value(T) -> @values.FontSize
 pub fn font_variant_numeric(Array[@values.FontVariantNumericPart]) -> @values.FontVariantNumeric
 
 pub fn font_variant_numeric_normal() -> @values.FontVariantNumeric
+
+pub fn font_variations(Array[@values.FontVariationAxis]) -> @values.FontVariationSettings
 
 pub fn fr(Double) -> @values.GridTrack
 
@@ -411,6 +415,8 @@ pub fn named_timeline(@values.TimelineName) -> @values.AnimationTimeline
 pub let none : @runtime.CompiledStyle
 
 pub fn normal_color_scheme() -> @values.ColorScheme
+
+pub fn normal_font_variations() -> @values.FontVariationSettings
 
 pub fn not_state(Array[@ir.SelectorState]) -> @builder.When
 
@@ -723,6 +729,10 @@ pub fn variant_choice(String, Array[@builder.Rule]) -> @builder.VariantChoice
 
 pub fn variant_is(String, String) -> @builder.VariantSelection
 
+pub fn vertical_align(@values.VerticalAlignKeyword) -> @values.VerticalAlign
+
+pub fn vertical_align_offset(@values.LengthPercentage) -> @values.VerticalAlign
+
 pub fn vh(Int32) -> @values.Length
 
 pub fn view_timeline(axis? : @values.TimelineAxis, inset? : @values.MathExpr[@values.LengthPercentage], end_inset? : @values.MathExpr[@values.LengthPercentage]) -> @values.AnimationTimeline
@@ -746,6 +756,10 @@ pub fn when_all(Array[@builder.When]) -> @builder.When
 pub fn where_state(Array[@ir.SelectorState]) -> @builder.When
 
 pub fn width_between(@values.Length, @values.Length) -> @builder.When
+
+pub fn will_change(Array[@values.WillChangeFeature]) -> @values.WillChange
+
+pub fn will_change_auto() -> @values.WillChange
 
 pub fn zero() -> @values.Length
 
@@ -1155,6 +1169,12 @@ pub using @properties {type FontVariantPositionValue}
 
 pub using @builder {type FontVariantPositionValueFallbacks}
 
+pub using @values {type FontVariationAxis}
+
+pub using @values {type FontVariationSettings}
+
+pub using @builder {type FontVariationSettingsFallbacks}
+
 pub using @properties {type ForcedColorAdjustValue}
 
 pub using @builder {type ForcedColorAdjustValueFallbacks}
@@ -1218,6 +1238,10 @@ pub using @builder {type IntegerFallbacks}
 pub type IntegerSlot = @values.DynamicSlot[@values.Integer]
 
 pub type IntegerToken = @values.Token[@values.Integer]
+
+pub using @properties {type Isolation}
+
+pub using @builder {type IsolationFallbacks}
 
 pub using @ir {type KeyframeStep}
 
@@ -1471,6 +1495,8 @@ pub using @properties {type PrintColorAdjustValue}
 
 pub using @builder {type PrintColorAdjustValueFallbacks}
 
+pub using @values {type PropertyRegistration}
+
 pub using @ir {type PseudoClass}
 
 pub using @ir {type PseudoElement}
@@ -1645,6 +1671,10 @@ pub using @properties {type TextUnderlinePosition}
 
 pub using @builder {type TextUnderlinePositionFallbacks}
 
+pub using @properties {type TextWrap}
+
+pub using @builder {type TextWrapFallbacks}
+
 pub using @properties {type TextWrapMode}
 
 pub using @builder {type TextWrapModeFallbacks}
@@ -1745,6 +1775,12 @@ pub using @properties {type VectorEffectValue}
 
 pub using @builder {type VectorEffectValueFallbacks}
 
+pub using @values {type VerticalAlign}
+
+pub using @builder {type VerticalAlignFallbacks}
+
+pub using @values {type VerticalAlignKeyword}
+
 pub using @properties {type ViewTimelineAxisValue}
 
 pub using @builder {type ViewTimelineAxisValueFallbacks}
@@ -1767,9 +1803,19 @@ pub using @builder {type VisibilityFallbacks}
 
 pub using @builder {type When}
 
+pub using @properties {type WhiteSpace}
+
 pub using @properties {type WhiteSpaceCollapse}
 
 pub using @builder {type WhiteSpaceCollapseFallbacks}
+
+pub using @builder {type WhiteSpaceFallbacks}
+
+pub using @values {type WillChange}
+
+pub using @builder {type WillChangeFallbacks}
+
+pub using @values {type WillChangeFeature}
 
 pub using @properties {type WordBreak}
 
@@ -1780,6 +1826,8 @@ pub using @properties {type WritingModeValue}
 pub using @builder {type WritingModeValueFallbacks}
 
 pub using @builder {trait MarkerInput}
+
+pub using @values {trait RegisterableValue}
 
 pub using @runtime {trait StaticStyleInput}
 

@@ -10,6 +10,7 @@ fn font_width_variable_registry(
       name: "--fonts-width",
       default_css,
       category: PercentageCategory,
+      registration: None,
     },
   ])
   let value = @ir.declaration(

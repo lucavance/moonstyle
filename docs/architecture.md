@@ -59,7 +59,7 @@ unclassified property name.
 MoonBit is the only authoring language. JavaScript, TypeScript, TSX, JSX, React,
 and drop-in StyleX APIs are outside the architecture. JavaScript tools may
 invoke extraction, bundle browser assets, and run differential or E2E tests.
-Rabbita is the only Tier-1 framework integration for 0.1.0.
+Rabbita is the only Tier-1 framework integration for 0.2.0.
 Luna is an experimental, independently versioned adapter outside the
 core module; it has no compatibility promise or supported-application
 release gate. Other MoonBit frameworks may implement the same opaque runtime
@@ -69,11 +69,11 @@ through a separate support decision.
 `core` owns `AtomicRule`, `CompiledNamespace`, and `CompiledStyleSet`; public
 interfaces and distributed artifacts refer to their owning library packages.
 
-The implemented 0.1.0 boundary uses artifact schema v13 for mapping package
+The implemented 0.2.0 boundary uses artifact schema v14 for mapping package
 identity, exact literal/Token/Slot component policies, recipes, selector
 markers, view-transition classes and their canonical pseudo styles, fixed-point conditional priority, global
-rules, semantic digests, and dependency metadata. Property API schema v17
-generates the 386-property authoring and policy surface, including source-aware
+rules, semantic digests, and dependency metadata. Property API schema v18
+generates the 392-property authoring and policy surface, including source-aware
 `Rule::clear_*` methods. The native extractor validates and deterministically
 merges configured component bundles before rendering application artifacts.
 
@@ -116,7 +116,7 @@ plugin and inspector runtime. Both surfaces share one framework-neutral
 extraction runner. `.moonstyle.json` schema v1 records
 project paths and managed-file hashes but does not replace the user-owned
 `style.config.json`. The Vite adapter sends tooling protocol v1 to the native
-extractor. Missing protocol is a deprecated 0.1.x compatibility case; an
+extractor. Missing protocol remains deprecated through the 0.2.x compatibility window; an
 explicit mismatch fails before formal output mutation.
 
 Component libraries commit all four artifacts. A consuming application
@@ -225,7 +225,7 @@ is explicitly outside the MoonBit compatibility target.
 
 Property generation uses the exact versions in `data-sources.md`. Generated
 sources are committed. Artifact structure is defined by
-[artifact schema v13](artifact-schema-v13.md); incompatible changes increment `schemaVersion`.
+[artifact schema v14](artifact-schema-v14.md); incompatible changes increment `schemaVersion`.
 
 Development inspection is a separate tooling plane. The extractor may write a
 versioned debug manifest under the ignored cache directory, and Vite may use it

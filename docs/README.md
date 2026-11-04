@@ -1,6 +1,7 @@
 # MoonStyle documentation
 
-These guides describe MoonStyle 0.1.0. Module manifests, generated interfaces,
+These guides describe MoonStyle 0.2.0, available on Mooncakes.
+Module manifests, generated interfaces,
 reviewed metadata and versioned artifacts define the implemented contracts.
 
 ## Use MoonStyle
@@ -14,6 +15,7 @@ reviewed metadata and versioned artifacts define the implemented contracts.
 | [Common values](../src/common_values.mbt.md) | Sizing, typography, corners, shadows and filters |
 | [CSS coverage](../src/css_coverage.mbt.md) | Fallbacks, conditions, modern values and motion |
 | [Theme and paint](../src/theme_paint.mbt.md) | Color schemes, scrollbars and SVG |
+| [Daily CSS and registration](../src/daily_css.mbt.md) | Text, font axes, hints and opt-in typed custom properties |
 | [Luna adapter](../packages/moonstyle-luna/README.md) | Experimental optional integration |
 | [Project tooling](../tooling/README.md) | CLI, Vite, diagnostics and inspection |
 | [Distribution](distribution.md) | Mooncakes library, Git/local paths and packed tooling |
@@ -24,9 +26,10 @@ reviewed metadata and versioned artifacts define the implemented contracts.
 - [Architecture and module map](architecture.md)
 - [API stability and support tiers](api-stability.md)
 - [Application-order semantics](application-order-semantics.md)
-- [Artifact schema v13](artifact-schema-v13.md)
+- [StyleX compatibility matrix](stylex-compatibility.md)
+- [Artifact schema v14](artifact-schema-v14.md)
 - [Styling-system comparison](tailwindcss-vs-stylex.md)
-- [Current API baseline](api-baseline-0.1.0.json)
+- [Current API baseline](api-baseline-0.2.0.json)
 
 ## Maintain and release
 
@@ -39,4 +42,4 @@ reviewed metadata and versioned artifacts define the implemented contracts.
 - [Repository validation consumer](../validation/README.md)
 - [Release policy](release-policy.md)
 - [CI and validation](ci-and-validation.md)
-- [Research backlog](roadmap.md)
+- [Development roadmap](roadmap.md)

@@ -1,4 +1,4 @@
-# MoonStyle 0.1.0 status
+# MoonStyle 0.2.0 status
 
 MoonStyle provides typed atomic CSS authored in MoonBit. The Mooncakes module
 includes the library, native extractor and Rabbita adapter. The source repository
@@ -8,10 +8,10 @@ also includes project tooling, generated mappings and a Rabbita browser example.
 
 | Contract | Current value |
 | --- | --- |
-| Library, optional Luna module, private tooling | 0.1.0 |
-| Reviewed typed properties | 386 |
-| Artifact schema | v13 |
-| Property generator schema | v17 |
+| Library, optional Luna module, private tooling | 0.2.0 |
+| Reviewed typed properties | 392 |
+| Artifact schema | v14 |
+| Property generator schema | v18 |
 | Application-order semantic lock | v4 |
 | Extraction cache pack | v4 |
 | Tooling protocol / project ownership manifest | v1 / v1 |
@@ -20,6 +20,12 @@ The authoring API includes fluent rules, typed expressions, themes, dynamic
 slots, exact component contracts, recipes, registered globals, and recursive
 checked composition. Ordinary static CSS is extracted at build time. Runtime
 work merges classes and validates custom-property bindings.
+
+The `daily-css-v1` profile adds isolation, vertical alignment, white-space,
+text wrapping, will-change hints and variable-font axes. Color, Length and
+Number Tokens/Slots can explicitly opt into CSS `@property` registration.
+The [compatibility matrix](stylex-compatibility.md) records supported subsets;
+[tested examples](../src/daily_css.mbt.md) demonstrate the authoring API.
 
 Core and runtime support JS, Wasm, Wasm GC, and native. Rabbita is the only
 Tier-1 framework integration. The optional Luna module is experimental.
@@ -57,9 +63,9 @@ Git commit. Generated reports in `.generated/` identify the source they test.
 `vp run benchmark-candidate` creates two measured performance reports; the
 release audit enforces their budgets and matching fixture fingerprints.
 
-Consumers can install `lampclaw/moonstyle@0.1.0` from Mooncakes, or use exact
-Git commits from [lucavance/moonstyle](https://github.com/lucavance/moonstyle)
-or local paths. The private
+Mooncakes provides `lampclaw/moonstyle@0.2.0`. Git and local-path consumers use
+a reviewed source commit from
+[lucavance/moonstyle](https://github.com/lucavance/moonstyle). The private
 `@lampclaw/moonstyle-tooling` package is installed from packed source and is
 not published to npm.
 

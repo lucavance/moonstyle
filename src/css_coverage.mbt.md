@@ -1,4 +1,4 @@
-# CSS coverage examples (0.1.0)
+# CSS coverage examples (0.2.0)
 
 Import `lampclaw/moonstyle` as `@moonstyle`. Extraction aggregates invalid authored
 values and emits no partial artifacts. Generic property methods require

@@ -632,6 +632,10 @@ pub fn font_variant_position(FontVariantPositionValue) -> TypographyDeclaration
 
 pub fn font_variant_position_fallbacks(Array[FontVariantPositionValue]) -> TypographyDeclaration
 
+pub fn font_variation_settings(@values.FontVariationSettings, conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
+pub fn font_variation_settings_fallbacks(Array[@values.FontVariationSettings], conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
 pub fn font_weight(Int32) -> TypographyDeclaration
 
 pub fn font_weight_fallbacks(Array[Int32]) -> TypographyDeclaration
@@ -755,6 +759,10 @@ pub fn inset_inline_fallbacks(Array[@values.Length]) -> LayoutDeclaration
 pub fn inset_inline_start(@values.Length) -> LayoutDeclaration
 
 pub fn inset_inline_start_fallbacks(Array[@values.Length]) -> LayoutDeclaration
+
+pub fn isolation(Isolation, conditions? : Array[@ir.Condition]) -> VisualDeclaration
+
+pub fn isolation_fallbacks(Array[Isolation], conditions? : Array[@ir.Condition]) -> VisualDeclaration
 
 pub fn justify_content(Alignment) -> LayoutDeclaration
 
@@ -1422,6 +1430,10 @@ pub fn text_underline_position(TextUnderlinePosition) -> TypographyDeclaration
 
 pub fn text_underline_position_fallbacks(Array[TextUnderlinePosition]) -> TypographyDeclaration
 
+pub fn text_wrap(TextWrap, conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
+pub fn text_wrap_fallbacks(Array[TextWrap], conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
 pub fn text_wrap_mode(TextWrapMode) -> TypographyDeclaration
 
 pub fn text_wrap_mode_fallbacks(Array[TextWrapMode]) -> TypographyDeclaration
@@ -1494,6 +1506,10 @@ pub fn vector_effect(VectorEffectValue) -> VisualDeclaration
 
 pub fn vector_effect_fallbacks(Array[VectorEffectValue]) -> VisualDeclaration
 
+pub fn vertical_align(@values.VerticalAlign, conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
+pub fn vertical_align_fallbacks(Array[@values.VerticalAlign], conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
 pub fn view_timeline_axis(ViewTimelineAxisValue) -> MotionDeclaration
 
 pub fn view_timeline_axis_fallbacks(Array[ViewTimelineAxisValue]) -> MotionDeclaration
@@ -1518,9 +1534,13 @@ pub fn visibility(Visibility) -> LayoutDeclaration
 
 pub fn visibility_fallbacks(Array[Visibility]) -> LayoutDeclaration
 
+pub fn white_space(WhiteSpace, conditions? : Array[@ir.Condition]) -> TypographyDeclaration
+
 pub fn white_space_collapse(WhiteSpaceCollapse) -> TypographyDeclaration
 
 pub fn white_space_collapse_fallbacks(Array[WhiteSpaceCollapse]) -> TypographyDeclaration
+
+pub fn white_space_fallbacks(Array[WhiteSpace], conditions? : Array[@ir.Condition]) -> TypographyDeclaration
 
 pub fn widows(@values.Integer) -> TypographyDeclaration
 
@@ -1529,6 +1549,10 @@ pub fn widows_fallbacks(Array[@values.Integer]) -> TypographyDeclaration
 pub fn width(@values.Length, conditions? : Array[@ir.Condition]) -> LayoutDeclaration
 
 pub fn width_fallbacks(Array[@values.Length], conditions? : Array[@ir.Condition]) -> LayoutDeclaration
+
+pub fn will_change(@values.WillChange, conditions? : Array[@ir.Condition]) -> InteractionDeclaration
+
+pub fn will_change_fallbacks(Array[@values.WillChange], conditions? : Array[@ir.Condition]) -> InteractionDeclaration
 
 pub fn word_break(WordBreak) -> TypographyDeclaration
 
@@ -2125,6 +2149,15 @@ pub struct InteractionDeclaration {
 pub fn InteractionDeclaration::to_declaration(Self) -> @ir.Declaration
 pub fn InteractionDeclaration::with_source(Self, @ir.SourceSpan) -> Self
 
+pub(all) enum Isolation {
+  IsolationAuto
+  IsolationIsolate
+} derive(Eq, @debug.Debug)
+pub fn Isolation::equal(Self, Self) -> Bool
+pub fn Isolation::not_equal(Self, Self) -> Bool
+pub fn Isolation::to_css(Self) -> String
+pub fn Isolation::to_repr(Self) -> @debug.Repr
+
 pub struct LayoutDeclaration {
   declaration : @ir.Declaration
 }
@@ -2619,6 +2652,19 @@ pub fn TextUnderlinePosition::not_equal(Self, Self) -> Bool
 pub fn TextUnderlinePosition::to_css(Self) -> String
 pub fn TextUnderlinePosition::to_repr(Self) -> @debug.Repr
 
+pub(all) enum TextWrap {
+  TextWrapWrap
+  TextWrapNowrap
+  TextWrapAuto
+  TextWrapBalance
+  TextWrapStable
+  TextWrapPretty
+} derive(Eq, @debug.Debug)
+pub fn TextWrap::equal(Self, Self) -> Bool
+pub fn TextWrap::not_equal(Self, Self) -> Bool
+pub fn TextWrap::to_css(Self) -> String
+pub fn TextWrap::to_repr(Self) -> @debug.Repr
+
 pub(all) enum TextWrapMode {
   TextWrapModeWrap
   TextWrapModeNowrap
@@ -2742,6 +2788,19 @@ pub struct VisualDeclaration {
 }
 pub fn VisualDeclaration::to_declaration(Self) -> @ir.Declaration
 pub fn VisualDeclaration::with_source(Self, @ir.SourceSpan) -> Self
+
+pub(all) enum WhiteSpace {
+  WhiteSpaceNormal
+  WhiteSpacePre
+  WhiteSpaceNowrap
+  WhiteSpacePreWrap
+  WhiteSpacePreLine
+  WhiteSpaceBreakSpaces
+} derive(Eq, @debug.Debug)
+pub fn WhiteSpace::equal(Self, Self) -> Bool
+pub fn WhiteSpace::not_equal(Self, Self) -> Bool
+pub fn WhiteSpace::to_css(Self) -> String
+pub fn WhiteSpace::to_repr(Self) -> @debug.Repr
 
 pub(all) enum WhiteSpaceCollapse {
   WhiteSpaceCollapseCollapse

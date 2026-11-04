@@ -340,7 +340,7 @@ export function validateApplicationOrderLock(lock, metadata) {
   const properties = metadata.properties.map((property) => property.irName);
   if (
     lock.inputDigest !== applicationOrderInputDigest(metadata) ||
-    properties.length !== 386 ||
+    properties.length !== 392 ||
     new Set(properties).size !== properties.length ||
     JSON.stringify(lock.properties.map((record) => record.property)) !==
       JSON.stringify(properties) ||

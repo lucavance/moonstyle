@@ -10,6 +10,13 @@ const fixtureDirectory = path.join(root, 'tests', 'compile-fail');
 const styleModule = root;
 
 const fixtures = [
+  { filename: 'registration-time.mbt', diagnostic: /RegisterableValue|Time/is },
+  { filename: 'daily-white-space-string.mbt', diagnostic: /WhiteSpaceInput|String/is },
+  {
+    filename: 'daily-font-variation-length.mbt',
+    diagnostic: /FontVariationSettingsInput|Length/is,
+  },
+  { filename: 'daily-vertical-align-color.mbt', diagnostic: /VerticalAlignInput|Color/is },
   { filename: 'image-fallback-rejects-length.mbt', diagnostic: /ImageInput|Length/is },
   { filename: 'page-string.mbt', diagnostic: /PageValueInput|String/is },
   { filename: 'page-length.mbt', diagnostic: /PageValueInput|Length/is },
@@ -190,7 +197,7 @@ const fixtures = [
 ];
 
 function moduleManifest() {
-  return 'name = "local/style-compile-fail"\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.1.0" }';
+  return 'name = "local/style-compile-fail"\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.2.0" }';
 }
 
 function packageManifest(componentContract = false, rabbita = false) {

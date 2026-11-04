@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 17,
+  "schemaVersion": 18,
   "sources": {
     "@webref/css": "8.7.8",
     "@mdn/browser-compat-data": "8.1.7",
@@ -11117,6 +11117,199 @@
       "syntaxAstDigest": "sha256:59882728797140f6454ad2cb9a16f7de669ffa87fa92ca65aa35ce9e316a4302",
       "grammarReason": "reviewed-composite:stable-intersection",
       "specification": "https://drafts.csswg.org/css-ui-4/#propdef-outline",
+      "standardTrack": true,
+      "experimental": false,
+      "deprecated": false
+    },
+    {
+      "cssName": "isolation",
+      "functionName": "isolation",
+      "irName": "isolation",
+      "valueType": "enum:Isolation",
+      "family": "visual",
+      "authoredValueProfile": "daily-css-v1",
+      "grammarReviewDigest": "sha256:3f6d8b8e16c9e11b024f74989d003e62e935c12235bb7c8d8ab9fd5f40af9e72",
+      "excludedSyntax": [],
+      "grammarTier": "tier-b",
+      "fallbacks": true,
+      "conditions": true,
+      "dynamic": null,
+      "atomicProperties": [
+        {
+          "cssName": "isolation",
+          "irName": "isolation"
+        }
+      ],
+      "conflicts": [
+        "isolation"
+      ],
+      "syntax": "<isolation-mode>",
+      "syntaxAstDigest": "sha256:3f6d8b8e16c9e11b024f74989d003e62e935c12235bb7c8d8ab9fd5f40af9e72",
+      "grammarReason": "reviewed-adapter:unsupported-type-isolation-mode",
+      "specification": "https://drafts.csswg.org/compositing-2/#propdef-isolation",
+      "standardTrack": true,
+      "experimental": false,
+      "deprecated": false
+    },
+    {
+      "cssName": "white-space",
+      "functionName": "white_space",
+      "irName": "whiteSpace",
+      "valueType": "enum:WhiteSpace",
+      "family": "typography",
+      "authoredValueProfile": "daily-css-v1",
+      "grammarReviewDigest": "sha256:1fac77265f7a3f8a83b23d6f9fa1288797ac4f03c9f283cd42a7ea516e970fa3",
+      "excludedSyntax": [
+        "multi-keyword combinations",
+        "white-space-trim"
+      ],
+      "grammarTier": "tier-a",
+      "fallbacks": true,
+      "conditions": true,
+      "dynamic": null,
+      "atomicProperties": [
+        {
+          "cssName": "white-space",
+          "irName": "whiteSpace"
+        }
+      ],
+      "conflicts": [
+        "whiteSpace"
+      ],
+      "syntax": "normal | pre | pre-wrap | pre-line | <'white-space-collapse'> || <'text-wrap-mode'> || <'white-space-trim'>",
+      "syntaxAstDigest": "sha256:1fac77265f7a3f8a83b23d6f9fa1288797ac4f03c9f283cd42a7ea516e970fa3",
+      "grammarReason": "supported-definition-syntax",
+      "specification": "https://drafts.csswg.org/css-text-4/#propdef-white-space",
+      "standardTrack": true,
+      "experimental": false,
+      "deprecated": false
+    },
+    {
+      "cssName": "text-wrap",
+      "functionName": "text_wrap",
+      "irName": "textWrap",
+      "valueType": "enum:TextWrap",
+      "family": "typography",
+      "authoredValueProfile": "daily-css-v1",
+      "grammarReviewDigest": "sha256:dd617c56a74db103963f2e88987fcae05b166934651ea221e236f4e21ee4eac9",
+      "excludedSyntax": [
+        "mode/style combinations"
+      ],
+      "grammarTier": "tier-a",
+      "fallbacks": true,
+      "conditions": true,
+      "dynamic": null,
+      "atomicProperties": [
+        {
+          "cssName": "text-wrap",
+          "irName": "textWrap"
+        }
+      ],
+      "conflicts": [
+        "textWrap"
+      ],
+      "syntax": "<'text-wrap-mode'> || <'text-wrap-style'>",
+      "syntaxAstDigest": "sha256:dd617c56a74db103963f2e88987fcae05b166934651ea221e236f4e21ee4eac9",
+      "grammarReason": "supported-definition-syntax",
+      "specification": "https://drafts.csswg.org/css-text-4/#propdef-text-wrap",
+      "standardTrack": true,
+      "experimental": false,
+      "deprecated": false
+    },
+    {
+      "cssName": "vertical-align",
+      "functionName": "vertical_align",
+      "irName": "verticalAlign",
+      "valueType": "vertical-align",
+      "family": "typography",
+      "authoredValueProfile": "daily-css-v1",
+      "grammarReviewDigest": "sha256:53b548efa7819a46ceeeddb1383d72ab62eff780625bd5251eb38c75843051fe",
+      "excludedSyntax": [
+        "first/last",
+        "extended baseline keywords",
+        "dynamic offsets"
+      ],
+      "grammarTier": "tier-a",
+      "fallbacks": true,
+      "conditions": true,
+      "dynamic": null,
+      "atomicProperties": [
+        {
+          "cssName": "vertical-align",
+          "irName": "verticalAlign"
+        }
+      ],
+      "conflicts": [
+        "verticalAlign"
+      ],
+      "syntax": "[ first | last] || <'alignment-baseline'> || <'baseline-shift'>",
+      "syntaxAstDigest": "sha256:53b548efa7819a46ceeeddb1383d72ab62eff780625bd5251eb38c75843051fe",
+      "grammarReason": "supported-definition-syntax",
+      "specification": "https://drafts.csswg.org/css-inline-3/#propdef-vertical-align",
+      "standardTrack": true,
+      "experimental": false,
+      "deprecated": false
+    },
+    {
+      "cssName": "will-change",
+      "functionName": "will_change",
+      "irName": "willChange",
+      "valueType": "will-change",
+      "family": "interaction",
+      "authoredValueProfile": "daily-css-v1",
+      "grammarReviewDigest": "sha256:3d4e455f280764fb8189cb83ba0b9e7c257766b1a06a1be24897e5a2df3087a2",
+      "excludedSyntax": [
+        "unreviewed property names"
+      ],
+      "grammarTier": "tier-b",
+      "fallbacks": true,
+      "conditions": true,
+      "dynamic": null,
+      "atomicProperties": [
+        {
+          "cssName": "will-change",
+          "irName": "willChange"
+        }
+      ],
+      "conflicts": [
+        "willChange"
+      ],
+      "syntax": "auto | <animateable-feature>#",
+      "syntaxAstDigest": "sha256:3d4e455f280764fb8189cb83ba0b9e7c257766b1a06a1be24897e5a2df3087a2",
+      "grammarReason": "reviewed-adapter:unsupported-type-animateable-feature",
+      "specification": "https://drafts.csswg.org/css-will-change-1/#propdef-will-change",
+      "standardTrack": true,
+      "experimental": false,
+      "deprecated": false
+    },
+    {
+      "cssName": "font-variation-settings",
+      "functionName": "font_variation_settings",
+      "irName": "fontVariationSettings",
+      "valueType": "font-variation-settings",
+      "family": "typography",
+      "authoredValueProfile": "daily-css-v1",
+      "grammarReviewDigest": "sha256:22e34eebaac7d230cd1a5c0d81767e6f4240fc5696314340b3ccc8570949c1d8",
+      "excludedSyntax": [
+        "dynamic axes"
+      ],
+      "grammarTier": "tier-b",
+      "fallbacks": true,
+      "conditions": true,
+      "dynamic": null,
+      "atomicProperties": [
+        {
+          "cssName": "font-variation-settings",
+          "irName": "fontVariationSettings"
+        }
+      ],
+      "conflicts": [
+        "fontVariationSettings"
+      ],
+      "syntax": "normal | [ <opentype-tag> <number> ]#",
+      "syntaxAstDigest": "sha256:22e34eebaac7d230cd1a5c0d81767e6f4240fc5696314340b3ccc8570949c1d8",
+      "grammarReason": "reviewed-adapter:unsupported-type-opentype-tag",
+      "specification": "https://drafts.csswg.org/css-fonts-4/#propdef-font-variation-settings",
       "standardTrack": true,
       "experimental": false,
       "deprecated": false

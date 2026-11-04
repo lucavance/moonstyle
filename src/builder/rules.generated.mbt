@@ -22569,6 +22569,378 @@ pub fn Rule::clear_outline(
 
 ///|
 #callsite(autofill(location))
+pub fn[T : IsolationInput] Rule::isolation(
+  self : Rule,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "isolation")
+  self.append_input("isolation", value.property_input(), when, source, "", true)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : IsolationInputFallbacks] Rule::isolation_fallbacks(
+  self : Rule,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "isolation")
+  self.append_property_fallbacks("isolation", values.fallback_inputs(), when, source)
+}
+///|
+#callsite(autofill(location))
+pub fn[T : IsolationInput] Frame::isolation(
+  self : Frame,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "isolation")
+  self.with_rule(self.rule.isolation(value, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : IsolationInputFallbacks] Frame::isolation_fallbacks(
+  self : Frame,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "isolation")
+  self.with_rule(self.rule.isolation_fallbacks(values, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn Rule::clear_isolation(
+  self : Rule,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "isolation")
+  self.append_clear("isolation", source)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : WhiteSpaceInput] Rule::white_space(
+  self : Rule,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "whiteSpace")
+  self.append_input("whiteSpace", value.property_input(), when, source, "", true)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : WhiteSpaceInputFallbacks] Rule::white_space_fallbacks(
+  self : Rule,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "whiteSpace")
+  self.append_property_fallbacks("whiteSpace", values.fallback_inputs(), when, source)
+}
+///|
+#callsite(autofill(location))
+pub fn[T : WhiteSpaceInput] Frame::white_space(
+  self : Frame,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "whiteSpace")
+  self.with_rule(self.rule.white_space(value, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : WhiteSpaceInputFallbacks] Frame::white_space_fallbacks(
+  self : Frame,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "whiteSpace")
+  self.with_rule(self.rule.white_space_fallbacks(values, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn Rule::clear_white_space(
+  self : Rule,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "whiteSpace")
+  self.append_clear("whiteSpace", source)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : TextWrapInput] Rule::text_wrap(
+  self : Rule,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "textWrap")
+  self.append_input("textWrap", value.property_input(), when, source, "", true)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : TextWrapInputFallbacks] Rule::text_wrap_fallbacks(
+  self : Rule,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "textWrap")
+  self.append_property_fallbacks("textWrap", values.fallback_inputs(), when, source)
+}
+///|
+#callsite(autofill(location))
+pub fn[T : TextWrapInput] Frame::text_wrap(
+  self : Frame,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "textWrap")
+  self.with_rule(self.rule.text_wrap(value, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : TextWrapInputFallbacks] Frame::text_wrap_fallbacks(
+  self : Frame,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "textWrap")
+  self.with_rule(self.rule.text_wrap_fallbacks(values, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn Rule::clear_text_wrap(
+  self : Rule,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "textWrap")
+  self.append_clear("textWrap", source)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : VerticalAlignInput] Rule::vertical_align(
+  self : Rule,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "verticalAlign")
+  self.append_input("verticalAlign", value.property_input(), when, source, "", true)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : VerticalAlignInputFallbacks] Rule::vertical_align_fallbacks(
+  self : Rule,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "verticalAlign")
+  self.append_property_fallbacks("verticalAlign", values.fallback_inputs(), when, source)
+}
+///|
+#callsite(autofill(location))
+pub fn[T : VerticalAlignInput] Frame::vertical_align(
+  self : Frame,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "verticalAlign")
+  self.with_rule(self.rule.vertical_align(value, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : VerticalAlignInputFallbacks] Frame::vertical_align_fallbacks(
+  self : Frame,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "verticalAlign")
+  self.with_rule(self.rule.vertical_align_fallbacks(values, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn Rule::clear_vertical_align(
+  self : Rule,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "verticalAlign")
+  self.append_clear("verticalAlign", source)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : WillChangeInput] Rule::will_change(
+  self : Rule,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "willChange")
+  self.append_input("willChange", value.property_input(), when, source, "", true)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : WillChangeInputFallbacks] Rule::will_change_fallbacks(
+  self : Rule,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "willChange")
+  self.append_property_fallbacks("willChange", values.fallback_inputs(), when, source)
+}
+///|
+#callsite(autofill(location))
+pub fn[T : WillChangeInput] Frame::will_change(
+  self : Frame,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "willChange")
+  self.with_rule(self.rule.will_change(value, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : WillChangeInputFallbacks] Frame::will_change_fallbacks(
+  self : Frame,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "willChange")
+  self.with_rule(self.rule.will_change_fallbacks(values, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn Rule::clear_will_change(
+  self : Rule,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "willChange")
+  self.append_clear("willChange", source)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : FontVariationSettingsInput] Rule::font_variation_settings(
+  self : Rule,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "fontVariationSettings")
+  self.append_input("fontVariationSettings", value.property_input(), when, source, "", true)
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : FontVariationSettingsInputFallbacks] Rule::font_variation_settings_fallbacks(
+  self : Rule,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "fontVariationSettings")
+  self.append_property_fallbacks("fontVariationSettings", values.fallback_inputs(), when, source)
+}
+///|
+#callsite(autofill(location))
+pub fn[T : FontVariationSettingsInput] Frame::font_variation_settings(
+  self : Frame,
+  value : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "fontVariationSettings")
+  self.with_rule(self.rule.font_variation_settings(value, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn[T : FontVariationSettingsInputFallbacks] Frame::font_variation_settings_fallbacks(
+  self : Frame,
+  values : T,
+  when? : When = always,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Frame {
+  let source = resolve_source_span(source, location, "fontVariationSettings")
+  self.with_rule(self.rule.font_variation_settings_fallbacks(values, when=when, source=source))
+}
+
+///|
+#callsite(autofill(location))
+pub fn Rule::clear_font_variation_settings(
+  self : Rule,
+  source? : @ir.SourceSpan? = None,
+  location~ : SourceLoc,
+) -> Rule {
+  let source = resolve_source_span(source, location, "fontVariationSettings")
+  self.append_clear("fontVariationSettings", source)
+}
+
+///|
+#callsite(autofill(location))
 pub fn[T : PageValueInput] Rule::page(
   self : Rule,
   value : T,
@@ -29134,6 +29506,78 @@ pub fn StyleContract::allow_outline(
 ) -> StyleContract {
   self.allow_property(
     "outline",
+    values=values.map(value => value.to_css()) + keywords.map(value => value.to_css()),
+  )
+}
+
+///|
+pub fn StyleContract::allow_isolation(
+  self : StyleContract,
+  keywords? : Array[@values.CssWideKeyword] = [],
+  values? : Array[@properties.Isolation] = [],
+) -> StyleContract {
+  self.allow_property(
+    "isolation",
+    values=values.map(value => value.to_css()) + keywords.map(value => value.to_css()),
+  )
+}
+
+///|
+pub fn StyleContract::allow_white_space(
+  self : StyleContract,
+  keywords? : Array[@values.CssWideKeyword] = [],
+  values? : Array[@properties.WhiteSpace] = [],
+) -> StyleContract {
+  self.allow_property(
+    "whiteSpace",
+    values=values.map(value => value.to_css()) + keywords.map(value => value.to_css()),
+  )
+}
+
+///|
+pub fn StyleContract::allow_text_wrap(
+  self : StyleContract,
+  keywords? : Array[@values.CssWideKeyword] = [],
+  values? : Array[@properties.TextWrap] = [],
+) -> StyleContract {
+  self.allow_property(
+    "textWrap",
+    values=values.map(value => value.to_css()) + keywords.map(value => value.to_css()),
+  )
+}
+
+///|
+pub fn StyleContract::allow_vertical_align(
+  self : StyleContract,
+  keywords? : Array[@values.CssWideKeyword] = [],
+  values? : Array[@values.VerticalAlign] = [],
+) -> StyleContract {
+  self.allow_property(
+    "verticalAlign",
+    values=values.map(value => value.to_css()) + keywords.map(value => value.to_css()),
+  )
+}
+
+///|
+pub fn StyleContract::allow_will_change(
+  self : StyleContract,
+  keywords? : Array[@values.CssWideKeyword] = [],
+  values? : Array[@values.WillChange] = [],
+) -> StyleContract {
+  self.allow_property(
+    "willChange",
+    values=values.map(value => value.to_css()) + keywords.map(value => value.to_css()),
+  )
+}
+
+///|
+pub fn StyleContract::allow_font_variation_settings(
+  self : StyleContract,
+  keywords? : Array[@values.CssWideKeyword] = [],
+  values? : Array[@values.FontVariationSettings] = [],
+) -> StyleContract {
+  self.allow_property(
+    "fontVariationSettings",
     values=values.map(value => value.to_css()) + keywords.map(value => value.to_css()),
   )
 }

@@ -1,5 +1,5 @@
 ///|
-/// Canonical declaration blocks carried by schema v13 artifacts.
+/// Canonical declaration blocks carried by schema v14 artifacts.
 pub(all) struct ViewTransitionBlock {
   group : String
   declarations : Array[(String, Array[String])]

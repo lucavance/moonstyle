@@ -154,6 +154,81 @@ for (const [browserName, browserType] of browserMatrix) {
         const coverageBundle = JSON.parse(
           fs.readFileSync(path.join(root, 'validation/src/generated/styles.bundle.json'), 'utf8'),
         );
+        const dailyClasses = Object.fromEntries(
+          coverageBundle.namespaces
+            .filter((namespace) => namespace.name.split(':').at(-1).startsWith('daily'))
+            .map((namespace) => [
+              namespace.name.split(':').at(-1),
+              namespace.entries
+                .map((entry) => entry[1])
+                .filter((value) => typeof value === 'string')
+                .join(' '),
+            ]),
+        );
+        const daily = await page.evaluate(async (classes) => {
+          const host = document.createElement('div');
+          host.style.cssText =
+            'position:absolute;left:-10000px;--daily-distance:72px;--daily-ink:blue;--daily-weight:.75;--daily-ordinary:37px';
+          const label = document.createElement('span');
+          label.className = classes.dailyText;
+          const registered = document.createElement('div');
+          registered.className = classes.dailyRegistered;
+          const ordinary = document.createElement('div');
+          ordinary.className = classes.dailyOrdinary;
+          host.append(label, registered, ordinary);
+          document.body.append(host);
+          const style = getComputedStyle(label);
+          const initial = getComputedStyle(registered);
+          const result = {
+            isolation: style.isolation,
+            whiteSpace: style.whiteSpace,
+            textWrap: style.textWrap,
+            verticalAlign: style.verticalAlign,
+            willChange: style.willChange,
+            fontVariations: style.fontVariationSettings
+              .split(',')
+              .map((axis) => axis.trim())
+              .sort(),
+            width: initial.width,
+            color: initial.color,
+            weight: initial.getPropertyValue('--daily-weight').trim(),
+            ordinaryWidth: getComputedStyle(ordinary).width,
+          };
+          registered.style.setProperty('--daily-distance', 'invalid-length');
+          result.invalidWidth = getComputedStyle(registered).width;
+          registered.style.removeProperty('--daily-distance');
+          const animation = registered.animate(
+            { '--daily-distance': ['12px', '28px'] },
+            { duration: 1000, fill: 'both' },
+          );
+          animation.pause();
+          await animation.ready;
+          animation.currentTime = 500;
+          result.interpolatedWidth = getComputedStyle(registered).width;
+          animation.cancel();
+          host.remove();
+          return result;
+        }, dailyClasses);
+        assert.deepEqual(daily, {
+          isolation: 'isolate',
+          whiteSpace: 'pre-wrap',
+          textWrap: 'balance',
+          verticalAlign: '-2px',
+          willChange: 'transform, opacity',
+          fontVariations: ['"wdth" 95.5', '"wght" 650'],
+          width: '12px',
+          color: 'rgb(0, 0, 255)',
+          weight: '0.25',
+          ordinaryWidth: '37px',
+          invalidWidth: '12px',
+          interpolatedWidth: '20px',
+        });
+        browserResult.dailyCss = 'passed';
+        browserResult.propertyRegistration = {
+          inheritance: 'passed',
+          invalidValue: 'passed',
+          interpolation: 'passed',
+        };
         const resourceClasses = Object.fromEntries(
           coverageBundle.namespaces
             .filter((namespace) => namespace.name.split(':').at(-1).startsWith('upstream'))

@@ -45,7 +45,7 @@ test('an isolated workspace consumes the module through a local path dependency'
   try {
     fs.writeFileSync(
       path.join(directory, 'moon.mod'),
-      'name = "local/style-core-consumer"\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.1.0" }\n',
+      'name = "local/style-core-consumer"\nversion = "0.0.0"\nimport { "lampclaw/moonstyle@0.2.0" }\n',
     );
     fs.writeFileSync(
       path.join(directory, 'moon.work'),

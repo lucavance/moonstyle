@@ -61,6 +61,8 @@ pub fn sort_and_dedupe_globals(Array[GlobalRule]) -> Array[GlobalRule]
 
 pub fn theme_class_name(String, @ir.Theme) -> String
 
+pub fn valid_property_global(String, String) -> Bool
+
 pub fn valid_view_transition_blocks(Array[ViewTransitionBlock]) -> Bool
 
 pub fn view_transition_class_name(String, String) -> String

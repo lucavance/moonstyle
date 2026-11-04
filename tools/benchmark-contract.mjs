@@ -1,8 +1,8 @@
 export const BENCHMARK_REPORT_SCHEMA_VERSION = 4;
 
 export const CANDIDATE_BENCHMARK_REPORTS = Object.freeze([
-  'benchmarks/0.1.0-candidate-1.json',
-  'benchmarks/0.1.0-candidate-2.json',
+  'benchmarks/0.2.0-candidate-1.json',
+  'benchmarks/0.2.0-candidate-2.json',
 ]);
 
 export const BENCHMARK_SCENARIOS = Object.freeze({

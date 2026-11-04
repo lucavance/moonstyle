@@ -98,6 +98,12 @@ pub let coverageTimeline : CoverageTimelineStyle
 
 pub let coverageTransform : CoverageTransformStyle
 
+pub let dailyOrdinary : DailyOrdinaryStyle
+
+pub let dailyRegistered : DailyRegisteredStyle
+
+pub let dailyText : DailyTextStyle
+
 pub let dark : @runtime.CompiledStyle
 
 pub let demo_group_marker : @runtime.SelectorMarker
@@ -508,6 +514,30 @@ pub fn CoverageTransformStyle::append_to(Self, @runtime.StyleList) -> @runtime.S
 pub fn CoverageTransformStyle::to_compiled(Self) -> @runtime.CompiledStyle
 pub impl @runtime.StaticStyleInput for CoverageTransformStyle
 pub impl @runtime.StyleInput for CoverageTransformStyle
+
+pub struct DailyOrdinaryStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn DailyOrdinaryStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn DailyOrdinaryStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for DailyOrdinaryStyle
+pub impl @runtime.StyleInput for DailyOrdinaryStyle
+
+pub struct DailyRegisteredStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn DailyRegisteredStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn DailyRegisteredStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for DailyRegisteredStyle
+pub impl @runtime.StyleInput for DailyRegisteredStyle
+
+pub struct DailyTextStyle {
+  compiled : @runtime.CompiledStyle
+}
+pub fn DailyTextStyle::append_to(Self, @runtime.StyleList) -> @runtime.StyleList
+pub fn DailyTextStyle::to_compiled(Self) -> @runtime.CompiledStyle
+pub impl @runtime.StaticStyleInput for DailyTextStyle
+pub impl @runtime.StyleInput for DailyTextStyle
 
 pub struct ExpressionGridStyle {
   compiled : @runtime.CompiledStyle

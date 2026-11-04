@@ -48,7 +48,7 @@ describe('committed application-order semantics and local font alias policy', ()
   test('is content addressed and covers the complete typed property surface', () => {
     expect(validateApplicationOrderLock(lock, metadata)).toBe(lock);
     expect(lock.profile.name).toBe(APPLICATION_ORDER_PROFILE);
-    expect(lock.properties).toHaveLength(386);
+    expect(lock.properties).toHaveLength(392);
     expect(lock.supplementalProperties.map((record) => record.property)).toEqual(['font']);
     expect(lock.localExtensions).toEqual(APPLICATION_ORDER_LOCAL_EXTENSIONS);
   });
@@ -71,7 +71,7 @@ describe('committed application-order semantics and local font alias policy', ()
           .join(','),
       );
     }
-    expect(moonbit.size).toBe(387);
+    expect(moonbit.size).toBe(393);
   });
 
   test('declares only the reviewed font alias divergence from the raw upstream lock', () => {

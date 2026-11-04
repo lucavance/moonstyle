@@ -440,15 +440,15 @@ test "expression contracts round trip exact operation and provenance identities"
   assert_true(output.mappings.contains("SizeStyleInput for AllowedStyle"))
   assert_false(output.mappings.contains("SizeStyleInput for ReversedStyle"))
   assert_false(output.mappings.contains("SizeStyleInput for PlainStyle"))
-  assert_eq(output.schema_version, 13)
+  assert_eq(output.schema_version, 14)
   match @extract.decode_bundle(output.manifest) {
     Ok(bundle) => assert_true(@extract.validate_bundle(bundle).is_empty())
-    Err(_) => fail("v13 exact expressions must round trip")
+    Err(_) => fail("v14 exact expressions must round trip")
   }
   match
     @extract.decode_bundle(
       output.manifest.replace_all(
-        old="\"schemaVersion\":13",
+        old="\"schemaVersion\":14",
         new="\"schemaVersion\":9",
       ),
     ) {
