@@ -81,14 +81,8 @@ async fn main {
   values.write_string(
     "\n///|\npub extend MathExpr with LengthContractExpression::{contract_expression}\n",
   )
-  @fs.write_file(
-    "src/values/math_inputs.generated.mbt",
-    values.to_string(),
-  )
-  @fs.write_file(
-    "src/builder/math_inputs.generated.mbt",
-    builder.to_string(),
-  )
+  @fs.write_file("src/values/math_inputs.generated.mbt", values.to_string())
+  @fs.write_file("src/builder/math_inputs.generated.mbt", builder.to_string())
   @fs.write_file("src/math.generated.mbt", facade.to_string())
   for
     filename in [

@@ -1,58 +1,33 @@
-# Runnable Rabbita example
+# Included Rabbita application
 
-`lampclaw/moonstyle-validation` is the repository's example and test module.
-The public library module is `lampclaw/moonstyle` at the repository root, with
-source in `src/`. This consumer supplies the Rabbita browser example, an
-explicit native extractor, generated mappings, and component-contract fixtures.
-
-Run shared commands from the repository root:
+This MoonBit module contains the complete application used for browser validation.
+From the repository root, initialize the registry and start the native server:
 
 ```bash
 moon update
-vp install --frozen-lockfile
-vp dev
+moon run tools/dev.mbtx
 ```
 
-Open the local URL printed by Vite. The example demonstrates conditional
-composition, themes, checked dynamic values, typed expressions and component
-overrides. Change a style registry to see Vite regenerate the CSS. An invalid
-edit reports a diagnostic; fixing the source resumes generation.
+Open the printed address. Edit `examples/styles/` to inspect regenerated CSS,
+successful reloads and diagnostics after an invalid edit. Alt/Option+Shift+S opens
+the inspector. Node, Vite and a package-manager installation are not required.
 
-## Source map
-
-| Source | Role |
+| Source | Purpose |
 | --- | --- |
-| [styles.mbt](examples/styles/styles.mbt) | Rules, themes, dynamic slots and composition fixtures |
-| [expressions.mbt](examples/styles/expressions.mbt) | Typed math, images and Grid |
-| [coverage.mbt](examples/styles/coverage.mbt) | Conditions and additional CSS values |
-| [daily.mbt](examples/styles/daily.mbt) | Text, font axes, typed property registration and browser acceptance fixtures |
-| [main.mbt](src/demo/main.mbt) | Runnable Rabbita application |
-| [Extractor](cmd/style_extract/main.mbt) | Native extraction entry point |
-| [style.config.json](style.config.json) | Generated outputs, dependencies and cache configuration |
-| [Component fixtures](tests/dependency-fixtures/README.md) | Cross-component bundles and regeneration inputs |
-
-The validation Node workspace consumes the root tooling package through
-`workspace:*`. Its `style.config.json` selects the four generated outputs under
-`src/generated/`; edit source registries under `examples/styles/` and regenerate
-the outputs together. Synthetic dependency fixtures have their own
-[maintenance guide](tests/dependency-fixtures/README.md).
-
-## Build and verify
+| [examples/styles](examples/styles/) | Typed registries, themes, expressions and recipes |
+| [src/demo](src/demo/) | Rabbita view and dynamic interactions |
+| [cmd/style_extract](cmd/style_extract/) | Native extractor bridge |
+| [style.config.json](style.config.json) | Four output paths and dependency roots |
+| [src/generated](src/generated/) | Generated CSS, nominal mappings and schema-v14 bundle |
+| [tests/dependency-fixtures](tests/dependency-fixtures/) | Synthetic component bundle graph |
 
 ```bash
-vp build
-vp run install-browsers
-vp run validate
+moon run tools/build-demo.mbtx
+moon run tools/validate.mbtx
 ```
 
-The production output is `validation/dist/`. The validation suite checks the
-example and creates a separate component/application pair from the complete
-source examples in the [quickstart](../docs/quickstart.md).
-Browser fixtures also verify the six daily CSS properties and registered
-custom-property inheritance, invalid-value fallback and animation interpolation.
-
-Use `vp run validate` for development and `vp run validate-ci` for the clean
-committed source. See the [documentation index](../docs/README.md),
-[architecture](../docs/architecture.md), and
-[CI and validation](../docs/ci-and-validation.md) for the supported library
-integration and full verification requirements.
+The production site is `validation/dist/`. Static styles are extracted before
+compiling the application; no runtime stylesheet injection is used.
+[Extended verification](../verification/README.md) runs the production site and
+development inspector in three browser engines. See [CI](../docs/ci-and-validation.md)
+and the [independent quickstart](../docs/quickstart.md).

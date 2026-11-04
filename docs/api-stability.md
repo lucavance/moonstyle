@@ -1,6 +1,7 @@
 # API Stability
 
-The source and Mooncakes library version is 0.2.0.
+Source version is 0.3.0; the published library is `lampclaw/moonstyle@0.2.0`.
+The current public library interfaces match that published baseline.
 
 The public module is `lampclaw/moonstyle`. Pin the library version or a reviewed
 source commit, keep tooling aligned, and regenerate component and application
@@ -15,7 +16,7 @@ The `@stylexjs/atoms` authoring syntax is likewise outside the compatibility
 surface. Atomic CSS and StyleX application-order behavior remain supported
 semantics; they do not imply an atoms-shaped MoonBit API.
 
-Rabbita is the only Tier-1 framework integration for 0.2.0. Its adapter behavior
+Rabbita is the only Tier-1 framework integration for source 0.3.0. Its adapter behavior
 is part of the compatibility and release boundary. The separate Luna module is
 experimental: its checked-in interface snapshot detects accidental changes but
 does not create a deprecation window, migration promise, or supported
@@ -67,14 +68,13 @@ stable CSS names with no pseudo styles.
   Its finite, non-negative requirement applies to
   literal values, Tokens, and DynamicSlots without introducing a raw-string API.
 - Extractor debug manifest schema v1 and its `experimental`-alerted render and
-  validation helpers are tooling-only. They support the package-owned Vite plugin,
+  validation helpers are tooling-only. They support the native development server and inspector,
   are not re-exported by `lampclaw/moonstyle`, and carry no authoring compatibility
   promise. The sidecar is never a fifth distribution artifact.
-- `.moonstyle.json` schema v1 is the project ownership contract for the
-  private Git/path `@lampclaw/moonstyle-tooling` package. The package-owned Vite
-  adapter uses tooling protocol v1. Missing protocol is accepted with a
-  deprecation warning through the 0.2.x compatibility window and may fail from
-  the next minor release; an explicit incompatible version already fails before output mutation.
+- `.moonstyle.json` schema v2 is the native CLI ownership contract. `upgrade`
+  accepts v1 metadata, preserves user edits and releases Vite/entry files from
+  management. Normal commands require v2. The CLI uses extractor tooling
+  protocol v1; incompatible explicit protocol versions fail before mutation.
 - The supported authoring entry point is the root `lampclaw/moonstyle` package:
   immutable `Rule`/`Frame` chains, generated `Rule::clear_*` methods, typed
   condition shortcuts, `Token[T]`, `DynamicSlot[T]`, `VariableScope`, concrete
@@ -148,8 +148,9 @@ stable CSS names with no pseudo styles.
 - Oracle installation is a maintenance interface, separate from the product
   runtime and extraction API. Root generation and default validation consume
   the committed semantic lock without Babel. The independent frozen oracle
-  package provides `install-oracle`, `check-stylex-release`, `refresh-oracle`,
-  `test-oracle`, and `audit-oracle` through Vite+ tasks. The release check is
+  package provides explicit install, read-only release checking, refresh,
+  differential tests and security audits; see its [guide](../tools/stylex-oracle/README.md).
+  The release check is
   read-only and rejects compiler or committed semantic drift. Live refresh
   requires an explicit installation and reviewed semantic changes; strict CI requires its
   differential tests and both dependency audits. This isolation does not
@@ -159,10 +160,9 @@ stable CSS names with no pseudo styles.
   boundary while preserving the opaque runtime style contract. `attrs` accepts
   one static mapping, `attrs_many` accepts a homogeneous static array, and
   `try_attrs` accepts any recursive style input. Checked Rabbita attributes
-  validate before mutating optional base attributes. The package-owned Vite
-  development path retains last-valid artifacts and reports exact source spans
-  to its overlay and VS Code problem matcher; production extraction remains
-  fail-closed. The
+  validate before mutating optional base attributes. The native development
+  server retains the last valid site and reports structured source spans;
+  production extraction remains fail-closed. The
   separate `moonstyle-luna` module applies the same fail-closed runtime rule today,
   but its experimental API may change or be removed without the normal
   pre-1.0 deprecation period.

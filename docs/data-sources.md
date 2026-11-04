@@ -1,12 +1,13 @@
 # CSS data sources
 
-Generation uses exact-pinned inputs from the root [package manifest](../package.json):
+Native generation consumes the committed [standards snapshot](../tools/data/css-inputs.json).
+Its inputs are pinned in the isolated [verification manifest](../verification/package.json):
 
 | Dataset | Version | Role |
 | --- | --- | --- |
 | `@webref/css` | 8.7.8 | Standards definitions and CSS grammars |
 | `@mdn/browser-compat-data` | 8.1.7 | Compatibility annotations |
-| `css-tree` | 3.2.1 | Generation-only definition-syntax parsing |
+| `css-tree` | 3.2.1 | Snapshot export and independent grammar validation |
 
 Generated MoonBit sources are committed; consuming the library does not require
 dataset downloads, Babel, or network access for generation.
@@ -57,8 +58,8 @@ extraction. This profile does not expand the scalar or border allowlists.
 ## Generation and oracle isolation
 
 ```bash
-vp run generate
-vp run check-generated
+moon run tools/build-styles.mbtx
+moon run tools/check-generated.mbtx
 ```
 
 Ordinary generation validates the committed semantic lock's schema, profile,
@@ -76,17 +77,20 @@ See [application order](application-order-semantics.md) and the
 
 ## Updating inputs
 
-1. Update exact dataset pins and the frozen lockfile. Review the grammar and
-   browser-data changes, including unsupported and unsafe-only classifications.
-2. Run `vp exec node tools/generate-properties.mjs`; inspect generated APIs,
-   reviewed grammar digests, metadata and coverage. Never edit generated output.
-3. Install the independent oracle with `vp run install-oracle`, then run
-   `vp run refresh-oracle`. Review the lock and generated table. Refresh validates
-   the installed compiler contract and can repair a stale lock; the separate
-   `vp run check-stylex-release` requires a valid committed lock.
-4. Re-extract leaf component bundles, update source dependency references, then
-   run `vp run generate`. This repository's synthetic fixtures use
-   `vp exec node validation/tests/dependency-fixtures/refresh.mjs --write`; follow their
+1. Update exact pins in `verification/package.json` and its frozen lockfile.
+   Install with `vp -C verification install --frozen-lockfile`, then run
+   `node verification/data/export.mjs` to refresh the snapshot. Review upstream
+   source hashes, grammar ASTs, licenses and classification changes.
+2. Run `moon run tools/generate-properties.mbtx`. Review policy and grammar
+   digests before updating `tools/data/reviewed-grammars.json`; inspect generated
+   APIs, metadata and coverage. Generation rejects unreviewed drift before writes.
+   `node verification/data/export.mjs --check` independently verifies the snapshot.
+3. Install `tools/stylex-oracle` with its frozen lockfile, then run
+   `node tools/stylex-oracle/generate-application-order.mjs`.
+   Review lock and table changes. The separate `--check-release` command is read-only.
+4. Re-extract leaf component bundles, update dependency references and run
+   `moon run tools/build-styles.mbtx`. Synthetic fixtures use
+   `moon run tools/refresh-fixtures.mbtx -- --write`; follow their
    [maintenance guide](../validation/tests/dependency-fixtures/README.md).
 5. Run deterministic generation checks, compile-fail and cross-backend tests,
    live oracle verification, dependency/license audits, and candidate validation.

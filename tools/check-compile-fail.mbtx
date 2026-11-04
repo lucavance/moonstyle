@@ -1,0 +1,29 @@
+----
+import { "moonbitlang/async@0.22.5", "moonbitlang/async@0.22.5/fs", "moonbitlang/async@0.22.5/shell", "moonbitlang/core/json" }
+----
+async fn main {
+  let root = @fs.realpath(".")
+  let temporary = @fs.tmpdir(prefix="moonstyle-rejected-types-")
+  defer @fs.rmdir(temporary, recursive=true)
+  @fs.write_file(temporary + "/moon.mod", "name = \"local/rejected-types\"\nimport { \"lampclaw/moonstyle@0.3.0\" }\n")
+  @fs.write_file(temporary + "/moon.work", "members = [\".\", " + Json(root).stringify() + "]\n")
+  @fs.mkdir(temporary + "/component")
+  for name in ["moon.pkg", "styles.generated.mbt"] { @fs.write_file(temporary + "/component/" + name, @fs.read_file("validation/tests/component_a_generated/" + name)) }
+  let files = @fs.readdir("tests/compile-fail", sort=true).filter(file => file.has_suffix(".mbt"))
+  guard files.length() >= 63 else { fail("Compile-fail inventory is incomplete") }
+  for index, file in files {
+    let directory = temporary + "/case_" + index.to_string()
+    @fs.mkdir(directory)
+    @fs.write_file(directory + "/moon.pkg", "import { \"lampclaw/moonstyle\" @moonstyle, \"lampclaw/moonstyle/rabbita\" @css, \"lampclaw/moonstyle/properties\" @properties, \"lampclaw/moonstyle/values\" @values, \"local/rejected-types/component\" @component }\n")
+    @fs.write_file(directory + "/" + file, @fs.read_file("tests/compile-fail/" + file))
+    let result = @shell.Cmd("moon", ["check", "case_" + index.to_string(), "--target", "js", "--output-json"], cwd=temporary).output()
+    guard result.exit_code() != 0 else { fail(file + " unexpectedly compiled") }
+    let mut matched = false
+    for line in (result.stdout() + "\n" + result.stderr()).split("\n") {
+      let value = @json.parse(line) catch { _ => continue }
+      if value is { "level": String("error"), "path": String(path), "message": String(message), .. } && path.has_suffix("/" + file) && ["mismatch", "does not implement", "does not have", "has no", "not found", "undefined", "unbound", "private", "cannot create", "unknown", "no parameter", "unexpected"].any(fragment => message.to_lower().contains(fragment)) { matched = true }
+    }
+    guard matched else { fail(file + " failed for an unexpected reason:\n" + result.stdout() + result.stderr()) }
+  }
+  println("Verified " + files.length().to_string() + " rejected authoring programs with structured compiler diagnostics.")
+}

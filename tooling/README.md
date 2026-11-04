@@ -1,118 +1,101 @@
-# MoonStyle project tooling
+# MoonStyle project tools
 
-The private source-distributed `@lampclaw/moonstyle-tooling` package owns the
-`moonstyle` CLI and `@lampclaw/moonstyle-tooling/vite` export. Install tooling
-packed from the same reviewed revision as the MoonBit module; the
-[quickstart](../docs/quickstart.md) validates this in an independent consumer.
-The package is not published to npm. JavaScript orchestrates native extraction
-and never implements CSS normalization, hashing or composition semantics.
+`lampclaw/moonstyle-tooling` is an independent MoonBit module under `native/`.
+Its executable coordinates native extraction, configuration and web builds.
+It does not add tooling dependencies to the public `lampclaw/moonstyle` module.
 
-## Commands
+## Install and run
 
-Run these from a consumer's MoonBit module root:
+From a reviewed source checkout, run `moon update` and:
+
+```bash
+moon install ./tooling/native/src/cmd/moonstyle
+moonstyle --version
+```
+
+Use the CLI from the same reviewed revision as the library. It requires MoonBit
+and a native C toolchain. Node and Vite are optional. Repository-local commands
+can use `moon run tools/moonstyle.mbtx -- <command> --root <project>`.
 
 | Command | Behavior |
 | --- | --- |
-| `vp exec moonstyle init` | Idempotent scaffold of owned config and extractor bridge |
-| `vp exec moonstyle doctor` | Static integration and ownership checks |
-| `vp exec moonstyle doctor --strict` | Also resolves the MoonBit dependency tree, runs native checks and release extractor `--check` |
-| `vp exec moonstyle upgrade --dry-run` | Previews managed-file and recognized legacy-copy migration |
-| `vp exec moonstyle upgrade` | Applies the safe transaction while protecting customized files |
-| `vp exec moonstyle generate` | Generates the four formal artifacts with release extraction |
-| `vp exec moonstyle check` | Compares deterministic output without replacing stale files |
-| `vp exec moonstyle watch` | Watches project inputs and generates with debug extraction |
+| `moonstyle init` | Create extractor bridge, configuration and VS Code tasks |
+| `moonstyle doctor` | Validate metadata, ownership, inputs and outputs |
+| `moonstyle doctor --strict` | Also check native compilation and artifact freshness |
+| `moonstyle upgrade --dry-run` | Preview a complete managed-file transaction |
+| `moonstyle upgrade` | Apply updates while protecting customized files |
+| `moonstyle generate` | Generate four formal outputs with release extraction |
+| `moonstyle check` | Compare deterministic output without replacing files |
+| `moonstyle watch` | Serialize debug extraction after source changes |
+| `moonstyle build` | Compile a JS application and emit a static site |
+| `moonstyle dev` | Serve, watch, rebuild and reload after successful changes |
 
-All commands accept `--root <directory>` and `--json`. Generate/check/watch also
-accept `--verbose`, which cannot be combined with `--json`. Watch JSON output is
-a versioned NDJSON event stream. Syntax errors exit 2; failed one-shot checks
-exit 1. Run `vp exec moonstyle --help` for init path and entrypoint options.
+All commands accept `--root`. One-shot commands support `--json`; watch emits
+versioned NDJSON. Generate/check/watch support `--verbose`, exclusive with
+`--json`. Dev prints its address and build status; its HTTP status endpoint is
+`/__moonstyle/status`. Syntax errors exit 2 and failed one-shot checks exit 1.
+Cancellation stops watchers and child processes.
 
-## Configuration and ownership
+## Paths and ownership
 
-`moon.mod` and `moon.work` describe the module and local source members.
-Legacy/conflicting JSON manifests and missing style imports are diagnosed;
-the tooling does not rewrite arbitrary dependency manifests.
+`init --styles-package <package> --extractor-package <path>` overrides defaults.
+The default styles package is `<module>/styles`; the extractor is
+`<source>/style_extractor`. `source = "src"` in `moon.mod` is respected.
+`.moonstyle.json` schema v2 records styles/extractor paths and managed-file hashes.
+`upgrade` accepts v1 metadata, releases Vite/entry files from management and
+preserves their contents. Edited managed files fail before any replacement.
 
-User-owned `style.config.json` has these exact top-level keys:
+User-owned `style.config.json` has exactly these keys:
 
 ```json
 {
   "schemaVersion": 1,
   "mappingsPackage": "example/app/generated",
   "outputs": {
-    "css": "generated/styles.generated.css",
-    "mappings": "generated/styles.generated.mbt",
-    "mappingsManifest": "generated/moon.pkg",
-    "bundle": "generated/styles.bundle.json"
+    "css": "src/generated/styles.generated.css",
+    "mappings": "src/generated/styles.generated.mbt",
+    "mappingsManifest": "src/generated/moon.pkg",
+    "bundle": "src/generated/styles.bundle.json"
   },
   "dependencyRoots": [],
   "cacheDirectory": "_build/style-cache"
 }
 ```
 
-`.moonstyle.json` schema v1 separately records project paths, tooling version
-and managed-file hashes. It does not replace style configuration. Init and
-upgrade preserve arbitrary Vite/entry source and locally modified managed
-files; exact recognized legacy copies can migrate automatically. Use the
-[regeneration guide](../docs/regeneration.md) for dependency-first extraction.
+Paths remain inside the module, including through symlinks. Outputs are distinct
+and outside dependency roots/cache. Dependency bundles are discovered recursively
+in stable order. Components distribute all four outputs and re-extract leaf-first.
+See [regeneration](../docs/regeneration.md) and [artifact schema](../docs/artifact-schema-v14.md).
 
-Dependency roots are discovered recursively in stable order and passed to the
-native extractor. Component authors commit all four outputs. Consumers do not
-run dependency build scripts; re-extract dependencies leaf-first on an upgrade.
-The [artifact contract](../docs/artifact-schema-v14.md) defines graph validation,
-semantic digests and failure-before-replacement behavior.
+## Build and development
 
-## Vite and diagnostics
+`build --main-package src/demo --out-dir dist` compiles a MoonBit executable with
+Moon's JS backend. Its `index.html` template needs `<!-- moonstyle-assets -->`
+at the stylesheet/script insertion point. A minimal template is supplied if absent.
+The output consists of `index.html`, `app.js` and `styles.css`. Host these files
+with any static web server. This command does not bundle arbitrary npm modules
+and copies binary assets from `public/` without changing their contents.
+Generated names are reserved; removed owned assets are cleaned on the next build.
 
-```js
-import moonStyle from '@lampclaw/moonstyle-tooling/vite';
+`dev --main-package src/demo --port 5173 --host 127.0.0.1` serves a site under the
+configured ignored cache directory. It watches source, dependency bundles,
+manifests, workspace members, `index.html` and `public/` assets. Successful builds atomically install
+a new site and trigger full-page reload. Failed builds keep the last good site
+and report diagnostics. Avoid concurrent writers of the same formal outputs.
 
-// Add alongside the application's other plugins.
-moonStyle({ extractorPackage: 'style_extractor' });
-```
+The development-only inspector uses Shadow DOM and final class names. It shows
+rules, computed values, origins and source links. Alt/Option+Shift+S toggles it;
+Pick element selects a node. CSS Source Map v3 preserves authored coordinates
+without embedding source text. The browser client is written in MoonBit with
+small DOM FFI bindings; the installed CLI embeds its MoonBit source and compiles
+it using `moon` on first development startup. Production contains no debug client,
+manifest or source map. The debug sidecar is not a fifth distribution artifact.
 
-Import `virtual:moonstyle.css` in the application entry. The plugin, standalone
-commands and strict doctor share one framework-neutral extraction runner.
-Standalone watch is an alternative to `vp dev`; avoid two writers of the same
-formal outputs. The adapter passes `--tooling-protocol 1`; explicit mismatches
-fail before output mutation. Missing protocol remains a deprecated legacy case.
+Release extraction is used by generate/check/build; watch/dev use debug builds.
+Both profiles must emit identical formal bytes. Cache identity includes the
+executable, normalized configuration and dependency bytes. Corrupt caches safely
+fall back to extraction. Native compilation reads `--output-json` diagnostics.
 
-Vite and standalone watch include source directories and manifests from the
-nearest MoonBit workspace. A child application therefore observes edits to a
-parent library with `source = "src"`; build directories and its own generated
-outputs stay excluded. Compiler diagnostics keep the original source location.
-
-Development compiles the native extractor with debug profile; production and
-one-shot generation/checking use release. Both profiles must emit identical
-formal bytes. Extraction may skip execution only when the executable,
-normalized config and configured dependency bytes retain the same identity.
-Native compilation uses `--build-only --output-json` to preserve structured
-compiler diagnostics instead of scraping text.
-
-Vite reports exact source spans through its overlay and the scaffold's VS Code
-background problem matcher. A failed development save retains last-valid
-artifacts; a corrected save resumes extraction and reloads. Production builds
-and explicit validation fail closed. Semantic failures never become successful
-checks merely because old CSS remains available.
-
-## Development inspection
-
-Serve mode enables the applied-style inspector and CSS source maps by default;
-`moonStyle({ devtools: false })` opts out. The extractor's optional
-`--debug-manifest-output` writes a versioned tooling sidecar under the ignored
-cache directory. It is not a fifth distribution artifact.
-
-The inspector uses a Shadow-DOM UI, final DOM class names and Source Map v3.
-It adds no provenance fields to runtime values or application DOM attributes.
-Standalone watch does not produce browser devtools artifacts. Production builds
-must contain no debug client, source paths or debug manifest. A missing, stale
-or corrupt cache safely falls back to extraction; formal artifacts remain
-authoritative.
-
-## Maintenance checks
-
-From the framework checkout, `vp run check-docs`, `vp check`, and the tooling
-CLI/Vite/scaffold test suites verify these boundaries. Run
-`vp run check-consumer-snapshot` during development to verify the executable
-quickstart, packed tooling, exact contracts and watch failure recovery.
-Candidate validation uses the [clean-commit workflow](../docs/ci-and-validation.md).
+The [optional Vite adapter](vite/README.md) delegates to this CLI.
+[Native validation](../docs/ci-and-validation.md) exercises installed consumers,
+failure recovery, generated outputs and the published library API baseline.

@@ -1,0 +1,35 @@
+----
+import {
+  "moonbitlang/async@0.22.5",
+  "moonbitlang/async@0.22.5/fs",
+  "moonbitlang/async@0.22.5/shell",
+  "moonbitlang/core/env",
+}
+----
+
+async fn main {
+  let directory = @fs.tmpdir(prefix="moonstyle-native-path-")
+  defer @fs.rmdir(directory, recursive=true)
+  let home = @env.get_env_var("HOME").unwrap()
+  let moon_home = @env.get_env_var("MOON_HOME").unwrap_or(home + "/.moon")
+  for name in ["moon", "moonc", "moonrun", "moonfmt", "cc", "c++", "gcc", "g++", "clang", "clang++", "as", "ld", "ld.bfd", "ld.lld", "ar", "ranlib", "nm", "strip", "git", "gzip", "uname", "date", "sh"] {
+    for parent in [moon_home + "/bin", "/usr/bin", "/bin", "/usr/local/bin"] {
+      let source = parent + "/" + name
+      if @fs.exists(source) {
+        @fs.symlink(target=source, directory + "/" + name)
+        break
+      }
+    }
+  }
+  let environment = Map([("PATH", directory)])
+  @env.set_env_var("PATH", directory)
+  for name in ["node", "bun", "vp", "npm"] {
+    let available = try {
+      ignore(@shell.Cmd(name, ["--version"], env=environment).output())
+      true
+    } catch { _ => false }
+    guard !available else { fail("Restricted PATH unexpectedly contains " + name) }
+  }
+  let args = @env.args()[1:].to_owned()
+  @shell.Cmd(directory + "/moon", ["run", "tools/validate.mbtx", "--"] + args, env=environment).run()
+}

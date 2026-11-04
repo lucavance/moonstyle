@@ -5,6 +5,8 @@ import {
   "moonbitlang/async/fs",
   "moonbitlang/async/http",
   "moonbitlang/async/socket",
+  "moonbitlang/async/stdio",
+  "moonbitlang/core/encoding/utf8",
 }
 
 supported_targets = "native"

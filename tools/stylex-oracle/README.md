@@ -3,8 +3,8 @@
 This private maintenance package owns the Babel compiler and the live StyleX
 reference used to verify MoonBit semantics. It is not a root workspace member
 and is not part of ordinary development or production builds. Its independent `bun.lock` pins
-the oracle graph; the repository root retains its own lockfile.
-Vite+'s root test graph may include Babel runtime and diagnostic helpers;
+the oracle graph; `verification/` has the other isolated Node lockfile.
+Vite+'s extended test graph may include Babel runtime and diagnostic helpers;
 the compiler and StyleX packages belong to this isolated package.
 
 The package pins Babel core 8.0.9 and `@stylexjs/babel-plugin`,
@@ -24,10 +24,10 @@ upstream `main` remain outside this compatibility baseline until a published rel
 Run the public tasks from the repository root:
 
 ```bash
-vp run install-oracle
-vp run check-stylex-release
-vp run test-oracle
-vp run audit-oracle
+vp -C tools/stylex-oracle install --frozen-lockfile
+node tools/stylex-oracle/generate-application-order.mjs --check-release
+vp -C tools/stylex-oracle test run --config vite.config.mjs
+vp -C tools/stylex-oracle exec bun audit --json
 ```
 
 Installation uses this package's frozen lockfile. Testing compares the live
@@ -39,8 +39,8 @@ instruction; tasks do not install packages implicitly.
 Refresh the upstream observations only as a reviewed maintenance operation:
 
 ```bash
-vp run refresh-oracle
-vp run generate
+node tools/stylex-oracle/generate-application-order.mjs
+moon run tools/build-styles.mbtx
 ```
 
 Refresh compiles the fixtures and verifies the exact oracle versions before
@@ -69,9 +69,9 @@ incorrect output from the published compiler is not copied into them.
 
 ## Validation Boundary
 
-Default tests and `vp run validate` use only root dependencies. They validate
+Default tests and `moon run tools/validate.mbtx` use only native MoonBit tools. They validate
 the committed lock, local font alias, generated entries, and native artifacts.
-`vp run validate-ci` requires this package's live differential tests and
+`moon run tools/validate-ci.mbtx` requires this package's live differential tests and
 security/license audits of both installed dependency graphs. Workflows install
 this package explicitly before strict validation; a missing package never
 silently skips the oracle gate.

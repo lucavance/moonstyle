@@ -13,7 +13,7 @@ point does not imply support for every upstream option or CSS grammar.
 
 | StyleX family | MoonStyle behavior | Scope and repository evidence |
 | --- | --- | --- |
-| `create` | `rule`, `sheet`, `registry` | Native extraction; [property tests](../tests/property-codegen.test.mjs), [Rabbita example](../validation/examples/styles/styles.mbt) |
+| `create` | `rule`, `sheet`, `registry` | Native extraction; [property tests](../tools/check-codegen.mbtx), [Rabbita example](../validation/examples/styles/styles.mbt) |
 | `props` | `compose`, checked dynamic mappings | Application-order composition; [runtime tests](../src/runtime/runtime_wbtest.mbt) |
 | `attrs` | Rabbita `attrs` / `try_attrs` | Rabbita is Tier-1; [adapter tests](../src/rabbita/rabbita_wbtest.mbt) |
 | `defineVars` | `VariableScope`, typed Token/Slot | Literal defaults; [expression tests](../src/expressions_test.mbt); conditional and derived defaults remain planned |

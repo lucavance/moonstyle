@@ -1,9 +1,9 @@
 name = "lampclaw/moonstyle-validation"
 
-version = "0.2.0"
+version = "0.3.0"
 
 import {
-  "lampclaw/moonstyle@0.2.0",
+  "lampclaw/moonstyle@0.3.0",
   "moonbit-community/rabbita@0.17.0",
   "moonbitlang/x@0.5.6",
 }

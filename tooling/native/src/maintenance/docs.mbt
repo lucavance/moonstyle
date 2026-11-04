@@ -156,6 +156,7 @@ pub async fn docs(root : String) -> Unit {
   for
     file in [
       "moon.mod", "validation/moon.mod", "packages/moonstyle-luna/moon.mod", "tooling/native/moon.mod",
+      "tooling/browser/moon.mod",
     ] {
     let source = @support.read(root + "/" + file)
     if manifest_field(source, "version") != Some(version) {
@@ -164,6 +165,13 @@ pub async fn docs(root : String) -> Unit {
     if manifest_field(source, "repository") !=
       Some("https://github.com/lucavance/moonstyle") {
       issues.push(file + " has a stale repository")
+    }
+  }
+  for file in ["verification/package.json", "tooling/vite/package.json"] {
+    let package_ = @support.json(root + "/" + file)
+    if @support.get(package_, "version") != Json(version) ||
+      !@support.flag(package_, "private") {
+      issues.push(file + " must be a private source-version package")
     }
   }
   let require_text = async fn(file : String, text : String) -> Unit {

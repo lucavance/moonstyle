@@ -9,7 +9,11 @@ fn keyword_enum(name : String, keywords : Array[Json]) -> Json raise {
   let values = Map([])
   for keyword in keywords {
     let keyword = @support.string(keyword)
-    values[name + variant(keyword)] = Json::string(keyword)
+    let identifier = name + variant(keyword)
+    guard !values.contains(identifier) else {
+      fail("duplicate keyword constructor: " + identifier)
+    }
+    values[identifier] = Json::string(keyword)
   }
   { "name": name, "values": Json::object(values) }
 }
@@ -411,8 +415,9 @@ pub async fn generate(root : String) -> Unit {
     for
       name in [@support.text(definition, "name")] +
       @support.fields(@support.get(definition, "values")).keys().collect() {
-      guard !identifiers.contains(name) else {
-        fail("duplicate enum identifier: " + name)
+      guard re"^[A-Z][A-Za-z0-9_]*$".execute(name[:]) is Some(_) &&
+        !identifiers.contains(name) else {
+        fail("invalid or duplicate enum identifier: " + name)
       }
       identifiers[name] = true
     }
@@ -430,6 +435,11 @@ pub async fn generate(root : String) -> Unit {
       property["valueType"] = replacement
     }
     let property = Json::object(property)
+    guard ["layout", "typography", "visual", "interaction", "motion"].contains(
+      @support.text(property, "family"),
+    ) else {
+      fail("unknown property family: " + css)
+    }
     let ir = ir_name(definition)
     guard !identifiers.contains(ir) else {
       fail("duplicate IR property: " + ir)

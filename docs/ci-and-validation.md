@@ -1,81 +1,68 @@
 # CI and validation
 
-All example sources and acceptance fixtures are included in this repository.
-The browser example lives in `validation/`; the independent component and
-application are generated from the complete code blocks in
-[the executable quickstart](quickstart.md). The checks use public dependencies
-and the pinned environment in [toolchain.json](../toolchain.json).
-
-## Run the included example
-
-Use the versions recorded in [current status](current-status.md). From the
-repository root:
+All example sources and acceptance fixtures are in the repository. Install the
+compiler/core pinned in [toolchain.json](../toolchain.json), then initialize the
+registry before the first script:
 
 ```bash
 moon update
-vp install --frozen-lockfile
-vp dev
+moon run tools/validate.mbtx
 ```
 
-Open the local URL printed by Vite. The [example guide](../validation/README.md)
-maps its style registries, view, extractor and component fixtures to source
-files. `vp build` creates its production output under `validation/dist/`.
+## Native validation
 
-## Development validation
+The default command requires MoonBit, a native C toolchain, Git and gzip.
+It does not execute Node, Bun or Vite. It checks the pinned MoonBit environment,
+regeneration, ownership, interfaces, the published 0.2.0 API baseline, Markdown
+links and version facts, module packaging, dependency licenses and performance
+evidence. It runs native, Wasm and Wasm GC library tests, compiles JS integrations,
+checks rejected authoring programs, tests independent component contracts, installs
+the CLI and exercises production builds, HTTP, watching and failure recovery.
+A second generation must preserve tracked output bytes.
+
+`moon run tools/verify-consumer.mbtx --snapshot` additionally checks an independent
+development snapshot. Without `--snapshot` it requires a clean commit, creates
+an independent Git remote, clones the exact revision, installs the CLI from that
+clone, and executes the [quickstart](quickstart.md). The report
+`.generated/consumer.json` records revision, tree and snapshot status.
+
+## Extended verification
+
+Node-dependent checks are installed separately and remain required for release CI:
 
 ```bash
-vp run install-browsers
-vp run validate
+vp -C verification install --frozen-lockfile
+vp -C tools/stylex-oracle install --frozen-lockfile
+node verification/install-browsers.mjs --with-deps
+moon run tools/validate-ci.mbtx
 ```
 
-This checks project configuration, generated artifacts and interfaces, the API
-baseline, documentation, dependency security and licenses, JavaScript tooling,
-four-backend MoonBit behavior, browser behavior, performance budgets and the
-production example build. Browser binaries must be installed first. Development
-mode may skip Firefox in restricted execution environments; strict CI requires
-all three engines.
+This adds JS-backend execution, the live pinned StyleX/Babel oracle, independent
+css-tree/standards snapshot checks, the optional Vite integration, security audits
+for both Node graphs, installed dependency license checks, development performance
+budgets, and Chromium/Firefox/WebKit production and inspector tests. Missing
+dependencies or browsers fail strict validation. Browser evidence is recorded in
+`.generated/e2e-results.json`; every required engine must pass.
 
-Independent consumer validation copies the current development source into a
-temporary Git repository, packs the tooling, and builds the quickstart's
-component and application. It checks cross-module contracts, generated outputs,
-source pins and recovery after an invalid edit. The `snapshot` field
-in `.generated/consumer.json` distinguishes this from clean-commit validation.
+## Hosted CI and performance
 
-## Clean-commit CI
+The [workflow](../.github/workflows/ci.yml) has separate native and extended jobs
+on Ubuntu 26.04 x64. The native job runs with a restricted PATH that excludes
+Node/Bun/Vite. The extended job installs the exact Node, Bun, Vite+ and Playwright
+versions in `toolchain.json`. Actions and the MoonBit installer checksum are pinned.
+Both jobs verify the worktree remains unchanged.
 
-Initialize the registry with `moon update` after installing the pinned MoonBit
-toolchain, before the first `.mbtx` script. Install the strict test dependencies
-and run:
+Record two reviewed measurements with:
 
 ```bash
-vp run install-oracle
-vp run install-browsers-ci
-vp run validate-ci
+moon run tools/benchmark.mbtx -- --output benchmarks/0.3.0-candidate-1.json
+moon run tools/benchmark.mbtx -- --output benchmarks/0.3.0-candidate-2.json
+moon run tools/dx-benchmark.mbtx
+moon run tools/release-audit.mbtx
 ```
 
-The [CI workflow](../.github/workflows/ci.yml) runs on Ubuntu 26.04 for main
-and release branch pushes, pull requests targeting main, and manual dispatch.
-The repository-owned MoonBit setup action verifies the installer checksum and
-installs the pinned compiler and core together. Vite+ and Node versions and
-workflow actions are pinned too.
-
-Strict validation requires Chromium, Firefox and WebKit, the isolated StyleX
-oracle, both dependency security audits and the license audit. It consumes the
-actual clean source commit through a temporary local Git remote and packs the
-tooling from that revision. The component and application still come from the
-quickstart included in this repository. A dirty checkout fails this final
-consumer check; use `vp run validate` while editing.
-
-## Reports and reproducibility
-
-The browser report is `.generated/e2e-results.json`; strict mode requires all
-three engines to pass. Independent consumption writes
-`.generated/consumer.json` with the tested revision, snapshot mode and checks.
-Generated reports and build outputs are ignored by Git. Hosted CI retains
-browser evidence as workflow artifacts and checks that validation leaves the
-candidate unchanged.
-
-`vp run benchmark-candidate` measures the two tracked performance reports;
-the release audit checks their fixture fingerprints and every frozen budget.
-For release decisions, use the complete validation result and hosted CI for
-the same commit. See [release policy](release-policy.md).
+Native report schema v5 retains the frozen 100/6,000/10,000-rule workloads,
+balanced/alternating sampling and cache budgets. The audit recomputes summaries
+from samples and matches candidate schemas, semantic digest and artifact sizes.
+DX checks debug/release formal parity, cold-build ratio, warm build time and
+inspector overhead. Use complete validation results for the exact candidate commit.

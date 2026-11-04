@@ -137,7 +137,10 @@ pub async fn toolchain(root : String) -> Unit {
 
 ///|
 pub async fn licenses(root : String) -> Unit {
-  for prefix in ["", "packages/moonstyle-luna/"] {
+  for
+    prefix in [
+      "", "packages/moonstyle-luna/", "tooling/native/", "tooling/browser/", "tooling/vite/",
+    ] {
     let license = @support.read(root + "/" + prefix + "LICENSE")
     let notice = @support.read(root + "/" + prefix + "NOTICE")
     guard license.contains("Copyright (c) Meta Platforms, Inc. and affiliates.") &&
@@ -153,13 +156,17 @@ pub async fn licenses(root : String) -> Unit {
     if prefix != "" {
       guard license == @support.read(root + "/LICENSE") &&
         notice == @support.read(root + "/NOTICE") else {
-        @support.reject("STYLE_LICENSE", "Luna attribution differs")
+        @support.reject(
+          "STYLE_LICENSE",
+          "Independent package attribution differs: " + prefix,
+        )
       }
     }
   }
   for
     manifest in [
       "moon.mod", "validation/moon.mod", "packages/moonstyle-luna/moon.mod", "tooling/native/moon.mod",
+      "tooling/browser/moon.mod",
     ] {
     let content = @support.read(root + "/" + manifest)
     for entry in re"\"([^\"]+)@([0-9][^\"]*)\"".find(content[:]) {
@@ -240,15 +247,20 @@ pub async fn generated(root : String) -> Unit {
   ignore(
     @support.command("moon", ["run", "tools/generate-expressions.mbtx"], root),
   )
-  // The build-styles launcher uses the native CLI once it is available.
-  if @fs.exists(root + "/tools/build-styles.mbtx") {
-    ignore(
-      @support.command(
-        "moon",
-        ["run", "tools/build-styles.mbtx", "--styles-only"],
-        root,
-      ),
-    )
+  ignore(
+    @support.command(
+      "moon",
+      ["run", "tools/build-styles.mbtx", "--styles-only"],
+      root,
+    ),
+  )
+  fixtures(root)
+  let browser_path = root +
+    "/tooling/native/src/devserver/browser.generated.mbt"
+  let browser_before = @support.hash(@support.read(browser_path))
+  ignore(@support.command("moon", ["run", "tools/embed-dev-client.mbtx"], root))
+  guard browser_before == @support.hash(@support.read(browser_path)) else {
+    @support.reject("STYLE_GENERATED", "Embedded browser source changed")
   }
   for path in paths {
     guard before[path] == @support.hash(@support.read(root + "/" + path)) else {

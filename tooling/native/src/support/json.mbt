@@ -18,7 +18,7 @@ pub fn get(value : Json, key : String) -> Json {
 
 ///|
 pub fn string(value : Json) -> String raise {
-  guard value is String(text) else { fail("Expected a string") }
+  guard value is String(text) else { reject("STYLE_JSON", "Expected a string") }
   text
 }
 
@@ -29,13 +29,15 @@ pub fn text(value : Json, key : String) -> String raise {
 
 ///|
 pub fn array(value : Json) -> Array[Json] raise {
-  guard value is Array(items) else { fail("Expected an array") }
+  guard value is Array(items) else { reject("STYLE_JSON", "Expected an array") }
   items
 }
 
 ///|
 pub fn fields(value : Json) -> Map[String, Json] raise {
-  guard value is Object(items) else { fail("Expected an object") }
+  guard value is Object(items) else {
+    reject("STYLE_JSON", "Expected an object")
+  }
   items
 }
 
@@ -65,7 +67,12 @@ pub fn exact(value : Json, names : Array[String], label : String) -> Unit raise 
 
 ///|
 pub fn hash(value : String) -> String {
-  "sha256:" + @crypto.bytes_to_hex_string(@crypto.sha256(@utf8.encode(value)))
+  hash_bytes(@utf8.encode(value))
+}
+
+///|
+pub fn hash_bytes(value : Bytes) -> String {
+  "sha256:" + @crypto.bytes_to_hex_string(@crypto.sha256(value))
 }
 
 ///|

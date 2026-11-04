@@ -8,6 +8,16 @@ fn content_type(path : String) -> String {
     "text/css; charset=utf-8"
   } else if path.has_suffix(".json") || path.has_suffix(".map") {
     "application/json; charset=utf-8"
+  } else if path.has_suffix(".svg") {
+    "image/svg+xml"
+  } else if path.has_suffix(".png") {
+    "image/png"
+  } else if path.has_suffix(".jpg") || path.has_suffix(".jpeg") {
+    "image/jpeg"
+  } else if path.has_suffix(".webp") {
+    "image/webp"
+  } else if path.has_suffix(".woff2") {
+    "font/woff2"
   } else {
     "application/octet-stream"
   }
@@ -67,15 +77,19 @@ pub async fn serve(
       revision += 1
       state = "ready"
       manifest = debug_manifest(root, cache) catch { _ => Json::null() }
-      println("[moonstyle] build-ready " + revision.to_string())
+      @stdio.stdout.write(
+        "[moonstyle] build-ready " + revision.to_string() + "\n",
+      )
     } else {
       state = "stale"
-      println(@project.render(report))
+      @stdio.stdout.write(@project.render(report) + "\n")
     }
   }
   let server = @http.Server(@socket.Addr::resolve(host, port~), reuse_addr=true)
   defer server.close()
-  println("[moonstyle] dev-ready http://" + server.addr.to_string())
+  @stdio.stdout.write(
+    "[moonstyle] dev-ready http://" + server.addr.to_string() + "\n",
+  )
   let serve_request = async fn(
     request : @http.Request,
     _body,
@@ -122,15 +136,30 @@ pub async fn serve(
       respond(404, "text/plain", "Not found")
       return
     }
-    let path = @support.join(root + "/" + output, relative)
-    let allowed = [
-      "index.html", "app.js", "styles.css", "styles.css.map", "dev-client.js",
-    ]
-    if !allowed.contains(relative) || !@fs.exists(path) {
+    let relative_path = @support.project_path(root, output + "/" + relative) catch {
+      _ => {
+        respond(404, "text/plain", "Not found")
+        return
+      }
+    }
+    let path = root + "/" + relative_path
+    if !@fs.exists(path) || @fs.kind(path) != @fs.Regular {
       respond(404, "text/plain", "Not found")
       return
     }
-    respond(200, content_type(relative), @support.read(path))
+    connection.send_response(
+      200,
+      "OK",
+      extra_headers=Map([
+        (@http.CaseInsensitiveString("Content-Type"), content_type(relative)),
+        (@http.CaseInsensitiveString("Cache-Control"), "no-store"),
+        (@http.CaseInsensitiveString("X-Content-Type-Options"), "nosniff"),
+      ]),
+    )
+    if request.meth != @http.Head {
+      connection.write(@fs.read_file(path))
+    }
+    connection.end_response()
   }
   @async.with_task_group(async fn(group) {
     group.spawn_bg(async fn() {
@@ -142,7 +171,16 @@ pub async fn serve(
       watcher.close()
     })
     let sync_watchers = async fn() -> Unit {
-      let next = @project.watch_roots(root)
+      let next = @project.watch_roots(root) catch {
+        error =>
+          if @async.is_being_cancelled() {
+            raise error
+          } else if roots.is_empty() {
+            [root]
+          } else {
+            roots
+          }
+      }
       if roots == next {
         return
       }
@@ -170,9 +208,29 @@ pub async fn serve(
     sync_watchers()
     let mut last_identity = ""
     while true {
-      let template = root + "/index.html"
-      let identity = @project.input_identity(root, config) +
-        (if @fs.exists(template) { @support.file_hash(template) } else { "" })
+      let identity = try {
+        let template = root + "/index.html"
+        let public_directory = root + "/public"
+        let public_files = if @fs.exists(public_directory) {
+          @support.files(public_directory)
+        } else {
+          []
+        }
+        let public_parts = []
+        for file in public_files {
+          public_parts.push(file + ":" + @support.file_hash(file))
+        }
+        @project.input_identity(root, config) +
+        (if @fs.exists(template) { @support.file_hash(template) } else { "" }) +
+        @support.hash(public_parts.join("\n"))
+      } catch {
+        error =>
+          if @async.is_being_cancelled() {
+            raise error
+          } else {
+            "unavailable"
+          }
+      }
       if identity != last_identity {
         last_identity = identity
         refresh()

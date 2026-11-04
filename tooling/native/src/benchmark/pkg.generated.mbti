@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "lampclaw/moonstyle-tooling/benchmark"
+
+// Values
+pub async fn audit(String) -> Unit
+
+pub fn budget(String, Json) -> Json raise
+
+pub async fn dx(String) -> Unit
+
+pub fn dx_budget(Double, Double, Double, Double, Double, Bool) -> Json
+
+pub async fn measure(String, String?) -> Unit
+
+pub fn paired(Array[Double], Array[Double]) -> Json raise
+
+pub fn summary(Array[Double]) -> Json raise
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

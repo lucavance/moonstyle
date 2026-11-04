@@ -3,39 +3,83 @@ import {
   "moonbitlang/async@0.22.5",
   "moonbitlang/async@0.22.5/fs",
   "moonbitlang/async@0.22.5/shell",
+  "moonbitlang/core/env",
   "moonbitlang/core/json",
 }
 ----
 
 ///|
 async fn main {
-  @shell.Cmd("node", ["tools/check-toolchain.mjs", "--release"]).run()
+  let snapshot = @env.args().contains("--snapshot")
+  let extended_only = @env.args().contains("--extended-only")
+  if !extended_only {
+    @shell.Cmd(
+      "moon",
+      ["run", "tools/validate-native-path.mbtx", "--"] +
+      (if snapshot { [] } else { ["--clean"] }),
+    ).run()
+  }
+  let node = @shell.Cmd("vp", [
+      "-C", "verification", "exec", "node", "-p", "process.execPath",
+    ])
+    .output()
+    .stdout()
+    .trim()
+    .to_owned()
+  let parts = node.split("/").collect()
+  let directory = parts[:parts.length() - 1]
+    .map(part => part.to_owned())
+    .join("/")
+  @env.set_env_var(
+    "PATH",
+    directory +
+    ":" +
+    @fs.realpath("verification/node_modules/.bin") +
+    ":" +
+    @env.get_env_var("PATH").unwrap_or(""),
+  )
+  @shell.Cmd("moon", ["run", "tools/check-extended-toolchain.mbtx"]).run()
+  @shell.Cmd("vp", [
+    "-C",
+    "verification",
+    "fmt",
+    "--check",
+    ".",
+    @fs.realpath("tooling/vite"),
+  ]).run()
+  @shell.Cmd("vp", ["-C", "tools/stylex-oracle", "fmt", "--check", "."]).run()
+  @shell.Cmd("node", ["verification/data/export.mjs", "--check"]).run()
   @shell.Cmd("node", [
     "tools/stylex-oracle/generate-application-order.mjs", "--check-release",
+  ]).run()
+  for directory in ["verification", "tools/stylex-oracle"] {
+    @shell.Cmd("vp", ["-C", directory, "exec", "bun", "audit", "--json"]).run()
+  }
+  @shell.Cmd("moon", ["test", "--target", "js"]).run()
+  @shell.Cmd("moon", ["run", "tools/maint.mbtx", "--", "licenses-node"]).run()
+  @shell.Cmd("moon", ["run", "tools/dx-benchmark.mbtx"]).run()
+  let repository = @fs.realpath(".")
+  let bin = repository + "/_build/bin"
+  @shell.Cmd("moon", [
+    "install", "./tooling/native/src/cmd/moonstyle", "--bin", bin,
   ]).run()
   @fs.mkdir(".generated", allow_exist=true)
   let report = ".generated/e2e-results.json"
   if @fs.exists(report) {
     @fs.remove(report)
   }
-  let validation = @shell.Cmd(
+  @shell.Cmd(
     "vp",
-    ["run", "validate-source"],
-    env=Map([("STYLE_E2E_REPORT", report), ("STYLE_REQUIRE_ALL_BROWSERS", "1")]),
-  ).status()
-  let failures : Array[String] = []
-  if validation != 0 {
-    failures.push("source validation failed")
-  }
-  for task in ["test-oracle", "audit-oracle"] {
-    if @shell.Cmd("vp", ["run", task]).status() != 0 {
-      failures.push(task + " failed")
-    }
-  }
-  if @shell.Cmd("node", ["tools/release-audit.mjs", "--require-oracle"]).status() !=
-    0 {
-    failures.push("license audit failed")
-  }
+    ["-C", "verification", "test", "run", "--config", "vite.config.mjs"],
+    env=Map([
+      ("STYLE_E2E_REPORT", repository + "/" + report),
+      ("STYLE_REQUIRE_ALL_BROWSERS", "1"),
+      ("MOONSTYLE_BIN", bin + "/moonstyle"),
+    ]),
+  ).run()
+  @shell.Cmd("vp", [
+    "-C", "tools/stylex-oracle", "test", "run", "--config", "vite.config.mjs",
+  ]).run()
   let browser = @json.parse(@fs.read_file(report).text()) catch {
     _ => Json::null()
   }
@@ -57,12 +101,14 @@ async fn main {
       fail("browser did not pass: " + name)
     }
   }
-  // Final CI never creates a synthetic snapshot to stand in for the commit.
-  if failures.is_empty() {
-    @shell.Cmd("moon", ["run", "tools/verify-consumer.mbtx"]).run()
+  if extended_only {
+    @shell.Cmd(
+      "moon",
+      ["run", "tools/verify-consumer.mbtx"] +
+      (if snapshot { ["--", "--snapshot"] } else { [] }),
+    ).run()
   }
-  guard failures.is_empty() else { fail(failures.join("\n")) }
   println(
-    "Strict candidate CI passed with three browsers, oracle, and actual-commit consumer acceptance.",
+    "Strict extended verification passed with three browsers, standards data, StyleX oracle and consumer acceptance.",
   )
 }

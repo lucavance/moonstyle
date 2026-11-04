@@ -38,11 +38,15 @@ pub fn report(String, Array[Json], changed? : Array[String], dry_run? : Bool, ex
 
 pub async fn style_config(String) -> Json
 
+pub fn supported_version(String) -> Bool
+
 pub async fn transact(String, Map[String, String], dry_run? : Bool) -> Array[String]
+
+pub async fn transact_data(String, Map[String, Bytes], dry_run? : Bool, remove? : Array[String]) -> Array[String]
 
 pub let version : String
 
-pub async fn watch(String, (Json) -> Unit raise) -> Unit
+pub async fn watch(String, async (Json) -> Unit) -> Unit
 
 pub async fn watch_roots(String) -> Array[String]
 

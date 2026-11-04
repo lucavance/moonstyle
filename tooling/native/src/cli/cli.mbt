@@ -41,7 +41,7 @@ pub fn parse(args : Array[String]) -> (String, Map[String, String]) raise {
         command == "init" &&
         ["--styles-package", "--extractor-package"].contains(flag)
       )
-    let boolean = flag == "--json" ||
+    let boolean = (flag == "--json" && command != "dev") ||
       (flag == "--strict" && command == "doctor") ||
       (flag == "--dry-run" && command == "upgrade") ||
       (flag == "--verbose" && ["generate", "check", "watch"].contains(command))
@@ -130,18 +130,18 @@ pub async fn run(args : Array[String]) -> Int32 {
         @project.report(command, [])
       }
       "watch" => {
-        @project.watch(root, event => {
+        @project.watch(root, async fn(event) {
           if json {
-            println(event.stringify())
+            @stdio.stdout.write(event.stringify() + "\n")
           } else if @support.get(event, "event") == Json("watch-start") {
-            println("[moonstyle] watch-ready " + root)
+            @stdio.stdout.write("[moonstyle] watch-ready " + root + "\n")
           } else if @support.get(event, "event") == Json("watch-stop") {
-            println("[moonstyle] watch-stop")
+            @stdio.stdout.write("[moonstyle] watch-stop\n")
           } else {
-            println(
+            @stdio.stdout.write(
               "[moonstyle] check-start\n" +
               @project.render(event, verbose~) +
-              "\n[moonstyle] check-end",
+              "\n[moonstyle] check-end\n",
             )
           }
         })

@@ -1,6 +1,6 @@
 import { transformSync } from '@babel/core';
 import stylexPlugin from '@stylexjs/babel-plugin';
-import { renderStylexModule } from '../stylex-bridge.mjs';
+import { renderStylexModule } from '../../verification/stylex-bridge.mjs';
 
 export function compileStylexSource(source, pluginOptions = {}) {
   const result = transformSync(source, {

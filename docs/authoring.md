@@ -8,7 +8,7 @@ MoonBit module: `lampclaw/moonstyle`.
 
 MoonBit-native typed atomic CSS authoring, extraction, runtime composition, and
 framework adapters. MoonBit is the only supported authoring language; Rabbita
-is the only Tier-1 framework integration for 0.2.0. The semantic core is
+is the only Tier-1 framework integration for source 0.3.0. The semantic core is
 framework-neutral. JavaScript, TypeScript, TSX, JSX, React, and StyleX drop-in
 authoring APIs are unsupported.
 Atomic CSS remains supported, but the `@stylexjs/atoms` authoring form is not a
@@ -16,8 +16,9 @@ compatibility target.
 
 Mooncakes provides `lampclaw/moonstyle@0.2.0`. A pinned Git commit or local path
 dependency is also supported; see
-[distribution](distribution.md). The CLI and Vite tooling is packed from a reviewed
-[lucavance/moonstyle](https://github.com/lucavance/moonstyle) source checkout.
+[distribution](distribution.md). Source 0.3.0 provides a native CLI installed
+with `moon install` from a reviewed source checkout. Ordinary development
+requires no Node installation.
 See the [distribution guide](distribution.md),
 [documentation index](README.md),
 [module map](architecture.md#modules-and-packages), and
@@ -196,14 +197,14 @@ callsite for diagnostics.
 
 ## Development and framework support
 
-The Rabbita/Vite scaffold runs extraction asynchronously with structured JSON
-diagnostics. Its VS Code background task maps exact MoonBit spans into Problems;
-the Vite development server keeps the last valid generated CSS, displays its
-normal error overlay, and reloads after a corrected save. Production builds
-fail on the same diagnostic. Development builds the native extractor with the
-debug profile, then skips executable launches while its executable, normalized
-config, and dependency bundles are unchanged. Production uses the release
-profile; both profiles must emit byte-identical generated artifacts.
+`moonstyle init` configures the native extractor and VS Code tasks.
+`moonstyle dev` serves the application, watches styles and assets, retains the
+last successful site on failure, and reloads after a corrected save. JSON
+diagnostics retain MoonBit source spans. Production builds fail on the same
+diagnostic. Development uses debug extraction and watches relevant source inputs.
+The extractor cache identity includes its executable, normalized configuration
+and dependency bundle contents. Production uses release extraction; both profiles
+must emit byte-identical generated artifacts.
 
 Rabbita integration ships in this module and is covered by the
 [support policy](api-stability.md). Luna integration is isolated in the

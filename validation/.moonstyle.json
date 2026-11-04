@@ -6,6 +6,6 @@
   "managedFiles": {
     ".vscode/tasks.json": "sha256:585cad4149432695f8b29a656d3546d0570000ae8fea52c215978e07555824bb",
     "cmd/style_extract/main.mbt": "sha256:122299100b8defc6496d5d147d35765ce60872ffbb6dfc5fac279ca8caecbe87",
-    "cmd/style_extract/moon.pkg": "sha256:644170d0fd4b118e0c8a5270569fbcc2df3dd71f0240183ea2b10f188e674a48"
+    "cmd/style_extract/moon.pkg": "sha256:ac021f25d206f77c6f5fc374943400e79f29cc106a10d724693a4126c5adcd7f"
   }
 }

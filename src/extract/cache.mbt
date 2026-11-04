@@ -1,5 +1,5 @@
 ///|
-let cache_tool_version = "0.2.0"
+let cache_tool_version = "0.3.0"
 
 ///|
 let cache_generator_configuration = "artifact-v14|property-registration-v1|daily-css-v1|view-transition-styles-v1|stylex-0.19.1-application-order+font-aliases-v1|base-conflict-slots-v1|priority-specificity-v3|property-api-v18|page-values-v1|typed-expressions-v1|typed-length-zero-v1|css-value-normalization-v2|css-coverage-v1|gradients-grid-v1|explicit-clear-v1|fluent-authoring-v3|component-contracts-v1|contract-value-policy-v2|recipes-v1|source-callsite-v1|scalar-expansion-v2|border-composite-v1|cache-policy-v4|common-values-v1|composite-effects-v1|theme-paint-v1|css-tree-3.2.1|webref-8.7.8|bcd-8.1.7"

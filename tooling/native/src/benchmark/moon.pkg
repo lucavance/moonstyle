@@ -1,0 +1,11 @@
+import {
+  "lampclaw/moonstyle-tooling/project",
+  "lampclaw/moonstyle-tooling/support",
+  "moonbitlang/async",
+  "moonbitlang/async/fs",
+  "moonbitlang/async/shell",
+  "moonbitlang/core/double",
+  "moonbitlang/core/json",
+}
+
+supported_targets = "native"

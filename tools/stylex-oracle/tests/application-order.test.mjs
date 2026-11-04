@@ -8,7 +8,7 @@ import {
   APPLICATION_ORDER_PRIORITY_SCALE,
   effectiveApplicationOrderRecords,
   renderApplicationOrderMoonbit,
-} from '../../application-order.mjs';
+} from '../../../verification/application-order.mjs';
 import {
   evaluateApplicationOrderOracle,
   generateApplicationOrder,

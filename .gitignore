@@ -17,4 +17,6 @@
 
 /validation/dist/
 /validation/node_modules/
+/verification/node_modules/
+/tooling/vite/node_modules/
 *.swp

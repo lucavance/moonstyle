@@ -2,6 +2,13 @@
 pub let version = "0.3.0"
 
 ///|
+pub fn supported_version(value : String) -> Bool {
+  // The current release accepts published 0.1.x / 0.2.x ownership metadata
+  // and exactly 0.3.0. A later patch must never be silently downgraded.
+  value == version || re"^0\.[12]\.[0-9]+$".execute(value[:]) is Some(_)
+}
+
+///|
 pub let output_kinds : Array[String] = [
   "css", "mappings", "mappingsManifest", "bundle",
 ]
@@ -188,7 +195,7 @@ pub async fn manifest(root : String, allow_v1~ : Bool = false) -> Json {
     ".moonstyle.json",
   )
   let tooling = @support.text(value, "toolingVersion")
-  guard re"^0\.[0-3]\.[0-9]+$".execute(tooling[:]) is Some(_) else {
+  guard supported_version(tooling) else {
     @support.reject(
       "STYLE_PROJECT_VERSION", "Project metadata is newer than this tool or has an invalid version",
     )

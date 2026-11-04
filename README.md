@@ -4,40 +4,46 @@
 
 为 MoonBit 提供类型安全的原子化 CSS。
 
-MoonStyle compiles typed MoonBit style registries into deterministic atomic CSS
-and nominal MoonBit mappings. Applications compose those mappings with
-last-applied-wins conflict rules and bind checked dynamic values through CSS
-custom properties. Ordinary static styles are extracted at build time.
+MoonStyle extracts typed MoonBit style registries into deterministic atomic CSS
+and nominal MoonBit mappings. Applications compose mappings with last-applied-wins
+conflict rules and bind checked dynamic values through CSS custom properties.
 
-MoonBit is the only supported authoring language. The product ships as a normal
-MoonBit module with an explicit native extractor. JavaScript tools orchestrate
-builds and tests; they do not implement CSS semantics or provide a JavaScript
-authoring API. StyleX is a pinned test-only semantic oracle; its API shape and
-`@stylexjs/atoms` authoring form are outside the compatibility target.
+MoonBit is the only supported authoring language. The library, property generator,
+project CLI and development server are implemented in MoonBit. The default
+generation, checks, build and development workflow requires MoonBit and a native
+C toolchain, with no Node installation. Browser applications compile to JavaScript
+using Moon's JS backend. Browser DOM access uses small JavaScript FFI bindings.
 
-Rabbita is the only Tier-1 framework integration for 0.2.0. The optional
-[Luna adapter](packages/moonstyle-luna/README.md) is experimental and carries no
-compatibility promise. The semantic core and runtime remain framework-neutral.
+Rabbita is the only Tier-1 framework integration. The optional
+[Luna adapter](packages/moonstyle-luna/README.md) is experimental.
+The semantic core and runtime remain framework-neutral.
 
-## Start here
+## Try the included application
 
-- [Runnable Rabbita example](validation/README.md): a complete application,
-  style registries, extractor and browser fixtures included in this repository.
-- [Executable consumer quickstart](docs/quickstart.md): a component and Rabbita app
-  consuming a pinned source checkout and packed tooling.
-- [Authoring guide](docs/authoring.md): rules, typed values, composition,
-  recipes, component contracts, and registered globals.
-- [Project tooling](tooling/README.md): CLI, Vite integration, diagnostics, and
-  development inspection.
-- [Documentation index](docs/README.md): architecture, contracts, maintenance,
-  release gates and validation.
-- [StyleX compatibility](docs/stylex-compatibility.md): supported semantics,
-  deliberate differences and the next development priorities.
-- [Regeneration](docs/regeneration.md): dependency-first extraction and artifact validation.
+Install the MoonBit compiler/core recorded in [toolchain.json](toolchain.json), then:
+
+```bash
+moon update
+moon run tools/dev.mbtx
+```
+
+Open the printed local address. Successful edits rebuild and reload the page;
+failed edits retain the last successful site and display diagnostics.
+Alt/Option+Shift+S opens the applied-style inspector. Build a static site with:
+
+```bash
+moon run tools/build-demo.mbtx
+moon run tools/validate.mbtx
+```
+
+Production output is `validation/dist/`. It contains `index.html`, `app.js` and
+`styles.css`, without the inspector or development source maps.
+Fresh installations need `moon update` before the first `.mbtx` script;
+standalone scripts pin `moonbitlang/async` to 0.22.5.
 
 ## Author and apply styles
 
-Import `lampclaw/moonstyle` as `@moonstyle` in your style package:
+Import `lampclaw/moonstyle` as `@moonstyle` in a style package:
 
 ```moonbit
 pub fn registry() -> @moonstyle.Registry {
@@ -50,96 +56,54 @@ pub fn registry() -> @moonstyle.Registry {
 }
 ```
 
-The native extractor emits CSS, generated mappings, their `moon.pkg`, and a
-versioned bundle. Import the mappings as `@styles` and
-`lampclaw/moonstyle/rabbita` as `@css` in the view:
+Extraction emits CSS, typed mappings, their `moon.pkg`, and a versioned bundle.
+Import the mappings as `@styles` and `lampclaw/moonstyle/rabbita` as `@css`:
 
 ```moonbit
 let attrs = @css.attrs(@styles.card)
-```
-
-Compose generated styles, conditions, and checked dynamic accessors with one
-immutable list:
-
-```moonbit
 let composed = @moonstyle.compose(@styles.card)
   .when(active, @styles.active)
   .add(@styles.meter(progress))
-
-match @css.try_attrs(composed) {
-  Ok(attrs) => render(attrs)
-  Err(errors) => render_dynamic_errors(errors)
-}
 ```
 
-The [quickstart](docs/quickstart.md) supplies complete compilable packages.
-[Tested value examples](src/expressions.mbt.md) cover typed math,
-gradients, background layers, and Grid. Additional examples cover
-[common values and effects](src/common_values.mbt.md),
-[CSS coverage](src/css_coverage.mbt.md), and
-[themes and SVG paint](src/theme_paint.mbt.md).
+The [executable quickstart](docs/quickstart.md) supplies complete component and
+application packages, including exact contracts and checked dynamic values.
+The [authoring guide](docs/authoring.md) covers typed values, composition, recipes,
+themes and registered globals. [Tested value examples](src/expressions.mbt.md),
+[effects](src/common_values.mbt.md), [CSS coverage](src/css_coverage.mbt.md) and
+[theme/SVG paint](src/theme_paint.mbt.md) are included in the source tree.
 
-## Current delivery
+## Distribution and verification
 
-The public MoonBit library is available on
-[Mooncakes](https://mooncakes.io/docs/lampclaw/moonstyle) as
-`lampclaw/moonstyle@0.2.0`, including six additional typed properties and explicit
-CSS `@property` registration. Git and local-path consumption are also supported.
-The private `@lampclaw/moonstyle-tooling` package supplies the CLI and
-Vite adapter and is installed from packed source. Source is hosted at
-[lucavance/moonstyle](https://github.com/lucavance/moonstyle).
-
-The [current status](docs/current-status.md) records implemented capabilities,
-schema versions and validation commands. All example sources and acceptance
-fixtures are included in this repository. See [distribution](docs/distribution.md) and
-[release policy](docs/release-policy.md).
-
-Typed declarations, nominal component contracts, and explicit composition are
-the main reasons to use MoonStyle in a MoonBit application. Utility classes
-can suit a project that prefers preset design scales and existing tooling.
-MoonStyle requires registries, extraction, and generated artifacts; it does not
-ship a complete preset design system or merge arbitrary utility strings.
-See the [styling-system comparison](docs/tailwindcss-vs-stylex.md) for these
-tradeoffs and the limits of StyleX compatibility.
-
-## Repository development
-
-The root `moon.mod` declares `lampclaw/moonstyle`, with library source in
-`src/`. The `validation/` submodule contains the Rabbita application, extractor
-bridge and fixtures. Luna remains an independent optional module under
-`packages/moonstyle-luna/`. The private validation Node workspace consumes
-the root tooling package through `workspace:*`.
-
-The pinned environment is defined in [toolchain.json](toolchain.json).
-From that environment:
+The source version is **0.3.0**, prepared for release. The published Mooncakes
+library remains [`lampclaw/moonstyle@0.2.0`](https://mooncakes.io/docs/lampclaw/moonstyle).
+Consume 0.3.0 from a reviewed Git commit, and install the CLI from that same source:
 
 ```bash
-moon update
-vp install --frozen-lockfile
-vp dev
+moon install ./tooling/native/src/cmd/moonstyle
+moonstyle --help
 ```
 
-Run `moon update` after installing the pinned MoonBit toolchain, before the
-first `.mbtx` script. It initializes the registry index on a fresh machine;
-standalone scripts pin `moonbitlang/async` to 0.22.5.
+The root module contains the library under `src/`. `validation/` holds the
+included Rabbita app and fixtures. `tooling/native/` owns native tools;
+`tooling/browser/` owns the MoonBit inspector client. All examples and acceptance
+fixtures are in this repository.
 
-```bash
-vp run check-docs
-vp check
-vp run install-browsers
-vp run validate
-```
+[Extended verification](verification/README.md) installs isolated Node dependencies
+for Playwright, css-tree and the live StyleX oracle. The optional
+[`@lampclaw/moonstyle-tooling/vite`](tooling/vite/README.md) export calls the native CLI.
+Strict CI requires these checks in addition to the native validation job.
+See [CI and validation](docs/ci-and-validation.md), [current status](docs/current-status.md),
+[distribution](docs/distribution.md) and [documentation index](docs/README.md).
 
-`validate` includes independent consumption of a development snapshot.
-`vp run validate-ci` verifies the actual clean commit and also requires the
-separately installed oracle and all three browsers. Follow
-[CI and validation](docs/ci-and-validation.md) for the candidate gates and
-[data maintenance](docs/data-sources.md) for reviewed generation updates.
+StyleX is a pinned test-only semantic oracle; JavaScript authoring and
+`@stylexjs/atoms` are outside the compatibility target. See the
+[compatibility matrix](docs/stylex-compatibility.md) and
+[styling-system comparison](docs/tailwindcss-vs-stylex.md).
 
 ## License and provenance
 
-MoonStyle is MIT licensed and adapts selected StyleX atomic CSS semantics to
-MoonBit. The hashing implementation and derived semantic behavior retain the
-upstream Meta copyright and MIT permission notice. See [LICENSE](LICENSE) and
-[NOTICE](NOTICE) for attribution and the pinned reference release. Each
-independently packaged MoonBit module carries both files.
+MoonStyle is MIT licensed and adapts selected [StyleX](https://github.com/meta/stylex)
+atomic CSS semantics to MoonBit. Derived code retains the upstream Meta copyright
+and MIT permission notice. See [LICENSE](LICENSE), [NOTICE](NOTICE),
+[data sources](docs/data-sources.md) and [dependency licenses](docs/dependency-license-audit.md).

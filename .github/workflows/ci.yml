@@ -17,8 +17,40 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  validate:
-    name: Ubuntu 26.04 candidate validation
+  native:
+    name: Native MoonBit validation without Node
+    runs-on: ubuntu-26.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up MoonBit
+        uses: ./.github/actions/setup-moonbit
+        with:
+          version: '0.10.19+97801ee1b'
+          core-version: '0.10.19+97801ee1b'
+
+      - name: Initialize MoonBit registry
+        run: moon update
+
+      - name: Run native validation with a restricted PATH
+        run: moon run tools/validate-native-path.mbtx -- --clean
+
+      - name: Verify validation did not change the candidate
+        run: moon run tools/check-worktree.mbtx
+
+      - name: Upload exact-commit consumer evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: native-consumer-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .generated/consumer.json
+          if-no-files-found: ignore
+          retention-days: 90
+
+  extended:
+    name: Standards, oracle and three-browser verification
     runs-on: ubuntu-26.04
     timeout-minutes: 90
     env:
@@ -46,20 +78,20 @@ jobs:
           moon version --all
           moon update
 
-      - name: Install frozen dependencies
-        run: vp install --frozen-lockfile
+      - name: Install isolated verification dependencies
+        run: vp -C verification install --frozen-lockfile
 
       - name: Install isolated StyleX oracle dependencies
-        run: vp run install-oracle
+        run: vp -C tools/stylex-oracle install --frozen-lockfile
 
       - name: Install Playwright browsers and operating-system dependencies
-        run: vp run install-browsers-ci
+        run: node verification/install-browsers.mjs --with-deps
 
       - name: Run strict candidate validation
-        run: vp run validate-ci
+        run: moon run tools/validate-ci.mbtx -- --extended-only
 
       - name: Verify validation did not change the candidate
-        run: node tools/check-worktree.mjs
+        run: moon run tools/check-worktree.mbtx
 
       - name: Upload browser evidence
         if: ${{ !cancelled() }}
@@ -68,6 +100,9 @@ jobs:
           name: browser-evidence-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             .generated/e2e-results.json
+            .generated/consumer.json
+            .generated/dx-benchmark.json
+            .generated/node-licenses.json
             test-results/
           if-no-files-found: ignore
           retention-days: 90

@@ -1,0 +1,16 @@
+{
+  "name": "@lampclaw/moonstyle-tooling",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Optional Vite adapter for the native MoonStyle CLI",
+  "license": "MIT",
+  "repository": "https://github.com/lucavance/moonstyle",
+  "type": "module",
+  "exports": {
+    "./vite": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "vite": "*"
+  }
+}

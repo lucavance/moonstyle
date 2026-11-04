@@ -1,14 +1,14 @@
-# Dependency License Audit
+# Dependency license audit
 
-The audit covers licenses in both JavaScript dependency graphs and the MoonBit
-dependencies. Toolchain versions come from [toolchain.json](../toolchain.json);
-package manifests and frozen lockfiles define the installed graph. Run the
-commands below to validate that concrete installation.
+Native library use, generation and development require no Node graph.
+MoonBit dependencies and frozen standards-data licenses are checked by
+`moon run tools/release-audit.mbtx`. Extended verification separately checks
+installed licenses and exact direct pins in `verification/` and
+`tools/stylex-oracle/`. Their independent manifests and lockfiles define the
+graphs; [toolchain.json](../toolchain.json) pins the host tools.
 
-The Babel compiler and StyleX remain isolated in a separately installed
-private oracle package with its own frozen lockfile. The table records the
-current pins. The release audit checks this inventory against the installed
-graphs. A successful report applies only to the graph it measured.
+The table is a reviewed dependency inventory, not an exhaustive transitive
+list. `.generated/node-licenses.json` records the concrete installed graphs.
 
 | Dependency | Use | License |
 | --- | --- | --- |
@@ -25,7 +25,6 @@ graphs. A successful report applies only to the graph it measured.
 | `moonbit-community/prettyprinter@0.4.11` | Parser manifest compatibility | Apache-2.0 |
 | `moonbitlang/regexp@0.3.6` | Luna manifest compatibility | Apache-2.0 |
 | `moonbitlang/x@0.5.6` | Filesystem, crypto, and encoding | Apache-2.0 |
-| `@rabbita/vite@0.2.0` | Demo build adapter | Apache-2.0 |
 | `playwright-core@1.64.1` | Browser validation | Apache-2.0 |
 | `@babel/core@8.0.9` | Isolated oracle differential tests | MIT |
 | `@mdn/browser-compat-data@8.1.7` | Generated property metadata | CC0-1.0 |
@@ -42,35 +41,25 @@ graphs. A successful report applies only to the graph it measured.
 | `@voidzero-dev/vite-plus-core@1.4.0` | Vite alias and override | MIT |
 | `yuku-parser@0.19.0` / `yuku-core@0.19.0` | Vite core parser and native bindings | MIT |
 
-The project license and StyleX-derived notice are packaged as `LICENSE` and
-`NOTICE` in the repository root, shared by the public MoonBit module and tooling
-package, and independently in `packages/moonstyle-luna`. The Luna copies match
-the root files so packaging either module retains the upstream notices without
-depending on a sibling checkout. `NOTICE` records the StyleX release and source
-commit, the ported hashing implementation and its algorithm credits, and the
-boundary between upstream-derived semantics and MoonStyle-specific work.
+The root, Luna module, native tooling, browser client and optional Vite package
+each include matching `LICENSE` and `NOTICE` files. MIT attribution preserves
+Meta's notice alongside MoonStyle contributors. `NOTICE` identifies StyleX,
+its source revision, ported hashing credits and the boundary of derived work.
+See [data sources](data-sources.md) for generation inputs and their licenses.
 
-The exact-pinned data versions and generated-data policy are recorded
-in [data sources](data-sources.md). The automated `vp run release-audit` command also checks
-canonical repository metadata, installed dependency licenses, explicit
-maintainer-controlled publication, candidate performance evidence, and active documentation contracts.
-Default validation audits the root installation without requiring an oracle
-installation. Strict `vp run validate-ci` requires the oracle installation,
-audits licenses in both dependency graphs, and runs their security audits.
-`vp run audit-dependencies` runs the root security audit.
-`vp run audit-oracle` runs the separate oracle security audit after an explicit
-`vp run install-oracle`; it fails clearly if that installation is missing.
-An absent oracle cannot silently exempt its graph from strict CI.
-Vite+'s test tooling retains `@babel/code-frame`, `@babel/runtime`, and
-`@babel/helper-validator-identifier` in the root transitive graph; compiler
-isolation does not mean that every Babel-prefixed helper package is removed.
+```sh
+moon run tools/release-audit.mbtx
+moon run tools/maint.mbtx -- licenses-node
+vp -C verification exec bun audit --json
+vp -C tools/stylex-oracle exec bun audit --json
+```
 
-Official package metadata declares MIT for
-[Vite+ 1.4.0](https://registry.npmjs.org/vite-plus/1.4.0) and
-[Vite+ core 1.4.0](https://registry.npmjs.org/@voidzero-dev%2Fvite-plus-core/1.4.0).
-The toolchain bundles Vitest 5.0.5, Oxfmt 0.74.0, and Oxlint 1.89.0.
-Both lockfiles pin source-map-js 1.2.2 to address the indexed-source-map
-event-loop denial of service described in
-[GHSA-68fv-2mgg-jv7q](https://github.com/advisories/GHSA-68fv-2mgg-jv7q).
-Every installed package must provide license metadata or a license file; missing
-metadata is an audit failure.
+Both Node installations are mandatory for extended CI. An absent oracle
+cannot exempt its graph from license/security checks. Babel compiler and
+StyleX packages are forbidden in the verification graph; Babel runtime and
+diagnostic helpers used by Vite+ are allowed there. Packages without license
+metadata must supply a license file or the audit fails.
+
+The frozen graphs pin `source-map-js` 1.2.2 through an override. Dependency
+updates require review of lockfile changes, licenses, security results and
+the complete [validation workflow](ci-and-validation.md).

@@ -247,10 +247,7 @@ async fn main {
   for
     (path, content) in [
       ("src/values/common_inputs.generated.mbt", normalized),
-      (
-        "src/builder/common_inputs.generated.mbt",
-        builder.to_string(),
-      ),
+      ("src/builder/common_inputs.generated.mbt", builder.to_string()),
       ("src/common_inputs.generated.mbt", facade.to_string()),
     ] {
     @fs.write_file(path, content)

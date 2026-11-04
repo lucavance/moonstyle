@@ -32,7 +32,7 @@ declaration can replace an earlier conditional declaration for the same slot;
 see [application order](application-order-semantics.md).
 
 Registries, native extraction and regenerated artifacts add concepts and upgrade
-work. MoonStyle 0.2.0 does not supply a complete
+work. MoonStyle 0.3.0 does not supply a complete
 preset design scale, and currently supports Rabbita as its only Tier-1 framework.
 Luna is experimental; React authoring is outside the product boundary. Recipes
 cover single-style variants rather than a first-class multi-part slot recipe.

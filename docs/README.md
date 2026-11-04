@@ -1,6 +1,6 @@
 # MoonStyle documentation
 
-These guides describe MoonStyle 0.2.0, available on Mooncakes.
+These guides describe source version 0.3.0. Mooncakes currently provides 0.2.0.
 Module manifests, generated interfaces,
 reviewed metadata and versioned artifacts define the implemented contracts.
 
@@ -9,7 +9,7 @@ reviewed metadata and versioned artifacts define the implemented contracts.
 | Guide | Purpose |
 | --- | --- |
 | [Rabbita example](../validation/README.md) | Runnable application and browser fixtures included in the repository |
-| [Quickstart](quickstart.md) | Executable component/app consumer with packed tooling |
+| [Quickstart](quickstart.md) | Executable component/app consumer with a Moon-installed native CLI |
 | [Authoring](../docs/authoring.md) | Rules, composition, contracts, recipes and globals |
 | [Typed expressions](../src/expressions.mbt.md) | Math, gradients, backgrounds and Grid |
 | [Common values](../src/common_values.mbt.md) | Sizing, typography, corners, shadows and filters |
@@ -17,8 +17,8 @@ reviewed metadata and versioned artifacts define the implemented contracts.
 | [Theme and paint](../src/theme_paint.mbt.md) | Color schemes, scrollbars and SVG |
 | [Daily CSS and registration](../src/daily_css.mbt.md) | Text, font axes, hints and opt-in typed custom properties |
 | [Luna adapter](../packages/moonstyle-luna/README.md) | Experimental optional integration |
-| [Project tooling](../tooling/README.md) | CLI, Vite, diagnostics and inspection |
-| [Distribution](distribution.md) | Mooncakes library, Git/local paths and packed tooling |
+| [Project tooling](../tooling/README.md) | Native CLI, build/dev, diagnostics and inspection |
+| [Distribution](distribution.md) | Mooncakes library, Git/local paths and native tooling |
 | [Regeneration](regeneration.md) | Dependency-first artifact generation and cache rules |
 
 ## Understand the contracts

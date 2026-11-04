@@ -9,7 +9,8 @@
     "@babel/core": "8.0.9",
     "@stylexjs/babel-plugin": "0.19.1",
     "@stylexjs/shared": "0.19.1",
-    "@stylexjs/stylex": "0.19.1"
+    "@stylexjs/stylex": "0.19.1",
+    "vite-plus": "1.4.0"
   },
   "overrides": {
     "browserslist": "4.29.5",

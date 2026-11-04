@@ -15,7 +15,7 @@ these exact options:
 }
 ```
 
-`vp run refresh-oracle` compiles one representative declaration
+`node tools/stylex-oracle/generate-application-order.mjs` compiles one representative declaration
 for every one of the 392 typed IR properties. It records the property priority,
 live composition slot, conflict tombstones, and normalized LTR/RTL rule in
 `src/core/application-order.lock.json`. The complete semantic content
@@ -35,7 +35,7 @@ StyleX parity claim. The supplemental record does not add a typed font
 shorthand authoring API.
 
 The refresh task also generates `application_order.generated.mbt`. Ordinary
-`vp run generate` validates the committed lock's schema, profile, options,
+`moon run tools/build-styles.mbtx` validates the committed lock's schema, profile, options,
 input digest, and semantic digest, then renders the table without running
 Babel. Production compilation consumes only that MoonBit table. A missing lock
 or stale input digest fails before the table is replaced and instructs the
@@ -44,11 +44,11 @@ maintainer to install and refresh the oracle explicitly.
 The Babel compiler and the three StyleX packages are exact-pinned development
 dependencies of the independently installed `tools/stylex-oracle` package.
 It has its own frozen `bun.lock` and is not part of the root workspace. Refresh and live
-differential testing require `vp run install-oracle` first. They fail clearly
+differential testing require `vp -C tools/stylex-oracle install --frozen-lockfile` first. They fail clearly
 when those dependencies are absent; normal generation does not install them.
 The release contract records the published StyleX 0.19.1 tag and source commit
 `1fcb9a51cbecad2c82255e0f4b45cc072fa1a95a` as provenance. Before live tests,
-`vp run check-stylex-release` checks exact manifest and installed versions,
+`node tools/stylex-oracle/generate-application-order.mjs --check-release` checks exact manifest and installed versions,
 lockfile identities and integrity hashes, and the committed profile and digests.
 The oracle regression fixtures cover quoted
 `content`, pixel `defineConsts` ordering, generated max-width boundaries, and
@@ -106,7 +106,7 @@ reading generated MoonBit match arms. Every slot includes `slotProperties`,
 which names known live owners of that slot and makes tombstone edges readable.
 
 The default application-order tests validate the committed lock, local alias,
-and generated MoonBit entries without importing Babel. `vp run test-oracle`
+and generated MoonBit entries without importing Babel. `vp -C tools/stylex-oracle test run --config vite.config.mjs`
 recompiles all 392 properties, the supplemental font shorthand, and the
 condition fixtures. It compares raw upstream priorities,
 slots, and normalized rules, then checks the versioned local alias separately
@@ -116,8 +116,8 @@ same runtime shape on all four backends. Browser tests cover shorthand and
 longhand order, logical and physical order, LTR, RTL, and `vertical-rl` writing
 mode in Chromium, Firefox in normal CI, and WebKit.
 
-Strict `vp run validate-ci` requires those live oracle tests. Default
-`vp run validate` covers the committed semantic baseline without requiring the
+Strict `moon run tools/validate-ci.mbtx` requires those live oracle tests. Default
+`moon run tools/validate.mbtx` covers the committed semantic baseline without requiring the
 oracle installation. Explicit refresh compiles and verifies all observations
 before replacing the lock and table; it does not silently alter the baseline
 as part of validation.

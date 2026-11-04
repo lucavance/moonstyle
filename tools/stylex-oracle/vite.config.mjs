@@ -2,6 +2,7 @@ import path from 'node:path';
 import { defineConfig } from 'vite-plus';
 
 export default defineConfig({
+  fmt: { singleQuote: true, semi: true, ignorePatterns: ['**/node_modules/**', '**/bun.lock'] },
   root: path.resolve(import.meta.dirname, '../..'),
   test: {
     include: ['tools/stylex-oracle/tests/**/*.test.mjs'],

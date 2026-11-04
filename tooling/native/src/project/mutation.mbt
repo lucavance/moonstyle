@@ -5,11 +5,36 @@ pub async fn transact(
   writes : Map[String, String],
   dry_run~ : Bool = false,
 ) -> Array[String] {
+  let bytes = Map([])
+  for path, value in writes {
+    bytes[path] = @utf8.encode(value)
+  }
+  transact_data(root, bytes, dry_run~)
+}
+
+///|
+pub async fn transact_data(
+  root : String,
+  writes : Map[String, Bytes],
+  dry_run~ : Bool = false,
+  remove~ : Array[String] = [],
+) -> Array[String] {
   let changed = []
   for path, content in writes {
     ignore(@support.project_path(root, path))
     let target = root + "/" + path
-    if !@fs.exists(target) || @support.read(target) != content {
+    if !@fs.exists(target) || @fs.read_file(target).binary() != content {
+      changed.push(path)
+    }
+  }
+  for path in remove {
+    ignore(@support.project_path(root, path))
+    guard !writes.contains(path) else {
+      @support.reject(
+        "STYLE_TRANSACTION", "Cannot write and remove the same file",
+      )
+    }
+    if @fs.exists(root + "/" + path) && !changed.contains(path) {
       changed.push(path)
     }
   }
@@ -45,8 +70,11 @@ pub async fn transact(
     })
     for path in changed {
       let target = root + "/" + path
-      @support.write(target + nonce + ".tmp", writes[path])
-      staged.push(target)
+      if writes.get(path) is Some(content) {
+        @fs.mkdir(@support.parent(target), recursive=true, allow_exist=true)
+        @fs.write_file(target + nonce + ".tmp", content)
+        staged.push(target)
+      }
     }
     for path in changed {
       ignore(@support.project_path(root, path))
@@ -55,8 +83,10 @@ pub async fn transact(
         @fs.rename(target, target + nonce + ".bak")
         backed_up.push(target)
       }
-      @fs.rename(target + nonce + ".tmp", target)
-      installed.push(target)
+      if writes.contains(path) {
+        @fs.rename(target + nonce + ".tmp", target)
+        installed.push(target)
+      }
     }
   }
   for target in backed_up {
@@ -76,7 +106,8 @@ fn desired_files(extractor : String, styles : String) -> Map[String, String] {
       extractor + "/moon.pkg",
       "import {\n  " +
       @support.quote(styles) +
-      " @styles,\n  \"lampclaw/moonstyle/extract/cli\",\n}\noptions(\"is-main\": true)\nsupported_targets = \"native\"\n",
+      (if styles.has_suffix("/styles") { "" } else { " @styles" }) +
+      ",\n  \"lampclaw/moonstyle/extract/cli\",\n}\n\npkgtype(kind: \"executable\")\n\nsupported_targets = \"native\"\n",
     ),
     (
       ".vscode/tasks.json", "{\n  \"version\": \"2.0.0\",\n  \"tasks\": [\n    { \"label\": \"MoonStyle: generate\", \"type\": \"shell\", \"command\": \"moonstyle generate\", \"problemMatcher\": [] },\n    { \"label\": \"MoonStyle: check\", \"type\": \"shell\", \"command\": \"moonstyle check\", \"problemMatcher\": [] },\n    { \"label\": \"MoonStyle: watch\", \"type\": \"shell\", \"command\": \"moonstyle watch\", \"problemMatcher\": [] }\n  ]\n}\n",

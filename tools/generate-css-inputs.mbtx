@@ -393,10 +393,7 @@ async fn main {
     "src/builder/css_inputs.generated.mbt",
     deduplicated.to_string(),
   )
-  @fs.write_file(
-    "src/css_inputs.generated.mbt",
-    facade.to_string(),
-  )
+  @fs.write_file("src/css_inputs.generated.mbt", facade.to_string())
   for
     path in [
       "src/builder/css_inputs.generated.mbt", "src/css_inputs.generated.mbt",

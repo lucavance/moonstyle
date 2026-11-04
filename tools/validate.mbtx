@@ -1,0 +1,34 @@
+----
+import {
+  "moonbitlang/async@0.22.5",
+  "moonbitlang/async@0.22.5/shell",
+  "moonbitlang/async@0.22.5/fs",
+  "moonbitlang/core/env",
+}
+----
+
+async fn script(name : String, args : Array[String]) -> Unit {
+  println("[native] " + name)
+  @shell.Cmd("moon", ["run", "tools/" + name + ".mbtx"] + (if args.is_empty() { [] } else { ["--"] + args })).run()
+}
+
+async fn main {
+  for name in ["check-toolchain", "build-styles", "embed-dev-client", "refresh-fixtures"] {
+    script(name, [])
+  }
+  script("moonstyle", ["doctor", "--root", "validation", "--strict"])
+  for name in ["check-interfaces", "api-baseline", "check-docs", "check-boundaries"] {
+    script(name, [])
+  }
+  @shell.Cmd("moon", ["check", "--target", "all"]).run()
+  for target in ["native", "wasm", "wasm-gc"] {
+    @shell.Cmd("moon", ["test", "--target", target]).run()
+  }
+  for name in ["check-compile-fail", "check-contract-consumer", "check-codegen", "check-native-cli", "build-demo", "check-generated", "release-audit"] {
+    script(name, [])
+  }
+  @shell.Cmd("moon", ["fmt", "--check"]).run()
+  @shell.Cmd("moon", ["fmt", "--check"] + @fs.readdir("tools").filter(name => name.has_suffix(".mbtx")).map(name => "tools/" + name)).run()
+  script("verify-consumer", if @env.args().contains("--clean") { [] } else { ["--snapshot"] })
+  println("Native validation passed without Node, Bun, npm or Vite.")
+}

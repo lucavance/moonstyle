@@ -1,0 +1,28 @@
+MoonStyle (lampclaw/moonstyle)
+
+MoonStyle is an independently maintained MoonBit adaptation of selected StyleX
+atomic CSS semantics. Portions of the hashing implementation and semantic
+behavior were ported or derived from StyleX under the MIT License.
+
+Upstream project: https://github.com/meta/stylex
+Reference release: StyleX 0.19.1
+Recorded source commit: 1fcb9a51cbecad2c82255e0f4b45cc072fa1a95a
+Copyright (c) Meta Platforms, Inc. and affiliates.
+
+The MurmurHash2 compatibility implementation follows the upstream source at
+packages/@stylexjs/babel-plugin/src/shared/hash.js. That source also credits
+Gary Court and Austin Appleby for MurmurHash2; those credits are retained here.
+
+MoonStyle's MoonBit authoring API, native extraction pipeline, component
+contracts, and project tooling are maintained by the MoonStyle contributors.
+Compatibility covers the documented semantic subset, not the complete StyleX
+JavaScript API. The font-aliases-v1 composition policy is a local extension.
+
+StyleX and its Babel compiler are used only in the isolated maintenance and
+differential-test package. They are not production runtime dependencies or
+included in distributed MoonBit artifacts.
+
+The accompanying LICENSE retains the upstream copyright and MIT permission
+notice. Copies or substantial portions of the derived software must retain
+those notices. Each independently packaged MoonBit module includes LICENSE
+and NOTICE; the root tooling package includes them as well.

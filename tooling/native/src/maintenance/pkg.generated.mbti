@@ -6,6 +6,8 @@ pub async fn api_baseline(String, write? : Bool) -> Unit
 
 pub async fn application_order(String) -> Unit
 
+pub async fn boundaries(String) -> Unit
+
 pub async fn docs(String) -> Unit
 
 pub async fn fixtures(String, write? : Bool) -> Unit
@@ -17,6 +19,8 @@ pub async fn interfaces(String) -> Unit
 pub async fn licenses(String) -> Unit
 
 pub fn manifest_field(String, String) -> String?
+
+pub async fn node_licenses(String) -> Unit
 
 pub async fn run(String, String, write? : Bool) -> Unit
 

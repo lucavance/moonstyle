@@ -2,7 +2,7 @@
 
 MoonBit module: `lampclaw/moonstyle-luna`.
 
-Status: experimental; not a Tier-1 framework integration for 0.2.0.
+Status: experimental; not a Tier-1 framework integration for source 0.3.0.
 
 Optional Luna `0.25.2` adapter for `lampclaw/moonstyle`. The core styling module
 does not depend on Luna; applications opt into this sibling module only when
@@ -37,7 +37,7 @@ both standalone consumers and this workspace:
 
 | Dependency | Version |
 | --- | --- |
-| `lampclaw/moonstyle` | 0.2.0 |
+| `lampclaw/moonstyle` | 0.3.0 |
 | `mizchi/luna` | 0.25.2 |
 | `mizchi/signals` | 0.6.6 |
 | `mizchi/js_web` | 0.13.1 |

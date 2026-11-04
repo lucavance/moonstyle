@@ -10,7 +10,7 @@ only after checking their slots, tombstones, and priorities against the pinned
 oracle. The fixture semantic identity, canonical bundle digests, and component
 B's references to component A are then refreshed together.
 
-Run `vp exec node validation/tests/dependency-fixtures/refresh.mjs --write` to refresh, or omit
+Run `moon run tools/refresh-fixtures.mbtx -- --write` to refresh, or omit
 `--write` to verify. The script also validates both bundles with the current
 native decoder. It reconstructs component A's exact background and contract
 through `compile_registry`, verifies that its manifest differs only in the
@@ -18,7 +18,7 @@ intentional `dep-a` class name and resulting digest, and uses the native mapping
 output to refresh `tests/component_a_generated`. No library fixture API is
 added. An oracle mismatch requires review and stops the refresh.
 
-`vp run check-generated` runs this verification after building the generated
+`moon run tools/check-generated.mbtx` runs this verification after building the generated
 application artifacts. JSON fixtures are compared as parsed data so formatting
 does not affect the check; native-generated MoonBit mappings and their package
 manifest must match byte for byte.

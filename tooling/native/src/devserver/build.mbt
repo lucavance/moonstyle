@@ -43,6 +43,14 @@ pub async fn build(
 ) -> Json {
   let output = @support.project_path(root, out_dir)
   let main_package = @support.project_path(root, main_package)
+  guard output != "public" &&
+    !output.has_prefix("public/") &&
+    output != main_package &&
+    !main_package.has_prefix(output + "/") else {
+    @support.reject(
+      "STYLE_BUILD_PATH", "Build output must be separate from public assets and the main package",
+    )
+  }
   let config = @project.style_config(root)
   let extraction = @project.extract(
     root,
@@ -79,35 +87,80 @@ pub async fn build(
     )
   }
   let prefix = output + "/"
-  let writes : Map[String, String] = Map([])
-  writes[prefix + "app.js"] = @support.read(script)
+  let writes : Map[String, Bytes] = Map([])
+  writes[prefix + "app.js"] = @fs.read_file(script).binary()
   let css = @support.read(
     root + "/" + @support.text(@support.get(config, "outputs"), "css"),
   )
-  writes[prefix + "styles.css"] = css +
+  writes[prefix + "styles.css"] = @utf8.encode(
+    css +
     (if development {
       "\n/*# sourceMappingURL=styles.css.map */\n"
     } else {
       ""
-    })
+    }),
+  )
   let assets = "<link rel=\"stylesheet\" href=\"./styles.css\">\n<script type=\"module\" src=\"./app.js\"></script>" +
     (if development {
       "\n<script type=\"module\" src=\"./dev-client.js\"></script>"
     } else {
       ""
     })
-  writes[prefix + "index.html"] = template.replace_all(
-    old="<!-- moonstyle-assets -->",
-    new=assets,
+  writes[prefix + "index.html"] = @utf8.encode(
+    template.replace_all(old="<!-- moonstyle-assets -->", new=assets),
   )
   if development {
     let cache = @support.text(config, "cacheDirectory")
-    writes[prefix + "dev-client.js"] = client(root, cache)
-    writes[prefix + "styles.css.map"] = source_map(
-      css,
-      debug_manifest(root, cache),
-    ).stringify()
+    writes[prefix + "dev-client.js"] = @utf8.encode(client(root, cache))
+    writes[prefix + "styles.css.map"] = @utf8.encode(
+      source_map(css, debug_manifest(root, cache)).stringify(),
+    )
   }
-  let changed = @project.transact(root, writes)
+  let public_directory = root + "/public"
+  if @fs.exists(public_directory) {
+    for file in @support.files(public_directory) {
+      let name = file[public_directory.length() + 1:].to_owned()
+      guard ![
+        "index.html", "app.js", "styles.css", "styles.css.map", "dev-client.js",
+      ].contains(name) else {
+        @support.reject(
+          "STYLE_BUILD_ASSET",
+          "Public asset collides with a generated file: " + name,
+        )
+      }
+      writes[prefix + name] = @fs.read_file(file).binary()
+    }
+  }
+  let ownership_path = @support.text(config, "cacheDirectory") +
+    "/web-output-" +
+    @support.hash(output)[7:23].to_owned() +
+    ".json"
+  let previous = @support.json(root + "/" + ownership_path) catch {
+    _ => Json::null()
+  }
+  let remove = if development {
+    []
+  } else {
+    [prefix + "dev-client.js", prefix + "styles.css.map"]
+  }
+  if previous is Object(entries) {
+    for file, digest in entries {
+      if file.has_prefix(prefix) &&
+        !writes.contains(file) &&
+        !remove.contains(file) {
+        ignore(@support.project_path(root, file))
+        if @fs.exists(root + "/" + file) &&
+          Json(@support.file_hash(root + "/" + file)) == digest {
+          remove.push(file)
+        }
+      }
+    }
+  }
+  let ownership : Map[String, Json] = Map([])
+  for file, bytes in writes {
+    ownership[file] = Json(@support.hash_bytes(bytes))
+  }
+  writes[ownership_path] = @utf8.encode(Json::object(ownership).stringify())
+  let changed = @project.transact_data(root, writes, remove~)
   @project.report("build", diagnostics, changed~)
 }

@@ -1,4 +1,4 @@
-# MoonStyle 0.2.0 status
+# MoonStyle 0.3.0 source status
 
 MoonStyle provides typed atomic CSS authored in MoonBit. The Mooncakes module
 includes the library, native extractor and Rabbita adapter. The source repository
@@ -8,13 +8,13 @@ also includes project tooling, generated mappings and a Rabbita browser example.
 
 | Contract | Current value |
 | --- | --- |
-| Library, optional Luna module, private tooling | 0.2.0 |
+| Library, optional Luna module, native tools | 0.3.0 (prepared for release) |
 | Reviewed typed properties | 392 |
 | Artifact schema | v14 |
 | Property generator schema | v18 |
 | Application-order semantic lock | v4 |
 | Extraction cache pack | v4 |
-| Tooling protocol / project ownership manifest | v1 / v1 |
+| Tooling protocol / project ownership manifest | v1 / v2 |
 
 The authoring API includes fluent rules, typed expressions, themes, dynamic
 slots, exact component contracts, recipes, registered globals, and recursive
@@ -56,23 +56,23 @@ registry with `moon update` before running them on a fresh installation.
 
 ## Validation and delivery
 
-`vp run validate` validates source and an independent development-snapshot
-consumer. `vp run validate-ci` additionally requires the installed oracle,
-three browsers, both dependency audits, and consumption of the actual clean
-Git commit. Generated reports in `.generated/` identify the source they test.
-`vp run benchmark-candidate` creates two measured performance reports; the
-release audit enforces their budgets and matching fixture fingerprints.
+`moon run tools/validate.mbtx` runs the native validation workflow without Node.
+`moon run tools/validate-ci.mbtx` adds the isolated oracle, independent standards
+checks, optional Vite adapter, three browsers, security/license audits and
+actual clean-commit consumption. See [CI and validation](ci-and-validation.md).
 
-Mooncakes provides `lampclaw/moonstyle@0.2.0`. Git and local-path consumers use
-a reviewed source commit from
-[lucavance/moonstyle](https://github.com/lucavance/moonstyle). The private
-`@lampclaw/moonstyle-tooling` package is installed from packed source and is
-not published to npm.
+Generation, project commands, file watching and the development HTTP server use
+MoonBit. The inspector's MoonBit source compiles to browser JavaScript through
+small DOM FFI bindings. Production application compilation also uses Moon's JS
+backend. Full-page reload is used after successful development builds.
 
-The [Rabbita example](../validation/README.md), component fixtures, tested value
-examples and executable quickstart are included in the repository. Independent
-consumer validation creates its component and application from the quickstart
-and consumes tooling packed from the tested source revision. Hosted validation
-records the exact source commit in
+Mooncakes provides `lampclaw/moonstyle@0.2.0`. Source 0.3.0 is prepared for release
+and available through a reviewed Git commit. The native CLI is installed with
+`moon install` from the same source. The optional private Vite adapter lives in
+`tooling/vite/`; Node test dependencies live in `verification/` and the separate
+StyleX oracle. They are outside the default dependency graph.
+
+The [included example](../validation/README.md), executable quickstart and test
+fixtures provide all acceptance sources. Reports in `.generated/` identify the
+tested source. Hosted evidence is available from
 [Candidate CI](https://github.com/lucavance/moonstyle/actions/workflows/ci.yml).
-See [release policy](release-policy.md) and [CI and validation](ci-and-validation.md).

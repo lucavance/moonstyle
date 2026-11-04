@@ -26,6 +26,8 @@ pub fn get(Json, String) -> Json
 
 pub fn hash(String) -> String
 
+pub fn hash_bytes(Bytes) -> String
+
 pub fn join(String, String) -> String
 
 pub async fn json(String) -> Json

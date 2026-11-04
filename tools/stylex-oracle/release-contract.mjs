@@ -84,7 +84,7 @@ export function assertOracleReleaseContract(input) {
         .map((issue) => `- ${issue}`)
         .join(
           '\n',
-        )}\nRestore the reviewed oracle pins and lockfile, then run vp run install-oracle.\nRecorded release commit: ${STYLEX_RELEASE_COMMIT}`,
+        )}\nRestore the reviewed oracle pins and lockfile, then run vp -C tools/stylex-oracle install --frozen-lockfile.\nRecorded release commit: ${STYLEX_RELEASE_COMMIT}`,
     );
   }
   return {

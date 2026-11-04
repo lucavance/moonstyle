@@ -3,8 +3,14 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { test } from 'vite-plus/test';
-import { buildStyles } from '../../build-styles.mjs';
-import { renderStylexModule, validateManifest } from '../../stylex-bridge.mjs';
+function buildStyles() {
+  const result = spawnSync('moon', ['run', 'tools/build-styles.mbtx', '--styles-only'], {
+    cwd: root,
+    encoding: 'utf8',
+  });
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+}
+import { renderStylexModule, validateManifest } from '../../../verification/stylex-bridge.mjs';
 import { compileManifest, compileStylexSource } from '../stylex-compiler.mjs';
 
 const root = path.resolve(import.meta.dirname, '../../..');

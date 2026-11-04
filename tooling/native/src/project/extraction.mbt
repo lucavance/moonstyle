@@ -159,6 +159,7 @@ pub async fn extract(
     "identity": identity,
     "resolved": {
       "root": root,
+      "workspaceRoots": workspace_paths(root),
       "extractorPackage": @support.get(manifest, "extractorPackage"),
       "mappingsPackage": @support.get(config, "mappingsPackage"),
       "cacheDirectory": @support.get(config, "cacheDirectory"),

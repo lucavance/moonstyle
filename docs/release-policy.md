@@ -1,34 +1,34 @@
 # Release policy
 
-MoonStyle 0.2.0 is available on Mooncakes and can also be consumed through
-reviewed Git commits or local paths.
-The library, validation workspace, optional Luna module and private tooling
-share version 0.2.0. Artifact, metadata and tooling schemas have independent
-versions; see [API stability](api-stability.md).
+The published Mooncakes module is `lampclaw/moonstyle@0.2.0`. Current source
+version 0.3.0 prepares native tooling and has not been published. The root
+library, validation consumer, Luna adapter and source tooling share the source
+version; artifact, metadata and protocol schemas have independent versions.
+See [API stability](api-stability.md) and [release status](../release-status.json).
 
-A source-version tag identifies a reviewed commit. Consumers should resolve
-and pin its full commit identity. Tagging and publication require an explicit
-maintainer action; repository validation never performs them.
+A release tag identifies a reviewed commit. Pin its full commit identity for
+source consumption. Tagging, pushing and publication require explicit maintainer
+action; validation never performs them.
 
-Before tagging, require a clean tree, reproducible generated artifacts and
-interfaces, the API baseline, documentation checks, four-backend library tests,
-Chromium/Firefox/WebKit, the isolated StyleX oracle, both dependency audits,
-performance budgets, license review, and independent consumption of the
-actual clean commit through `vp run validate-ci`.
+Before tagging, require a clean tree, reproducible generated outputs and
+interfaces, the published API baseline, documentation checks, package/license
+audits, native/Wasm/Wasm GC/JS tests, compile-fail contracts, two passing native
+performance reports, development performance budgets, the isolated live StyleX
+oracle, both Node security audits and Chromium/Firefox/WebKit acceptance.
 
-Release approval also requires maintainer review and successful hosted CI for
-the same commit. The application, component fixtures and executable quickstart
-used by these checks are included in this repository. CI builds the Rabbita
-example and creates an independent component/application pair from the
-quickstart, consuming the exact tested commit and packed tooling. See
-[CI and validation](ci-and-validation.md) for setup, checks and reports.
+`moon run tools/validate-ci.mbtx` runs the native and extended gates. Final
+acceptance consumes the actual clean Git revision and tree through an
+independent clone, installs its CLI with `moon install`, and executes the
+repository quickstart. A `--snapshot` development report cannot replace this
+final commit check. All required application and component examples are in
+the repository; see [CI and validation](ci-and-validation.md).
 
-The published Mooncakes module is `lampclaw/moonstyle@0.2.0`. Each new release
-requires the release gates and maintainer approval before publication.
-Registry publication records
-the library version; a published package does not replace validation of a changed
-source commit.
-The tooling package is
-private, is not published to npm, and supports Git/path installation.
-Package publication is a separate maintainer operation. See
-[distribution](distribution.md) and [regeneration](regeneration.md).
+Release approval requires maintainer review and successful hosted native and
+extended CI for the same commit. Native validation must pass with Node/Bun/Vite
+unavailable. Extended tools remain required release checks even though ordinary
+library use and development do not need them.
+
+The native CLI is installed from reviewed Git source. The optional Vite adapter
+is private and source-distributed. Mooncakes publication is a separate operation
+after release approval. See [distribution](distribution.md) and
+[regeneration](regeneration.md).

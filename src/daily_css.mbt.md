@@ -86,5 +86,5 @@ merging. Upgrade consumers with tooling from the same source revision and
 re-extract component dependencies before applications for artifact v14.
 
 The [repository browser example](../validation/examples/styles/daily.mbt) and
-[browser tests](../tests/e2e.mjs) exercise inheritance, invalid assignments and
+[browser tests](../verification/tests/e2e.mjs) exercise inheritance, invalid assignments and
 length interpolation in Chromium, Firefox and WebKit.

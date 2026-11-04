@@ -1,0 +1,37 @@
+----
+import { "moonbitlang/async@0.22.5", "moonbitlang/async@0.22.5/fs", "moonbitlang/async@0.22.5/shell", "moonbitlang/core/json" }
+----
+async fn main {
+  let temporary = @fs.tmpdir(prefix="moonstyle-codegen-rejection-")
+  defer @fs.rmdir(temporary, recursive=true)
+  for file in ["tools/data/css-inputs.json", "tools/data/reviewed-grammars.json", "src/properties/property-api.json", "src/properties/css-coverage-api.json"] {
+    let parts = file.split("/").collect()
+    @fs.mkdir(temporary + "/" + parts[:parts.length() - 1].map(part => part.to_owned()).join("/"), recursive=true, allow_exist=true)
+    @fs.write_file(temporary + "/" + file, @fs.read_file(file))
+  }
+  let run = async fn() -> Unit {
+    let result = @shell.Cmd("moon", ["-C", "tooling/native", "run", "src/cmd/codegen", "--target", "native", "--", temporary]).output()
+    guard result.exit_code() != 0 else { fail("Invalid generator input was accepted") }
+    guard (result.stdout() + result.stderr()).contains("STYLE_GENERATION") || (result.stdout() + result.stderr()).contains("STYLE_JSON") else { fail("Unexpected generation failure: " + result.stdout() + result.stderr()) }
+    assert_eq(@fs.read_file(temporary + "/src/properties/properties.mbt").text(), "preserve me\n")
+  }
+  @fs.write_file(temporary + "/src/properties/properties.mbt", "preserve me\n")
+  let snapshot = @fs.read_file(temporary + "/tools/data/css-inputs.json").text()
+  @fs.write_file(temporary + "/tools/data/css-inputs.json", snapshot.replace_all(old="\"schemaVersion\": 1", new="\"schemaVersion\": 2"))
+  run()
+  @fs.write_file(temporary + "/tools/data/css-inputs.json", snapshot.replace_all(old="8.7.8", new="8.7.9"))
+  run()
+  @fs.write_file(temporary + "/tools/data/css-inputs.json", snapshot)
+  let api = @fs.read_file(temporary + "/src/properties/property-api.json").text()
+  @fs.write_file(temporary + "/src/properties/property-api.json", api.replace_all(old="stable-border-composite-v1", new="unreviewed-border-profile"))
+  run()
+  @fs.write_file(temporary + "/src/properties/property-api.json", api.replace_all(old="IsolationAuto", new="Invalid-Constructor"))
+  run()
+  @fs.write_file(temporary + "/src/properties/property-api.json", api)
+  let reviews = @json.parse(@fs.read_file(temporary + "/tools/data/reviewed-grammars.json").text())
+  guard reviews is Object(fields) else { fail("Invalid review input") }
+  fields.clear()
+  @fs.write_file(temporary + "/tools/data/reviewed-grammars.json", Json::object(fields).stringify())
+  run()
+  println("Generator rejects schema, snapshot digest, profile, identifier and reviewed-grammar drift before replacing outputs.")
+}

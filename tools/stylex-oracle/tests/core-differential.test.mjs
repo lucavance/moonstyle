@@ -7,7 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 import {
   APPLICATION_ORDER_OPTIONS,
   APPLICATION_ORDER_PRIORITY_SCALE,
-} from '../../application-order.mjs';
+} from '../../../verification/application-order.mjs';
 import { compileStylexSource } from '../stylex-compiler.mjs';
 
 const root = path.resolve(import.meta.dirname, '../../..');

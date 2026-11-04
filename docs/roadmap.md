@@ -22,6 +22,14 @@ concepts from implemented subsets. These milestones assign no release date.
   to each release; [current status](current-status.md) records implemented and
   published versions.
 
+## 0.3.0 source capabilities
+
+- Moon-installed native CLI with ownership-safe init/upgrade and structured diagnostics.
+- Native generation, maintenance, build, HTTP development server and file watching.
+- MoonBit browser inspector, CSS source maps, binary public assets and failure recovery.
+- Node-free default validation with separate required extended standards, oracle and browser checks.
+- Schema v5 native cache measurements while preserving public library interfaces.
+
 ## Next: themes and measured build quality
 
 Conditional defaults and overrides are the first theme priority: typed

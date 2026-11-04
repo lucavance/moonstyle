@@ -21,7 +21,7 @@ import {
   renderApplicationOrderMoonbit,
   validateApplicationOrderLock,
   writeApplicationOrderFile,
-} from '../application-order.mjs';
+} from '../../verification/application-order.mjs';
 import {
   ORACLE_PACKAGE_VERSIONS,
   STYLEX_RELEASE_COMMIT,
@@ -38,13 +38,13 @@ export function ensureOracleDependencies() {
     const filename = path.join(oracleRoot, 'node_modules', packageName, 'package.json');
     if (!fs.existsSync(filename)) {
       throw new Error(
-        `StyleX oracle dependency ${packageName} is missing; run vp run install-oracle`,
+        `StyleX oracle dependency ${packageName} is missing; run vp -C tools/stylex-oracle install --frozen-lockfile`,
       );
     }
     const installed = readApplicationOrderJson(filename).version;
     if (manifest.devDependencies?.[packageName] !== expected || installed !== expected) {
       throw new Error(
-        `StyleX oracle requires ${packageName} exact-pinned to ${expected}, found manifest ${manifest.devDependencies?.[packageName]} and installed ${installed}; run vp run install-oracle`,
+        `StyleX oracle requires ${packageName} exact-pinned to ${expected}, found manifest ${manifest.devDependencies?.[packageName]} and installed ${installed}; run vp -C tools/stylex-oracle install --frozen-lockfile`,
       );
     }
     versions[packageName] = installed;

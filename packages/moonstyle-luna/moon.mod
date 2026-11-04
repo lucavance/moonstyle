@@ -1,6 +1,6 @@
 name = "lampclaw/moonstyle-luna"
 
-version = "0.2.0"
+version = "0.3.0"
 
 readme = "README.md"
 
@@ -11,7 +11,7 @@ license = "MIT"
 description = "Optional Luna adapter for lampclaw/moonstyle"
 
 import {
-  "lampclaw/moonstyle@0.2.0",
+  "lampclaw/moonstyle@0.3.0",
   "mizchi/luna@0.25.2",
   "mizchi/js_web@0.13.1",
   "mizchi/npm_typed@0.1.18",

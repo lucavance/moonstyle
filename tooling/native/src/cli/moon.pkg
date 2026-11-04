@@ -4,6 +4,7 @@ import {
   "lampclaw/moonstyle-tooling/devserver",
   "moonbitlang/core/string",
   "moonbitlang/async/fs",
+  "moonbitlang/async/stdio",
   "moonbitlang/async",
 }
 

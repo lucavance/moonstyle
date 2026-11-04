@@ -61,8 +61,7 @@ fn snippets(markdown : String) -> Array[(String, String)] raise {
 
 ///|
 async fn cli(cli : String, directory : String, args : Array[String]) -> Json {
-  let args = [cli, ..args, "--root", directory, "--json"]
-  @json.parse(command(directory, "node", args))
+  @json.parse(command(directory, cli, args + ["--root", directory, "--json"]))
 }
 
 ///|
@@ -79,7 +78,7 @@ async fn formal_outputs(app : String) -> Array[String] {
 
 ///|
 async fn watch_recovery(cli_path : String, app : String) -> Unit {
-  let filename = app + "/styles/styles.mbt"
+  let filename = app + "/src/styles/styles.mbt"
   let original = @fs.read_file(filename).text()
   let before = formal_outputs(app)
   @async.with_timeout(60000, async fn() {
@@ -88,8 +87,8 @@ async fn watch_recovery(cli_path : String, app : String) -> Unit {
       defer reader.close()
       let child = @process.spawn(
         group,
-        "node",
-        [cli_path, "watch", "--root", app, "--json"],
+        cli_path,
+        ["watch", "--root", app, "--json"],
         cwd=app,
         stdout=writer,
         cancel_handler=@process.graceful_cancel(timeout=3000),
@@ -101,6 +100,9 @@ async fn watch_recovery(cli_path : String, app : String) -> Unit {
           fail("Watch stopped before recovery")
         }
         let event = @json.parse(line)
+        if event is { "event": String("watch-cycle"), "passed": passed, .. } {
+          println("consumer-watch " + passed.stringify())
+        }
         match event {
           { "event": "watch-cycle", "passed": value, .. } => {
             let passed = value is True
@@ -186,29 +188,23 @@ async fn main {
   let source = temporary + "/source"
   ignore(command(source, "git", ["checkout", "--detach", revision]))
   assert_eq(command(source, "git", ["rev-parse", "HEAD^{tree}"]), tree)
-  let packed = @json.parse(
-    command(source, "npm", ["pack", "--json", "--pack-destination", temporary]),
+  let bin = temporary + "/bin"
+  ignore(
+    command(source, "moon", [
+      "install", "./tooling/native/src/cmd/moonstyle", "--bin", bin,
+    ]),
   )
-  guard packed is [package_] else {
-    fail("npm pack must return exactly one package")
-  }
-  let tarball = temporary + "/" + field(package_, "filename")
   let files = snippets(@fs.read_file(source + "/docs/quickstart.md").text())
   for (filename, content) in files {
-    if filename.has_prefix("app/main/") {
+    if filename.has_prefix("app/src/demo/") {
       continue
     }
-    write(
-      temporary + "/" + filename,
-      content.replace_all(old="__TOOLING_TARBALL__", new=tarball),
-    )
+    write(temporary + "/" + filename, content)
   }
   let app = temporary + "/app"
   let component = temporary + "/components"
-  println("Installing tooling packed from " + revision)
-  ignore(command(app, "bun", ["install", "--ignore-scripts"]))
-  let cli_path = app +
-    "/node_modules/@lampclaw/moonstyle-tooling/tooling/cli.mjs"
+  println("Installed native CLI from " + revision)
+  let cli_path = bin + "/moonstyle"
   ignore(cli(cli_path, component, ["init"]))
   ignore(cli(cli_path, component, ["generate"]))
   let bundle_text = @fs.read_file(
@@ -225,7 +221,7 @@ async fn main {
   }
   ignore(command(component, "git", ["init", "-q"]))
   ignore(
-    command(component, "git", ["add", "moon.mod", "styles", "src/generated"]),
+    command(component, "git", ["add", "moon.mod", "src/styles", "src/generated"]),
   )
   ignore(
     command(component, "git", [
@@ -245,7 +241,7 @@ async fn main {
   write(app + "/dependencies/component.bundle.json", bundle_text)
   ignore(cli(cli_path, app, ["generate"]))
   for (filename, content) in files {
-    if filename.has_prefix("app/main/") {
+    if filename.has_prefix("app/src/demo/") {
       write(temporary + "/" + filename, content)
     }
   }
@@ -266,8 +262,8 @@ async fn main {
       ),
     )
     let rejected = @shell.Cmd(
-      "node",
-      [cli_path, "generate", "--root", app, "--json"],
+      cli_path,
+      ["generate", "--root", app, "--json"],
       cwd=app,
     ).output()
     assert_true(
@@ -287,7 +283,7 @@ async fn main {
   ignore(cli(cli_path, app, ["generate"]))
   ignore(cli(cli_path, app, ["check"]))
   println("Building independent Rabbita application")
-  ignore(command(app, app + "/node_modules/.bin/vp", ["build"]))
+  ignore(cli(cli_path, app, ["build"]))
   assert_true(@fs.exists(app + "/dist/index.html"))
   let report : Json = {
     "schemaVersion": 1,
@@ -297,11 +293,11 @@ async fn main {
     "passed": true,
     "componentDigest": digest,
     "checks": [
-      "git-clone-exact-revision", "executable-quickstart", "packed-tooling", "component-committed-contract",
-      "init-idempotence", "strict-resolution", "generate-check", "v9-rejected-without-writes",
-      "v10-rejected-without-writes", "v11-rejected-without-writes", "v12-rejected-without-writes",
-      "v13-rejected-without-writes", "modern-colors-3d-exact-contract", "bottom-up-reextraction", "watch-recovery",
-      "rabbita-production-build",
+      "git-clone-exact-revision", "executable-quickstart", "moon-installed-native-cli",
+      "component-committed-contract", "init-idempotence", "strict-resolution", "generate-check",
+      "v9-rejected-without-writes", "v10-rejected-without-writes", "v11-rejected-without-writes",
+      "v12-rejected-without-writes", "v13-rejected-without-writes", "modern-colors-3d-exact-contract",
+      "bottom-up-reextraction", "watch-recovery", "rabbita-production-build",
     ],
   }
   write(root + "/.generated/consumer.json", report.stringify(indent=2) + "\n")

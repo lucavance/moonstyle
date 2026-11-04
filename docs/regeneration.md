@@ -25,7 +25,7 @@ and [artifact contract](artifact-schema-v14.md).
 
 ## Version and cache identity
 
-The 0.2.0 source uses artifact schema v14, property generator schema v18,
+The 0.3.0 source uses artifact schema v14, property generator schema v18,
 semantic-lock schema v4 and extraction cache pack v4. These version numbers
 describe different contracts. Matching package versions alone does not make
 an incompatible bundle valid.

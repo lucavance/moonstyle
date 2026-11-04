@@ -65,20 +65,22 @@ pub async fn input_identity(root : String, config : Json) -> String {
 }
 
 ///|
-pub async fn watch(root : String, emit : (Json) -> Unit raise) -> Unit {
+pub async fn watch(root : String, emit : async (Json) -> Unit) -> Unit {
   let mut sequence = 0
-  defer emit(
-    (
-      {
-        "schemaVersion": 1,
-        "event": "watch-stop",
-        "command": "watch",
-        "toolingVersion": version,
-        "sequence": sequence,
-        "signal": "cancelled",
-        "passed": true,
-      } : Json),
-  )
+  defer @async.protect_from_cancel(async fn() {
+    emit(
+      (
+        {
+          "schemaVersion": 1,
+          "event": "watch-stop",
+          "command": "watch",
+          "toolingVersion": version,
+          "sequence": sequence,
+          "signal": "cancelled",
+          "passed": true,
+        } : Json),
+    )
+  })
   emit(
     (
       {
@@ -96,7 +98,16 @@ pub async fn watch(root : String, emit : (Json) -> Unit raise) -> Unit {
     watcher.close()
   })
   let sync_watchers = async fn() -> Unit {
-    let next = watch_roots(root)
+    let next = watch_roots(root) catch {
+      error =>
+        if @async.is_being_cancelled() {
+          raise error
+        } else if roots.is_empty() {
+          [root]
+        } else {
+          roots
+        }
+    }
     if roots == next {
       return
     }
@@ -126,7 +137,12 @@ pub async fn watch(root : String, emit : (Json) -> Unit raise) -> Unit {
   let mut initial = true
   while true {
     let identity = input_identity(root, config) catch {
-      _ => "unavailable-" + @env.now().to_string()
+      error =>
+        if @async.is_being_cancelled() {
+          raise error
+        } else {
+          "unavailable"
+        }
     }
     if initial || identity != last_identity {
       last_identity = identity

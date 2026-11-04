@@ -1,0 +1,100 @@
+----
+import { "moonbitlang/async@0.22.5", "moonbitlang/async@0.22.5/fs", "moonbitlang/async@0.22.5/shell", "moonbitlang/core/json" }
+----
+async fn main {
+  let root = @fs.realpath(".")
+  let directory = @fs.tmpdir(prefix="moonstyle-contract-methods-")
+  defer @fs.rmdir(directory, recursive=true)
+  let write = async fn(file : String, text : String) -> Unit {
+    let parts = file.split("/").collect()
+    if parts.length() > 1 { @fs.mkdir(directory + "/" + parts[:parts.length() - 1].map(part => part.to_owned()).join("/"), recursive=true, allow_exist=true) }
+    @fs.write_file(directory + "/" + file, text)
+  }
+  let moon = async fn(args : Array[String]) -> String {
+    let result = @shell.Cmd("moon", args, cwd=directory).output()
+    guard result.exit_code() == 0 else { fail(result.stdout() + result.stderr()) }
+    guard !result.stderr().contains("implicit_impl_as_method") else { fail(result.stderr()) }
+    result.stdout()
+  }
+  write("moon.mod", "name = \"local/contract-methods\"\nimport { \"lampclaw/moonstyle@0.3.0\" }\n")
+  write("moon.work", "members = [\".\", " + Json(root).stringify() + "]\n")
+  write("generator/moon.pkg", "import { \"lampclaw/moonstyle\", \"lampclaw/moonstyle/extract\" }\noptions(\"is-main\": true)\n")
+  let generator =
+    #|
+    #|fn dependency(bundle : @extract.CompiledBundle) -> @extract.DependencyBundle {
+    #|  match @extract.decode_bundle(bundle.manifest) {
+    #|    Ok(value) => value
+    #|    Err(errors) => abort(@extract.render_diagnostics_text(errors))
+    #|  }
+    #|}
+    #|
+    #|fn main {
+    #|  let contract = @moonstyle.style_contract("button").allow_color()
+    #|  let rule = @moonstyle.rule("tone").color(@moonstyle.rgb(25, 50, 75))
+    #|  let first = @extract.compile_registry(
+    #|    @moonstyle.registry("fixture/first", [rule], contracts=[contract]),
+    #|    mappings_package="local/contract-methods/first",
+    #|  )
+    #|  let second = @extract.compile_registry(
+    #|    @moonstyle.registry("fixture/second", [rule], contracts=[contract]),
+    #|    mappings_package="local/contract-methods/second",
+    #|  )
+    #|  // Reverse input order to exercise the deterministic external-contract order.
+    #|  let dependencies = [dependency(second), dependency(first)]
+    #|  let local = @extract.compile_registry(
+    #|    @moonstyle.registry("fixture/local", [rule], contracts=[contract]),
+    #|    mappings_package="local/contract-methods/local",
+    #|    dependencies~,
+    #|  )
+    #|  let external = @extract.compile_registry(
+    #|    @moonstyle.registry("fixture/external", [rule]),
+    #|    mappings_package="local/contract-methods/external",
+    #|    dependencies~,
+    #|  )
+    #|  let output : Array[Json] = [first, second, local, external].map(bundle => {
+    #|    if !bundle.diagnostics.is_empty() {
+    #|      abort(@extract.render_diagnostics_text(bundle.diagnostics))
+    #|    }
+    #|    { "source": bundle.mappings, "manifest": bundle.mappings_manifest }
+    #|  })
+    #|  println(Json(output).stringify())
+    #|}
+    #|
+  write("generator/main.mbt", generator)
+  let result = @json.parse(moon(["run", "generator", "--target", "native"]).trim())
+  guard result is Array(bundles) else { fail("Generator must emit bundles") }
+  for index, name in ["first", "second", "local", "external"] {
+    guard bundles[index] is { "source": String(source), "manifest": String(manifest), .. } else { fail("Invalid generated mapping") }
+    write(name + "/moon.pkg", manifest)
+    write(name + "/styles.generated.mbt", source)
+  }
+  write("consumer/moon.pkg", "import { \"local/contract-methods/first\", \"local/contract-methods/second\", \"local/contract-methods/local\", \"local/contract-methods/external\" }\n")
+  let consumer =
+    #|
+    #|test "local and both external contracts compose the same mapping" {
+    #|  let expected = @local.button_styles(@local.tone).resolve()
+    #|  assert_eq(@first.button_styles(@local.tone).resolve(), expected)
+    #|  assert_eq(@second.button_styles(@local.tone).resolve(), expected)
+    #|  assert_eq(
+    #|    @local.tone.append_button_style(@local.empty_button_styles()).resolve(),
+    #|    expected,
+    #|  )
+    #|  assert_eq(
+    #|    @first.tone.append_button_style(@first.empty_button_styles()).resolve(),
+    #|    @first.button_styles(@first.tone).resolve(),
+    #|  )
+    #|}
+    #|
+    #|test "both external contracts compose without a local contract" {
+    #|  let expected = @first.button_styles(@external.tone).resolve()
+    #|  assert_eq(@second.button_styles(@external.tone).resolve(), expected)
+    #|  assert_eq(
+    #|    @external.tone.append_button_style(@first.empty_button_styles()).resolve(),
+    #|    expected,
+    #|  )
+    #|}
+    #|
+  write("consumer/consumer_wbtest.mbt", consumer)
+  ignore(moon(["test", "consumer", "--target", "native"]))
+  println("Same-named local and external contracts compile and compose in an independent native consumer.")
+}

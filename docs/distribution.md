@@ -1,107 +1,60 @@
 # Distribution
 
-## Mooncakes library
+## Published library
 
-The public MoonBit module is available on
-[Mooncakes](https://mooncakes.io/docs/lampclaw/moonstyle) as
-`lampclaw/moonstyle@0.2.0`. It includes the typed authoring API, runtime,
-Rabbita adapter and native extractor. Add the module to the consumer's
-`moon.mod`:
+Mooncakes provides `lampclaw/moonstyle@0.2.0`, including typed authoring,
+composition/runtime, native extraction and the Rabbita adapter:
 
 ```moonbit
-name = "example/app"
-version = "0.0.0"
 import { "lampclaw/moonstyle@0.2.0" }
 ```
 
-Run `moon update` to resolve the registry dependency. Registry consumption
-does not require a MoonStyle source checkout in `moon.work`.
+Source 0.3.0 is prepared for release. Its public library API is checked against
+the published 0.2.0 baseline. The optional Luna module remains experimental.
 
-Version 0.2.0 includes the additional typed properties and CSS `@property`
-registration APIs. Use tooling from the source revision matching the library
-release. Regenerate all dependencies before the application when upgrading
-from 0.1.x because 0.2.0 uses artifact schema v14.
-
-The CLI and Vite adapter are provided by the private
-`@lampclaw/moonstyle-tooling` Node package, packed from a reviewed Git checkout.
-Use the source revision corresponding to the library version and record its
-full commit SHA and package digest. The tooling package is not published to
-npm. The optional Luna module remains experimental and is not published to
-Mooncakes. See the [tooling guide](../tooling/README.md) and
-[regeneration guide](regeneration.md).
-
-## Git and local paths
-
-Git and local-path consumers use the repository root, whose library source
-is in `src/`. The root also contains the tooling package, so both can be
-consumed from the same reviewed source revision.
-
-The canonical source repository is
-[lucavance/moonstyle](https://github.com/lucavance/moonstyle), recorded in all
-three MoonBit module manifests and the private tooling manifest. Git consumers
-pin a reviewed full commit SHA with successful validation and hosted CI;
-branch names and tags are not immutable source identities.
-
-For a local checkout:
-
-Consumer `moon.mod`:
-
-```moonbit
-name = "example/app"
-version = "0.0.0"
-import { "lampclaw/moonstyle@0.2.0" }
-```
-
-Consumer `moon.work`:
-
-```moonbit
-members = [".", "../moonstyle"]
-```
-
-For Git consumption, clone a reviewed commit and expose the checkout root
-as a member of the consuming `moon.work`:
+## Reviewed Git source
 
 ```bash
-git clone https://github.com/lucavance/moonstyle.git ../moonstyle
-git -C ../moonstyle checkout --detach <reviewed-commit>
+git clone https://github.com/lucavance/moonstyle.git source
+git -C source checkout --detach <reviewed-full-commit>
 moon update
+moon install ./source/tooling/native/src/cmd/moonstyle
 ```
 
-Replace `<reviewed-commit>` with the reviewed full SHA. Run `moon update` after
-installing the pinned toolchain to initialize the registry before any `.mbtx`
-script. A Git import syntax is not required.
-Do not track a branch name for production builds. The [executable quickstart](quickstart.md)
-and `tools/verify-consumer.mbtx` validate this flow with a temporary local remote,
-including a component/app pair and tooling packed from the same revision.
+Use the same reviewed revision for the CLI and library. In the consumer workspace,
+list `source` and your application in `moon.work`. A module with source-version
+imports such as `lampclaw/moonstyle@0.3.0` then resolves to that local workspace
+member. This source workflow does not imply that 0.3.0 is published to Mooncakes.
+The [executable quickstart](quickstart.md) validates the complete setup.
 
-The repository root is the public MoonBit module and private tooling package.
-The `validation/` submodule is the repository's application consumer. The
-bootstrap contract test creates an isolated module with a path dependency on
-the checkout root, while a packed consumer verifies the
-`@lampclaw/moonstyle-tooling/vite` export and the complete `moonstyle`
-generate/check/watch loop. The CLI
-emits the same exact `style.config.json` schema used by the repository:
-generated package, four output paths, dependency roots, and cache directory.
-The package-owned asynchronous Vite plugin delegates recursive root discovery
-and all CSS semantics to the native extractor, consumes structured diagnostics,
-and drives the VS Code problem matcher; it has no separate JavaScript authoring
-or configuration model.
+The root `moon.mod` owns `lampclaw/moonstyle`, with library packages under `src/`.
+`moon package --list` must exclude validation, tools and optional modules from
+the public archive. Git consumers keep the complete checkout for source tooling.
 
-Initialize or audit a consumer with:
+## Project tools and artifacts
+
+The CLI is the independent MoonBit executable in `tooling/native/`. Consumers
+install it using `moon install`, or run its source through `moon`.
+There is no default Node package or package-manager install step.
+The optional [`@lampclaw/moonstyle-tooling/vite`](../tooling/vite/README.md) adapter
+is a private Git/path package that calls the installed native CLI.
 
 ```bash
-vp exec moonstyle init
-vp exec moonstyle doctor --strict
-vp exec moonstyle generate
-vp exec moonstyle check
-vp exec moonstyle watch
+moonstyle init
+moonstyle generate
+moonstyle doctor --strict
+moonstyle check
+moonstyle build --main-package src/demo
+moonstyle dev --main-package src/demo
 ```
 
-`.moonstyle.json` schema v1 records project paths and managed hashes.
-`upgrade --dry-run` previews safe changes. Existing arbitrary Vite/entry source
-is preserved; only exact legacy copied files and imports migrate automatically.
-The one-shot commands use release extraction. Standalone watch uses debug
-extraction and is intended as an alternative to the Vite development process,
-not as a concurrent writer of the same formal outputs. The
-[tooling guide](../tooling/README.md) documents the complete command surface and
-configuration ownership; [release policy](release-policy.md) defines readiness.
+`.moonstyle.json` schema v2 records managed hashes and extractor/styles paths.
+`upgrade --dry-run` previews migration from schema v1 without modifying Vite/entry
+source. The user owns `style.config.json`. See [project tools](../tooling/README.md).
+
+Component distribution includes CSS, nominal mappings, their `moon.pkg`, and the
+schema-v14 bundle. Commit these four outputs together. Consumers discover bundles
+from configured dependency roots; they do not run dependency build scripts.
+Re-extract dependencies leaf-first after incompatible changes. See
+[regeneration](regeneration.md), [artifact schema](artifact-schema-v14.md) and
+[release policy](release-policy.md).

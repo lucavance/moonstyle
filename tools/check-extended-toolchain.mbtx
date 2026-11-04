@@ -1,0 +1,24 @@
+----
+import {
+  "moonbitlang/async@0.22.5",
+  "moonbitlang/async@0.22.5/fs",
+  "moonbitlang/async@0.22.5/shell",
+  "moonbitlang/core/json",
+}
+----
+
+fn field(value : Json, key : String) -> Json {
+  match value { Object(fields) => fields.get(key).unwrap_or(Json::null()); _ => Json::null() }
+}
+
+async fn main {
+  let expected = field(@json.parse(@fs.read_file("toolchain.json").text()), "tools")
+  for (command, key, prefix) in [("node", "node", "v"), ("bun", "bun", ""), ("vp", "vitePlus", "vp v")] {
+    guard field(expected, key) is String(version) else { fail("Missing toolchain pin " + key) }
+    let actual = @shell.Cmd(command, ["--version"]).output().stdout().split("\n").next().unwrap().trim().to_owned()
+    assert_eq(actual, prefix + version)
+  }
+  let playwright = @json.parse(@fs.read_file("verification/node_modules/playwright/package.json").text())
+  assert_eq(field(playwright, "version"), field(expected, "playwright"))
+  println("Extended verification toolchain matches toolchain.json.")
+}
