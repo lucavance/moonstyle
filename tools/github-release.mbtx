@@ -1,0 +1,102 @@
+----
+import {
+  "moonbitlang/async@0.22.5",
+  "moonbitlang/async@0.22.5/fs",
+  "moonbitlang/async@0.22.5/shell",
+  "moonbitlang/core/env",
+  "moonbitlang/core/json",
+  "moonbitlang/core/string",
+}
+----
+
+fn text(value : Json, key : String) -> String raise {
+  guard value is Object(fields) && fields.get(key) is Some(String(value)) else {
+    fail("Missing release field: " + key)
+  }
+  value
+}
+
+async fn command(args : Array[String]) -> String {
+  let output = @shell.Cmd("git", args).output()
+  output.check()
+  output.stdout().trim().to_owned()
+}
+
+async fn main {
+  let args = @env.args()[1:]
+  guard args.all(arg => arg == "--dry-run") else { fail("Usage: github-release.mbtx [--dry-run]") }
+  let dry_run = args.contains("--dry-run")
+  let release = @json.parse(@fs.read_file("release-status.json").text())
+  let version = text(release, "publishedLibraryVersion")
+  if version != text(release, "developmentVersion") {
+    println("Source version has not been published; no GitHub Release is due.")
+    return
+  }
+  guard re"^[0-9]+\.[0-9]+\.[0-9]+$".execute(version[:]) is Some(_) else {
+    fail("Expected a stable release version")
+  }
+  let tag = "v" + version
+  let repository = @env.get_env_var("GITHUB_REPOSITORY").unwrap_or("lucavance/moonstyle")
+  guard re"^[A-Za-z0-9_.\-]+/[A-Za-z0-9_.\-]+$".execute(repository[:]) is Some(_) else {
+    fail("Invalid GitHub repository")
+  }
+  let revision = command(["rev-parse", "--verify", "refs/tags/" + tag + "^{commit}"])
+  let manifest = command(["show", revision + ":moon.mod"])
+  guard manifest.split("\n").any(line => line.trim() == "version = " + Json(version).stringify()) else {
+    fail("The release tag has a different module version")
+  }
+  let notes = @fs.read_file("docs/releases/" + version + ".md").text()
+  guard notes.trim() != "" else { fail("Release notes must not be empty") }
+  let token = @env.get_env_var("GITHUB_TOKEN").unwrap_or("")
+  guard !token.contains("\n") && !token.contains("\r") else { fail("Invalid GitHub token") }
+  let temporary = @fs.tmpdir(prefix="moonstyle-github-release-")
+  defer @fs.rmdir(temporary, recursive=true)
+  let headers = temporary + "/headers"
+  if token != "" { @fs.write_file(headers, "Authorization: Bearer " + token + "\n") }
+  let api = async fn(path : String, body : Json?) -> (Int, Json) {
+    let args = ["--silent", "--show-error", "--connect-timeout", "10", "--max-time", "30", "--header", "Accept: application/vnd.github+json", "--output", temporary + "/response.json", "--write-out", "%{http_code}"]
+    if token != "" { args.append(["--header", "@" + headers]) }
+    if body is Some(body) {
+      @fs.write_file(temporary + "/request.json", body.stringify())
+      args.append(["--request", "POST", "--header", "Content-Type: application/json", "--data-binary", "@" + temporary + "/request.json"])
+    }
+    let output = @shell.Cmd("curl", args + ["https://api.github.com/repos/" + repository + path]).output()
+    output.check()
+    (@string.parse_int(output.stdout().trim()), @json.parse(@fs.read_file(temporary + "/response.json").text()))
+  }
+  let (status, existing) = api("/releases/tags/" + tag, None)
+  if status == 200 {
+    guard text(existing, "tag_name") == tag else { fail("Unexpected release tag") }
+    println("GitHub Release already exists: " + text(existing, "html_url"))
+    return
+  }
+  guard status == 404 else { fail("Cannot inspect GitHub Release: HTTP " + status.to_string()) }
+  let (status, runs) = api("/actions/runs?head_sha=" + revision + "&event=push&per_page=30", None)
+  guard status == 200 && runs is { "workflow_runs": Array(runs), .. } else {
+    fail("Cannot inspect release-source CI")
+  }
+  let passed = runs.filter(run => run is { "name": "Candidate CI", "head_sha": String(sha), "status": "completed", "conclusion": "success", "event": "push", .. } && sha == revision)
+  guard passed is [run, ..] && run is { "id": Number(id, ..), .. } else {
+    fail("Release source requires successful hosted Candidate CI")
+  }
+  let (status, jobs) = api("/actions/runs/" + id.to_int64().to_string() + "/jobs", None)
+  guard status == 200 && jobs is { "jobs": Array(jobs), .. } else {
+    fail("Cannot inspect release-source jobs")
+  }
+  for name in ["Native MoonBit validation without Node", "Standards, oracle and three-browser verification"] {
+    guard jobs.any(job => job is { "name": String(actual), "status": "completed", "conclusion": "success", .. } && actual == name) else {
+      fail("Required release-source job has not passed: " + name)
+    }
+  }
+  if dry_run {
+    println("GitHub Release ready: " + tag + " from " + revision + "; both hosted jobs passed.")
+    return
+  }
+  guard token != "" else { fail("GITHUB_TOKEN is required for GitHub Release HTTP writes") }
+  let body : Json = { "tag_name": tag, "target_commitish": revision, "name": "MoonStyle " + version, "body": notes, "draft": false, "prerelease": false, "make_latest": "true" }
+  let (status, result) = api("/releases", Some(body))
+  guard status == 201 else {
+    fail("GitHub Release HTTP " + status.to_string() + ": " + text(result, "message"))
+  }
+  println("Created GitHub Release: " + text(result, "html_url"))
+}

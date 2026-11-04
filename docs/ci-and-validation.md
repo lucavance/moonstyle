@@ -52,6 +52,12 @@ Node/Bun/Vite. The extended job installs the exact Node, Bun, Vite+ and Playwrig
 versions in `toolchain.json`. Actions and the MoonBit installer checksum are pinned.
 Both jobs verify the worktree remains unchanged.
 
+The [GitHub Release workflow](../.github/workflows/release.yml) follows successful
+main-branch CI. It uses the repository's temporary Actions token to call the
+GitHub HTTP API for the already published version, checks both jobs for the
+release tag, and preserves existing Releases. Mooncakes publication and tag
+creation remain maintainer actions; see [release policy](release-policy.md).
+
 Record two reviewed measurements with:
 
 ```bash

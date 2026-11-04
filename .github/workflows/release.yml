@@ -1,0 +1,49 @@
+name: Publish GitHub Release
+
+on:
+  workflow_run:
+    workflows: [Candidate CI]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-release-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Create release through GitHub HTTP API
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - name: Check out verified main commit and release tags
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up MoonBit
+        uses: ./.github/actions/setup-moonbit
+        with:
+          version: '0.10.19+97801ee1b'
+          core-version: '0.10.19+97801ee1b'
+
+      - name: Initialize MoonBit registry
+        run: moon update
+
+      - name: Create missing GitHub Release
+        if: ${{ hashFiles('tools/github-release.mbtx') != '' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: moon run tools/github-release.mbtx

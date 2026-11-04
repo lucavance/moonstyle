@@ -7,7 +7,7 @@ version; artifact, metadata and protocol schemas have independent versions.
 See [API stability](api-stability.md) and [release status](../release-status.json).
 
 A release tag identifies a reviewed commit. Pin its full commit identity for
-source consumption. Tagging, pushing and publication require explicit maintainer
+source consumption. Tagging, pushing and Mooncakes publication require explicit maintainer
 action; validation never performs them.
 
 Before tagging, require a clean tree, reproducible generated outputs and
@@ -32,3 +32,15 @@ The native CLI is installed from reviewed Git source. The optional Vite adapter
 is private and source-distributed. Mooncakes publication is a separate operation
 after release approval. See [distribution](distribution.md) and
 [regeneration](regeneration.md).
+
+After verifying Mooncakes publication, maintainers push the release tag and
+record the published version and release notes on `main`. Once that main commit
+passes Candidate CI, the [GitHub Release workflow](../.github/workflows/release.yml)
+uses the repository's temporary Actions token and HTTP API to create the missing
+Release. It also verifies that the tag has the same module version and that both
+required CI jobs passed for the tagged source. Existing Releases are preserved.
+This workflow does not publish to Mooncakes or create tags. Its write permission
+is confined to the Release job; it requires no local GitHub login or stored PAT.
+
+`moon run tools/github-release.mbtx -- --dry-run` performs the HTTP and source
+checks without creating a Release.
